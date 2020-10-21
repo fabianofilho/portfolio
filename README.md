@@ -1,4 +1,4 @@
-# portifolio
+# portfolio
 Projetos e desafios
 
 ## DL COVID XRAY
