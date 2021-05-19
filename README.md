@@ -1,11 +1,11 @@
 # portfolio
 Projetos e desafios
 
-## DL COVID XRAY
+## DL COVID XRAY (2020)
 - Detecçãod e COVID-19 em raio-x
 https://github.com/fabianofilho/COVID-19-Lung-Radiography-CNN-Kaggle-Dataset
 
-## ML COVID VIX
+## ML COVID VIX (2020)
 - Predição para triagem de COVID-19
 https://github.com/fabianofilho/ml-covid-vix
 
