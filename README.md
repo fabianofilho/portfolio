@@ -1,8 +1,12 @@
 # portfolio
 Projetos e desafios
 
+## Brain Age Predictor (2022)
+- Predição de Idade Cerebral (HIAE)
+https://github.com/fabianofilho/brain-age-predictor/blob/main/age_predictor.ipynb
+
 ## DL COVID XRAY (2020)
-- Detecçãod e COVID-19 em raio-x
+- Detecção de COVID-19 em raio-x
 https://github.com/fabianofilho/COVID-19-Lung-Radiography-CNN-Kaggle-Dataset
 
 ## ML COVID VIX (2020)
