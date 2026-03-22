@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fabiano Barcellos Filho | Médico & Cientista de Dados</title>
+  <meta name="description" content="Médico, Cientista de Dados e Especialista em Inteligência Artificial na Saúde. Gerente Médico de IA na Hapvida, Doutorando na FSP-USP." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0e1a;
+      --bg2: #111827;
+      --bg3: #1a2235;
+      --accent: #3b82f6;
+      --accent2: #06b6d4;
+      --green: #10b981;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: #1e293b;
+      --card: #131c2e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10, 14, 26, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Fira Code', monospace;
+      font-size: 1rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 6rem 2rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -20%, rgba(59,130,246,0.15), transparent),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(6,182,212,0.08), transparent);
+    }
+    .hero-inner {
+      max-width: 860px; text-align: center; position: relative; z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3);
+      border-radius: 999px; padding: 0.35rem 1rem;
+      font-size: 0.8rem; color: var(--accent); margin-bottom: 1.5rem;
+      font-family: 'Fira Code', monospace;
+    }
+    .hero-badge::before { content: '▶'; font-size: 0.6rem; }
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 700; line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 1.15rem; color: var(--muted);
+      max-width: 600px; margin: 0 auto 2.5rem;
+    }
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      justify-content: center; margin-bottom: 2.5rem;
+    }
+    .tag {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 6px; padding: 0.3rem 0.8rem;
+      font-size: 0.8rem; color: var(--muted);
+    }
+    .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.7rem 1.6rem; border-radius: 8px;
+      font-size: 0.9rem; font-weight: 500; text-decoration: none;
+      transition: all 0.2s; cursor: pointer; border: none;
+    }
+    .btn-primary {
+      background: var(--accent); color: #fff;
+    }
+    .btn-primary:hover { background: #2563eb; transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+    /* SECTIONS */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem; color: var(--accent);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700; margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .section-divider {
+      width: 48px; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 2px; margin-bottom: 3rem;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+    }
+    .about-text p { color: var(--muted); margin-bottom: 1rem; }
+    .about-text p strong { color: var(--text); }
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    }
+    .stat-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem; text-align: center;
+    }
+    .stat-number {
+      font-size: 2rem; font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
+
+    /* TIMELINE */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent), transparent);
+    }
+    .timeline-item { position: relative; margin-bottom: 2.5rem; }
+    .timeline-item::before {
+      content: '';
+      position: absolute; left: -2.45rem; top: 0.4rem;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent); border: 2px solid var(--bg);
+      box-shadow: 0 0 10px rgba(59,130,246,0.5);
+    }
+    .timeline-period {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem; color: var(--accent2);
+      margin-bottom: 0.25rem;
+    }
+    .timeline-role { font-weight: 600; font-size: 1rem; margin-bottom: 0.15rem; }
+    .timeline-org { color: var(--muted); font-size: 0.875rem; margin-bottom: 0.5rem; }
+    .timeline-desc { color: var(--muted); font-size: 0.875rem; }
+
+    /* EXPERTISE */
+    .expertise-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .expertise-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .expertise-card:hover {
+      border-color: var(--accent); transform: translateY(-3px);
+    }
+    .expertise-icon {
+      font-size: 1.8rem; margin-bottom: 1rem;
+    }
+    .expertise-title { font-weight: 600; margin-bottom: 0.5rem; }
+    .expertise-desc { color: var(--muted); font-size: 0.875rem; }
+    .tech-pills {
+      display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem;
+    }
+    .pill {
+      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 4px; padding: 0.15rem 0.5rem;
+      font-size: 0.72rem; color: var(--accent);
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* PUBLICATIONS */
+    .pub-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .pub-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem;
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .pub-card:hover { border-color: rgba(59,130,246,0.4); }
+    .pub-number {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem; color: var(--accent);
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 6px; padding: 0.25rem 0.5rem;
+      min-width: 2.5rem; text-align: center; margin-top: 0.1rem;
+    }
+    .pub-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.35rem; }
+    .pub-meta { color: var(--muted); font-size: 0.8rem; }
+    .pub-meta span { color: var(--green); font-weight: 500; }
+
+    /* CONTENT */
+    .content-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+    .content-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem; text-decoration: none;
+      color: inherit; transition: all 0.2s; display: block;
+    }
+    .content-card:hover {
+      border-color: var(--accent); transform: translateY(-3px);
+    }
+    .content-platform {
+      font-size: 0.75rem; color: var(--muted);
+      font-family: 'Fira Code', monospace; margin-bottom: 0.5rem;
+    }
+    .content-title { font-weight: 600; margin-bottom: 0.4rem; }
+    .content-desc { color: var(--muted); font-size: 0.85rem; }
+    .content-arrow {
+      margin-top: 1rem; color: var(--accent); font-size: 1.1rem;
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.75rem;
+      display: flex; flex-direction: column;
+      transition: border-color 0.2s, transform 0.2s;
+      text-decoration: none; color: inherit;
+    }
+    .project-card:hover {
+      border-color: var(--accent); transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(59,130,246,0.1);
+    }
+    .project-header {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 1rem; margin-bottom: 0.75rem;
+    }
+    .project-name {
+      font-family: 'Fira Code', monospace;
+      font-size: 1rem; font-weight: 600; color: var(--accent);
+    }
+    .project-visibility {
+      font-size: 0.7rem; padding: 0.2rem 0.55rem;
+      border-radius: 999px; font-family: 'Fira Code', monospace;
+      white-space: nowrap;
+    }
+    .badge-public {
+      background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3);
+      color: var(--green);
+    }
+    .badge-private {
+      background: rgba(148,163,184,0.1); border: 1px solid rgba(148,163,184,0.2);
+      color: var(--muted);
+    }
+    .project-desc {
+      color: var(--muted); font-size: 0.875rem; flex: 1; margin-bottom: 1.25rem;
+      line-height: 1.65;
+    }
+    .project-footer {
+      display: flex; align-items: center;
+      justify-content: space-between; margin-top: auto;
+    }
+    .project-lang {
+      display: flex; align-items: center; gap: 0.4rem;
+      font-size: 0.8rem; color: var(--muted);
+    }
+    .lang-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+    }
+    .lang-python { background: #3572A5; }
+    .lang-typescript { background: #3178c6; }
+    .project-link {
+      font-size: 0.8rem; color: var(--accent);
+      display: flex; align-items: center; gap: 0.3rem;
+    }
+    @media (max-width: 768px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg2); border-top: 1px solid var(--border);
+      padding: 3rem 2rem; text-align: center;
+    }
+    .footer-name { font-weight: 600; margin-bottom: 0.5rem; }
+    .footer-links {
+      display: flex; justify-content: center; gap: 2rem;
+      list-style: none; margin-top: 1rem;
+    }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy { color: var(--muted); font-size: 0.8rem; margin-top: 1.5rem; }
+
+    /* ALT SECTION BG */
+    .bg-alt { background: var(--bg2); }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">fabiano.filho</a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#trajetoria">Trajetória</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#publicacoes">Publicações</a></li>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#conteudo">Conteúdo</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Médico · Cientista de Dados · IA na Saúde</div>
+    <h1>
+      Fabiano Barcellos<br/>
+      <span class="gradient-text">Filho, MD</span>
+    </h1>
+    <p class="hero-sub">
+      Gerente Médico de Inovação e IA na Hapvida · Doutorando em Machine Learning na FSP-USP · Pesquisador em fairness e calibração de modelos preditivos em saúde.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Machine Learning</span>
+      <span class="tag">Deep Learning</span>
+      <span class="tag">Fairness & XAI</span>
+      <span class="tag">FHIR</span>
+      <span class="tag">LLMs na Medicina</span>
+      <span class="tag">Epidemiologia</span>
+      <span class="tag">Python</span>
+    </div>
+    <div class="hero-cta">
+      <a href="https://www.linkedin.com/in/fabianofilho/" target="_blank" class="btn btn-primary">LinkedIn →</a>
+      <a href="https://scholar.google.com/citations?user=IqVY-BQAAAAJ&hl=pt-BR" target="_blank" class="btn btn-outline">Google Scholar</a>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre" class="bg-alt">
+  <div class="container">
+    <p class="section-label">// sobre mim</p>
+    <h2 class="section-title">Medicina + Dados + IA</h2>
+    <div class="section-divider"></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Sou <strong>médico e cientista de dados</strong>, apaixonado por utilizar tecnologias avançadas para melhorar a qualidade de vida das pessoas e impulsionar inovações na saúde.</p>
+        <p>Atualmente atuo como <strong>Gerente Médico de Inovação e IA na Hapvida NotreDame Intermédica</strong>, liderando projetos de IA médica de alto impacto.</p>
+        <p>Sou pesquisador no <strong>LABDAPS (USP)</strong> e doutorando com foco em <strong>multicalibração e justiça em modelos preditivos de saúde pública</strong>, buscando tornar a IA mais equitativa para diferentes populações.</p>
+        <p>Moro em São Paulo, sou vegano e acredito que medicina baseada em evidências aliada à ciência de dados pode transformar o cuidado ao paciente.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-number">106+</div>
+          <div class="stat-label">Citações no principal artigo</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4+</div>
+          <div class="stat-label">Artigos publicados</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">PhD</div>
+          <div class="stat-label">Doutorando FSP-USP</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2026</div>
+          <div class="stat-label">Gerente IA · Hapvida</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAJETÓRIA -->
+<section id="trajetoria">
+  <div class="container">
+    <p class="section-label">// trajetória</p>
+    <h2 class="section-title">Profissional & Acadêmica</h2>
+    <div class="section-divider"></div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-period">Jan 2026 → Presente</div>
+        <div class="timeline-role">Gerente Médico de Inovação e Inteligência Artificial</div>
+        <div class="timeline-org">Hapvida NotreDame Intermédica</div>
+        <div class="timeline-desc">Liderança de projetos de IA médica, inovação e análise científica em uma das maiores operadoras de saúde do Brasil.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-period">Jun 2025 → Presente</div>
+        <div class="timeline-role">Doutorando (PhD) em Machine Learning na Saúde Pública</div>
+        <div class="timeline-org">FSP-USP · LABDAPS</div>
+        <div class="timeline-desc">Pesquisa em multicalibração e justiça (fairness) em modelos preditivos, garantindo equidade para diferentes subgrupos populacionais.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-period">Jul 2023 → Presente</div>
+        <div class="timeline-role">Fundador e Investidor</div>
+        <div class="timeline-org">Medicina e Inteligência Artificial</div>
+        <div class="timeline-desc">Gestão de projetos e disseminação de conhecimento em IA na saúde para a comunidade médica brasileira.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-period">Fev 2025 → Jul 2025</div>
+        <div class="timeline-role">Professor</div>
+        <div class="timeline-org">amo medicina</div>
+        <div class="timeline-desc">Liderança de conteúdo e cursos de IA aplicada à medicina.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-period">Out 2024 → Nov 2025</div>
+        <div class="timeline-role">Professor · IA na Medicina</div>
+        <div class="timeline-org">Unyleya Educacional — Medicina 5.0</div>
+        <div class="timeline-desc">Docência na disciplina de Inteligência Artificial na medicina.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-period">2023 → 2025</div>
+        <div class="timeline-role">Head of Medical AI Innovation</div>
+        <div class="timeline-org">Neomed</div>
+        <div class="timeline-desc">Liderança da Tribo Científica e desenvolvimento da IA Mariê para cardiologia, com análise de ECG via Deep Learning.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise" class="bg-alt">
+  <div class="container">
+    <p class="section-label">// expertise</p>
+    <h2 class="section-title">Áreas de Atuação</h2>
+    <div class="section-divider"></div>
+    <div class="expertise-grid">
+
+      <div class="expertise-card">
+        <div class="expertise-icon">🤖</div>
+        <div class="expertise-title">Modelagem Preditiva & Deep Learning</div>
+        <div class="expertise-desc">Desenvolvimento de modelos clínicos para risco de reinternação, engajamento na APS e análise de ECG com arquiteturas Conv1D, UNet e ResNet1D com GradCAM.</div>
+        <div class="tech-pills">
+          <span class="pill">CatBoost</span>
+          <span class="pill">XGBoost</span>
+          <span class="pill">LightGBM</span>
+          <span class="pill">TabPFN</span>
+          <span class="pill">PyTorch</span>
+        </div>
+      </div>
+
+      <div class="expertise-card">
+        <div class="expertise-icon">⚖️</div>
+        <div class="expertise-title">Fairness & Explicabilidade (XAI)</div>
+        <div class="expertise-desc">Garantia de equidade em modelos de IA para diferentes subgrupos populacionais. Multicalibração com MCBoost e explicabilidade com SHAP para predições médicas.</div>
+        <div class="tech-pills">
+          <span class="pill">MCBoost</span>
+          <span class="pill">SHAP</span>
+          <span class="pill">Isotonic Calibration</span>
+        </div>
+      </div>
+
+      <div class="expertise-card">
+        <div class="expertise-icon">🧠</div>
+        <div class="expertise-title">LLMs & IA Generativa na Medicina</div>
+        <div class="expertise-desc">Validação clínica de Large Language Models, IA generativa com grounding para confiabilidade e RAG (Retrieval-Augmented Generation) em autorizações médicas.</div>
+        <div class="tech-pills">
+          <span class="pill">LLMs</span>
+          <span class="pill">RAG</span>
+          <span class="pill">Grounding</span>
+          <span class="pill">Prompt Engineering</span>
+        </div>
+      </div>
+
+      <div class="expertise-card">
+        <div class="expertise-icon">🏥</div>
+        <div class="expertise-title">Interoperabilidade & Dados Clínicos</div>
+        <div class="expertise-desc">Integração de sistemas de saúde via padrão FHIR, processamento de dados clínicos estruturados e não-estruturados, NLP em prontuários eletrônicos.</div>
+        <div class="tech-pills">
+          <span class="pill">FHIR</span>
+          <span class="pill">HL7</span>
+          <span class="pill">NLP</span>
+          <span class="pill">EHR</span>
+        </div>
+      </div>
+
+      <div class="expertise-card">
+        <div class="expertise-icon">📊</div>
+        <div class="expertise-title">Epidemiologia & Saúde Pública</div>
+        <div class="expertise-desc">Análise epidemiológica com machine learning, estudos multicêntricos, predição de desfechos clínicos e dataset shift em modelos de saúde populacionais.</div>
+        <div class="tech-pills">
+          <span class="pill">Epidemiologia</span>
+          <span class="pill">Dataset Shift</span>
+          <span class="pill">Federated Learning</span>
+        </div>
+      </div>
+
+      <div class="expertise-card">
+        <div class="expertise-icon">📡</div>
+        <div class="expertise-title">Cardio AI & Análise de ECG</div>
+        <div class="expertise-desc">Detecção de isquemia circunferencial e outras condições cardíacas através de modelos de deep learning aplicados a sinais de eletrocardiograma.</div>
+        <div class="tech-pills">
+          <span class="pill">Conv1D</span>
+          <span class="pill">UNet</span>
+          <span class="pill">ResNet1D</span>
+          <span class="pill">GradCAM</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICAÇÕES -->
+<section id="publicacoes">
+  <div class="container">
+    <p class="section-label">// ciência</p>
+    <h2 class="section-title">Publicações de Destaque</h2>
+    <div class="section-divider"></div>
+    <div class="pub-list">
+
+      <div class="pub-card">
+        <div class="pub-number">01</div>
+        <div>
+          <div class="pub-title">A bibliometric network analysis of coronavirus during the first eight months of COVID-19 in 2020</div>
+          <div class="pub-meta">International Journal of Environmental Research and Public Health · 2021 · <span>106 citações</span></div>
+        </div>
+      </div>
+
+      <div class="pub-card">
+        <div class="pub-number">02</div>
+        <div>
+          <div class="pub-title">Strategies for detecting and mitigating dataset shift in machine learning for health predictions: A systematic review</div>
+          <div class="pub-meta">Journal of Biomedical Informatics · 2025</div>
+        </div>
+      </div>
+
+      <div class="pub-card">
+        <div class="pub-number">03</div>
+        <div>
+          <div class="pub-title">Predictive modeling of gestational weight gain: a machine learning multiclass classification study</div>
+          <div class="pub-meta">BMC Pregnancy and Childbirth · 2024</div>
+        </div>
+      </div>
+
+      <div class="pub-card">
+        <div class="pub-number">04</div>
+        <div>
+          <div class="pub-title">Multicenter comparative analysis of local and aggregated data training strategies in COVID-19 outcome prediction with Machine Learning</div>
+          <div class="pub-meta">PLOS Digital Health · 2024</div>
+        </div>
+      </div>
+
+    </div>
+    <div style="margin-top: 2rem; text-align: center;">
+      <a href="https://scholar.google.com/citations?user=IqVY-BQAAAAJ&hl=pt-BR" target="_blank" class="btn btn-outline">Ver todas no Google Scholar →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETOS -->
+<section id="projetos">
+  <div class="container">
+    <p class="section-label">// open source</p>
+    <h2 class="section-title">Projetos em Destaque</h2>
+    <div class="section-divider"></div>
+    <div class="projects-grid">
+
+      <a href="https://github.com/fabianofilho/datasus-ai-search" target="_blank" class="project-card">
+        <div class="project-header">
+          <div class="project-name">datasus-ai-search</div>
+          <span class="project-visibility badge-public">público</span>
+        </div>
+        <div class="project-desc">
+          Consultas em linguagem natural sobre dados epidemiológicos brasileiros do DATASUS. Permite que pesquisadores e profissionais de saúde façam perguntas em português — sem SQL — e obtenham respostas com visualizações. Integra LLMs (OpenAI, Anthropic, Ollama) com DuckDB para análise local de mortalidade (SIM), internações (SIH), procedimentos ambulatoriais (SIA) e dados populacionais (IBGE).
+        </div>
+        <div class="tech-pills" style="margin-bottom: 1.25rem;">
+          <span class="pill">Python</span>
+          <span class="pill">LLMs</span>
+          <span class="pill">DuckDB</span>
+          <span class="pill">Streamlit</span>
+          <span class="pill">DATASUS</span>
+        </div>
+        <div class="project-footer">
+          <div class="project-lang">
+            <div class="lang-dot lang-python"></div>
+            Python
+          </div>
+          <div class="project-link">Ver repositório ↗</div>
+        </div>
+      </a>
+
+      <a href="https://github.com/fabianofilho/amie-agents" target="_blank" class="project-card">
+        <div class="project-header">
+          <div class="project-name">amie-agents</div>
+          <span class="project-visibility badge-public">público</span>
+        </div>
+        <div class="project-desc">
+          Implementação open-source de assistentes médicos conversacionais inspirados no AMIE do Google DeepMind. Arquitetura multi-agente com especialistas em diálogo clínico, raciocínio diagnóstico e segurança farmacológica. Usa MedGemma, FastAPI, LangChain e Ollama para inferência local — posicionando a IA como suporte ao médico, nunca como substituto.
+        </div>
+        <div class="tech-pills" style="margin-bottom: 1.25rem;">
+          <span class="pill">MedGemma</span>
+          <span class="pill">FastAPI</span>
+          <span class="pill">LangChain</span>
+          <span class="pill">CrewAI</span>
+          <span class="pill">Ollama</span>
+        </div>
+        <div class="project-footer">
+          <div class="project-lang">
+            <div class="lang-dot lang-python"></div>
+            Python
+          </div>
+          <div class="project-link">Ver repositório ↗</div>
+        </div>
+      </a>
+
+      <a href="https://github.com/fabianofilho/digital-twins-health-ai" target="_blank" class="project-card">
+        <div class="project-header">
+          <div class="project-name">digital-twins-health-ai</div>
+          <span class="project-visibility badge-private">privado</span>
+        </div>
+        <div class="project-desc">
+          Plataforma de gêmeos digitais para saúde com IA, permitindo simular e prever desfechos clínicos de pacientes individuais. Combina modelos preditivos com representações digitais dinâmicas do estado de saúde para suporte à decisão clínica personalizada.
+        </div>
+        <div class="tech-pills" style="margin-bottom: 1.25rem;">
+          <span class="pill">TypeScript</span>
+          <span class="pill">Digital Twins</span>
+          <span class="pill">Predictive Modeling</span>
+          <span class="pill">Clinical AI</span>
+        </div>
+        <div class="project-footer">
+          <div class="project-lang">
+            <div class="lang-dot lang-typescript"></div>
+            TypeScript
+          </div>
+          <div class="project-link">GitHub ↗</div>
+        </div>
+      </a>
+
+      <a href="https://github.com/fabianofilho/ehr-open-health" target="_blank" class="project-card">
+        <div class="project-header">
+          <div class="project-name">ehr-open-health</div>
+          <span class="project-visibility badge-private">privado</span>
+        </div>
+        <div class="project-desc">
+          Sistema aberto de prontuário eletrônico (EHR) com foco em interoperabilidade e saúde pública. Desenvolvido com padrão FHIR para integração com diferentes sistemas de saúde, facilitando o acesso e análise de dados clínicos estruturados.
+        </div>
+        <div class="tech-pills" style="margin-bottom: 1.25rem;">
+          <span class="pill">TypeScript</span>
+          <span class="pill">FHIR</span>
+          <span class="pill">EHR</span>
+          <span class="pill">Interoperabilidade</span>
+        </div>
+        <div class="project-footer">
+          <div class="project-lang">
+            <div class="lang-dot lang-typescript"></div>
+            TypeScript
+          </div>
+          <div class="project-link">GitHub ↗</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTEÚDO -->
+<section id="conteudo" class="bg-alt">
+  <div class="container">
+    <p class="section-label">// divulgação</p>
+    <h2 class="section-title">Criação de Conteúdo</h2>
+    <div class="section-divider"></div>
+    <div class="content-grid">
+
+      <a href="https://fabianofilho.substack.com/" target="_blank" class="content-card">
+        <div class="content-platform">substack.com</div>
+        <div class="content-title">Medicina e Inteligência Artificial</div>
+        <div class="content-desc">Newsletter sobre inovações em IA médica: fairness, validação de LLMs, IA generativa e seu impacto na atualização médica.</div>
+        <div class="content-arrow">↗</div>
+      </a>
+
+      <a href="https://fabianonbfilho.medium.com/" target="_blank" class="content-card">
+        <div class="content-platform">medium.com · dadosesaude</div>
+        <div class="content-title">Ciência de Dados na Saúde</div>
+        <div class="content-desc">Artigos educacionais sobre balanceamento de dados, tipos de dados clínicos, NLP e conceitos fundamentais de data science para médicos.</div>
+        <div class="content-arrow">↗</div>
+      </a>
+
+      <a href="https://www.linkedin.com/in/fabianofilho/" target="_blank" class="content-card">
+        <div class="content-platform">linkedin.com</div>
+        <div class="content-title">LinkedIn</div>
+        <div class="content-desc">Atualizações sobre pesquisas, projetos de IA na saúde, congressos e reflexões sobre medicina baseada em evidências e dados.</div>
+        <div class="content-arrow">↗</div>
+      </a>
+
+      <a href="https://github.com/fabianofilho" target="_blank" class="content-card">
+        <div class="content-platform">github.com</div>
+        <div class="content-title">GitHub</div>
+        <div class="content-desc">Projetos open-source de machine learning na saúde, modelos preditivos clínicos e experimentos com fairness e calibração.</div>
+        <div class="content-arrow">↗</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Fabiano Barcellos Filho, MD</div>
+  <div style="color: var(--muted); font-size: 0.875rem;">Médico · Cientista de Dados · IA na Saúde · São Paulo, Brasil</div>
+  <ul class="footer-links">
+    <li><a href="https://www.linkedin.com/in/fabianofilho/" target="_blank">LinkedIn</a></li>
+    <li><a href="https://scholar.google.com/citations?user=IqVY-BQAAAAJ&hl=pt-BR" target="_blank">Scholar</a></li>
+    <li><a href="https://fabianofilho.substack.com/" target="_blank">Substack</a></li>
+    <li><a href="https://fabianonbfilho.medium.com/" target="_blank">Medium</a></li>
+    <li><a href="https://github.com/fabianofilho" target="_blank">GitHub</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Fabiano Barcellos Filho · portfolio.fabianofilho.com</div>
+</footer>
+
+</body>
+</html>
