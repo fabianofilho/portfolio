@@ -204,6 +204,12 @@
     }
     .expertise-icon {
       font-size: 1.8rem; margin-bottom: 1rem;
+      color: var(--accent);
+      display: flex; align-items: center;
+    }
+    .expertise-icon svg {
+      width: 2rem; height: 2rem;
+      stroke: var(--accent);
     }
     .expertise-title { font-weight: 600; margin-bottom: 0.5rem; }
     .expertise-desc { color: var(--muted); font-size: 0.875rem; }
@@ -486,7 +492,12 @@
     <div class="expertise-grid">
 
       <div class="expertise-card">
-        <div class="expertise-icon">🤖</div>
+        <div class="expertise-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="7" y="7" width="10" height="10" rx="1"/>
+            <path d="M9 7V4M12 7V4M15 7V4M9 20v-3M12 20v-3M15 20v-3M7 9H4M7 12H4M7 15H4M20 9h-3M20 12h-3M20 15h-3"/>
+          </svg>
+        </div>
         <div class="expertise-title">Modelagem Preditiva & Deep Learning</div>
         <div class="expertise-desc">Desenvolvimento de modelos clínicos para risco de reinternação, engajamento na APS e análise de ECG com arquiteturas Conv1D, UNet e ResNet1D com GradCAM.</div>
         <div class="tech-pills">
@@ -499,7 +510,12 @@
       </div>
 
       <div class="expertise-card">
-        <div class="expertise-icon">⚖️</div>
+        <div class="expertise-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </div>
         <div class="expertise-title">Fairness & Explicabilidade (XAI)</div>
         <div class="expertise-desc">Garantia de equidade em modelos de IA para diferentes subgrupos populacionais. Multicalibração com MCBoost e explicabilidade com SHAP para predições médicas.</div>
         <div class="tech-pills">
@@ -510,7 +526,12 @@
       </div>
 
       <div class="expertise-card">
-        <div class="expertise-icon">🧠</div>
+        <div class="expertise-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+            <path d="M5 3v4M19 17v4M3 5h4M17 19h4"/>
+          </svg>
+        </div>
         <div class="expertise-title">LLMs & IA Generativa na Medicina</div>
         <div class="expertise-desc">Validação clínica de Large Language Models, IA generativa com grounding para confiabilidade e RAG (Retrieval-Augmented Generation) em autorizações médicas.</div>
         <div class="tech-pills">
@@ -522,7 +543,12 @@
       </div>
 
       <div class="expertise-card">
-        <div class="expertise-icon">🏥</div>
+        <div class="expertise-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+            <line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/>
+          </svg>
+        </div>
         <div class="expertise-title">Interoperabilidade & Dados Clínicos</div>
         <div class="expertise-desc">Integração de sistemas de saúde via padrão FHIR, processamento de dados clínicos estruturados e não-estruturados, NLP em prontuários eletrônicos.</div>
         <div class="tech-pills">
@@ -534,7 +560,11 @@
       </div>
 
       <div class="expertise-card">
-        <div class="expertise-icon">📊</div>
+        <div class="expertise-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/>
+          </svg>
+        </div>
         <div class="expertise-title">Epidemiologia & Saúde Pública</div>
         <div class="expertise-desc">Análise epidemiológica com machine learning, estudos multicêntricos, predição de desfechos clínicos e dataset shift em modelos de saúde populacionais.</div>
         <div class="tech-pills">
@@ -545,7 +575,11 @@
       </div>
 
       <div class="expertise-card">
-        <div class="expertise-icon">📡</div>
+        <div class="expertise-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
         <div class="expertise-title">Cardio AI & Análise de ECG</div>
         <div class="expertise-desc">Detecção de isquemia circunferencial e outras condições cardíacas através de modelos de deep learning aplicados a sinais de eletrocardiograma.</div>
         <div class="tech-pills">
