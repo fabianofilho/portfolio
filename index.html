@@ -43,6 +43,25 @@
       display: flex; align-items: center; justify-content: space-between;
       height: 64px;
     }
+    .nav-left {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    #lang-btn {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.72rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 6px;
+      padding: 0.28rem 0.65rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.08em;
+    }
+    #lang-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
     .nav-logo {
       font-family: 'Fira Code', monospace;
       font-size: 1rem;
@@ -356,26 +375,29 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">fabiano.filho</a>
+  <div class="nav-left">
+    <button id="lang-btn" onclick="toggleLang()">EN</button>
+    <a class="nav-logo" href="#">fabiano.filho</a>
+  </div>
   <ul class="nav-links">
-    <li><a href="#sobre">Sobre</a></li>
-    <li><a href="#trajetoria">Trajetória</a></li>
-    <li><a href="#expertise">Expertise</a></li>
-    <li><a href="#publicacoes">Publicações</a></li>
-    <li><a href="#projetos">Projetos</a></li>
-    <li><a href="#conteudo">Conteúdo</a></li>
+    <li><a href="#sobre" data-i18n="nav.sobre">Sobre</a></li>
+    <li><a href="#trajetoria" data-i18n="nav.trajetoria">Trajetória</a></li>
+    <li><a href="#expertise" data-i18n="nav.expertise">Expertise</a></li>
+    <li><a href="#publicacoes" data-i18n="nav.publicacoes">Publicações</a></li>
+    <li><a href="#projetos" data-i18n="nav.projetos">Projetos</a></li>
+    <li><a href="#conteudo" data-i18n="nav.conteudo">Conteúdo</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-badge">Médico · Cientista de Dados · IA na Saúde</div>
+    <div class="hero-badge" data-i18n="hero.badge">Médico · Cientista de Dados · IA na Saúde</div>
     <h1>
       Fabiano Barcellos<br/>
       <span class="gradient-text">Filho, MD</span>
     </h1>
-    <p class="hero-sub">
+    <p class="hero-sub" data-i18n="hero.sub">
       Gerente Médico de Inovação e IA na Hapvida · Doutorando em Machine Learning na FSP-USP · Pesquisador em fairness e calibração de modelos preditivos em saúde.
     </p>
     <div class="hero-tags">
@@ -397,32 +419,32 @@
 <!-- SOBRE -->
 <section id="sobre" class="bg-alt">
   <div class="container">
-    <p class="section-label">// sobre mim</p>
-    <h2 class="section-title">Medicina + Dados + IA</h2>
+    <p class="section-label" data-i18n="about.label">// sobre mim</p>
+    <h2 class="section-title" data-i18n="about.title">Medicina + Dados + IA</h2>
     <div class="section-divider"></div>
     <div class="about-grid">
       <div class="about-text">
-        <p>Sou <strong>médico e cientista de dados</strong>, apaixonado por utilizar tecnologias avançadas para melhorar a qualidade de vida das pessoas e impulsionar inovações na saúde.</p>
-        <p>Atualmente atuo como <strong>Gerente Médico de Inovação e IA na Hapvida NotreDame Intermédica</strong>, liderando projetos de IA médica de alto impacto.</p>
-        <p>Sou pesquisador no <strong>LABDAPS (USP)</strong> e doutorando com foco em <strong>multicalibração e justiça em modelos preditivos de saúde pública</strong>, buscando tornar a IA mais equitativa para diferentes populações.</p>
-        <p>Moro em São Paulo, sou vegano e acredito que medicina baseada em evidências aliada à ciência de dados pode transformar o cuidado ao paciente.</p>
+        <p data-i18n-html="about.p1">Sou <strong>médico e cientista de dados</strong>, apaixonado por utilizar tecnologias avançadas para melhorar a qualidade de vida das pessoas e impulsionar inovações na saúde.</p>
+        <p data-i18n-html="about.p2">Atualmente atuo como <strong>Gerente Médico de Inovação e IA na Hapvida NotreDame Intermédica</strong>, liderando projetos de IA médica de alto impacto.</p>
+        <p data-i18n-html="about.p3">Sou pesquisador no <strong>LABDAPS (USP)</strong> e doutorando com foco em <strong>multicalibração e justiça em modelos preditivos de saúde pública</strong>, buscando tornar a IA mais equitativa para diferentes populações.</p>
+        <p data-i18n="about.p4">Moro em São Paulo, sou vegano e acredito que medicina baseada em evidências aliada à ciência de dados pode transformar o cuidado ao paciente.</p>
       </div>
       <div class="about-stats">
         <div class="stat-card">
           <div class="stat-number">106+</div>
-          <div class="stat-label">Citações no principal artigo</div>
+          <div class="stat-label" data-i18n="stat.citations">Citações no principal artigo</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">4+</div>
-          <div class="stat-label">Artigos publicados</div>
+          <div class="stat-label" data-i18n="stat.articles">Artigos publicados</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">PhD</div>
-          <div class="stat-label">Doutorando FSP-USP</div>
+          <div class="stat-label" data-i18n="stat.phd">Doutorando FSP-USP</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">2026</div>
-          <div class="stat-label">Gerente IA · Hapvida</div>
+          <div class="stat-label" data-i18n="stat.role">Gerente IA · Hapvida</div>
         </div>
       </div>
     </div>
@@ -432,51 +454,51 @@
 <!-- TRAJETÓRIA -->
 <section id="trajetoria">
   <div class="container">
-    <p class="section-label">// trajetória</p>
-    <h2 class="section-title">Profissional & Acadêmica</h2>
+    <p class="section-label" data-i18n="traj.label">// trajetória</p>
+    <h2 class="section-title" data-i18n="traj.title">Profissional & Acadêmica</h2>
     <div class="section-divider"></div>
     <div class="timeline">
 
       <div class="timeline-item">
         <div class="timeline-period">Jan 2026 → Presente</div>
-        <div class="timeline-role">Gerente Médico de Inovação e Inteligência Artificial</div>
+        <div class="timeline-role" data-i18n="t1.role">Gerente Médico de Inovação e Inteligência Artificial</div>
         <div class="timeline-org">Hapvida NotreDame Intermédica</div>
-        <div class="timeline-desc">Liderança de projetos de IA médica, inovação e análise científica em uma das maiores operadoras de saúde do Brasil.</div>
+        <div class="timeline-desc" data-i18n="t1.desc">Liderança de projetos de IA médica, inovação e análise científica em uma das maiores operadoras de saúde do Brasil.</div>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-period">Jun 2025 → Presente</div>
-        <div class="timeline-role">Doutorando (PhD) em Machine Learning na Saúde Pública</div>
+        <div class="timeline-role" data-i18n="t2.role">Doutorando (PhD) em Machine Learning na Saúde Pública</div>
         <div class="timeline-org">FSP-USP · LABDAPS</div>
-        <div class="timeline-desc">Pesquisa em multicalibração e justiça (fairness) em modelos preditivos, garantindo equidade para diferentes subgrupos populacionais.</div>
+        <div class="timeline-desc" data-i18n="t2.desc">Pesquisa em multicalibração e justiça (fairness) em modelos preditivos, garantindo equidade para diferentes subgrupos populacionais.</div>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-period">Jul 2023 → Presente</div>
-        <div class="timeline-role">Fundador e Investidor</div>
-        <div class="timeline-org">Medicina e Inteligência Artificial</div>
-        <div class="timeline-desc">Gestão de projetos e disseminação de conhecimento em IA na saúde para a comunidade médica brasileira.</div>
+        <div class="timeline-role" data-i18n="t3.role">Fundador e Investidor</div>
+        <div class="timeline-org" data-i18n="t3.org">Medicina e Inteligência Artificial</div>
+        <div class="timeline-desc" data-i18n="t3.desc">Gestão de projetos e disseminação de conhecimento em IA na saúde para a comunidade médica brasileira.</div>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-period">Fev 2025 → Jul 2025</div>
-        <div class="timeline-role">Professor</div>
+        <div class="timeline-role" data-i18n="t4.role">Professor</div>
         <div class="timeline-org">amo medicina</div>
-        <div class="timeline-desc">Liderança de conteúdo e cursos de IA aplicada à medicina.</div>
+        <div class="timeline-desc" data-i18n="t4.desc">Liderança de conteúdo e cursos de IA aplicada à medicina.</div>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-period">Out 2024 → Nov 2025</div>
-        <div class="timeline-role">Professor · IA na Medicina</div>
+        <div class="timeline-role" data-i18n="t5.role">Professor · IA na Medicina</div>
         <div class="timeline-org">Unyleya Educacional — Medicina 5.0</div>
-        <div class="timeline-desc">Docência na disciplina de Inteligência Artificial na medicina.</div>
+        <div class="timeline-desc" data-i18n="t5.desc">Docência na disciplina de Inteligência Artificial na medicina.</div>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-period">2023 → 2025</div>
-        <div class="timeline-role">Head of Medical AI Innovation</div>
+        <div class="timeline-role" data-i18n="t6.role">Head of Medical AI Innovation</div>
         <div class="timeline-org">Neomed</div>
-        <div class="timeline-desc">Liderança da Tribo Científica e desenvolvimento da IA Mariê para cardiologia, com análise de ECG via Deep Learning.</div>
+        <div class="timeline-desc" data-i18n="t6.desc">Liderança da Tribo Científica e desenvolvimento da IA Mariê para cardiologia, com análise de ECG via Deep Learning.</div>
       </div>
 
     </div>
@@ -486,8 +508,8 @@
 <!-- EXPERTISE -->
 <section id="expertise" class="bg-alt">
   <div class="container">
-    <p class="section-label">// expertise</p>
-    <h2 class="section-title">Áreas de Atuação</h2>
+    <p class="section-label" data-i18n="exp.label">// expertise</p>
+    <h2 class="section-title" data-i18n="exp.title">Áreas de Atuação</h2>
     <div class="section-divider"></div>
     <div class="expertise-grid">
 
@@ -498,8 +520,8 @@
             <path d="M9 7V4M12 7V4M15 7V4M9 20v-3M12 20v-3M15 20v-3M7 9H4M7 12H4M7 15H4M20 9h-3M20 12h-3M20 15h-3"/>
           </svg>
         </div>
-        <div class="expertise-title">Modelagem Preditiva & Deep Learning</div>
-        <div class="expertise-desc">Desenvolvimento de modelos clínicos para risco de reinternação, engajamento na APS e análise de ECG com arquiteturas Conv1D, UNet e ResNet1D com GradCAM.</div>
+        <div class="expertise-title" data-i18n="e1.title">Modelagem Preditiva & Deep Learning</div>
+        <div class="expertise-desc" data-i18n="e1.desc">Desenvolvimento de modelos clínicos para risco de reinternação, engajamento na APS e análise de ECG com arquiteturas Conv1D, UNet e ResNet1D com GradCAM.</div>
         <div class="tech-pills">
           <span class="pill">CatBoost</span>
           <span class="pill">XGBoost</span>
@@ -516,8 +538,8 @@
             <polyline points="9 12 11 14 15 10"/>
           </svg>
         </div>
-        <div class="expertise-title">Fairness & Explicabilidade (XAI)</div>
-        <div class="expertise-desc">Garantia de equidade em modelos de IA para diferentes subgrupos populacionais. Multicalibração com MCBoost e explicabilidade com SHAP para predições médicas.</div>
+        <div class="expertise-title" data-i18n="e2.title">Fairness & Explicabilidade (XAI)</div>
+        <div class="expertise-desc" data-i18n="e2.desc">Garantia de equidade em modelos de IA para diferentes subgrupos populacionais. Multicalibração com MCBoost e explicabilidade com SHAP para predições médicas.</div>
         <div class="tech-pills">
           <span class="pill">MCBoost</span>
           <span class="pill">SHAP</span>
@@ -532,8 +554,8 @@
             <path d="M5 3v4M19 17v4M3 5h4M17 19h4"/>
           </svg>
         </div>
-        <div class="expertise-title">LLMs & IA Generativa na Medicina</div>
-        <div class="expertise-desc">Validação clínica de Large Language Models, IA generativa com grounding para confiabilidade e RAG (Retrieval-Augmented Generation) em autorizações médicas.</div>
+        <div class="expertise-title" data-i18n="e3.title">LLMs & IA Generativa na Medicina</div>
+        <div class="expertise-desc" data-i18n="e3.desc">Validação clínica de Large Language Models, IA generativa com grounding para confiabilidade e RAG (Retrieval-Augmented Generation) em autorizações médicas.</div>
         <div class="tech-pills">
           <span class="pill">LLMs</span>
           <span class="pill">RAG</span>
@@ -549,8 +571,8 @@
             <line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/>
           </svg>
         </div>
-        <div class="expertise-title">Interoperabilidade & Dados Clínicos</div>
-        <div class="expertise-desc">Integração de sistemas de saúde via padrão FHIR, processamento de dados clínicos estruturados e não-estruturados, NLP em prontuários eletrônicos.</div>
+        <div class="expertise-title" data-i18n="e4.title">Interoperabilidade & Dados Clínicos</div>
+        <div class="expertise-desc" data-i18n="e4.desc">Integração de sistemas de saúde via padrão FHIR, processamento de dados clínicos estruturados e não-estruturados, NLP em prontuários eletrônicos.</div>
         <div class="tech-pills">
           <span class="pill">FHIR</span>
           <span class="pill">HL7</span>
@@ -565,8 +587,8 @@
             <line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/>
           </svg>
         </div>
-        <div class="expertise-title">Epidemiologia & Saúde Pública</div>
-        <div class="expertise-desc">Análise epidemiológica com machine learning, estudos multicêntricos, predição de desfechos clínicos e dataset shift em modelos de saúde populacionais.</div>
+        <div class="expertise-title" data-i18n="e5.title">Epidemiologia & Saúde Pública</div>
+        <div class="expertise-desc" data-i18n="e5.desc">Análise epidemiológica com machine learning, estudos multicêntricos, predição de desfechos clínicos e dataset shift em modelos de saúde populacionais.</div>
         <div class="tech-pills">
           <span class="pill">Epidemiologia</span>
           <span class="pill">Dataset Shift</span>
@@ -580,8 +602,8 @@
             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
           </svg>
         </div>
-        <div class="expertise-title">Cardio AI & Análise de ECG</div>
-        <div class="expertise-desc">Detecção de isquemia circunferencial e outras condições cardíacas através de modelos de deep learning aplicados a sinais de eletrocardiograma.</div>
+        <div class="expertise-title" data-i18n="e6.title">Cardio AI & Análise de ECG</div>
+        <div class="expertise-desc" data-i18n="e6.desc">Detecção de isquemia circunferencial e outras condições cardíacas através de modelos de deep learning aplicados a sinais de eletrocardiograma.</div>
         <div class="tech-pills">
           <span class="pill">Conv1D</span>
           <span class="pill">UNet</span>
@@ -597,8 +619,8 @@
 <!-- PUBLICAÇÕES -->
 <section id="publicacoes">
   <div class="container">
-    <p class="section-label">// ciência</p>
-    <h2 class="section-title">Publicações de Destaque</h2>
+    <p class="section-label" data-i18n="pub.label">// ciência</p>
+    <h2 class="section-title" data-i18n="pub.title">Publicações de Destaque</h2>
     <div class="section-divider"></div>
     <div class="pub-list">
 
@@ -644,17 +666,17 @@
 <!-- PROJETOS -->
 <section id="projetos">
   <div class="container">
-    <p class="section-label">// open source</p>
-    <h2 class="section-title">Projetos em Destaque</h2>
+    <p class="section-label" data-i18n="proj.label">// open source</p>
+    <h2 class="section-title" data-i18n="proj.title">Projetos em Destaque</h2>
     <div class="section-divider"></div>
     <div class="projects-grid">
 
       <a href="https://github.com/fabianofilho/datasus-ai-search" target="_blank" class="project-card">
         <div class="project-header">
           <div class="project-name">datasus-ai-search</div>
-          <span class="project-visibility badge-public">público</span>
+          <span class="project-visibility badge-public" data-i18n="proj.public">público</span>
         </div>
-        <div class="project-desc">
+        <div class="project-desc" data-i18n="proj1.desc">
           Consultas em linguagem natural sobre dados epidemiológicos brasileiros do DATASUS. Permite que pesquisadores e profissionais de saúde façam perguntas em português — sem SQL — e obtenham respostas com visualizações. Integra LLMs (OpenAI, Anthropic, Ollama) com DuckDB para análise local de mortalidade (SIM), internações (SIH), procedimentos ambulatoriais (SIA) e dados populacionais (IBGE).
         </div>
         <div class="tech-pills" style="margin-bottom: 1.25rem;">
@@ -669,16 +691,16 @@
             <div class="lang-dot lang-python"></div>
             Python
           </div>
-          <div class="project-link">Ver repositório ↗</div>
+          <div class="project-link" data-i18n="proj.link.repo">Ver repositório ↗</div>
         </div>
       </a>
 
       <a href="https://github.com/fabianofilho/amie-agents" target="_blank" class="project-card">
         <div class="project-header">
           <div class="project-name">amie-agents</div>
-          <span class="project-visibility badge-public">público</span>
+          <span class="project-visibility badge-public" data-i18n="proj.public">público</span>
         </div>
-        <div class="project-desc">
+        <div class="project-desc" data-i18n="proj2.desc">
           Implementação open-source de assistentes médicos conversacionais inspirados no AMIE do Google DeepMind. Arquitetura multi-agente com especialistas em diálogo clínico, raciocínio diagnóstico e segurança farmacológica. Usa MedGemma, FastAPI, LangChain e Ollama para inferência local — posicionando a IA como suporte ao médico, nunca como substituto.
         </div>
         <div class="tech-pills" style="margin-bottom: 1.25rem;">
@@ -693,16 +715,16 @@
             <div class="lang-dot lang-python"></div>
             Python
           </div>
-          <div class="project-link">Ver repositório ↗</div>
+          <div class="project-link" data-i18n="proj.link.repo">Ver repositório ↗</div>
         </div>
       </a>
 
       <a href="https://github.com/fabianofilho/digital-twins-health-ai" target="_blank" class="project-card">
         <div class="project-header">
           <div class="project-name">digital-twins-health-ai</div>
-          <span class="project-visibility badge-private">privado</span>
+          <span class="project-visibility badge-private" data-i18n="proj.private">privado</span>
         </div>
-        <div class="project-desc">
+        <div class="project-desc" data-i18n="proj3.desc">
           Plataforma de gêmeos digitais para saúde com IA, permitindo simular e prever desfechos clínicos de pacientes individuais. Combina modelos preditivos com representações digitais dinâmicas do estado de saúde para suporte à decisão clínica personalizada.
         </div>
         <div class="tech-pills" style="margin-bottom: 1.25rem;">
@@ -723,9 +745,9 @@
       <a href="https://github.com/fabianofilho/ehr-open-health" target="_blank" class="project-card">
         <div class="project-header">
           <div class="project-name">ehr-open-health</div>
-          <span class="project-visibility badge-private">privado</span>
+          <span class="project-visibility badge-private" data-i18n="proj.private">privado</span>
         </div>
-        <div class="project-desc">
+        <div class="project-desc" data-i18n="proj4.desc">
           Sistema aberto de prontuário eletrônico (EHR) com foco em interoperabilidade e saúde pública. Desenvolvido com padrão FHIR para integração com diferentes sistemas de saúde, facilitando o acesso e análise de dados clínicos estruturados.
         </div>
         <div class="tech-pills" style="margin-bottom: 1.25rem;">
@@ -750,36 +772,36 @@
 <!-- CONTEÚDO -->
 <section id="conteudo" class="bg-alt">
   <div class="container">
-    <p class="section-label">// divulgação</p>
-    <h2 class="section-title">Criação de Conteúdo</h2>
+    <p class="section-label" data-i18n="cont.label">// divulgação</p>
+    <h2 class="section-title" data-i18n="cont.title">Criação de Conteúdo</h2>
     <div class="section-divider"></div>
     <div class="content-grid">
 
       <a href="https://fabianofilho.substack.com/" target="_blank" class="content-card">
         <div class="content-platform">substack.com</div>
-        <div class="content-title">Medicina e Inteligência Artificial</div>
-        <div class="content-desc">Newsletter sobre inovações em IA médica: fairness, validação de LLMs, IA generativa e seu impacto na atualização médica.</div>
+        <div class="content-title" data-i18n="cont1.title">Medicina e Inteligência Artificial</div>
+        <div class="content-desc" data-i18n="cont1.desc">Newsletter sobre inovações em IA médica: fairness, validação de LLMs, IA generativa e seu impacto na atualização médica.</div>
         <div class="content-arrow">↗</div>
       </a>
 
       <a href="https://fabianonbfilho.medium.com/" target="_blank" class="content-card">
         <div class="content-platform">medium.com · dadosesaude</div>
-        <div class="content-title">Ciência de Dados na Saúde</div>
-        <div class="content-desc">Artigos educacionais sobre balanceamento de dados, tipos de dados clínicos, NLP e conceitos fundamentais de data science para médicos.</div>
+        <div class="content-title" data-i18n="cont2.title">Ciência de Dados na Saúde</div>
+        <div class="content-desc" data-i18n="cont2.desc">Artigos educacionais sobre balanceamento de dados, tipos de dados clínicos, NLP e conceitos fundamentais de data science para médicos.</div>
         <div class="content-arrow">↗</div>
       </a>
 
       <a href="https://www.linkedin.com/in/fabianofilho/" target="_blank" class="content-card">
         <div class="content-platform">linkedin.com</div>
-        <div class="content-title">LinkedIn</div>
-        <div class="content-desc">Atualizações sobre pesquisas, projetos de IA na saúde, congressos e reflexões sobre medicina baseada em evidências e dados.</div>
+        <div class="content-title" data-i18n="cont3.title">LinkedIn</div>
+        <div class="content-desc" data-i18n="cont3.desc">Atualizações sobre pesquisas, projetos de IA na saúde, congressos e reflexões sobre medicina baseada em evidências e dados.</div>
         <div class="content-arrow">↗</div>
       </a>
 
       <a href="https://github.com/fabianofilho" target="_blank" class="content-card">
         <div class="content-platform">github.com</div>
-        <div class="content-title">GitHub</div>
-        <div class="content-desc">Projetos open-source de machine learning na saúde, modelos preditivos clínicos e experimentos com fairness e calibração.</div>
+        <div class="content-title" data-i18n="cont4.title">GitHub</div>
+        <div class="content-desc" data-i18n="cont4.desc">Projetos open-source de machine learning na saúde, modelos preditivos clínicos e experimentos com fairness e calibração.</div>
         <div class="content-arrow">↗</div>
       </a>
 
@@ -790,7 +812,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-name">Fabiano Barcellos Filho, MD</div>
-  <div style="color: var(--muted); font-size: 0.875rem;">Médico · Cientista de Dados · IA na Saúde · São Paulo, Brasil</div>
+  <div style="color: var(--muted); font-size: 0.875rem;" data-i18n="footer.sub">Médico · Cientista de Dados · IA na Saúde · São Paulo, Brasil</div>
   <ul class="footer-links">
     <li><a href="https://www.linkedin.com/in/fabianofilho/" target="_blank">LinkedIn</a></li>
     <li><a href="https://scholar.google.com/citations?user=IqVY-BQAAAAJ&hl=pt-BR" target="_blank">Scholar</a></li>
@@ -800,6 +822,177 @@
   </ul>
   <div class="footer-copy">© 2026 Fabiano Barcellos Filho · portfolio.fabianofilho.com</div>
 </footer>
+
+<script>
+  var currentLang = 'pt';
+
+  var translations = {
+    pt: {
+      'nav.sobre': 'Sobre',
+      'nav.trajetoria': 'Trajetória',
+      'nav.expertise': 'Expertise',
+      'nav.publicacoes': 'Publicações',
+      'nav.projetos': 'Projetos',
+      'nav.conteudo': 'Conteúdo',
+      'hero.badge': 'Médico · Cientista de Dados · IA na Saúde',
+      'hero.sub': 'Gerente Médico de Inovação e IA na Hapvida · Doutorando em Machine Learning na FSP-USP · Pesquisador em fairness e calibração de modelos preditivos em saúde.',
+      'about.label': '// sobre mim',
+      'about.title': 'Medicina + Dados + IA',
+      'about.p1': 'Sou <strong>médico e cientista de dados</strong>, apaixonado por utilizar tecnologias avançadas para melhorar a qualidade de vida das pessoas e impulsionar inovações na saúde.',
+      'about.p2': 'Atualmente atuo como <strong>Gerente Médico de Inovação e IA na Hapvida NotreDame Intermédica</strong>, liderando projetos de IA médica de alto impacto.',
+      'about.p3': 'Sou pesquisador no <strong>LABDAPS (USP)</strong> e doutorando com foco em <strong>multicalibração e justiça em modelos preditivos de saúde pública</strong>, buscando tornar a IA mais equitativa para diferentes populações.',
+      'about.p4': 'Moro em São Paulo, sou vegano e acredito que medicina baseada em evidências aliada à ciência de dados pode transformar o cuidado ao paciente.',
+      'stat.citations': 'Citações no principal artigo',
+      'stat.articles': 'Artigos publicados',
+      'stat.phd': 'Doutorando FSP-USP',
+      'stat.role': 'Gerente IA · Hapvida',
+      'traj.label': '// trajetória',
+      'traj.title': 'Profissional & Acadêmica',
+      't1.role': 'Gerente Médico de Inovação e Inteligência Artificial',
+      't1.desc': 'Liderança de projetos de IA médica, inovação e análise científica em uma das maiores operadoras de saúde do Brasil.',
+      't2.role': 'Doutorando (PhD) em Machine Learning na Saúde Pública',
+      't2.desc': 'Pesquisa em multicalibração e justiça (fairness) em modelos preditivos, garantindo equidade para diferentes subgrupos populacionais.',
+      't3.role': 'Fundador e Investidor',
+      't3.org': 'Medicina e Inteligência Artificial',
+      't3.desc': 'Gestão de projetos e disseminação de conhecimento em IA na saúde para a comunidade médica brasileira.',
+      't4.role': 'Professor',
+      't4.desc': 'Liderança de conteúdo e cursos de IA aplicada à medicina.',
+      't5.role': 'Professor · IA na Medicina',
+      't5.desc': 'Docência na disciplina de Inteligência Artificial na medicina.',
+      't6.role': 'Head of Medical AI Innovation',
+      't6.desc': 'Liderança da Tribo Científica e desenvolvimento da IA Mariê para cardiologia, com análise de ECG via Deep Learning.',
+      'exp.label': '// expertise',
+      'exp.title': 'Áreas de Atuação',
+      'e1.title': 'Modelagem Preditiva & Deep Learning',
+      'e1.desc': 'Desenvolvimento de modelos clínicos para risco de reinternação, engajamento na APS e análise de ECG com arquiteturas Conv1D, UNet e ResNet1D com GradCAM.',
+      'e2.title': 'Fairness & Explicabilidade (XAI)',
+      'e2.desc': 'Garantia de equidade em modelos de IA para diferentes subgrupos populacionais. Multicalibração com MCBoost e explicabilidade com SHAP para predições médicas.',
+      'e3.title': 'LLMs & IA Generativa na Medicina',
+      'e3.desc': 'Validação clínica de Large Language Models, IA generativa com grounding para confiabilidade e RAG (Retrieval-Augmented Generation) em autorizações médicas.',
+      'e4.title': 'Interoperabilidade & Dados Clínicos',
+      'e4.desc': 'Integração de sistemas de saúde via padrão FHIR, processamento de dados clínicos estruturados e não-estruturados, NLP em prontuários eletrônicos.',
+      'e5.title': 'Epidemiologia & Saúde Pública',
+      'e5.desc': 'Análise epidemiológica com machine learning, estudos multicêntricos, predição de desfechos clínicos e dataset shift em modelos de saúde populacionais.',
+      'e6.title': 'Cardio AI & Análise de ECG',
+      'e6.desc': 'Detecção de isquemia circunferencial e outras condições cardíacas através de modelos de deep learning aplicados a sinais de eletrocardiograma.',
+      'pub.label': '// ciência',
+      'pub.title': 'Publicações de Destaque',
+      'proj.label': '// open source',
+      'proj.title': 'Projetos em Destaque',
+      'proj.public': 'público',
+      'proj.private': 'privado',
+      'proj.link.repo': 'Ver repositório ↗',
+      'proj1.desc': 'Consultas em linguagem natural sobre dados epidemiológicos brasileiros do DATASUS. Permite que pesquisadores e profissionais de saúde façam perguntas em português — sem SQL — e obtenham respostas com visualizações. Integra LLMs (OpenAI, Anthropic, Ollama) com DuckDB para análise local de mortalidade (SIM), internações (SIH), procedimentos ambulatoriais (SIA) e dados populacionais (IBGE).',
+      'proj2.desc': 'Implementação open-source de assistentes médicos conversacionais inspirados no AMIE do Google DeepMind. Arquitetura multi-agente com especialistas em diálogo clínico, raciocínio diagnóstico e segurança farmacológica. Usa MedGemma, FastAPI, LangChain e Ollama para inferência local — posicionando a IA como suporte ao médico, nunca como substituto.',
+      'proj3.desc': 'Plataforma de gêmeos digitais para saúde com IA, permitindo simular e prever desfechos clínicos de pacientes individuais. Combina modelos preditivos com representações digitais dinâmicas do estado de saúde para suporte à decisão clínica personalizada.',
+      'proj4.desc': 'Sistema aberto de prontuário eletrônico (EHR) com foco em interoperabilidade e saúde pública. Desenvolvido com padrão FHIR para integração com diferentes sistemas de saúde, facilitando o acesso e análise de dados clínicos estruturados.',
+      'cont.label': '// divulgação',
+      'cont.title': 'Criação de Conteúdo',
+      'cont1.title': 'Medicina e Inteligência Artificial',
+      'cont1.desc': 'Newsletter sobre inovações em IA médica: fairness, validação de LLMs, IA generativa e seu impacto na atualização médica.',
+      'cont2.title': 'Ciência de Dados na Saúde',
+      'cont2.desc': 'Artigos educacionais sobre balanceamento de dados, tipos de dados clínicos, NLP e conceitos fundamentais de data science para médicos.',
+      'cont3.title': 'LinkedIn',
+      'cont3.desc': 'Atualizações sobre pesquisas, projetos de IA na saúde, congressos e reflexões sobre medicina baseada em evidências e dados.',
+      'cont4.title': 'GitHub',
+      'cont4.desc': 'Projetos open-source de machine learning na saúde, modelos preditivos clínicos e experimentos com fairness e calibração.',
+      'footer.sub': 'Médico · Cientista de Dados · IA na Saúde · São Paulo, Brasil'
+    },
+    en: {
+      'nav.sobre': 'About',
+      'nav.trajetoria': 'Journey',
+      'nav.expertise': 'Expertise',
+      'nav.publicacoes': 'Publications',
+      'nav.projetos': 'Projects',
+      'nav.conteudo': 'Content',
+      'hero.badge': 'Physician · Data Scientist · AI in Health',
+      'hero.sub': 'Medical Innovation & AI Manager at Hapvida · PhD Candidate in Machine Learning at FSP-USP · Researcher in fairness and calibration of predictive health models.',
+      'about.label': '// about me',
+      'about.title': 'Medicine + Data + AI',
+      'about.p1': 'I am a <strong>physician and data scientist</strong>, passionate about using advanced technologies to improve people\'s quality of life and drive innovations in healthcare.',
+      'about.p2': 'I currently serve as <strong>Medical Innovation & AI Manager at Hapvida NotreDame Intermédica</strong>, leading high-impact medical AI projects.',
+      'about.p3': 'I am a researcher at <strong>LABDAPS (USP)</strong> and PhD candidate focused on <strong>multicalibration and fairness in predictive public health models</strong>, working to make AI more equitable across different populations.',
+      'about.p4': 'I live in São Paulo, I am vegan, and I believe that evidence-based medicine combined with data science can transform patient care.',
+      'stat.citations': 'Citations in main article',
+      'stat.articles': 'Published articles',
+      'stat.phd': 'PhD Student FSP-USP',
+      'stat.role': 'AI Manager · Hapvida',
+      'traj.label': '// journey',
+      'traj.title': 'Professional & Academic',
+      't1.role': 'Medical Manager of Innovation and Artificial Intelligence',
+      't1.desc': 'Leadership of medical AI projects, innovation and scientific analysis at one of the largest health insurance companies in Brazil.',
+      't2.role': 'PhD Candidate in Machine Learning for Public Health',
+      't2.desc': 'Research in multicalibration and fairness in predictive models, ensuring equity for different population subgroups.',
+      't3.role': 'Founder and Investor',
+      't3.org': 'Medicine and Artificial Intelligence',
+      't3.desc': 'Project management and knowledge dissemination in health AI for the Brazilian medical community.',
+      't4.role': 'Professor',
+      't4.desc': 'Content leadership and courses on AI applied to medicine.',
+      't5.role': 'Professor · AI in Medicine',
+      't5.desc': 'Teaching the discipline of Artificial Intelligence in medicine.',
+      't6.role': 'Head of Medical AI Innovation',
+      't6.desc': 'Leadership of the Scientific Tribe and development of AI Mariê for cardiology, with ECG analysis via Deep Learning.',
+      'exp.label': '// expertise',
+      'exp.title': 'Areas of Expertise',
+      'e1.title': 'Predictive Modeling & Deep Learning',
+      'e1.desc': 'Development of clinical models for readmission risk, primary care engagement and ECG analysis with Conv1D, UNet and ResNet1D with GradCAM architectures.',
+      'e2.title': 'Fairness & Explainability (XAI)',
+      'e2.desc': 'Ensuring equity in AI models for different population subgroups. Multicalibration with MCBoost and explainability with SHAP for medical predictions.',
+      'e3.title': 'LLMs & Generative AI in Medicine',
+      'e3.desc': 'Clinical validation of Large Language Models, generative AI with grounding for reliability and RAG (Retrieval-Augmented Generation) in medical authorizations.',
+      'e4.title': 'Interoperability & Clinical Data',
+      'e4.desc': 'Healthcare system integration via FHIR standard, processing of structured and unstructured clinical data, NLP in electronic health records.',
+      'e5.title': 'Epidemiology & Public Health',
+      'e5.desc': 'Epidemiological analysis with machine learning, multicenter studies, clinical outcome prediction and dataset shift in population health models.',
+      'e6.title': 'Cardio AI & ECG Analysis',
+      'e6.desc': 'Detection of circumferential ischemia and other cardiac conditions through deep learning models applied to electrocardiogram signals.',
+      'pub.label': '// science',
+      'pub.title': 'Featured Publications',
+      'proj.label': '// open source',
+      'proj.title': 'Featured Projects',
+      'proj.public': 'public',
+      'proj.private': 'private',
+      'proj.link.repo': 'View repository ↗',
+      'proj1.desc': 'Natural language queries on Brazilian epidemiological data from DATASUS. Allows researchers and health professionals to ask questions in Portuguese — without SQL — and get answers with visualizations. Integrates LLMs (OpenAI, Anthropic, Ollama) with DuckDB for local analysis of mortality (SIM), hospitalizations (SIH), outpatient procedures (SIA) and population data (IBGE).',
+      'proj2.desc': 'Open-source implementation of conversational medical assistants inspired by Google DeepMind\'s AMIE. Multi-agent architecture with specialists in clinical dialogue, diagnostic reasoning and pharmacological safety. Uses MedGemma, FastAPI, LangChain and Ollama for local inference — positioning AI as support for physicians, never as a substitute.',
+      'proj3.desc': 'AI-powered digital twins platform for healthcare, enabling simulation and prediction of clinical outcomes for individual patients. Combines predictive models with dynamic digital representations of health status for personalized clinical decision support.',
+      'proj4.desc': 'Open electronic health record (EHR) system focused on interoperability and public health. Developed with the FHIR standard for integration with different healthcare systems, facilitating access and analysis of structured clinical data.',
+      'cont.label': '// content',
+      'cont.title': 'Content Creation',
+      'cont1.title': 'Medicine and Artificial Intelligence',
+      'cont1.desc': 'Newsletter on innovations in medical AI: fairness, LLM validation, generative AI and its impact on medical education.',
+      'cont2.title': 'Data Science in Health',
+      'cont2.desc': 'Educational articles on data balancing, types of clinical data, NLP and fundamental data science concepts for physicians.',
+      'cont3.title': 'LinkedIn',
+      'cont3.desc': 'Updates on research, AI projects in healthcare, conferences and reflections on evidence-based medicine and data.',
+      'cont4.title': 'GitHub',
+      'cont4.desc': 'Open-source machine learning projects in healthcare, clinical predictive models and experiments with fairness and calibration.',
+      'footer.sub': 'Physician · Data Scientist · AI in Health · São Paulo, Brazil'
+    }
+  };
+
+  function applyTranslations(lang) {
+    var t = translations[lang];
+
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.textContent = t[key];
+    });
+
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n-html');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+  }
+
+  function toggleLang() {
+    currentLang = currentLang === 'pt' ? 'en' : 'pt';
+    document.getElementById('lang-btn').textContent = currentLang === 'pt' ? 'EN' : 'PT';
+    applyTranslations(currentLang);
+  }
+</script>
 
 </body>
 </html>
