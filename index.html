@@ -401,9 +401,110 @@
     /* ALT SECTION BG */
     .bg-alt { background: var(--bg2); }
 
+    /* COURSE BANNER */
+    .course-banner {
+      padding: 3rem 2rem;
+      display: flex;
+      justify-content: center;
+    }
+    .course-banner-inner {
+      max-width: 1000px;
+      width: 100%;
+      position: relative;
+      background: var(--bg3);
+      border-radius: 14px;
+      padding: 2.5rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      overflow: hidden;
+    }
+    .course-banner-inner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    .course-banner-inner::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(59,130,246,0.15), transparent 70%);
+      pointer-events: none;
+    }
+    .course-banner-content {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+    .course-banner-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .course-banner-title {
+      font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    .course-banner-desc {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 520px;
+      line-height: 1.6;
+    }
+    .course-banner-cta {
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+    }
+    .btn-gradient {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.8rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-gradient:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(59,130,246,0.3);
+    }
+
     @media (max-width: 768px) {
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
       .nav-links { display: none; }
+      .course-banner-inner {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.5rem;
+      }
+      .course-banner-desc { max-width: 100%; }
     }
   </style>
 </head>
@@ -458,6 +559,26 @@
     </div>
   </div>
 </section>
+
+<!-- COURSE BANNER -->
+<div class="course-banner">
+  <div class="course-banner-inner">
+    <div class="course-banner-content">
+      <div class="course-banner-label" data-i18n="course.label">// novo curso</div>
+      <div class="course-banner-title">
+        <span class="gradient-text" data-i18n="course.title">ML para Médicos</span>
+      </div>
+      <p class="course-banner-desc" data-i18n="course.desc">
+        Curso prático de Machine Learning para profissionais de saúde. Aprenda a construir, avaliar e interpretar modelos preditivos clínicos — do zero ao deploy.
+      </p>
+    </div>
+    <div class="course-banner-cta">
+      <a href="https://ml4md.fabianofilho.com" target="_blank" class="btn-gradient" data-i18n="course.cta">
+        Acessar curso →
+      </a>
+    </div>
+  </div>
+</div>
 
 <!-- SOBRE -->
 <section id="sobre" class="bg-alt">
@@ -808,29 +929,6 @@
         </div>
       </a>
 
-      <a href="https://github.com/fabianofilho/ml-para-medicos" target="_blank" class="project-card">
-        <div class="project-header">
-          <div class="project-name">ml-para-medicos</div>
-          <span class="project-visibility badge-public" data-i18n="proj.public">publico</span>
-        </div>
-        <div class="project-desc" data-i18n="proj5.desc">
-          Curso interativo de Machine Learning para profissionais de saude. 10 modulos do iniciante ao avancado, com analogias clinicas, quizzes com feedback detalhado e tutor de IA integrado (Claude API). Aborda desde fundamentos de IA ate etica, regulacao e o futuro da IA na medicina. Zero dependencias, carregamento instantaneo.
-        </div>
-        <div class="tech-pills" style="margin-bottom: 1.25rem;">
-          <span class="pill">HTML/CSS/JS</span>
-          <span class="pill">Claude API</span>
-          <span class="pill">AI Tutor</span>
-          <span class="pill">Educacao Medica</span>
-        </div>
-        <div class="project-footer">
-          <div class="project-lang">
-            <div class="lang-dot lang-html"></div>
-            HTML
-          </div>
-          <div class="project-link" data-i18n="proj.link.repo">Ver repositorio ↗</div>
-        </div>
-      </a>
-
     </div>
   </div>
 </section>
@@ -912,6 +1010,10 @@
       'nav.conteudo': 'Conteúdo',
       'hero.badge': 'Médico · Cientista de Dados · IA na Saúde',
       'hero.sub': 'Gerente Médico de Inovação e IA na Hapvida · Doutorando em Machine Learning na FSP-USP · Pesquisador em fairness e calibração de modelos preditivos em saúde.',
+      'course.label': '// novo curso',
+      'course.title': 'ML para Médicos',
+      'course.desc': 'Curso prático de Machine Learning para profissionais de saúde. Aprenda a construir, avaliar e interpretar modelos preditivos clínicos — do zero ao deploy.',
+      'course.cta': 'Acessar curso →',
       'about.label': '// sobre mim',
       'about.title': 'Medicina + Dados + IA',
       'about.p1': 'Sou <strong>médico e cientista de dados</strong>, apaixonado por utilizar tecnologias avançadas para melhorar a qualidade de vida das pessoas e impulsionar inovações na saúde.',
@@ -962,7 +1064,6 @@
       'proj2.desc': 'Implementação open-source de assistentes médicos conversacionais inspirados no AMIE do Google DeepMind. Arquitetura multi-agente com especialistas em diálogo clínico, raciocínio diagnóstico e segurança farmacológica. Usa MedGemma, FastAPI, LangChain e Ollama para inferência local — posicionando a IA como suporte ao médico, nunca como substituto.',
       'proj3.desc': 'Plataforma de gêmeos digitais para saúde com IA, permitindo simular e prever desfechos clínicos de pacientes individuais. Combina modelos preditivos com representações digitais dinâmicas do estado de saúde para suporte à decisão clínica personalizada.',
       'proj4.desc': 'Sistema aberto de prontuário eletrônico (EHR) com foco em interoperabilidade e saúde pública. Desenvolvido com padrão FHIR para integração com diferentes sistemas de saúde, facilitando o acesso e análise de dados clínicos estruturados.',
-      'proj5.desc': 'Curso interativo de Machine Learning para profissionais de saúde. 10 módulos do iniciante ao avançado, com analogias clínicas, quizzes com feedback detalhado e tutor de IA integrado (Claude API). Aborda desde fundamentos de IA até ética, regulação e o futuro da IA na medicina. Zero dependências, carregamento instantâneo.',
       'cont.label': '// divulgação',
       'cont.title': 'Criação de Conteúdo',
       'cont1.title': 'Medicina e Inteligência Artificial',
@@ -984,6 +1085,10 @@
       'nav.conteudo': 'Content',
       'hero.badge': 'Physician · Data Scientist · AI in Health',
       'hero.sub': 'Medical Innovation & AI Manager at Hapvida · PhD Candidate in Machine Learning at FSP-USP · Researcher in fairness and calibration of predictive health models.',
+      'course.label': '// new course',
+      'course.title': 'ML for Physicians',
+      'course.desc': 'A hands-on Machine Learning course for healthcare professionals. Learn to build, evaluate and interpret clinical predictive models — from scratch to deployment.',
+      'course.cta': 'Access course →',
       'about.label': '// about me',
       'about.title': 'Medicine + Data + AI',
       'about.p1': 'I am a <strong>physician and data scientist</strong>, passionate about using advanced technologies to improve people\'s quality of life and drive innovations in healthcare.',
@@ -1034,7 +1139,6 @@
       'proj2.desc': 'Open-source implementation of conversational medical assistants inspired by Google DeepMind\'s AMIE. Multi-agent architecture with specialists in clinical dialogue, diagnostic reasoning and pharmacological safety. Uses MedGemma, FastAPI, LangChain and Ollama for local inference — positioning AI as support for physicians, never as a substitute.',
       'proj3.desc': 'AI-powered digital twins platform for healthcare, enabling simulation and prediction of clinical outcomes for individual patients. Combines predictive models with dynamic digital representations of health status for personalized clinical decision support.',
       'proj4.desc': 'Open electronic health record (EHR) system focused on interoperability and public health. Developed with the FHIR standard for integration with different healthcare systems, facilitating access and analysis of structured clinical data.',
-      'proj5.desc': 'Interactive Machine Learning course for healthcare professionals. 10 modules from beginner to advanced, with clinical analogies, quizzes with detailed feedback and integrated AI tutor (Claude API). Covers AI fundamentals through ethics, regulation and the future of AI in medicine. Zero dependencies, instant loading.',
       'cont.label': '// content',
       'cont.title': 'Content Creation',
       'cont1.title': 'Medicine and Artificial Intelligence',
