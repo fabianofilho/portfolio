@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fabiano Barcellos Filho | Médico & Cientista de Dados</title>
   <meta name="description" content="Médico, Cientista de Dados e Especialista em Inteligência Artificial na Saúde. Gerente Médico de IA na Hapvida, Doutorando na FSP-USP." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩺</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3'/%3E%3Cpath d='M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4'/%3E%3Ccircle cx='20' cy='10' r='2'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
   <style>
@@ -97,6 +97,23 @@
       stroke: currentColor; fill: none;
       stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
     }
+    .icon-inline {
+      width: 1em; height: 1em;
+      vertical-align: -0.125em;
+      stroke: currentColor; fill: none;
+      stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+    .content-arrow svg {
+      width: 1.2rem; height: 1.2rem;
+      stroke: currentColor; fill: none;
+      stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .icon-timeline {
+      width: 0.85em; height: 0.85em;
+      margin: 0 0.15em;
+      opacity: 0.8;
+    }
     .nav-logo {
       font-family: 'Fira Code', monospace;
       font-size: 1rem;
@@ -134,7 +151,14 @@
       font-size: 0.8rem; color: var(--accent); margin-bottom: 1.5rem;
       font-family: 'Fira Code', monospace;
     }
-    .hero-badge::before { content: '▶'; font-size: 0.6rem; }
+    .hero-badge::before {
+      content: '';
+      display: inline-block;
+      width: 0.6rem; height: 0.6rem;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233b82f6' stroke='none'%3E%3Cpolygon points='6 3 20 12 6 21 6 3'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
     h1 {
       font-size: clamp(2.2rem, 5vw, 3.8rem);
       font-weight: 700; line-height: 1.15;
@@ -559,7 +583,7 @@
       <span class="tag">Python</span>
     </div>
     <div class="hero-cta">
-      <a href="https://www.linkedin.com/in/fabianofilho/" target="_blank" class="btn btn-primary">LinkedIn →</a>
+      <a href="https://www.linkedin.com/in/fabianofilho/" target="_blank" class="btn btn-primary"><span>LinkedIn</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       <a href="https://scholar.google.com/citations?user=IqVY-BQAAAAJ&hl=pt-BR" target="_blank" class="btn btn-outline">Google Scholar</a>
     </div>
   </div>
@@ -576,12 +600,12 @@
           <span class="gradient-text" data-i18n="course.title">ML para Médicos</span>
         </div>
         <p class="course-banner-desc" data-i18n="course.desc">
-          Curso prático de Machine Learning para profissionais de saúde. Aprenda a construir, avaliar e interpretar modelos preditivos clínicos — do zero ao deploy.
+          Curso gratuito focado em apresentar os conceitos fundamentais de Medicina e Inteligência Artificial para profissionais de saúde.
         </p>
       </div>
       <div class="course-banner-cta">
-        <a href="https://ml4md.fabianofilho.com" target="_blank" class="btn-gradient" data-i18n="course.cta">
-          Acessar curso →
+        <a href="https://ml4md.fabianofilho.com" target="_blank" class="btn-gradient">
+          <span data-i18n="course.cta">Acessar curso</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
     </div>
@@ -597,8 +621,8 @@
         </p>
       </div>
       <div class="course-banner-cta">
-        <a href="https://mentoria.fabianofilho.com" target="_blank" class="btn-gradient" data-i18n="mentoria.cta">
-          Saiba mais →
+        <a href="https://mentoria.fabianofilho.com" target="_blank" class="btn-gradient">
+          <span data-i18n="mentoria.cta">Saiba mais</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
     </div>
@@ -650,42 +674,42 @@
     <div class="timeline">
 
       <div class="timeline-item">
-        <div class="timeline-period">Jan 2026 → Presente</div>
+        <div class="timeline-period"><span>Jan 2026</span> <svg class="icon-inline icon-timeline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg> <span>Presente</span></div>
         <div class="timeline-role" data-i18n="t1.role">Gerente Médico de Inovação e Inteligência Artificial</div>
         <div class="timeline-org">Hapvida NotreDame Intermédica</div>
         <div class="timeline-desc" data-i18n="t1.desc">Liderança de projetos de IA médica, inovação e análise científica em uma das maiores operadoras de saúde do Brasil.</div>
       </div>
 
       <div class="timeline-item">
-        <div class="timeline-period">Jun 2025 → Presente</div>
+        <div class="timeline-period"><span>Jun 2025</span> <svg class="icon-inline icon-timeline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg> <span>Presente</span></div>
         <div class="timeline-role" data-i18n="t2.role">Doutorando (PhD) em Machine Learning na Saúde Pública</div>
         <div class="timeline-org">FSP-USP · LABDAPS</div>
         <div class="timeline-desc" data-i18n="t2.desc">Pesquisa em multicalibração e justiça (fairness) em modelos preditivos, garantindo equidade para diferentes subgrupos populacionais.</div>
       </div>
 
       <div class="timeline-item">
-        <div class="timeline-period">Jul 2023 → Presente</div>
+        <div class="timeline-period"><span>Jul 2023</span> <svg class="icon-inline icon-timeline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg> <span>Presente</span></div>
         <div class="timeline-role" data-i18n="t3.role">Fundador e Investidor</div>
         <div class="timeline-org" data-i18n="t3.org">Medicina e Inteligência Artificial</div>
         <div class="timeline-desc" data-i18n="t3.desc">Gestão de projetos e disseminação de conhecimento em IA na saúde para a comunidade médica brasileira.</div>
       </div>
 
       <div class="timeline-item">
-        <div class="timeline-period">Fev 2025 → Jul 2025</div>
+        <div class="timeline-period"><span>Fev 2025</span> <svg class="icon-inline icon-timeline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg> <span>Jul 2025</span></div>
         <div class="timeline-role" data-i18n="t4.role">Professor</div>
         <div class="timeline-org">amo medicina</div>
         <div class="timeline-desc" data-i18n="t4.desc">Liderança de conteúdo e cursos de IA aplicada à medicina.</div>
       </div>
 
       <div class="timeline-item">
-        <div class="timeline-period">Out 2024 → Nov 2025</div>
+        <div class="timeline-period"><span>Out 2024</span> <svg class="icon-inline icon-timeline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg> <span>Nov 2025</span></div>
         <div class="timeline-role" data-i18n="t5.role">Professor · IA na Medicina</div>
         <div class="timeline-org">Unyleya Educacional — Medicina 5.0</div>
         <div class="timeline-desc" data-i18n="t5.desc">Docência na disciplina de Inteligência Artificial na medicina.</div>
       </div>
 
       <div class="timeline-item">
-        <div class="timeline-period">2023 → 2025</div>
+        <div class="timeline-period"><span>2023</span> <svg class="icon-inline icon-timeline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg> <span>2025</span></div>
         <div class="timeline-role" data-i18n="t6.role">Head of Medical AI Innovation</div>
         <div class="timeline-org">Neomed</div>
         <div class="timeline-desc" data-i18n="t6.desc">Liderança da Tribo Científica e desenvolvimento da IA Mariê para cardiologia, com análise de ECG via Deep Learning.</div>
@@ -848,7 +872,7 @@
 
     </div>
     <div style="margin-top: 2rem; text-align: center;">
-      <a href="https://scholar.google.com/citations?user=IqVY-BQAAAAJ&hl=pt-BR" target="_blank" class="btn btn-outline">View all on Google Scholar →</a>
+      <a href="https://scholar.google.com/citations?user=IqVY-BQAAAAJ&hl=pt-BR" target="_blank" class="btn btn-outline"><span>View all on Google Scholar</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
   </div>
 </section>
@@ -880,7 +904,7 @@
             <div class="lang-dot lang-python"></div>
             Python
           </div>
-          <div class="project-link">GitHub ↗</div>
+          <div class="project-link"><span>GitHub</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
         </div>
       </a>
 
@@ -904,7 +928,7 @@
             <div class="lang-dot lang-python"></div>
             Python
           </div>
-          <div class="project-link" data-i18n="proj.link.repo">Ver repositório ↗</div>
+          <div class="project-link"><span data-i18n="proj.link.repo">Ver repositório</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
         </div>
       </a>
 
@@ -928,7 +952,7 @@
             <div class="lang-dot lang-python"></div>
             Python
           </div>
-          <div class="project-link" data-i18n="proj.link.repo">Ver repositório ↗</div>
+          <div class="project-link"><span data-i18n="proj.link.repo">Ver repositório</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
         </div>
       </a>
 
@@ -951,7 +975,7 @@
             <div class="lang-dot lang-python"></div>
             Python
           </div>
-          <div class="project-link" data-i18n="proj.link.repo">Ver repositório ↗</div>
+          <div class="project-link"><span data-i18n="proj.link.repo">Ver repositório</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
         </div>
       </a>
 
@@ -971,28 +995,28 @@
         <div class="content-platform">substack.com</div>
         <div class="content-title" data-i18n="cont1.title">Medicina e Inteligência Artificial</div>
         <div class="content-desc" data-i18n="cont1.desc">Newsletter sobre inovações em IA médica: fairness, validação de LLMs, IA generativa e seu impacto na atualização médica.</div>
-        <div class="content-arrow">↗</div>
+        <div class="content-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
       </a>
 
       <a href="https://fabianonbfilho.medium.com/" target="_blank" class="content-card">
         <div class="content-platform">medium.com · dadosesaude</div>
         <div class="content-title" data-i18n="cont2.title">Ciência de Dados na Saúde</div>
         <div class="content-desc" data-i18n="cont2.desc">Artigos educacionais sobre balanceamento de dados, tipos de dados clínicos, NLP e conceitos fundamentais de data science para médicos.</div>
-        <div class="content-arrow">↗</div>
+        <div class="content-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
       </a>
 
       <a href="https://www.linkedin.com/in/fabianofilho/" target="_blank" class="content-card">
         <div class="content-platform">linkedin.com</div>
         <div class="content-title" data-i18n="cont3.title">LinkedIn</div>
         <div class="content-desc" data-i18n="cont3.desc">Atualizações sobre pesquisas, projetos de IA na saúde, congressos e reflexões sobre medicina baseada em evidências e dados.</div>
-        <div class="content-arrow">↗</div>
+        <div class="content-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
       </a>
 
       <a href="https://github.com/fabianofilho" target="_blank" class="content-card">
         <div class="content-platform">github.com</div>
         <div class="content-title" data-i18n="cont4.title">GitHub</div>
         <div class="content-desc" data-i18n="cont4.desc">Projetos open-source de machine learning na saúde, modelos preditivos clínicos e experimentos com fairness e calibração.</div>
-        <div class="content-arrow">↗</div>
+        <div class="content-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
       </a>
 
     </div>
@@ -1038,12 +1062,12 @@
       'hero.sub': 'Gerente Médico de Inovação e IA na Hapvida · Doutorando em Machine Learning na FSP-USP · Pesquisador em fairness e calibração de modelos preditivos em saúde.',
       'course.label': '// novo curso',
       'course.title': 'ML para Médicos',
-      'course.desc': 'Curso prático de Machine Learning para profissionais de saúde. Aprenda a construir, avaliar e interpretar modelos preditivos clínicos — do zero ao deploy.',
-      'course.cta': 'Acessar curso →',
+      'course.desc': 'Curso gratuito focado em apresentar os conceitos fundamentais de Medicina e Inteligência Artificial para profissionais de saúde.',
+      'course.cta': 'Acessar curso',
       'mentoria.label': '// mentoria',
       'mentoria.title': 'Mentoria Med IA',
       'mentoria.desc': 'Programa estruturado de ML e IA para profissionais da saúde. Do zero ao avançado: 3 formatos, até 10 módulos e ~120 horas.',
-      'mentoria.cta': 'Saiba mais →',
+      'mentoria.cta': 'Saiba mais',
       'about.label': '// sobre mim',
       'about.title': 'Medicina + Dados + IA',
       'about.p1': 'Sou <strong>médico e cientista de dados</strong>, apaixonado por utilizar tecnologias avançadas para melhorar a qualidade de vida das pessoas e impulsionar inovações na saúde.',
@@ -1089,7 +1113,7 @@
       'proj.title': 'Projetos em Destaque',
       'proj.public': 'público',
       'proj.private': 'privado',
-      'proj.link.repo': 'Ver repositório ↗',
+      'proj.link.repo': 'Ver repositório',
       'proj1.desc': 'Consultas em linguagem natural sobre dados epidemiológicos brasileiros do DATASUS. Permite que pesquisadores e profissionais de saúde façam perguntas em português — sem SQL — e obtenham respostas com visualizações. Integra LLMs (OpenAI, Anthropic, Ollama) com DuckDB para análise local de mortalidade (SIM), internações (SIH), procedimentos ambulatoriais (SIA) e dados populacionais (IBGE).',
       'proj2.desc': 'Implementação open-source de assistentes médicos conversacionais inspirados no AMIE do Google DeepMind. Arquitetura multi-agente com especialistas em diálogo clínico, raciocínio diagnóstico e segurança farmacológica. Usa MedGemma, FastAPI, LangChain e Ollama para inferência local — posicionando a IA como suporte ao médico, nunca como substituto.',
       'proj3.desc': 'Plataforma de gêmeos digitais para saúde com IA, permitindo simular e prever desfechos clínicos de pacientes individuais. Combina modelos preditivos com representações digitais dinâmicas do estado de saúde para suporte à decisão clínica personalizada.',
@@ -1117,12 +1141,12 @@
       'hero.sub': 'Medical Innovation & AI Manager at Hapvida · PhD Candidate in Machine Learning at FSP-USP · Researcher in fairness and calibration of predictive health models.',
       'course.label': '// new course',
       'course.title': 'ML for Physicians',
-      'course.desc': 'A hands-on Machine Learning course for healthcare professionals. Learn to build, evaluate and interpret clinical predictive models — from scratch to deployment.',
-      'course.cta': 'Access course →',
+      'course.desc': 'A free course focused on introducing the core concepts of Medicine and Artificial Intelligence for healthcare professionals.',
+      'course.cta': 'Access course',
       'mentoria.label': '// mentorship',
       'mentoria.title': 'Mentoria Med IA',
       'mentoria.desc': 'Structured ML and AI program for health professionals. From zero to advanced: 3 formats, up to 10 modules and ~120 hours.',
-      'mentoria.cta': 'Learn more →',
+      'mentoria.cta': 'Learn more',
       'about.label': '// about me',
       'about.title': 'Medicine + Data + AI',
       'about.p1': 'I am a <strong>medical doctor and data scientist</strong>, passionate about using advanced technologies to improve people\'s quality of life and drive innovations in healthcare.',
@@ -1168,7 +1192,7 @@
       'proj.title': 'Featured Projects',
       'proj.public': 'public',
       'proj.private': 'private',
-      'proj.link.repo': 'View repository ↗',
+      'proj.link.repo': 'View repository',
       'proj1.desc': 'Natural language queries on Brazilian epidemiological data from DATASUS. Allows researchers and health professionals to ask questions in Portuguese — without SQL — and get answers with visualizations. Integrates LLMs (OpenAI, Anthropic, Ollama) with DuckDB for local analysis of mortality (SIM), hospitalizations (SIH), outpatient procedures (SIA) and population data (IBGE).',
       'proj2.desc': 'Open-source implementation of conversational medical assistants inspired by Google DeepMind\'s AMIE. Multi-agent architecture with specialists in clinical dialogue, diagnostic reasoning and pharmacological safety. Uses MedGemma, FastAPI, LangChain and Ollama for local inference — positioning AI as support for medical doctors, never as a substitute.',
       'proj3.desc': 'AI-powered digital twins platform for healthcare, enabling simulation and prediction of clinical outcomes for individual patients. Combines predictive models with dynamic digital representations of health status for personalized clinical decision support.',

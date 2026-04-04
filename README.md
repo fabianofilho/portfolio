@@ -55,12 +55,12 @@ Detecção de isquemia circunferencial e condições cardíacas via deep learnin
 
 | Período | Cargo | Organização |
 |---|---|---|
-| Jan 2026 → Presente | Gerente Médico de Inovação e Inteligência Artificial | Hapvida NotreDame Intermédica |
-| Jun 2025 → Presente | Doutorando (PhD) em ML na Saúde Pública | FSP-USP · LABDAPS |
-| Jul 2023 → Presente | Fundador e Investidor | Medicina e Inteligência Artificial |
-| Fev 2025 → Jul 2025 | Professor | amo medicina |
-| Out 2024 → Nov 2025 | Professor · IA na Medicina | Unyleya Educacional — Medicina 5.0 |
-| 2023 → 2025 | Head of Medical AI Innovation | Neomed |
+| Jan 2026 >Presente | Gerente Médico de Inovação e Inteligência Artificial | Hapvida NotreDame Intermédica |
+| Jun 2025 >Presente | Doutorando (PhD) em ML na Saúde Pública | FSP-USP · LABDAPS |
+| Jul 2023 >Presente | Fundador e Investidor | Medicina e Inteligência Artificial |
+| Fev 2025 >Jul 2025 | Professor | amo medicina |
+| Out 2024 >Nov 2025 | Professor · IA na Medicina | Unyleya Educacional — Medicina 5.0 |
+| 2023 >2025 | Head of Medical AI Innovation | Neomed |
 
 ---
 
@@ -78,7 +78,7 @@ Detecção de isquemia circunferencial e condições cardíacas via deep learnin
 4. **A bibliometric network analysis of coronavirus during the first eight months of COVID-19 in 2020**
    *International Journal of Environmental Research and Public Health · 2021 · 106+ citações*
 
-[Ver todas no Google Scholar →](https://scholar.google.com/citations?user=IqVY-BQAAAAJ&hl=pt-BR)
+[Ver todas no Google Scholar >](https://scholar.google.com/citations?user=IqVY-BQAAAAJ&hl=pt-BR)
 
 ---
 
