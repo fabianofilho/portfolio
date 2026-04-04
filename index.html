@@ -407,17 +407,22 @@
       display: flex;
       justify-content: center;
     }
-    .course-banner-inner {
+    .course-banner-grid {
       max-width: 1000px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .course-banner-inner {
       width: 100%;
       position: relative;
       background: var(--bg3);
       border-radius: 14px;
-      padding: 2.5rem 3rem;
+      padding: 2rem 2rem;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
+      flex-direction: column;
+      gap: 1.25rem;
       border: 2px solid transparent;
       background-clip: padding-box;
       overflow: hidden;
@@ -474,7 +479,7 @@
     .course-banner-cta {
       position: relative;
       z-index: 1;
-      flex-shrink: 0;
+      margin-top: auto;
     }
     .btn-gradient {
       display: inline-flex;
@@ -499,8 +504,8 @@
     @media (max-width: 768px) {
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
       .nav-links { display: none; }
+      .course-banner-grid { grid-template-columns: 1fr; }
       .course-banner-inner {
-        flex-direction: column;
         text-align: center;
         padding: 2rem 1.5rem;
       }
@@ -562,21 +567,42 @@
 
 <!-- COURSE BANNER -->
 <div class="course-banner">
-  <div class="course-banner-inner">
-    <div class="course-banner-content">
-      <div class="course-banner-label" data-i18n="course.label">// novo curso</div>
-      <div class="course-banner-title">
-        <span class="gradient-text" data-i18n="course.title">ML para Médicos</span>
+  <div class="course-banner-grid">
+
+    <div class="course-banner-inner">
+      <div class="course-banner-content">
+        <div class="course-banner-label" data-i18n="course.label">// novo curso</div>
+        <div class="course-banner-title">
+          <span class="gradient-text" data-i18n="course.title">ML para Médicos</span>
+        </div>
+        <p class="course-banner-desc" data-i18n="course.desc">
+          Curso prático de Machine Learning para profissionais de saúde. Aprenda a construir, avaliar e interpretar modelos preditivos clínicos — do zero ao deploy.
+        </p>
       </div>
-      <p class="course-banner-desc" data-i18n="course.desc">
-        Curso prático de Machine Learning para profissionais de saúde. Aprenda a construir, avaliar e interpretar modelos preditivos clínicos — do zero ao deploy.
-      </p>
+      <div class="course-banner-cta">
+        <a href="https://ml4md.fabianofilho.com" target="_blank" class="btn-gradient" data-i18n="course.cta">
+          Acessar curso →
+        </a>
+      </div>
     </div>
-    <div class="course-banner-cta">
-      <a href="https://ml4md.fabianofilho.com" target="_blank" class="btn-gradient" data-i18n="course.cta">
-        Acessar curso →
-      </a>
+
+    <div class="course-banner-inner">
+      <div class="course-banner-content">
+        <div class="course-banner-label" data-i18n="mentoria.label">// mentoria</div>
+        <div class="course-banner-title">
+          <span class="gradient-text" data-i18n="mentoria.title">Mentoria Med IA</span>
+        </div>
+        <p class="course-banner-desc" data-i18n="mentoria.desc">
+          Programa estruturado de ML e IA para profissionais da saúde. Do zero ao avançado: 3 formatos, até 10 módulos e ~120 horas.
+        </p>
+      </div>
+      <div class="course-banner-cta">
+        <a href="https://mentoria.fabianofilho.com" target="_blank" class="btn-gradient" data-i18n="mentoria.cta">
+          Saiba mais →
+        </a>
+      </div>
     </div>
+
   </div>
 </div>
 
@@ -941,13 +967,6 @@
     <div class="section-divider"></div>
     <div class="content-grid">
 
-      <a href="https://mentoria.fabianofilho.com/" target="_blank" class="content-card">
-        <div class="content-platform">mentoria.fabianofilho.com</div>
-        <div class="content-title" data-i18n="cont5.title">Mentoria Med IA</div>
-        <div class="content-desc" data-i18n="cont5.desc">Programa estruturado de Machine Learning e IA para profissionais da saude. Do zero ao avancado: 10 modulos, ~120 horas, com notebooks interativos no Google Colab.</div>
-        <div class="content-arrow">↗</div>
-      </a>
-
       <a href="https://fabianofilho.substack.com/" target="_blank" class="content-card">
         <div class="content-platform">substack.com</div>
         <div class="content-title" data-i18n="cont1.title">Medicina e Inteligência Artificial</div>
@@ -1021,6 +1040,10 @@
       'course.title': 'ML para Médicos',
       'course.desc': 'Curso prático de Machine Learning para profissionais de saúde. Aprenda a construir, avaliar e interpretar modelos preditivos clínicos — do zero ao deploy.',
       'course.cta': 'Acessar curso →',
+      'mentoria.label': '// mentoria',
+      'mentoria.title': 'Mentoria Med IA',
+      'mentoria.desc': 'Programa estruturado de ML e IA para profissionais da saúde. Do zero ao avançado: 3 formatos, até 10 módulos e ~120 horas.',
+      'mentoria.cta': 'Saiba mais →',
       'about.label': '// sobre mim',
       'about.title': 'Medicina + Dados + IA',
       'about.p1': 'Sou <strong>médico e cientista de dados</strong>, apaixonado por utilizar tecnologias avançadas para melhorar a qualidade de vida das pessoas e impulsionar inovações na saúde.',
@@ -1081,8 +1104,6 @@
       'cont3.desc': 'Atualizações sobre pesquisas, projetos de IA na saúde, congressos e reflexões sobre medicina baseada em evidências e dados.',
       'cont4.title': 'GitHub',
       'cont4.desc': 'Projetos open-source de machine learning na saúde, modelos preditivos clínicos e experimentos com fairness e calibração.',
-      'cont5.title': 'Mentoria Med IA',
-      'cont5.desc': 'Programa estruturado de Machine Learning e IA para profissionais da saude. Do zero ao avancado: 10 modulos, ~120 horas, com notebooks interativos no Google Colab.',
       'footer.sub': 'Médico · Cientista de Dados · IA na Saúde · São Paulo, Brasil'
     },
     en: {
@@ -1098,6 +1119,10 @@
       'course.title': 'ML for Physicians',
       'course.desc': 'A hands-on Machine Learning course for healthcare professionals. Learn to build, evaluate and interpret clinical predictive models — from scratch to deployment.',
       'course.cta': 'Access course →',
+      'mentoria.label': '// mentorship',
+      'mentoria.title': 'Mentoria Med IA',
+      'mentoria.desc': 'Structured ML and AI program for health professionals. From zero to advanced: 3 formats, up to 10 modules and ~120 hours.',
+      'mentoria.cta': 'Learn more →',
       'about.label': '// about me',
       'about.title': 'Medicine + Data + AI',
       'about.p1': 'I am a <strong>medical doctor and data scientist</strong>, passionate about using advanced technologies to improve people\'s quality of life and drive innovations in healthcare.',
@@ -1158,8 +1183,6 @@
       'cont3.desc': 'Updates on research, AI projects in healthcare, conferences and reflections on evidence-based medicine and data.',
       'cont4.title': 'GitHub',
       'cont4.desc': 'Open-source machine learning projects in healthcare, clinical predictive models and experiments with fairness and calibration.',
-      'cont5.title': 'Mentoria Med IA',
-      'cont5.desc': 'Structured Machine Learning and AI program for health professionals. From zero to advanced: 10 modules, ~120 hours, with interactive notebooks on Google Colab.',
       'footer.sub': 'Medical Doctor · Data Scientist · AI in Health · São Paulo, Brazil'
     }
   };
