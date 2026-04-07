@@ -425,6 +425,157 @@
     /* ALT SECTION BG */
     .bg-alt { background: var(--bg2); }
 
+    /* SCROLL REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* NAV SCROLL STATE */
+    nav {
+      transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+    nav.at-top {
+      background: transparent !important;
+      border-bottom-color: transparent !important;
+      box-shadow: none !important;
+    }
+    nav.scrolled {
+      box-shadow: 0 1px 12px rgba(0,0,0,0.1);
+    }
+
+    /* NAV ACTIVE LINK */
+    .nav-links a {
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 100%; height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    .nav-links a.active {
+      color: var(--accent);
+    }
+    .nav-links a.active::after {
+      transform: scaleX(1);
+    }
+
+    /* HERO CANVAS */
+    #hero-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* TYPING CURSOR */
+    .typing-cursor {
+      display: inline-block;
+      width: 2px; height: 1em;
+      background: var(--accent);
+      margin-left: 2px;
+      vertical-align: text-bottom;
+      animation: blink 0.7s step-end infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    /* TIMELINE PROGRESSIVE */
+    .timeline {
+      --line-height: 0px;
+    }
+    .timeline::before {
+      height: var(--line-height) !important;
+      transition: height 0.4s ease;
+    }
+    @keyframes pulse-dot {
+      0% { box-shadow: 0 0 0 0 rgba(59,130,246,0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(59,130,246,0); }
+      100% { box-shadow: 0 0 0 0 rgba(59,130,246,0); }
+    }
+    .timeline-item.active::before {
+      animation: pulse-dot 0.6s ease-out;
+    }
+
+    /* MOUSE GLOW */
+    #mouse-glow {
+      position: fixed;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,130,246,0.06), transparent 70%);
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      will-change: transform;
+      transition: opacity 0.3s;
+      opacity: 0;
+    }
+
+    /* EXPERTISE EXPANDABLE */
+    .expertise-card {
+      cursor: pointer;
+    }
+    .expertise-detail {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+      opacity: 0;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0;
+      line-height: 1.6;
+    }
+    .expertise-card.expanded .expertise-detail {
+      max-height: 200px;
+      opacity: 1;
+      margin-top: 1rem;
+    }
+    .expertise-expand-icon {
+      display: inline-block;
+      width: 1rem; height: 1rem;
+      margin-left: auto;
+      transition: transform 0.3s ease;
+      color: var(--muted);
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+    .expertise-card.expanded .expertise-expand-icon {
+      transform: rotate(45deg);
+    }
+
+    /* KONAMI CANVAS */
+    #konami-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      pointer-events: none;
+    }
+
+    /* REDUCED MOTION */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      .typing-cursor { animation: none; }
+      #hero-canvas { display: none; }
+      #mouse-glow { display: none; }
+      .timeline::before { transition: none; }
+      .timeline-item.active::before { animation: none; }
+      .expertise-detail { transition: none; }
+    }
+
     /* COURSE BANNER */
     .course-banner {
       padding: 3rem 2rem;
@@ -539,6 +690,8 @@
 </head>
 <body>
 
+<div id="mouse-glow"></div>
+
 <!-- NAV -->
 <nav>
   <div class="nav-left">
@@ -563,6 +716,7 @@
 
 <!-- HERO -->
 <section class="hero">
+  <canvas id="hero-canvas"></canvas>
   <div class="hero-inner">
     <div class="hero-badge" data-i18n="hero.badge">Médico · Cientista de Dados · IA na Saúde</div>
     <h1>
@@ -582,7 +736,7 @@
 <div class="course-banner">
   <div class="course-banner-grid">
 
-    <div class="course-banner-inner">
+    <div class="course-banner-inner reveal">
       <div class="course-banner-content">
         <div class="course-banner-label" data-i18n="course.label">// novo curso</div>
         <div class="course-banner-title">
@@ -599,7 +753,7 @@
       </div>
     </div>
 
-    <div class="course-banner-inner">
+    <div class="course-banner-inner reveal">
       <div class="course-banner-content">
         <div class="course-banner-label" data-i18n="mentoria.label">// mentoria</div>
         <div class="course-banner-title">
@@ -622,31 +776,31 @@
 <!-- SOBRE -->
 <section id="sobre" class="bg-alt">
   <div class="container">
-    <p class="section-label" data-i18n="about.label">// sobre mim</p>
-    <h2 class="section-title" data-i18n="about.title">Medicina + Dados + IA</h2>
-    <div class="section-divider"></div>
+    <p class="section-label reveal" data-i18n="about.label">// sobre mim</p>
+    <h2 class="section-title reveal" data-i18n="about.title">Medicina + Dados + IA</h2>
+    <div class="section-divider reveal"></div>
     <div class="about-grid">
-      <div class="about-text">
+      <div class="about-text reveal">
         <p data-i18n-html="about.p1">Sou <strong>médico e cientista de dados</strong>, apaixonado por utilizar tecnologias avançadas para melhorar a qualidade de vida das pessoas e impulsionar inovações na saúde.</p>
         <p data-i18n-html="about.p2">Atualmente atuo como <strong>Gerente Médico de Inovação e IA na Hapvida NotreDame Intermédica</strong>, liderando projetos de IA médica de alto impacto.</p>
         <p data-i18n-html="about.p3">Sou pesquisador no <strong>LABDAPS (USP)</strong> e doutorando com foco em <strong>multicalibração e justiça em modelos preditivos de saúde pública</strong>, buscando tornar a IA mais equitativa para diferentes populações.</p>
         <p data-i18n="about.p4">Moro em São Paulo, sou vegano e acredito que medicina baseada em evidências aliada à ciência de dados pode transformar o cuidado ao paciente.</p>
       </div>
       <div class="about-stats">
-        <div class="stat-card">
-          <div class="stat-number">106+</div>
+        <div class="stat-card reveal">
+          <div class="stat-number" data-count="106" data-suffix="+">0</div>
           <div class="stat-label" data-i18n="stat.citations">Citações no principal artigo</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number">4+</div>
+        <div class="stat-card reveal">
+          <div class="stat-number" data-count="4" data-suffix="+">0</div>
           <div class="stat-label" data-i18n="stat.articles">Artigos publicados</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number">PhD</div>
+        <div class="stat-card reveal">
+          <div class="stat-number" data-count-text="PhD">PhD</div>
           <div class="stat-label" data-i18n="stat.phd">Doutorando FSP-USP</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number">5+</div>
+        <div class="stat-card reveal">
+          <div class="stat-number" data-count="5" data-suffix="+">0</div>
           <div class="stat-label" data-i18n="stat.role">Projetos open-source</div>
         </div>
       </div>
@@ -657,17 +811,18 @@
 <!-- EXPERTISE -->
 <section id="expertise">
   <div class="container">
-    <p class="section-label" data-i18n="exp.label">// expertise</p>
-    <h2 class="section-title" data-i18n="exp.title">Áreas de Atuação</h2>
-    <div class="section-divider"></div>
+    <p class="section-label reveal" data-i18n="exp.label">// expertise</p>
+    <h2 class="section-title reveal" data-i18n="exp.title">Áreas de Atuação</h2>
+    <div class="section-divider reveal"></div>
     <div class="expertise-grid">
 
-      <div class="expertise-card">
+      <div class="expertise-card reveal">
         <div class="expertise-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="7" y="7" width="10" height="10" rx="1"/>
             <path d="M9 7V4M12 7V4M15 7V4M9 20v-3M12 20v-3M15 20v-3M7 9H4M7 12H4M7 15H4M20 9h-3M20 12h-3M20 15h-3"/>
           </svg>
+          <span class="expertise-expand-icon">+</span>
         </div>
         <div class="expertise-title" data-i18n="e1.title">Deep Learning & Modelagem Clinica</div>
         <div class="expertise-desc" data-i18n="e1.desc">Modelos preditivos para risco de reinternacao, engajamento na APS e analise de ECG com Conv1D, UNet e ResNet1D. Deteccao de isquemia e condicoes cardiacas via deep learning com GradCAM.</div>
@@ -678,14 +833,16 @@
           <span class="pill">Conv1D</span>
           <span class="pill">GradCAM</span>
         </div>
+        <div class="expertise-detail" data-i18n="e1.detail">Modelos treinados em dados reais da Hapvida para prever risco de reinternacao em 30 dias, engajamento de pacientes na Atencao Primaria e deteccao de isquemia em ECG de 12 derivacoes com interpretabilidade via GradCAM.</div>
       </div>
 
-      <div class="expertise-card">
+      <div class="expertise-card reveal">
         <div class="expertise-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
             <polyline points="9 12 11 14 15 10"/>
           </svg>
+          <span class="expertise-expand-icon">+</span>
         </div>
         <div class="expertise-title" data-i18n="e2.title">Fairness & Explicabilidade (XAI)</div>
         <div class="expertise-desc" data-i18n="e2.desc">Garantia de equidade em modelos de IA para diferentes subgrupos populacionais. Multicalibração com MCBoost e explicabilidade com SHAP para predições médicas.</div>
@@ -694,14 +851,16 @@
           <span class="pill">SHAP</span>
           <span class="pill">Isotonic Calibration</span>
         </div>
+        <div class="expertise-detail" data-i18n="e2.detail">Pesquisa de doutorado na FSP-USP focada em garantir que modelos preditivos em saude publica performem de forma justa entre diferentes subgrupos demograficos, utilizando tecnicas de pos-processamento como MCBoost e calibracao isotonica.</div>
       </div>
 
-      <div class="expertise-card">
+      <div class="expertise-card reveal">
         <div class="expertise-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
             <path d="M5 3v4M19 17v4M3 5h4M17 19h4"/>
           </svg>
+          <span class="expertise-expand-icon">+</span>
         </div>
         <div class="expertise-title" data-i18n="e3.title">LLMs & IA Generativa na Medicina</div>
         <div class="expertise-desc" data-i18n="e3.desc">Validação clínica de Large Language Models, IA generativa com grounding para confiabilidade e RAG (Retrieval-Augmented Generation) em autorizações médicas.</div>
@@ -711,14 +870,16 @@
           <span class="pill">Grounding</span>
           <span class="pill">Prompt Engineering</span>
         </div>
+        <div class="expertise-detail" data-i18n="e3.detail">Projetos de validacao clinica de GPT-4, Claude e modelos open-source para triagem, autorizacao de procedimentos e suporte a decisao medica. Sistemas RAG com base de conhecimento medico para respostas fundamentadas em evidencias.</div>
       </div>
 
-      <div class="expertise-card">
+      <div class="expertise-card reveal">
         <div class="expertise-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
             <line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/>
           </svg>
+          <span class="expertise-expand-icon">+</span>
         </div>
         <div class="expertise-title" data-i18n="e4.title">Interoperabilidade & Dados Clínicos</div>
         <div class="expertise-desc" data-i18n="e4.desc">Integração de sistemas de saúde via padrão FHIR, processamento de dados clínicos estruturados e não-estruturados, NLP em prontuários eletrônicos.</div>
@@ -728,13 +889,15 @@
           <span class="pill">NLP</span>
           <span class="pill">EHR</span>
         </div>
+        <div class="expertise-detail" data-i18n="e4.detail">Integracao de sistemas hospitalares via FHIR R4, extracao de informacoes de prontuarios nao-estruturados com NLP e construcao de pipelines de dados clinicos para alimentar modelos de machine learning.</div>
       </div>
 
-      <div class="expertise-card">
+      <div class="expertise-card reveal">
         <div class="expertise-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/>
           </svg>
+          <span class="expertise-expand-icon">+</span>
         </div>
         <div class="expertise-title" data-i18n="e5.title">Epidemiologia & Saúde Pública</div>
         <div class="expertise-desc" data-i18n="e5.desc">Análise epidemiológica com machine learning, estudos multicêntricos, predição de desfechos clínicos e dataset shift em modelos de saúde populacionais.</div>
@@ -743,6 +906,7 @@
           <span class="pill">Dataset Shift</span>
           <span class="pill">Federated Learning</span>
         </div>
+        <div class="expertise-detail" data-i18n="e5.detail">Publicacoes em PLOS Digital Health e BMC sobre modelos preditivos multicentricos para COVID-19 e ganho de peso gestacional. Pesquisa ativa em dataset shift e aprendizado federado para modelos de saude populacionais.</div>
       </div>
 
     </div>
@@ -752,12 +916,12 @@
 <!-- PROJETOS -->
 <section id="projetos" class="bg-alt">
   <div class="container">
-    <p class="section-label" data-i18n="proj.label">// open source</p>
-    <h2 class="section-title" data-i18n="proj.title">Projetos em Destaque</h2>
-    <div class="section-divider"></div>
+    <p class="section-label reveal" data-i18n="proj.label">// open source</p>
+    <h2 class="section-title reveal" data-i18n="proj.title">Projetos em Destaque</h2>
+    <div class="section-divider reveal"></div>
     <div class="projects-grid">
 
-      <a href="https://github.com/fabianofilho/aiscribr" target="_blank" class="project-card">
+      <a href="https://github.com/fabianofilho/aiscribr" target="_blank" class="project-card reveal">
         <div class="project-header">
           <div class="project-name">aiscribr</div>
           <span class="project-visibility badge-private" data-i18n="proj.private">privado</span>
@@ -780,7 +944,7 @@
         </div>
       </a>
 
-      <a href="https://github.com/fabianofilho/amie-agents" target="_blank" class="project-card">
+      <a href="https://github.com/fabianofilho/amie-agents" target="_blank" class="project-card reveal">
         <div class="project-header">
           <div class="project-name">amie-agents</div>
           <span class="project-visibility badge-public" data-i18n="proj.public">público</span>
@@ -804,7 +968,7 @@
         </div>
       </a>
 
-      <a href="https://github.com/fabianofilho/datasus-ai-search" target="_blank" class="project-card">
+      <a href="https://github.com/fabianofilho/datasus-ai-search" target="_blank" class="project-card reveal">
         <div class="project-header">
           <div class="project-name">datasus-ai-search</div>
           <span class="project-visibility badge-public" data-i18n="proj.public">público</span>
@@ -828,7 +992,7 @@
         </div>
       </a>
 
-      <a href="https://github.com/fabianofilho/datasus-ai-prediction" target="_blank" class="project-card">
+      <a href="https://github.com/fabianofilho/datasus-ai-prediction" target="_blank" class="project-card reveal">
         <div class="project-header">
           <div class="project-name">datasus-ai-prediction</div>
           <span class="project-visibility badge-public" data-i18n="proj.public">público</span>
@@ -858,12 +1022,12 @@
 <!-- PUBLICAÇÕES -->
 <section id="publicacoes">
   <div class="container">
-    <p class="section-label" data-i18n="pub.label">// ciência</p>
-    <h2 class="section-title" data-i18n="pub.title">Publicações de Destaque</h2>
-    <div class="section-divider"></div>
+    <p class="section-label reveal" data-i18n="pub.label">// ciência</p>
+    <h2 class="section-title reveal" data-i18n="pub.title">Publicações de Destaque</h2>
+    <div class="section-divider reveal"></div>
     <div class="pub-list">
 
-      <div class="pub-card">
+      <div class="pub-card reveal">
         <div class="pub-number">01</div>
         <div>
           <div class="pub-title">Strategies for detecting and mitigating dataset shift in machine learning for health predictions: A systematic review</div>
@@ -871,7 +1035,7 @@
         </div>
       </div>
 
-      <div class="pub-card">
+      <div class="pub-card reveal">
         <div class="pub-number">02</div>
         <div>
           <div class="pub-title">Predictive modeling of gestational weight gain: a machine learning multiclass classification study</div>
@@ -879,7 +1043,7 @@
         </div>
       </div>
 
-      <div class="pub-card">
+      <div class="pub-card reveal">
         <div class="pub-number">03</div>
         <div>
           <div class="pub-title">Multicenter comparative analysis of local and aggregated data training strategies in COVID-19 outcome prediction with Machine Learning</div>
@@ -887,7 +1051,7 @@
         </div>
       </div>
 
-      <div class="pub-card">
+      <div class="pub-card reveal">
         <div class="pub-number">04</div>
         <div>
           <div class="pub-title">A bibliometric network analysis of coronavirus during the first eight months of COVID-19 in 2020</div>
@@ -905,40 +1069,40 @@
 <!-- TRAJETÓRIA -->
 <section id="trajetoria" class="bg-alt">
   <div class="container">
-    <p class="section-label" data-i18n="traj.label">// trajetória</p>
-    <h2 class="section-title" data-i18n="traj.title">Profissional & Acadêmica</h2>
-    <div class="section-divider"></div>
+    <p class="section-label reveal" data-i18n="traj.label">// trajetória</p>
+    <h2 class="section-title reveal" data-i18n="traj.title">Profissional & Acadêmica</h2>
+    <div class="section-divider reveal"></div>
     <div class="timeline">
 
-      <div class="timeline-item">
+      <div class="timeline-item reveal">
         <div class="timeline-period"><span>Jan 2026</span> <svg class="icon-inline icon-timeline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg> <span>Presente</span></div>
         <div class="timeline-role" data-i18n="t1.role">Gerente Médico de Inovação e Inteligência Artificial</div>
         <div class="timeline-org">Hapvida NotreDame Intermédica</div>
         <div class="timeline-desc" data-i18n="t1.desc">Liderança de projetos de IA médica, inovação e análise científica em uma das maiores operadoras de saúde do Brasil.</div>
       </div>
 
-      <div class="timeline-item">
+      <div class="timeline-item reveal">
         <div class="timeline-period"><span>Jun 2025</span> <svg class="icon-inline icon-timeline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg> <span>Presente</span></div>
         <div class="timeline-role" data-i18n="t2.role">Doutorando (PhD) em Machine Learning na Saúde Pública</div>
         <div class="timeline-org">FSP-USP · LABDAPS</div>
         <div class="timeline-desc" data-i18n="t2.desc">Pesquisa em multicalibração e justiça (fairness) em modelos preditivos, garantindo equidade para diferentes subgrupos populacionais.</div>
       </div>
 
-      <div class="timeline-item">
+      <div class="timeline-item reveal">
         <div class="timeline-period"><span>Jul 2023</span> <svg class="icon-inline icon-timeline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg> <span>Presente</span></div>
         <div class="timeline-role" data-i18n="t3.role">Fundador e Investidor</div>
         <div class="timeline-org" data-i18n="t3.org">Medicina e Inteligência Artificial</div>
         <div class="timeline-desc" data-i18n="t3.desc">Gestão de projetos e disseminação de conhecimento em IA na saúde para a comunidade médica brasileira.</div>
       </div>
 
-      <div class="timeline-item">
+      <div class="timeline-item reveal">
         <div class="timeline-period"><span>2024</span> <svg class="icon-inline icon-timeline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg> <span>2025</span></div>
         <div class="timeline-role" data-i18n="t4.role">Professor de IA na Medicina</div>
         <div class="timeline-org">amo medicina · Unyleya Educacional</div>
         <div class="timeline-desc" data-i18n="t4.desc">Docencia e criacao de conteudo em Inteligencia Artificial aplicada a medicina.</div>
       </div>
 
-      <div class="timeline-item">
+      <div class="timeline-item reveal">
         <div class="timeline-period"><span>2023</span> <svg class="icon-inline icon-timeline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg> <span>2025</span></div>
         <div class="timeline-role" data-i18n="t5.role">Head of Medical AI Innovation</div>
         <div class="timeline-org">Neomed</div>
@@ -1028,6 +1192,11 @@
       'e4.desc': 'Integração de sistemas de saúde via padrão FHIR, processamento de dados clínicos estruturados e não-estruturados, NLP em prontuários eletrônicos.',
       'e5.title': 'Epidemiologia & Saúde Pública',
       'e5.desc': 'Análise epidemiológica com machine learning, estudos multicêntricos, predição de desfechos clínicos e dataset shift em modelos de saúde populacionais.',
+      'e1.detail': 'Modelos treinados em dados reais da Hapvida para prever risco de reinternacao em 30 dias, engajamento de pacientes na Atencao Primaria e deteccao de isquemia em ECG de 12 derivacoes com interpretabilidade via GradCAM.',
+      'e2.detail': 'Pesquisa de doutorado na FSP-USP focada em garantir que modelos preditivos em saude publica performem de forma justa entre diferentes subgrupos demograficos, utilizando tecnicas de pos-processamento como MCBoost e calibracao isotonica.',
+      'e3.detail': 'Projetos de validacao clinica de GPT-4, Claude e modelos open-source para triagem, autorizacao de procedimentos e suporte a decisao medica. Sistemas RAG com base de conhecimento medico para respostas fundamentadas em evidencias.',
+      'e4.detail': 'Integracao de sistemas hospitalares via FHIR R4, extracao de informacoes de prontuarios nao-estruturados com NLP e construcao de pipelines de dados clinicos para alimentar modelos de machine learning.',
+      'e5.detail': 'Publicacoes em PLOS Digital Health e BMC sobre modelos preditivos multicentricos para COVID-19 e ganho de peso gestacional. Pesquisa ativa em dataset shift e aprendizado federado para modelos de saude populacionais.',
       'pub.label': '// ciência',
       'pub.title': 'Publicações de Destaque',
       'proj.label': '// open source',
@@ -1092,6 +1261,11 @@
       'e4.desc': 'Healthcare system integration via FHIR standard, processing of structured and unstructured clinical data, NLP in electronic health records.',
       'e5.title': 'Epidemiology & Public Health',
       'e5.desc': 'Epidemiological analysis with machine learning, multicenter studies, clinical outcome prediction and dataset shift in population health models.',
+      'e1.detail': 'Models trained on real Hapvida data to predict 30-day readmission risk, primary care patient engagement and ischemia detection in 12-lead ECG with interpretability via GradCAM.',
+      'e2.detail': 'PhD research at FSP-USP focused on ensuring predictive models in public health perform fairly across different demographic subgroups, using post-processing techniques such as MCBoost and isotonic calibration.',
+      'e3.detail': 'Clinical validation projects for GPT-4, Claude and open-source models for triage, procedure authorization and clinical decision support. RAG systems with medical knowledge base for evidence-grounded responses.',
+      'e4.detail': 'Hospital system integration via FHIR R4, information extraction from unstructured medical records with NLP and building clinical data pipelines to feed machine learning models.',
+      'e5.detail': 'Publications in PLOS Digital Health and BMC on multicenter predictive models for COVID-19 and gestational weight gain. Active research in dataset shift and federated learning for population health models.',
       'pub.label': '// science',
       'pub.title': 'Featured Publications',
       'proj.label': '// open source',
@@ -1128,6 +1302,304 @@
     document.getElementById('lang-btn').textContent = currentLang === 'pt' ? 'EN' : 'PT';
     applyTranslations(currentLang);
   }
+
+  // ========== INTERACTIVE ENHANCEMENTS ==========
+
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 1. SCROLL REVEAL
+  (function() {
+    var reveals = document.querySelectorAll('.reveal');
+    if (reducedMotion) {
+      reveals.forEach(function(el) { el.classList.add('active'); });
+      return;
+    }
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var parent = el.parentElement;
+          var siblings = parent ? Array.prototype.filter.call(parent.children, function(c) {
+            return c.classList.contains('reveal');
+          }) : [];
+          var idx = siblings.indexOf(el);
+          if (idx > 0) el.style.transitionDelay = (idx * 0.1) + 's';
+          el.classList.add('active');
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(function(el) { observer.observe(el); });
+  })();
+
+  // 2. ANIMATED STAT COUNTERS
+  (function() {
+    var countersStarted = false;
+    var statNumbers = document.querySelectorAll('.stat-number[data-count], .stat-number[data-count-text]');
+    if (!statNumbers.length) return;
+    function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+    function animateCounter(el) {
+      var target = parseInt(el.getAttribute('data-count'));
+      var start = parseInt(el.getAttribute('data-start')) || 0;
+      var suffix = el.getAttribute('data-suffix') || '';
+      var duration = 1500;
+      var startTime = null;
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var progress = Math.min((timestamp - startTime) / duration, 1);
+        var current = Math.round(start + (target - start) * easeOutCubic(progress));
+        el.textContent = current + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    function animateScramble(el) {
+      var target = el.getAttribute('data-count-text');
+      var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      var iterations = 8;
+      var i = 0;
+      var interval = setInterval(function() {
+        if (i >= iterations) { el.textContent = target; clearInterval(interval); return; }
+        var scrambled = '';
+        for (var j = 0; j < target.length; j++) scrambled += chars[Math.floor(Math.random() * chars.length)];
+        el.textContent = scrambled;
+        i++;
+      }, 80);
+    }
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && !countersStarted) {
+          countersStarted = true;
+          statNumbers.forEach(function(el) {
+            if (el.hasAttribute('data-count')) animateCounter(el);
+            else if (el.hasAttribute('data-count-text')) animateScramble(el);
+          });
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(document.querySelector('.about-stats'));
+  })();
+
+  // 3. NAV SCROLL SPY
+  (function() {
+    var sections = document.querySelectorAll('section[id]');
+    var navLinks = document.querySelectorAll('.nav-links a');
+    if (!sections.length || !navLinks.length) return;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.getAttribute('id');
+          navLinks.forEach(function(link) {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + id) link.classList.add('active');
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(function(s) { observer.observe(s); });
+  })();
+
+  // 4. NAV TRANSPARENT AT TOP
+  (function() {
+    var nav = document.querySelector('nav');
+    nav.classList.add('at-top');
+    var ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          if (window.scrollY > 80) { nav.classList.remove('at-top'); nav.classList.add('scrolled'); }
+          else { nav.classList.add('at-top'); nav.classList.remove('scrolled'); }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  })();
+
+  // 5. HERO CANVAS - NEURAL NETWORK
+  (function() {
+    if (reducedMotion) return;
+    var canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var hero = canvas.parentElement;
+    var nodeCount = window.innerWidth < 768 ? 20 : 40;
+    var nodes = [];
+    var maxDist = 120;
+    function resize() { canvas.width = hero.offsetWidth; canvas.height = hero.offsetHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+    function getAccentRGB() {
+      var temp = document.createElement('div');
+      temp.style.color = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+      document.body.appendChild(temp);
+      var rgb = getComputedStyle(temp).color;
+      document.body.removeChild(temp);
+      var match = rgb.match(/(\d+)/g);
+      return match ? match.map(Number) : [59, 130, 246];
+    }
+    var rgb = getAccentRGB();
+    for (var i = 0; i < nodeCount; i++) {
+      nodes.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4 });
+    }
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (var i = 0; i < nodes.length; i++) {
+        var n = nodes[i];
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+        if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+        for (var j = i + 1; j < nodes.length; j++) {
+          var m = nodes[j];
+          var dx = n.x - m.x, dy = n.y - m.y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < maxDist) {
+            ctx.beginPath();
+            ctx.strokeStyle = 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',' + ((1 - dist / maxDist) * 0.2) + ')';
+            ctx.lineWidth = 0.8;
+            ctx.moveTo(n.x, n.y); ctx.lineTo(m.x, m.y); ctx.stroke();
+          }
+        }
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',0.3)';
+        ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  // 6. TYPING EFFECT ON HERO BADGE
+  (function() {
+    if (reducedMotion) return;
+    var badge = document.querySelector('.hero-badge');
+    if (!badge) return;
+    var fullText = badge.textContent.trim();
+    var typingDone = false;
+    badge.textContent = '';
+    var cursor = document.createElement('span');
+    cursor.className = 'typing-cursor';
+    badge.appendChild(cursor);
+    var charIndex = 0;
+    var interval = setInterval(function() {
+      if (charIndex < fullText.length) {
+        badge.insertBefore(document.createTextNode(fullText[charIndex]), cursor);
+        charIndex++;
+      } else {
+        clearInterval(interval);
+        typingDone = true;
+        setTimeout(function() { if (cursor.parentNode) cursor.parentNode.removeChild(cursor); }, 1400);
+      }
+    }, 50);
+    var originalApply = applyTranslations;
+    applyTranslations = function(lang) {
+      originalApply(lang);
+      if (typingDone) {
+        var t = translations[lang];
+        var key = badge.getAttribute('data-i18n');
+        if (t && t[key]) badge.textContent = t[key];
+      }
+    };
+  })();
+
+  // 7. TIMELINE PROGRESSIVE REVEAL
+  (function() {
+    if (reducedMotion) return;
+    var timeline = document.querySelector('.timeline');
+    if (!timeline) return;
+    var items = timeline.querySelectorAll('.timeline-item');
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          var itemRect = entry.target.getBoundingClientRect();
+          var timelineRect = timeline.getBoundingClientRect();
+          var height = itemRect.top - timelineRect.top + itemRect.height;
+          var currentHeight = parseFloat(getComputedStyle(timeline).getPropertyValue('--line-height')) || 0;
+          if (height > currentHeight) timeline.style.setProperty('--line-height', height + 'px');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    items.forEach(function(item) { observer.observe(item); });
+  })();
+
+  // 8. MOUSE-FOLLOWING GLOW
+  (function() {
+    if (reducedMotion) return;
+    if (!window.matchMedia('(hover: hover)').matches) return;
+    var glow = document.getElementById('mouse-glow');
+    if (!glow) return;
+    document.addEventListener('mousemove', function(e) {
+      glow.style.opacity = '1';
+      glow.style.transform = 'translate(' + e.clientX + 'px, ' + e.clientY + 'px) translate(-50%, -50%)';
+    });
+    document.addEventListener('mouseleave', function() { glow.style.opacity = '0'; });
+  })();
+
+  // 9. EXPERTISE CARDS EXPAND
+  (function() {
+    document.querySelectorAll('.expertise-card').forEach(function(card) {
+      card.addEventListener('click', function() { card.classList.toggle('expanded'); });
+    });
+  })();
+
+  // 10. KONAMI CODE EASTER EGG
+  (function() {
+    var sequence = [38,38,40,40,37,39,37,39,66,65];
+    var pos = 0;
+    var timeout = null;
+    document.addEventListener('keydown', function(e) {
+      if (e.keyCode === sequence[pos]) {
+        pos++;
+        clearTimeout(timeout);
+        timeout = setTimeout(function() { pos = 0; }, 2000);
+        if (pos === sequence.length) { pos = 0; clearTimeout(timeout); startMatrixRain(); }
+      } else { pos = 0; }
+    });
+    function startMatrixRain() {
+      var canvas = document.createElement('canvas');
+      canvas.id = 'konami-canvas';
+      document.body.appendChild(canvas);
+      var ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      var chars = 'ACGT01ML DNA FHIR SHAP ECG RAG NLP'.split('');
+      var fontSize = 14;
+      var columns = Math.floor(canvas.width / fontSize);
+      var drops = [];
+      for (var i = 0; i < columns; i++) drops[i] = Math.random() * -100;
+      var rgb = [59, 130, 246];
+      var frameCount = 0;
+      var maxFrames = 180;
+      function drawRain() {
+        ctx.fillStyle = 'rgba(10, 14, 26, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',0.8)';
+        ctx.font = fontSize + 'px "Fira Code", monospace';
+        for (var i = 0; i < drops.length; i++) {
+          ctx.fillText(chars[Math.floor(Math.random() * chars.length)], i * fontSize, drops[i] * fontSize);
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+          drops[i]++;
+        }
+        frameCount++;
+        if (frameCount < maxFrames) { requestAnimationFrame(drawRain); }
+        else {
+          var fadeCount = 0;
+          (function fadeOut() {
+            ctx.fillStyle = 'rgba(10, 14, 26, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            fadeCount++;
+            if (fadeCount < 30) requestAnimationFrame(fadeOut);
+            else if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
+          })();
+        }
+      }
+      drawRain();
+    }
+  })();
 </script>
 
 </body>
