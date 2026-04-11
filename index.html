@@ -5,35 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fabiano Barcellos Filho | Médico & Cientista de Dados</title>
   <meta name="description" content="Médico, Cientista de Dados e Especialista em Inteligência Artificial na Saúde. Gerente Médico de IA na Hapvida, Doutorando na FSP-USP." />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3'/%3E%3Cpath d='M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4'/%3E%3Ccircle cx='20' cy='10' r='2'/%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3'/%3E%3Cpath d='M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4'/%3E%3Ccircle cx='20' cy='10' r='2'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0a0e1a;
-      --bg2: #111827;
-      --bg3: #1a2235;
-      --accent: #3b82f6;
-      --accent2: #06b6d4;
-      --green: #10b981;
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --border: #1e293b;
-      --card: #131c2e;
-      --nav-bg: rgba(10, 14, 26, 0.85);
+      --bg: #000000;
+      --bg2: #0a0a0a;
+      --bg3: #141414;
+      --accent: #ffffff;
+      --accent2: #ffffff;
+      --green: #ffffff;
+      --text: #ffffff;
+      --muted: #888888;
+      --border: #1f1f1f;
+      --card: #0a0a0a;
+      --nav-bg: rgba(0, 0, 0, 0.85);
+      --accent-soft: rgba(255, 255, 255, 0.06);
+      --accent-border: rgba(255, 255, 255, 0.15);
     }
 
     body.light {
-      --bg: #f8fafc;
-      --bg2: #f1f5f9;
-      --bg3: #e2e8f0;
-      --text: #0f172a;
-      --muted: #64748b;
-      --border: #cbd5e1;
-      --card: #ffffff;
-      --nav-bg: rgba(248, 250, 252, 0.9);
+      --bg: #ffffff;
+      --bg2: #f5f5f5;
+      --bg3: #eaeaea;
+      --accent: #000000;
+      --accent2: #000000;
+      --green: #000000;
+      --text: #000000;
+      --muted: #777777;
+      --border: #e5e5e5;
+      --card: #fafafa;
+      --nav-bg: rgba(255, 255, 255, 0.9);
+      --accent-soft: rgba(0, 0, 0, 0.05);
+      --accent-border: rgba(0, 0, 0, 0.15);
     }
 
     html { scroll-behavior: smooth; }
@@ -138,26 +145,30 @@
       content: '';
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 80% 60% at 50% -20%, rgba(59,130,246,0.15), transparent),
-        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(6,182,212,0.08), transparent);
+        radial-gradient(ellipse 80% 60% at 50% -20%, rgba(255,255,255,0.05), transparent),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(255,255,255,0.03), transparent);
+    }
+    body.light .hero::before {
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -20%, rgba(0,0,0,0.04), transparent),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(0,0,0,0.02), transparent);
     }
     .hero-inner {
       max-width: 860px; text-align: center; position: relative; z-index: 1;
     }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3);
+      background: var(--accent-soft); border: 1px solid var(--accent-border);
       border-radius: 999px; padding: 0.35rem 1rem;
-      font-size: 0.8rem; color: var(--accent); margin-bottom: 1.5rem;
+      font-size: 0.8rem; color: var(--text); margin-bottom: 1.5rem;
       font-family: 'Fira Code', monospace;
     }
     .hero-badge::before {
       content: '';
       display: inline-block;
-      width: 0.6rem; height: 0.6rem;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233b82f6' stroke='none'%3E%3Cpolygon points='6 3 20 12 6 21 6 3'/%3E%3C/svg%3E");
-      background-size: contain;
-      background-repeat: no-repeat;
+      width: 0.45rem; height: 0.45rem;
+      border-radius: 50%;
+      background: var(--text);
     }
     h1 {
       font-size: clamp(2.2rem, 5vw, 3.8rem);
@@ -166,9 +177,7 @@
       margin-bottom: 1rem;
     }
     .gradient-text {
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--text);
     }
     .hero-sub {
       font-size: 1.15rem; color: var(--muted);
@@ -191,9 +200,9 @@
       transition: all 0.2s; cursor: pointer; border: none;
     }
     .btn-primary {
-      background: var(--accent); color: #fff;
+      background: var(--text); color: var(--bg);
     }
-    .btn-primary:hover { background: #2563eb; transform: translateY(-1px); }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
     .btn-outline {
       background: transparent; color: var(--text);
       border: 1px solid var(--border);
@@ -205,7 +214,7 @@
     .container { max-width: 1000px; margin: 0 auto; }
     .section-label {
       font-family: 'Fira Code', monospace;
-      font-size: 0.8rem; color: var(--accent);
+      font-size: 0.8rem; color: var(--muted);
       letter-spacing: 0.1em; text-transform: uppercase;
       margin-bottom: 0.5rem;
     }
@@ -215,9 +224,9 @@
       letter-spacing: -0.02em;
     }
     .section-divider {
-      width: 48px; height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      border-radius: 2px; margin-bottom: 3rem;
+      width: 32px; height: 1px;
+      background: var(--text);
+      margin-bottom: 3rem;
     }
 
     /* ABOUT */
@@ -236,9 +245,7 @@
     }
     .stat-number {
       font-size: 2rem; font-weight: 700;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--text);
     }
     .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
 
@@ -247,20 +254,19 @@
     .timeline::before {
       content: '';
       position: absolute; left: 0; top: 0; bottom: 0;
-      width: 2px;
-      background: linear-gradient(180deg, var(--accent), transparent);
+      width: 1px;
+      background: linear-gradient(180deg, var(--text), transparent);
     }
     .timeline-item { position: relative; margin-bottom: 2.5rem; }
     .timeline-item::before {
       content: '';
-      position: absolute; left: -2.45rem; top: 0.4rem;
-      width: 10px; height: 10px; border-radius: 50%;
-      background: var(--accent); border: 2px solid var(--bg);
-      box-shadow: 0 0 10px rgba(59,130,246,0.5);
+      position: absolute; left: -2.4rem; top: 0.4rem;
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--text); border: 2px solid var(--bg);
     }
     .timeline-period {
       font-family: 'Fira Code', monospace;
-      font-size: 0.75rem; color: var(--accent2);
+      font-size: 0.75rem; color: var(--muted);
       margin-bottom: 0.25rem;
     }
     .timeline-role { font-weight: 600; font-size: 1rem; margin-bottom: 0.15rem; }
@@ -278,16 +284,16 @@
       transition: border-color 0.2s, transform 0.2s;
     }
     .expertise-card:hover {
-      border-color: var(--accent); transform: translateY(-3px);
+      border-color: var(--text); transform: translateY(-3px);
     }
     .expertise-icon {
       font-size: 1.8rem; margin-bottom: 1rem;
-      color: var(--accent);
+      color: var(--text);
       display: flex; align-items: center;
     }
     .expertise-icon svg {
       width: 2rem; height: 2rem;
-      stroke: var(--accent);
+      stroke: var(--text);
     }
     .expertise-title { font-weight: 600; margin-bottom: 0.5rem; }
     .expertise-desc { color: var(--muted); font-size: 0.875rem; }
@@ -295,9 +301,9 @@
       display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem;
     }
     .pill {
-      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);
+      background: var(--accent-soft); border: 1px solid var(--accent-border);
       border-radius: 4px; padding: 0.15rem 0.5rem;
-      font-size: 0.72rem; color: var(--accent);
+      font-size: 0.72rem; color: var(--text);
       font-family: 'Fira Code', monospace;
     }
 
@@ -309,18 +315,18 @@
       display: flex; gap: 1.25rem; align-items: flex-start;
       transition: border-color 0.2s;
     }
-    .pub-card:hover { border-color: rgba(59,130,246,0.4); }
+    .pub-card:hover { border-color: var(--text); }
     .pub-number {
       font-family: 'Fira Code', monospace;
-      font-size: 0.75rem; color: var(--accent);
-      background: rgba(59,130,246,0.1);
-      border: 1px solid rgba(59,130,246,0.2);
+      font-size: 0.75rem; color: var(--text);
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-border);
       border-radius: 6px; padding: 0.25rem 0.5rem;
       min-width: 2.5rem; text-align: center; margin-top: 0.1rem;
     }
     .pub-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.35rem; }
     .pub-meta { color: var(--muted); font-size: 0.8rem; }
-    .pub-meta span { color: var(--green); font-weight: 500; }
+    .pub-meta span { color: var(--text); font-weight: 500; }
 
     /* CONTENT */
     .content-grid {
@@ -333,7 +339,7 @@
       color: inherit; transition: all 0.2s; display: block;
     }
     .content-card:hover {
-      border-color: var(--accent); transform: translateY(-3px);
+      border-color: var(--text); transform: translateY(-3px);
     }
     .content-platform {
       font-size: 0.75rem; color: var(--muted);
@@ -342,7 +348,7 @@
     .content-title { font-weight: 600; margin-bottom: 0.4rem; }
     .content-desc { color: var(--muted); font-size: 0.85rem; }
     .content-arrow {
-      margin-top: 1rem; color: var(--accent); font-size: 1.1rem;
+      margin-top: 1rem; color: var(--text); font-size: 1.1rem;
     }
 
     /* PROJECTS */
@@ -358,8 +364,7 @@
       text-decoration: none; color: inherit;
     }
     .project-card:hover {
-      border-color: var(--accent); transform: translateY(-4px);
-      box-shadow: 0 8px 32px rgba(59,130,246,0.1);
+      border-color: var(--text); transform: translateY(-4px);
     }
     .project-header {
       display: flex; align-items: flex-start;
@@ -367,7 +372,7 @@
     }
     .project-name {
       font-family: 'Fira Code', monospace;
-      font-size: 1rem; font-weight: 600; color: var(--accent);
+      font-size: 1rem; font-weight: 600; color: var(--text);
     }
     .project-visibility {
       font-size: 0.7rem; padding: 0.2rem 0.55rem;
@@ -375,11 +380,11 @@
       white-space: nowrap;
     }
     .badge-public {
-      background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3);
-      color: var(--green);
+      background: var(--accent-soft); border: 1px solid var(--accent-border);
+      color: var(--text);
     }
     .badge-private {
-      background: rgba(148,163,184,0.1); border: 1px solid rgba(148,163,184,0.2);
+      background: transparent; border: 1px solid var(--border);
       color: var(--muted);
     }
     .project-desc {
@@ -397,11 +402,11 @@
     .lang-dot {
       width: 10px; height: 10px; border-radius: 50%;
     }
-    .lang-python { background: #3572A5; }
-    .lang-typescript { background: #3178c6; }
-    .lang-html { background: #E34F26; }
+    .lang-python { background: var(--text); }
+    .lang-typescript { background: var(--text); }
+    .lang-html { background: var(--text); }
     .project-link {
-      font-size: 0.8rem; color: var(--accent);
+      font-size: 0.8rem; color: var(--text);
       display: flex; align-items: center; gap: 0.3rem;
     }
     @media (max-width: 768px) {
@@ -419,7 +424,7 @@
       list-style: none; margin-top: 1rem;
     }
     .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--accent); }
+    .footer-links a:hover { color: var(--text); }
     .footer-copy { color: var(--muted); font-size: 0.8rem; margin-top: 1.5rem; }
 
     /* ALT SECTION BG */
@@ -457,13 +462,13 @@
       content: '';
       position: absolute;
       bottom: -4px; left: 0;
-      width: 100%; height: 2px;
-      background: var(--accent);
+      width: 100%; height: 1px;
+      background: var(--text);
       transform: scaleX(0);
       transition: transform 0.3s ease;
     }
     .nav-links a.active {
-      color: var(--accent);
+      color: var(--text);
     }
     .nav-links a.active::after {
       transform: scaleX(1);
@@ -481,7 +486,7 @@
     .typing-cursor {
       display: inline-block;
       width: 2px; height: 1em;
-      background: var(--accent);
+      background: var(--text);
       margin-left: 2px;
       vertical-align: text-bottom;
       animation: blink 0.7s step-end infinite;
@@ -499,9 +504,9 @@
       transition: height 0.4s ease;
     }
     @keyframes pulse-dot {
-      0% { box-shadow: 0 0 0 0 rgba(59,130,246,0.7); }
-      70% { box-shadow: 0 0 0 8px rgba(59,130,246,0); }
-      100% { box-shadow: 0 0 0 0 rgba(59,130,246,0); }
+      0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.5); }
+      70% { box-shadow: 0 0 0 8px rgba(255,255,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
     }
     .timeline-item.active::before {
       animation: pulse-dot 0.6s ease-out;
@@ -512,13 +517,16 @@
       position: fixed;
       width: 300px; height: 300px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(59,130,246,0.06), transparent 70%);
+      background: radial-gradient(circle, rgba(255,255,255,0.04), transparent 70%);
       pointer-events: none;
       z-index: 9999;
       transform: translate(-50%, -50%);
       will-change: transform;
       transition: opacity 0.3s;
       opacity: 0;
+    }
+    body.light #mouse-glow {
+      background: radial-gradient(circle, rgba(0,0,0,0.04), transparent 70%);
     }
 
     /* EXPERTISE EXPANDABLE */
@@ -602,19 +610,8 @@
       background-clip: padding-box;
       overflow: hidden;
     }
-    .course-banner-inner::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 14px;
-      padding: 2px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
+    .course-banner-inner {
+      border: 1px solid var(--border);
     }
     .course-banner-inner::after {
       content: '';
@@ -623,7 +620,7 @@
       right: -10%;
       width: 300px;
       height: 300px;
-      background: radial-gradient(circle, rgba(59,130,246,0.15), transparent 70%);
+      background: radial-gradient(circle, rgba(255,255,255,0.04), transparent 70%);
       pointer-events: none;
     }
     .course-banner-content {
@@ -634,7 +631,7 @@
     .course-banner-label {
       font-family: 'Fira Code', monospace;
       font-size: 0.75rem;
-      color: var(--accent);
+      color: var(--muted);
       letter-spacing: 0.1em;
       text-transform: uppercase;
       margin-bottom: 0.5rem;
@@ -665,15 +662,15 @@
       font-size: 0.9rem;
       font-weight: 600;
       text-decoration: none;
-      color: #fff;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: var(--bg);
+      background: var(--text);
       transition: all 0.2s;
       border: none;
       cursor: pointer;
     }
     .btn-gradient:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(59,130,246,0.3);
+      opacity: 0.85;
     }
 
     @media (max-width: 768px) {
@@ -1571,11 +1568,11 @@
       var columns = Math.floor(canvas.width / fontSize);
       var drops = [];
       for (var i = 0; i < columns; i++) drops[i] = Math.random() * -100;
-      var rgb = [59, 130, 246];
+      var rgb = [255, 255, 255];
       var frameCount = 0;
       var maxFrames = 180;
       function drawRain() {
-        ctx.fillStyle = 'rgba(10, 14, 26, 0.05)';
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',0.8)';
         ctx.font = fontSize + 'px "Fira Code", monospace';
@@ -1589,7 +1586,7 @@
         else {
           var fadeCount = 0;
           (function fadeOut() {
-            ctx.fillStyle = 'rgba(10, 14, 26, 0.1)';
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             fadeCount++;
             if (fadeCount < 30) requestAnimationFrame(fadeOut);
