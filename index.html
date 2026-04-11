@@ -7,102 +7,125 @@
   <meta name="description" content="Médico, Cientista de Dados e Especialista em Inteligência Artificial na Saúde. Gerente Médico de IA na Hapvida, Doutorando na FSP-USP." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3'/%3E%3Cpath d='M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4'/%3E%3Ccircle cx='20' cy='10' r='2'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,30..100;1,9..144,300..900,30..100&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* EDITORIAL SCIENTIFIC PALETTE */
     :root {
-      --bg: #000000;
-      --bg2: #0a0a0a;
-      --bg3: #141414;
-      --accent: #ffffff;
-      --accent2: #ffffff;
-      --green: #ffffff;
-      --text: #ffffff;
-      --muted: #888888;
-      --border: #1f1f1f;
-      --card: #0a0a0a;
-      --nav-bg: rgba(0, 0, 0, 0.85);
-      --accent-soft: rgba(255, 255, 255, 0.06);
-      --accent-border: rgba(255, 255, 255, 0.15);
+      --bg: #f3ede0;
+      --bg2: #ece5d4;
+      --bg3: #e5dec9;
+      --text: #14110a;
+      --text-2: #2a241a;
+      --muted: #6b6354;
+      --accent: #b13a1e;
+      --accent-2: #d75e3c;
+      --accent-soft: rgba(177, 58, 30, 0.08);
+      --accent-border: rgba(177, 58, 30, 0.25);
+      --rule: #cdc4ad;
+      --rule-strong: #a89e84;
+      --card: #ebe4d1;
+      --nav-bg: rgba(243, 237, 224, 0.88);
+      --serif-display: 'Fraunces', 'Times New Roman', serif;
+      --serif-body: 'Newsreader', 'Georgia', serif;
+      --mono: 'JetBrains Mono', 'Courier New', monospace;
     }
 
-    body.light {
-      --bg: #ffffff;
-      --bg2: #f5f5f5;
-      --bg3: #eaeaea;
-      --accent: #000000;
-      --accent2: #000000;
-      --green: #000000;
-      --text: #000000;
-      --muted: #777777;
-      --border: #e5e5e5;
-      --card: #fafafa;
-      --nav-bg: rgba(255, 255, 255, 0.9);
-      --accent-soft: rgba(0, 0, 0, 0.05);
-      --accent-border: rgba(0, 0, 0, 0.15);
+    body.dark {
+      --bg: #0d0b07;
+      --bg2: #14110b;
+      --bg3: #1c1810;
+      --text: #ece5d2;
+      --text-2: #d6cfbb;
+      --muted: #8a8170;
+      --accent: #d75e3c;
+      --accent-2: #e88a6c;
+      --accent-soft: rgba(215, 94, 60, 0.13);
+      --accent-border: rgba(215, 94, 60, 0.32);
+      --rule: #2a2418;
+      --rule-strong: #3d3525;
+      --card: #15110a;
+      --nav-bg: rgba(13, 11, 7, 0.88);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: var(--serif-body);
+      font-optical-sizing: auto;
+      font-weight: 380;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.7;
+      line-height: 1.65;
+      font-size: 18px;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      position: relative;
+      overflow-x: hidden;
     }
+
+    /* GRAIN OVERLAY */
+    #grain {
+      position: fixed; inset: 0; pointer-events: none; z-index: 50;
+      opacity: 0.35; mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.07 0 0 0 0 0.04 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    body.dark #grain {
+      mix-blend-mode: screen; opacity: 0.18;
+    }
+
+    ::selection { background: var(--accent); color: var(--bg); }
 
     /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: var(--nav-bg);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 2.5rem;
       display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
+      height: 68px;
     }
-    .nav-left {
-      display: flex; align-items: center; gap: 1rem;
-    }
+    .nav-left { display: flex; align-items: center; gap: 1.25rem; }
     #lang-btn {
-      font-family: 'Fira Code', monospace;
-      font-size: 0.72rem;
+      font-family: var(--mono);
+      font-size: 0.7rem; font-weight: 500;
       background: transparent;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      border-radius: 6px;
-      padding: 0.28rem 0.65rem;
+      border: 1px solid var(--rule-strong);
+      color: var(--text);
+      border-radius: 0;
+      padding: 0.32rem 0.7rem;
       cursor: pointer;
-      transition: all 0.2s;
-      letter-spacing: 0.08em;
+      transition: all 0.25s ease;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
     #lang-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
     }
-    .nav-right {
-      display: flex; align-items: center; gap: 1.5rem;
-    }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
     #theme-btn {
       background: transparent;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      border-radius: 6px;
-      padding: 0.28rem 0.55rem;
+      border: 1px solid var(--rule-strong);
+      color: var(--text);
+      border-radius: 0;
+      padding: 0.32rem 0.55rem;
       cursor: pointer;
-      transition: all 0.2s;
-      display: flex; align-items: center;
-      line-height: 1;
+      transition: all 0.25s ease;
+      display: flex; align-items: center; line-height: 1;
     }
     #theme-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+      background: var(--text); color: var(--bg); border-color: var(--text);
     }
     #theme-btn svg {
-      width: 1rem; height: 1rem;
+      width: 0.95rem; height: 0.95rem;
       stroke: currentColor; fill: none;
-      stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
+      stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
     }
     .icon-inline {
       width: 1em; height: 1em;
@@ -122,211 +145,563 @@
       opacity: 0.8;
     }
     .nav-logo {
-      font-family: 'Fira Code', monospace;
-      font-size: 1rem;
-      color: var(--accent);
+      font-family: var(--serif-display);
+      font-variation-settings: 'opsz' 144, 'SOFT' 50;
+      font-size: 1.25rem;
+      font-weight: 500;
+      font-style: italic;
+      color: var(--text);
       text-decoration: none;
+      letter-spacing: -0.01em;
     }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-logo .amp { color: var(--accent); font-style: normal; }
+    .nav-links { display: flex; gap: 2.25rem; list-style: none; }
     .nav-links a {
-      color: var(--muted); text-decoration: none; font-size: 0.875rem;
-      transition: color 0.2s;
+      color: var(--text);
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: color 0.25s;
     }
-    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover { color: var(--accent); }
 
     /* HERO */
     .hero {
       min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      padding: 6rem 2rem 4rem;
+      display: flex; align-items: center;
+      padding: 8rem 2.5rem 5rem;
       position: relative; overflow: hidden;
     }
     .hero::before {
       content: '';
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 80% 60% at 50% -20%, rgba(255,255,255,0.05), transparent),
-        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(255,255,255,0.03), transparent);
+        radial-gradient(ellipse 70% 50% at 85% 20%, var(--accent-soft), transparent 60%),
+        radial-gradient(ellipse 50% 40% at 10% 90%, var(--accent-soft), transparent 60%);
+      pointer-events: none;
     }
-    body.light .hero::before {
-      background:
-        radial-gradient(ellipse 80% 60% at 50% -20%, rgba(0,0,0,0.04), transparent),
-        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(0,0,0,0.02), transparent);
+    .hero-grid {
+      max-width: 1280px; width: 100%; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 110px 1fr 110px;
+      gap: 2.5rem;
+      position: relative; z-index: 2;
+      align-items: start;
     }
-    .hero-inner {
-      max-width: 860px; text-align: center; position: relative; z-index: 1;
+    .hero-marginalia, .hero-side {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 2.2;
+      padding-top: 1rem;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      align-self: start;
     }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--accent-soft); border: 1px solid var(--accent-border);
-      border-radius: 999px; padding: 0.35rem 1rem;
-      font-size: 0.8rem; color: var(--text); margin-bottom: 1.5rem;
-      font-family: 'Fira Code', monospace;
+    .hero-marginalia .folio {
+      color: var(--accent);
+      font-weight: 500;
     }
-    .hero-badge::before {
-      content: '';
-      display: inline-block;
-      width: 0.45rem; height: 0.45rem;
-      border-radius: 50%;
-      background: var(--text);
+    .hero-side {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      text-align: end;
+      justify-self: end;
     }
-    h1 {
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      font-weight: 700; line-height: 1.15;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
+    .hero-main {
+      max-width: 860px;
     }
-    .gradient-text {
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 2.25rem;
+      display: inline-flex; align-items: center; gap: 0.7rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 28px; height: 1px; background: var(--accent);
+    }
+    h1, .hero-headline {
+      font-family: var(--serif-display);
+      font-variation-settings: 'opsz' 144, 'SOFT' 30;
+      font-size: clamp(3.2rem, 8.5vw, 7.5rem);
+      font-weight: 380;
+      line-height: 0.92;
+      letter-spacing: -0.035em;
+      margin-bottom: 1.75rem;
       color: var(--text);
     }
-    .hero-sub {
-      font-size: 1.15rem; color: var(--muted);
-      max-width: 600px; margin: 0 auto 2.5rem;
+    .hero-headline .first {
+      display: block;
+      font-weight: 320;
+    }
+    .hero-headline .last {
+      display: block;
+      font-style: italic;
+      font-weight: 360;
+      font-variation-settings: 'opsz' 144, 'SOFT' 100;
+      padding-left: 0.5em;
+    }
+    .hero-headline .md {
+      font-family: var(--serif-display);
+      font-style: normal;
+      font-size: 0.36em;
+      font-weight: 500;
+      vertical-align: 0.45em;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      margin-left: 0.2em;
+      font-feature-settings: 'smcp';
+    }
+    .gradient-text { color: var(--text); }
+    .hero-lede {
+      font-family: var(--serif-body);
+      font-size: 1.18rem;
+      line-height: 1.55;
+      color: var(--text-2);
+      max-width: 560px;
+      margin: 0 0 2.75rem;
+      font-weight: 380;
+    }
+    .hero-lede em {
+      color: var(--accent);
+      font-style: italic;
+      font-family: var(--serif-display);
+      font-variation-settings: 'opsz' 14, 'SOFT' 50;
     }
     .hero-tags {
       display: flex; flex-wrap: wrap; gap: 0.6rem;
-      justify-content: center; margin-bottom: 2.5rem;
+      margin-bottom: 2.5rem;
     }
     .tag {
-      background: var(--bg3); border: 1px solid var(--border);
-      border-radius: 6px; padding: 0.3rem 0.8rem;
-      font-size: 0.8rem; color: var(--muted);
+      background: var(--bg3); border: 1px solid var(--rule);
+      padding: 0.3rem 0.8rem;
+      font-size: 0.78rem; color: var(--muted);
+      font-family: var(--mono);
     }
-    .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .hero-cta {
+      display: flex; gap: 0.9rem; flex-wrap: wrap; align-items: center;
+    }
     .btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.7rem 1.6rem; border-radius: 8px;
-      font-size: 0.9rem; font-weight: 500; text-decoration: none;
-      transition: all 0.2s; cursor: pointer; border: none;
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      padding: 0.95rem 1.75rem;
+      border-radius: 0;
+      font-family: var(--mono);
+      font-size: 0.72rem; font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      cursor: pointer; border: none;
+      position: relative;
     }
     .btn-primary {
       background: var(--text); color: var(--bg);
     }
-    .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-primary:hover {
+      background: var(--accent);
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0 0 var(--text);
+    }
     .btn-outline {
       background: transparent; color: var(--text);
-      border: 1px solid var(--border);
+      border: 1px solid var(--text);
     }
-    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+    .btn-outline:hover {
+      background: var(--text); color: var(--bg);
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0 0 var(--accent);
+    }
+
+    /* HERO BOTTOM RULE */
+    .hero-rule {
+      position: absolute; left: 2.5rem; right: 2.5rem; bottom: 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-top: 1rem;
+      border-top: 1px solid var(--rule);
+      z-index: 2;
+    }
+    .hero-rule .accent-dot { color: var(--accent); }
+    @media (max-width: 900px) {
+      .hero { padding: 7rem 1.5rem 5rem; }
+      .hero-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .hero-marginalia, .hero-side { display: none; }
+      .hero-rule { left: 1.5rem; right: 1.5rem; }
+    }
 
     /* SECTIONS */
-    section { padding: 6rem 2rem; }
-    .container { max-width: 1000px; margin: 0 auto; }
-    .section-label {
-      font-family: 'Fira Code', monospace;
-      font-size: 0.8rem; color: var(--muted);
-      letter-spacing: 0.1em; text-transform: uppercase;
-      margin-bottom: 0.5rem;
+    section {
+      padding: 7rem 2.5rem;
+      position: relative;
     }
-    .section-title {
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      font-weight: 700; margin-bottom: 1rem;
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 2.5rem;
+    }
+    .section-head {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 2.5rem;
+      align-items: end;
+      margin-bottom: 4rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .section-numeral {
+      font-family: var(--serif-display);
+      font-variation-settings: 'opsz' 144, 'SOFT' 30;
+      font-style: italic;
+      font-size: 3.6rem;
+      font-weight: 380;
+      line-height: 0.9;
+      color: var(--accent);
       letter-spacing: -0.02em;
     }
-    .section-divider {
-      width: 32px; height: 1px;
-      background: var(--text);
-      margin-bottom: 3rem;
+    .section-numeral .nl {
+      font-family: var(--mono);
+      font-style: normal;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.72rem; color: var(--muted);
+      letter-spacing: 0.16em; text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      display: inline-block;
+    }
+    .section-title {
+      font-family: var(--serif-display);
+      font-variation-settings: 'opsz' 144, 'SOFT' 50;
+      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+      font-weight: 360;
+      line-height: 1;
+      letter-spacing: -0.025em;
+      color: var(--text);
+    }
+    .section-title em {
+      font-style: italic;
+      font-variation-settings: 'opsz' 144, 'SOFT' 100;
+      color: var(--accent);
+    }
+    .section-divider { display: none; }
+    .section-aside {
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-top: 0.6rem;
+      border-top: 1px solid var(--rule);
+      line-height: 1.8;
+    }
+    .section-aside .accent { color: var(--accent); }
+    .section-body {
+      grid-column: 2 / -1;
+    }
+    @media (max-width: 900px) {
+      section { padding: 5.5rem 1.5rem; }
+      .container { grid-template-columns: 1fr; gap: 1rem; }
+      .section-head { grid-template-columns: 1fr; gap: 0.5rem; margin-bottom: 2.5rem; }
+      .section-aside { display: none; }
+      .section-body { grid-column: 1 / -1; }
+      .section-numeral { font-size: 2.4rem; }
     }
 
     /* ABOUT */
     .about-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 4rem; align-items: center;
+      display: grid; grid-template-columns: 1.4fr 1fr;
+      gap: 4rem; align-items: start;
     }
-    .about-text p { color: var(--muted); margin-bottom: 1rem; }
-    .about-text p strong { color: var(--text); }
+    .about-text p {
+      color: var(--text-2);
+      margin-bottom: 1.4rem;
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+    .about-text p:first-of-type::first-letter {
+      font-family: var(--serif-display);
+      font-variation-settings: 'opsz' 144, 'SOFT' 100;
+      font-style: italic;
+      font-size: 4.4em;
+      float: left;
+      line-height: 0.85;
+      padding: 0.05em 0.1em 0 0;
+      color: var(--accent);
+      font-weight: 360;
+    }
+    .about-text p strong {
+      color: var(--text);
+      font-weight: 600;
+      font-style: italic;
+      font-family: var(--serif-display);
+      font-variation-settings: 'opsz' 14, 'SOFT' 50;
+    }
     .about-stats {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+      border-top: 1px solid var(--rule);
+      border-left: 1px solid var(--rule);
     }
     .stat-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1.5rem; text-align: center;
+      background: transparent;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 1.75rem 1.25rem;
+      text-align: left;
+      transition: background 0.3s;
     }
+    .stat-card:hover { background: var(--accent-soft); }
     .stat-number {
-      font-size: 2rem; font-weight: 700;
+      font-family: var(--serif-display);
+      font-variation-settings: 'opsz' 144, 'SOFT' 30;
+      font-size: 3.2rem;
+      font-weight: 360;
+      line-height: 0.95;
       color: var(--text);
+      letter-spacing: -0.025em;
     }
-    .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
+    .stat-card:nth-child(even) .stat-number {
+      font-style: italic;
+      color: var(--accent);
+      font-variation-settings: 'opsz' 144, 'SOFT' 100;
+    }
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      color: var(--muted);
+      margin-top: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
 
     /* TIMELINE */
-    .timeline { position: relative; padding-left: 2rem; }
+    .timeline {
+      position: relative;
+      padding-left: 2.5rem;
+    }
     .timeline::before {
       content: '';
-      position: absolute; left: 0; top: 0; bottom: 0;
+      position: absolute; left: 0; top: 0.4rem; bottom: 0;
       width: 1px;
-      background: linear-gradient(180deg, var(--text), transparent);
+      background: var(--rule);
     }
-    .timeline-item { position: relative; margin-bottom: 2.5rem; }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-bottom: 0;
+    }
     .timeline-item::before {
       content: '';
-      position: absolute; left: -2.4rem; top: 0.4rem;
-      width: 9px; height: 9px; border-radius: 50%;
-      background: var(--text); border: 2px solid var(--bg);
+      position: absolute; left: -2.55rem; top: 0.7rem;
+      width: 11px; height: 11px;
+      background: var(--bg);
+      border: 1.5px solid var(--accent);
+      transform: rotate(45deg);
+    }
+    .timeline-item.active::before {
+      background: var(--accent);
     }
     .timeline-period {
-      font-family: 'Fira Code', monospace;
-      font-size: 0.75rem; color: var(--muted);
-      margin-bottom: 0.25rem;
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.4rem;
     }
-    .timeline-role { font-weight: 600; font-size: 1rem; margin-bottom: 0.15rem; }
-    .timeline-org { color: var(--muted); font-size: 0.875rem; margin-bottom: 0.5rem; }
-    .timeline-desc { color: var(--muted); font-size: 0.875rem; }
+    .timeline-role {
+      font-family: var(--serif-display);
+      font-variation-settings: 'opsz' 60, 'SOFT' 50;
+      font-weight: 420;
+      font-size: 1.35rem;
+      line-height: 1.2;
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .timeline-org {
+      font-family: var(--serif-display);
+      font-variation-settings: 'opsz' 14, 'SOFT' 100;
+      font-style: italic;
+      color: var(--accent);
+      font-size: 0.95rem;
+      margin-bottom: 0.6rem;
+      font-weight: 420;
+    }
+    .timeline-desc {
+      color: var(--text-2);
+      font-size: 0.98rem;
+      line-height: 1.6;
+      max-width: 620px;
+    }
 
     /* EXPERTISE */
     .expertise-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--rule);
+      border-left: 1px solid var(--rule);
+    }
+    @media (max-width: 720px) {
+      .expertise-grid { grid-template-columns: 1fr; }
     }
     .expertise-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1.75rem;
-      transition: border-color 0.2s, transform 0.2s;
+      background: transparent;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 2.25rem 2rem;
+      transition: background 0.35s ease;
+      position: relative;
+      cursor: pointer;
     }
+    .expertise-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0;
+      width: 0; height: 2px;
+      background: var(--accent);
+      transition: width 0.4s ease;
+    }
+    .expertise-card:hover::before { width: 100%; }
     .expertise-card:hover {
-      border-color: var(--text); transform: translateY(-3px);
+      background: var(--accent-soft);
     }
     .expertise-icon {
-      font-size: 1.8rem; margin-bottom: 1rem;
-      color: var(--text);
-      display: flex; align-items: center;
+      margin-bottom: 1.25rem;
+      color: var(--accent);
+      display: flex; align-items: center; justify-content: space-between;
     }
     .expertise-icon svg {
-      width: 2rem; height: 2rem;
-      stroke: var(--text);
+      width: 1.6rem; height: 1.6rem;
+      stroke: var(--accent);
+      stroke-width: 1.25;
     }
-    .expertise-title { font-weight: 600; margin-bottom: 0.5rem; }
-    .expertise-desc { color: var(--muted); font-size: 0.875rem; }
+    .expertise-title {
+      font-family: var(--serif-display);
+      font-variation-settings: 'opsz' 60, 'SOFT' 50;
+      font-weight: 440;
+      font-size: 1.5rem;
+      line-height: 1.15;
+      margin-bottom: 0.7rem;
+      letter-spacing: -0.015em;
+      color: var(--text);
+    }
+    .expertise-desc {
+      color: var(--text-2);
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
     .tech-pills {
-      display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem;
+      display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.25rem;
     }
     .pill {
-      background: var(--accent-soft); border: 1px solid var(--accent-border);
-      border-radius: 4px; padding: 0.15rem 0.5rem;
-      font-size: 0.72rem; color: var(--text);
-      font-family: 'Fira Code', monospace;
+      background: transparent;
+      border: 1px solid var(--rule-strong);
+      border-radius: 0;
+      padding: 0.22rem 0.6rem;
+      font-size: 0.66rem;
+      color: var(--text);
+      font-family: var(--mono);
+      letter-spacing: 0.06em;
+      transition: all 0.25s;
+    }
+    .expertise-card:hover .pill {
+      border-color: var(--accent);
+      color: var(--accent);
     }
 
     /* PUBLICATIONS */
-    .pub-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .pub-list {
+      display: flex; flex-direction: column;
+      border-top: 1px solid var(--rule);
+    }
     .pub-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1.5rem;
-      display: flex; gap: 1.25rem; align-items: flex-start;
-      transition: border-color 0.2s;
+      background: transparent;
+      border-bottom: 1px solid var(--rule);
+      padding: 2rem 0.5rem 2rem 0;
+      display: grid;
+      grid-template-columns: 70px 1fr auto;
+      gap: 1.5rem; align-items: baseline;
+      transition: all 0.3s;
+      border-radius: 0;
     }
-    .pub-card:hover { border-color: var(--text); }
-    .pub-number {
-      font-family: 'Fira Code', monospace;
-      font-size: 0.75rem; color: var(--text);
+    .pub-card:hover {
       background: var(--accent-soft);
-      border: 1px solid var(--accent-border);
-      border-radius: 6px; padding: 0.25rem 0.5rem;
-      min-width: 2.5rem; text-align: center; margin-top: 0.1rem;
+      padding-left: 1rem;
     }
-    .pub-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.35rem; }
-    .pub-meta { color: var(--muted); font-size: 0.8rem; }
-    .pub-meta span { color: var(--text); font-weight: 500; }
+    .pub-number {
+      font-family: var(--serif-display);
+      font-variation-settings: 'opsz' 144, 'SOFT' 30;
+      font-style: italic;
+      font-size: 2.4rem;
+      font-weight: 380;
+      color: var(--accent);
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      min-width: auto;
+      text-align: left;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .pub-title {
+      font-family: var(--serif-display);
+      font-variation-settings: 'opsz' 24, 'SOFT' 50;
+      font-weight: 420;
+      font-size: 1.18rem;
+      line-height: 1.35;
+      margin-bottom: 0.55rem;
+      color: var(--text);
+      letter-spacing: -0.005em;
+    }
+    .pub-meta {
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-family: var(--mono);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .pub-meta span { color: var(--accent); font-weight: 500; }
+    .pub-arrow {
+      width: 28px; height: 28px;
+      border: 1px solid var(--rule-strong);
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s;
+    }
+    .pub-card:hover .pub-arrow {
+      background: var(--accent); border-color: var(--accent); color: var(--bg);
+    }
+    .pub-arrow svg { width: 0.85rem; height: 0.85rem; }
+    @media (max-width: 720px) {
+      .pub-card { grid-template-columns: 50px 1fr; }
+      .pub-arrow { display: none; }
+      .pub-number { font-size: 1.8rem; }
+    }
 
     /* CONTENT */
     .content-grid {
@@ -334,98 +709,217 @@
       gap: 1.25rem;
     }
     .content-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1.5rem; text-decoration: none;
+      background: var(--card); border: 1px solid var(--rule);
+      border-radius: 0; padding: 1.5rem; text-decoration: none;
       color: inherit; transition: all 0.2s; display: block;
     }
     .content-card:hover {
-      border-color: var(--text); transform: translateY(-3px);
+      border-color: var(--accent); transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0 0 var(--accent);
     }
     .content-platform {
-      font-size: 0.75rem; color: var(--muted);
-      font-family: 'Fira Code', monospace; margin-bottom: 0.5rem;
+      font-size: 0.7rem; color: var(--muted);
+      font-family: var(--mono); margin-bottom: 0.5rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
     }
-    .content-title { font-weight: 600; margin-bottom: 0.4rem; }
-    .content-desc { color: var(--muted); font-size: 0.85rem; }
+    .content-title {
+      font-family: var(--serif-display);
+      font-weight: 440; margin-bottom: 0.4rem;
+      font-size: 1.15rem;
+    }
+    .content-desc { color: var(--muted); font-size: 0.9rem; }
     .content-arrow {
-      margin-top: 1rem; color: var(--text); font-size: 1.1rem;
+      margin-top: 1rem; color: var(--accent); font-size: 1.1rem;
     }
 
     /* PROJECTS */
     .projects-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
-      gap: 1.5rem;
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--rule);
+      border-left: 1px solid var(--rule);
+    }
+    @media (max-width: 900px) {
+      .projects-grid { grid-template-columns: 1fr; }
     }
     .project-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 14px; padding: 1.75rem;
+      background: transparent;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      border-radius: 0;
+      padding: 2.25rem 2rem;
       display: flex; flex-direction: column;
-      transition: border-color 0.2s, transform 0.2s;
+      transition: background 0.35s ease;
       text-decoration: none; color: inherit;
+      position: relative;
     }
-    .project-card:hover {
-      border-color: var(--text); transform: translateY(-4px);
+    .project-card::before {
+      content: '';
+      position: absolute; left: 0; bottom: 0;
+      width: 0; height: 2px;
+      background: var(--accent);
+      transition: width 0.4s ease;
     }
+    .project-card:hover::before { width: 100%; }
+    .project-card:hover { background: var(--accent-soft); }
     .project-header {
-      display: flex; align-items: flex-start;
-      justify-content: space-between; gap: 1rem; margin-bottom: 0.75rem;
+      display: flex; align-items: baseline;
+      justify-content: space-between; gap: 1rem; margin-bottom: 0.85rem;
     }
     .project-name {
-      font-family: 'Fira Code', monospace;
-      font-size: 1rem; font-weight: 600; color: var(--text);
+      font-family: var(--serif-display);
+      font-variation-settings: 'opsz' 60, 'SOFT' 50;
+      font-style: italic;
+      font-size: 1.6rem;
+      font-weight: 440;
+      color: var(--text);
+      letter-spacing: -0.015em;
+      line-height: 1;
     }
     .project-visibility {
-      font-size: 0.7rem; padding: 0.2rem 0.55rem;
-      border-radius: 999px; font-family: 'Fira Code', monospace;
+      font-size: 0.62rem;
+      padding: 0.22rem 0.55rem;
+      border-radius: 0;
+      font-family: var(--mono);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       white-space: nowrap;
     }
     .badge-public {
-      background: var(--accent-soft); border: 1px solid var(--accent-border);
-      color: var(--text);
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
     }
     .badge-private {
-      background: transparent; border: 1px solid var(--border);
+      background: transparent;
+      border: 1px solid var(--rule-strong);
       color: var(--muted);
     }
     .project-desc {
-      color: var(--muted); font-size: 0.875rem; flex: 1; margin-bottom: 1.25rem;
-      line-height: 1.65;
+      color: var(--text-2);
+      font-size: 0.96rem;
+      flex: 1;
+      margin-bottom: 1.4rem;
+      line-height: 1.6;
     }
     .project-footer {
       display: flex; align-items: center;
-      justify-content: space-between; margin-top: auto;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid var(--rule);
     }
     .project-lang {
-      display: flex; align-items: center; gap: 0.4rem;
-      font-size: 0.8rem; color: var(--muted);
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.7rem;
+      color: var(--muted);
+      font-family: var(--mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
     .lang-dot {
-      width: 10px; height: 10px; border-radius: 50%;
+      width: 8px; height: 8px;
+      transform: rotate(45deg);
     }
-    .lang-python { background: var(--text); }
-    .lang-typescript { background: var(--text); }
-    .lang-html { background: var(--text); }
+    .lang-python { background: var(--accent); }
+    .lang-typescript { background: var(--accent); }
+    .lang-html { background: var(--accent); }
     .project-link {
-      font-size: 0.8rem; color: var(--text);
-      display: flex; align-items: center; gap: 0.3rem;
+      font-size: 0.7rem;
+      color: var(--text);
+      font-family: var(--mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.4rem;
     }
-    @media (max-width: 768px) {
-      .projects-grid { grid-template-columns: 1fr; }
-    }
+    .project-card:hover .project-link { color: var(--accent); }
 
     /* FOOTER */
     footer {
-      background: var(--bg2); border-top: 1px solid var(--border);
-      padding: 3rem 2rem; text-align: center;
+      background: var(--bg2);
+      border-top: 1px solid var(--rule);
+      padding: 5rem 2.5rem 3rem;
+      position: relative;
     }
-    .footer-name { font-weight: 600; margin-bottom: 0.5rem; }
+    .footer-grid {
+      max-width: 1280px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .footer-mark {
+      font-family: var(--serif-display);
+      font-variation-settings: 'opsz' 144, 'SOFT' 30;
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      font-weight: 360;
+      line-height: 0.95;
+      color: var(--text);
+      letter-spacing: -0.025em;
+      margin-bottom: 1.25rem;
+    }
+    .footer-mark em {
+      font-style: italic;
+      color: var(--accent);
+      font-variation-settings: 'opsz' 144, 'SOFT' 100;
+    }
+    .footer-tagline {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      max-width: 360px;
+      line-height: 1.7;
+    }
+    .footer-name { display: none; }
+    .footer-col-title {
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.55rem;
+      border-bottom: 1px solid var(--rule);
+    }
     .footer-links {
-      display: flex; justify-content: center; gap: 2rem;
-      list-style: none; margin-top: 1rem;
+      display: flex; flex-direction: column; gap: 0.85rem;
+      list-style: none; margin-top: 0;
+      justify-content: flex-start;
     }
-    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--text); }
-    .footer-copy { color: var(--muted); font-size: 0.8rem; margin-top: 1.5rem; }
+    .footer-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-family: var(--serif-display);
+      font-variation-settings: 'opsz' 14, 'SOFT' 50;
+      font-style: italic;
+      font-size: 1.1rem;
+      transition: color 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .footer-links a::before {
+      content: '\2192';
+      color: var(--accent);
+      font-style: normal;
+      transition: transform 0.25s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-links a:hover::before { transform: translateX(3px); }
+    .footer-copy {
+      max-width: 1280px; margin: 2rem auto 0;
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-family: var(--mono);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy .accent { color: var(--accent); }
+    @media (max-width: 720px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
 
     /* ALT SECTION BG */
     .bg-alt { background: var(--bg2); }
@@ -433,8 +927,8 @@
     /* SCROLL REVEAL */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(24px);
+      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .reveal.active {
       opacity: 1;
@@ -451,7 +945,7 @@
       box-shadow: none !important;
     }
     nav.scrolled {
-      box-shadow: 0 1px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 1px 0 0 var(--rule);
     }
 
     /* NAV ACTIVE LINK */
@@ -461,35 +955,33 @@
     .nav-links a::after {
       content: '';
       position: absolute;
-      bottom: -4px; left: 0;
+      bottom: -6px; left: 0;
       width: 100%; height: 1px;
-      background: var(--text);
+      background: var(--accent);
       transform: scaleX(0);
-      transition: transform 0.3s ease;
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .nav-links a.active {
-      color: var(--text);
-    }
-    .nav-links a.active::after {
-      transform: scaleX(1);
-    }
+    .nav-links a.active { color: var(--accent); }
+    .nav-links a.active::after { transform: scaleX(1); }
 
     /* HERO CANVAS */
     #hero-canvas {
       position: absolute;
       inset: 0;
-      z-index: 0;
+      z-index: 1;
       pointer-events: none;
+      opacity: 0.7;
     }
 
     /* TYPING CURSOR */
     .typing-cursor {
       display: inline-block;
-      width: 2px; height: 1em;
-      background: var(--text);
-      margin-left: 2px;
+      width: 8px; height: 0.9em;
+      background: var(--accent);
+      margin-left: 4px;
       vertical-align: text-bottom;
-      animation: blink 0.7s step-end infinite;
+      animation: blink 0.85s step-end infinite;
     }
     @keyframes blink {
       50% { opacity: 0; }
@@ -501,152 +993,156 @@
     }
     .timeline::before {
       height: var(--line-height) !important;
-      transition: height 0.4s ease;
+      transition: height 0.6s ease;
+      background: var(--accent) !important;
     }
     @keyframes pulse-dot {
-      0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.5); }
-      70% { box-shadow: 0 0 0 8px rgba(255,255,255,0); }
-      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+      0% { box-shadow: 0 0 0 0 var(--accent-soft); }
+      70% { box-shadow: 0 0 0 12px transparent; }
+      100% { box-shadow: 0 0 0 0 transparent; }
     }
     .timeline-item.active::before {
-      animation: pulse-dot 0.6s ease-out;
+      animation: pulse-dot 0.7s ease-out;
     }
 
     /* MOUSE GLOW */
     #mouse-glow {
       position: fixed;
-      width: 300px; height: 300px;
+      width: 380px; height: 380px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.04), transparent 70%);
+      background: radial-gradient(circle, var(--accent-soft), transparent 65%);
       pointer-events: none;
-      z-index: 9999;
+      z-index: 49;
       transform: translate(-50%, -50%);
       will-change: transform;
-      transition: opacity 0.3s;
+      transition: opacity 0.35s;
       opacity: 0;
+      mix-blend-mode: multiply;
     }
-    body.light #mouse-glow {
-      background: radial-gradient(circle, rgba(0,0,0,0.04), transparent 70%);
+    body.dark #mouse-glow {
+      mix-blend-mode: screen;
     }
 
     /* EXPERTISE EXPANDABLE */
-    .expertise-card {
-      cursor: pointer;
-    }
+    .expertise-card { cursor: pointer; }
     .expertise-detail {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+      transition: max-height 0.5s ease, opacity 0.3s ease, margin-top 0.3s ease, padding-top 0.3s ease;
       opacity: 0;
-      font-size: 0.85rem;
-      color: var(--muted);
+      font-size: 0.92rem;
+      color: var(--text-2);
       margin-top: 0;
+      padding-top: 0;
+      border-top: 1px solid transparent;
       line-height: 1.6;
     }
     .expertise-card.expanded .expertise-detail {
-      max-height: 200px;
+      max-height: 240px;
       opacity: 1;
-      margin-top: 1rem;
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top-color: var(--accent-border);
     }
     .expertise-expand-icon {
-      display: inline-block;
-      width: 1rem; height: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      width: 1.6rem; height: 1.6rem;
       margin-left: auto;
-      transition: transform 0.3s ease;
-      color: var(--muted);
-      font-size: 1.2rem;
+      transition: transform 0.35s ease, background 0.25s, color 0.25s;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 1rem;
+      font-weight: 400;
       line-height: 1;
+      border: 1px solid var(--accent-border);
     }
     .expertise-card.expanded .expertise-expand-icon {
       transform: rotate(45deg);
-    }
-
-    /* KONAMI CANVAS */
-    #konami-canvas {
-      position: fixed;
-      inset: 0;
-      z-index: 10000;
-      pointer-events: none;
-    }
-
-    /* REDUCED MOTION */
-    @media (prefers-reduced-motion: reduce) {
-      .reveal {
-        opacity: 1;
-        transform: none;
-        transition: none;
-      }
-      .typing-cursor { animation: none; }
-      #hero-canvas { display: none; }
-      #mouse-glow { display: none; }
-      .timeline::before { transition: none; }
-      .timeline-item.active::before { animation: none; }
-      .expertise-detail { transition: none; }
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
     }
 
     /* COURSE BANNER */
     .course-banner {
-      padding: 3rem 2rem;
+      padding: 4rem 2.5rem 1rem;
       display: flex;
       justify-content: center;
     }
     .course-banner-grid {
-      max-width: 1000px;
+      max-width: 1280px;
       width: 100%;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
+      gap: 0;
+      border-top: 1px solid var(--rule);
+      border-left: 1px solid var(--rule);
     }
     .course-banner-inner {
       width: 100%;
       position: relative;
-      background: var(--bg3);
-      border-radius: 14px;
-      padding: 2rem 2rem;
+      background: transparent;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      border-radius: 0;
+      padding: 2.5rem 2.25rem;
       display: flex;
       flex-direction: column;
       gap: 1.25rem;
-      border: 2px solid transparent;
-      background-clip: padding-box;
       overflow: hidden;
+      transition: background 0.4s;
     }
-    .course-banner-inner {
-      border: 1px solid var(--border);
-    }
+    .course-banner-inner:hover { background: var(--accent-soft); }
     .course-banner-inner::after {
       content: '';
       position: absolute;
-      top: -50%;
-      right: -10%;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, rgba(255,255,255,0.04), transparent 70%);
+      top: 0; left: 0;
+      width: 60px; height: 60px;
+      border-top: 2px solid var(--accent);
+      border-left: 2px solid var(--accent);
       pointer-events: none;
+      opacity: 0.4;
+      transition: opacity 0.3s;
     }
+    .course-banner-inner:hover::after { opacity: 1; }
     .course-banner-content {
       flex: 1;
       position: relative;
       z-index: 1;
     }
     .course-banner-label {
-      font-family: 'Fira Code', monospace;
-      font-size: 0.75rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      color: var(--accent);
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.85rem;
+      display: inline-flex; align-items: center; gap: 0.55rem;
+    }
+    .course-banner-label::before {
+      content: ''; width: 24px; height: 1px; background: var(--accent);
     }
     .course-banner-title {
-      font-size: clamp(1.3rem, 2.5vw, 1.6rem);
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.02em;
+      font-family: var(--serif-display);
+      font-variation-settings: 'opsz' 144, 'SOFT' 50;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      font-weight: 380;
+      margin-bottom: 0.65rem;
+      letter-spacing: -0.025em;
+      line-height: 1;
+      color: var(--text);
+    }
+    .course-banner-title em {
+      font-style: italic;
+      font-variation-settings: 'opsz' 144, 'SOFT' 100;
+      color: var(--accent);
     }
     .course-banner-desc {
-      color: var(--muted);
-      font-size: 0.95rem;
+      color: var(--text-2);
+      font-size: 1rem;
       max-width: 520px;
       line-height: 1.6;
+      font-family: var(--serif-body);
     }
     .course-banner-cta {
       position: relative;
@@ -656,44 +1152,67 @@
     .btn-gradient {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.8rem;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
+      gap: 0.55rem;
+      padding: 0.85rem 1.5rem;
+      border-radius: 0;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      font-weight: 500;
       text-decoration: none;
-      color: var(--bg);
-      background: var(--text);
-      transition: all 0.2s;
-      border: none;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text);
+      background: transparent;
+      border: 1px solid var(--text);
+      transition: all 0.3s ease;
       cursor: pointer;
     }
     .btn-gradient:hover {
-      transform: translateY(-2px);
-      opacity: 0.85;
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0 0 var(--text);
     }
 
-    @media (max-width: 768px) {
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    @media (max-width: 900px) {
       .nav-links { display: none; }
+      .course-banner { padding: 3rem 1.5rem 0.5rem; }
       .course-banner-grid { grid-template-columns: 1fr; }
-      .course-banner-inner {
-        text-align: center;
-        padding: 2rem 1.5rem;
-      }
+      .course-banner-inner { padding: 2rem 1.5rem; }
       .course-banner-desc { max-width: 100%; }
+    }
+
+    /* REDUCED MOTION */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .typing-cursor { animation: none; }
+      #hero-canvas { display: none; }
+      #mouse-glow { display: none; }
+      .timeline::before { transition: none; }
+      .timeline-item.active::before { animation: none; }
+      .expertise-detail { transition: none; }
+    }
+
+    /* KONAMI CANVAS */
+    #konami-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
 
+<div id="grain"></div>
 <div id="mouse-glow"></div>
 
 <!-- NAV -->
 <nav>
   <div class="nav-left">
     <button id="lang-btn" onclick="toggleLang()">EN</button>
-    <a class="nav-logo" href="#">fabiano.filho</a>
+    <a class="nav-logo" href="#">Fabiano <span class="amp">&amp;</span> Filho</a>
   </div>
   <div class="nav-right">
     <ul class="nav-links">
@@ -705,7 +1224,7 @@
     </ul>
     <button id="theme-btn" onclick="toggleTheme()" title="Toggle theme">
       <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
       </svg>
     </button>
   </div>
@@ -714,18 +1233,31 @@
 <!-- HERO -->
 <section class="hero">
   <canvas id="hero-canvas"></canvas>
-  <div class="hero-inner">
-    <div class="hero-badge" data-i18n="hero.badge">Médico · Cientista de Dados · IA na Saúde</div>
-    <h1>
-      Fabiano Barcellos<br/>
-      <span class="gradient-text">Filho, MD</span>
-    </h1>
-    <p class="hero-sub" data-i18n="hero.sub">
-      Gerente Médico de Inovação e IA na Hapvida · Doutorando em Machine Learning na FSP-USP.
-    </p>
-    <div class="hero-cta">
-      <a href="https://www.linkedin.com/in/fabianofilho/" target="_blank" class="btn btn-primary"><span>LinkedIn</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  <div class="hero-grid">
+    <aside class="hero-marginalia">
+      <span class="folio">№ 01</span> &nbsp; Portfólio · MMXXVI
+    </aside>
+    <div class="hero-main">
+      <p class="hero-eyebrow hero-badge" data-i18n="hero.badge">Médico · Cientista de Dados · IA na Saúde</p>
+      <h1 class="hero-headline">
+        <span class="first">Fabiano Barcellos</span>
+        <span class="last">Filho<span class="md">, MD</span></span>
+      </h1>
+      <p class="hero-lede" data-i18n="hero.sub">
+        Gerente Médico de Inovação e IA na Hapvida · Doutorando em Machine Learning na FSP-USP.
+      </p>
+      <div class="hero-cta">
+        <a href="https://www.linkedin.com/in/fabianofilho/" target="_blank" class="btn btn-primary"><span>LinkedIn</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#sobre" class="btn btn-outline"><span data-i18n="hero.cta2">Conheça</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+      </div>
     </div>
+    <aside class="hero-side">
+      Hapvida · LABDAPS · FSP-USP
+    </aside>
+  </div>
+  <div class="hero-rule">
+    <span><span class="accent-dot">●</span> &nbsp; Edição corrente</span>
+    <span data-i18n="hero.location">São Paulo, Brasil</span>
   </div>
 </section>
 
@@ -773,32 +1305,44 @@
 <!-- SOBRE -->
 <section id="sobre" class="bg-alt">
   <div class="container">
-    <p class="section-label reveal" data-i18n="about.label">// sobre mim</p>
-    <h2 class="section-title reveal" data-i18n="about.title">Medicina + Dados + IA</h2>
-    <div class="section-divider reveal"></div>
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <p data-i18n-html="about.p1">Sou <strong>médico e cientista de dados</strong>, apaixonado por utilizar tecnologias avançadas para melhorar a qualidade de vida das pessoas e impulsionar inovações na saúde.</p>
-        <p data-i18n-html="about.p2">Atualmente atuo como <strong>Gerente Médico de Inovação e IA na Hapvida NotreDame Intermédica</strong>, liderando projetos de IA médica de alto impacto.</p>
-        <p data-i18n-html="about.p3">Sou pesquisador no <strong>LABDAPS (USP)</strong> e doutorando com foco em <strong>multicalibração e justiça em modelos preditivos de saúde pública</strong>, buscando tornar a IA mais equitativa para diferentes populações.</p>
-        <p data-i18n="about.p4">Moro em São Paulo, sou vegano e acredito que medicina baseada em evidências aliada à ciência de dados pode transformar o cuidado ao paciente.</p>
+    <div class="section-head">
+      <div class="section-numeral reveal"><span class="nl" data-i18n="about.numlabel">Capítulo</span>I.</div>
+      <div>
+        <p class="section-label reveal" data-i18n="about.label">// sobre mim</p>
+        <h2 class="section-title reveal" data-i18n-html="about.title">Medicina, Dados <em>&amp; IA</em></h2>
       </div>
-      <div class="about-stats">
-        <div class="stat-card reveal">
-          <div class="stat-number" data-count="106" data-suffix="+">0</div>
-          <div class="stat-label" data-i18n="stat.citations">Citações no principal artigo</div>
+    </div>
+    <aside class="section-aside reveal">
+      <span class="accent">Localização</span><br/>
+      <span data-i18n="about.aside1">São Paulo, BR</span><br/><br/>
+      <span class="accent">Filiações</span><br/>
+      Hapvida<br/>FSP-USP<br/>LABDAPS
+    </aside>
+    <div class="section-body">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p data-i18n-html="about.p1">Sou <strong>médico e cientista de dados</strong>, apaixonado por utilizar tecnologias avançadas para melhorar a qualidade de vida das pessoas e impulsionar inovações na saúde.</p>
+          <p data-i18n-html="about.p2">Atualmente atuo como <strong>Gerente Médico de Inovação e IA na Hapvida NotreDame Intermédica</strong>, liderando projetos de IA médica de alto impacto.</p>
+          <p data-i18n-html="about.p3">Sou pesquisador no <strong>LABDAPS (USP)</strong> e doutorando com foco em <strong>multicalibração e justiça em modelos preditivos de saúde pública</strong>, buscando tornar a IA mais equitativa para diferentes populações.</p>
+          <p data-i18n="about.p4">Moro em São Paulo, sou vegano e acredito que medicina baseada em evidências aliada à ciência de dados pode transformar o cuidado ao paciente.</p>
         </div>
-        <div class="stat-card reveal">
-          <div class="stat-number" data-count="4" data-suffix="+">0</div>
-          <div class="stat-label" data-i18n="stat.articles">Artigos publicados</div>
-        </div>
-        <div class="stat-card reveal">
-          <div class="stat-number" data-count-text="PhD">PhD</div>
-          <div class="stat-label" data-i18n="stat.phd">Doutorando FSP-USP</div>
-        </div>
-        <div class="stat-card reveal">
-          <div class="stat-number" data-count="5" data-suffix="+">0</div>
-          <div class="stat-label" data-i18n="stat.role">Projetos open-source</div>
+        <div class="about-stats">
+          <div class="stat-card reveal">
+            <div class="stat-number" data-count="106" data-suffix="+">0</div>
+            <div class="stat-label" data-i18n="stat.citations">Citações no principal artigo</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="stat-number" data-count="4" data-suffix="+">0</div>
+            <div class="stat-label" data-i18n="stat.articles">Artigos publicados</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="stat-number" data-count-text="PhD">PhD</div>
+            <div class="stat-label" data-i18n="stat.phd">Doutorando FSP-USP</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="stat-number" data-count="5" data-suffix="+">0</div>
+            <div class="stat-label" data-i18n="stat.role">Projetos open-source</div>
+          </div>
         </div>
       </div>
     </div>
@@ -808,9 +1352,18 @@
 <!-- EXPERTISE -->
 <section id="expertise">
   <div class="container">
-    <p class="section-label reveal" data-i18n="exp.label">// expertise</p>
-    <h2 class="section-title reveal" data-i18n="exp.title">Áreas de Atuação</h2>
-    <div class="section-divider reveal"></div>
+    <div class="section-head">
+      <div class="section-numeral reveal"><span class="nl" data-i18n="exp.numlabel">Capítulo</span>II.</div>
+      <div>
+        <p class="section-label reveal" data-i18n="exp.label">// expertise</p>
+        <h2 class="section-title reveal" data-i18n-html="exp.title">Áreas de <em>Atuação</em></h2>
+      </div>
+    </div>
+    <aside class="section-aside reveal">
+      <span class="accent">05 Áreas</span><br/>
+      <span data-i18n="exp.aside">Clique para expandir cada uma e ver os detalhes da pesquisa aplicada.</span>
+    </aside>
+    <div class="section-body">
     <div class="expertise-grid">
 
       <div class="expertise-card reveal">
@@ -907,15 +1460,25 @@
       </div>
 
     </div>
+    </div>
   </div>
 </section>
 
 <!-- PROJETOS -->
 <section id="projetos" class="bg-alt">
   <div class="container">
-    <p class="section-label reveal" data-i18n="proj.label">// open source</p>
-    <h2 class="section-title reveal" data-i18n="proj.title">Projetos em Destaque</h2>
-    <div class="section-divider reveal"></div>
+    <div class="section-head">
+      <div class="section-numeral reveal"><span class="nl" data-i18n="proj.numlabel">Capítulo</span>III.</div>
+      <div>
+        <p class="section-label reveal" data-i18n="proj.label">// open source</p>
+        <h2 class="section-title reveal" data-i18n-html="proj.title">Projetos em <em>Destaque</em></h2>
+      </div>
+    </div>
+    <aside class="section-aside reveal">
+      <span class="accent">github.com</span><br/>
+      <span data-i18n="proj.aside">/fabianofilho<br/>Pesquisa aplicada e ferramentas open-source para profissionais de saúde.</span>
+    </aside>
+    <div class="section-body">
     <div class="projects-grid">
 
       <a href="https://github.com/fabianofilho/aiscribr" target="_blank" class="project-card reveal">
@@ -1013,15 +1576,25 @@
       </a>
 
     </div>
+    </div>
   </div>
 </section>
 
 <!-- PUBLICAÇÕES -->
 <section id="publicacoes">
   <div class="container">
-    <p class="section-label reveal" data-i18n="pub.label">// ciência</p>
-    <h2 class="section-title reveal" data-i18n="pub.title">Publicações de Destaque</h2>
-    <div class="section-divider reveal"></div>
+    <div class="section-head">
+      <div class="section-numeral reveal"><span class="nl" data-i18n="pub.numlabel">Capítulo</span>IV.</div>
+      <div>
+        <p class="section-label reveal" data-i18n="pub.label">// ciência</p>
+        <h2 class="section-title reveal" data-i18n-html="pub.title">Publicações <em>Selecionadas</em></h2>
+      </div>
+    </div>
+    <aside class="section-aside reveal">
+      <span class="accent">Scholar h-index</span><br/>
+      <span data-i18n="pub.aside">Pesquisa peer-reviewed em IA, fairness e modelagem clínica preditiva.</span>
+    </aside>
+    <div class="section-body">
     <div class="pub-list">
 
       <div class="pub-card reveal">
@@ -1057,8 +1630,9 @@
       </div>
 
     </div>
-    <div style="margin-top: 2rem; text-align: center;">
-      <a href="https://scholar.google.com/citations?user=IqVY-BQAAAAJ&hl=pt-BR" target="_blank" class="btn btn-outline"><span>View all on Google Scholar</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <div style="margin-top: 2.5rem;">
+      <a href="https://scholar.google.com/citations?user=IqVY-BQAAAAJ&hl=pt-BR" target="_blank" class="btn btn-outline"><span data-i18n="pub.cta">Ver todas no Google Scholar</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
     </div>
   </div>
 </section>
@@ -1066,9 +1640,18 @@
 <!-- TRAJETÓRIA -->
 <section id="trajetoria" class="bg-alt">
   <div class="container">
-    <p class="section-label reveal" data-i18n="traj.label">// trajetória</p>
-    <h2 class="section-title reveal" data-i18n="traj.title">Profissional & Acadêmica</h2>
-    <div class="section-divider reveal"></div>
+    <div class="section-head">
+      <div class="section-numeral reveal"><span class="nl" data-i18n="traj.numlabel">Capítulo</span>V.</div>
+      <div>
+        <p class="section-label reveal" data-i18n="traj.label">// trajetória</p>
+        <h2 class="section-title reveal" data-i18n-html="traj.title">Profissional <em>&amp; Acadêmica</em></h2>
+      </div>
+    </div>
+    <aside class="section-aside reveal">
+      <span class="accent">Cronologia</span><br/>
+      <span data-i18n="traj.aside">Da medicina clínica à liderança em IA aplicada à saúde populacional.</span>
+    </aside>
+    <div class="section-body">
     <div class="timeline">
 
       <div class="timeline-item reveal">
@@ -1107,34 +1690,45 @@
       </div>
 
     </div>
+    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-name">Fabiano Barcellos Filho, MD</div>
-  <div style="color: var(--muted); font-size: 0.875rem;" data-i18n="footer.sub">Médico · Cientista de Dados · IA na Saúde · São Paulo, Brasil</div>
-  <ul class="footer-links">
-    <li><a href="https://www.linkedin.com/in/fabianofilho/" target="_blank">LinkedIn</a></li>
-    <li><a href="https://scholar.google.com/citations?user=IqVY-BQAAAAJ&hl=pt-BR" target="_blank">Scholar</a></li>
-    <li><a href="https://fabianofilho.substack.com/" target="_blank">Substack</a></li>
-    <li><a href="https://fabianonbfilho.medium.com/" target="_blank">Medium</a></li>
-    <li><a href="https://github.com/fabianofilho" target="_blank">GitHub</a></li>
-  </ul>
-  <div class="footer-copy">© 2026 Fabiano Barcellos Filho · portfolio.fabianofilho.com</div>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-mark">Fabiano <em>Barcellos</em><br/>Filho<span style="color: var(--accent); font-style: normal; font-size: 0.36em; vertical-align: 0.45em; letter-spacing: 0.05em; margin-left: 0.2em;">, MD</span></div>
+      <p class="footer-tagline" data-i18n="footer.sub">Médico · Cientista de Dados · IA na Saúde · São Paulo, Brasil</p>
+    </div>
+    <div>
+      <p class="footer-col-title" data-i18n="footer.elsewhere">Em outros lugares</p>
+      <ul class="footer-links">
+        <li><a href="https://www.linkedin.com/in/fabianofilho/" target="_blank">LinkedIn</a></li>
+        <li><a href="https://scholar.google.com/citations?user=IqVY-BQAAAAJ&hl=pt-BR" target="_blank">Google Scholar</a></li>
+        <li><a href="https://fabianofilho.substack.com/" target="_blank">Substack</a></li>
+        <li><a href="https://fabianonbfilho.medium.com/" target="_blank">Medium</a></li>
+        <li><a href="https://github.com/fabianofilho" target="_blank">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-copy">
+    <span>© MMXXVI · Fabiano Barcellos Filho</span>
+    <span><span class="accent">●</span> portfolio.fabianofilho.com</span>
+  </div>
 </footer>
 
 <script>
   var currentLang = 'pt';
-  var currentTheme = 'dark';
+  var currentTheme = 'light';
 
-  var moonIcon = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
-  var sunIcon = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+  var moonIcon = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+  var sunIcon = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
 
   function toggleTheme() {
     currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    document.body.classList.toggle('light', currentTheme === 'light');
-    document.getElementById('theme-icon').innerHTML = currentTheme === 'dark' ? moonIcon : sunIcon;
+    document.body.classList.toggle('dark', currentTheme === 'dark');
+    document.getElementById('theme-icon').innerHTML = currentTheme === 'dark' ? sunIcon : moonIcon;
   }
 
   var translations = {
@@ -1146,6 +1740,25 @@
       'nav.projetos': 'Projetos',
       'hero.badge': 'Médico · Cientista de Dados · IA na Saúde',
       'hero.sub': 'Gerente Médico de Inovação e IA na Hapvida · Doutorando em Machine Learning na FSP-USP.',
+      'hero.cta2': 'Conheça',
+      'hero.location': 'São Paulo, Brasil',
+      'about.numlabel': 'Capítulo',
+      'about.title': 'Medicina, Dados <em>&amp; IA</em>',
+      'about.aside1': 'São Paulo, BR',
+      'exp.numlabel': 'Capítulo',
+      'exp.title': 'Áreas de <em>Atuação</em>',
+      'exp.aside': 'Clique para expandir cada uma e ver os detalhes da pesquisa aplicada.',
+      'proj.numlabel': 'Capítulo',
+      'proj.title': 'Projetos em <em>Destaque</em>',
+      'proj.aside': '/fabianofilho<br/>Pesquisa aplicada e ferramentas open-source para profissionais de saúde.',
+      'pub.numlabel': 'Capítulo',
+      'pub.title': 'Publicações <em>Selecionadas</em>',
+      'pub.aside': 'Pesquisa peer-reviewed em IA, fairness e modelagem clínica preditiva.',
+      'pub.cta': 'Ver todas no Google Scholar',
+      'traj.numlabel': 'Capítulo',
+      'traj.title': 'Profissional <em>&amp; Acadêmica</em>',
+      'traj.aside': 'Da medicina clínica à liderança em IA aplicada à saúde populacional.',
+      'footer.elsewhere': 'Em outros lugares',
       'course.label': '// novo curso',
       'course.title': 'ML para Médicos',
       'course.desc': 'Curso gratuito focado em apresentar os conceitos fundamentais de Medicina e Inteligência Artificial para profissionais de saúde.',
@@ -1155,7 +1768,6 @@
       'mentoria.desc': 'Programa estruturado de ML e IA para profissionais da saúde. Do zero ao avançado: 3 formatos, até 10 módulos e ~120 horas.',
       'mentoria.cta': 'Saiba mais',
       'about.label': '// sobre mim',
-      'about.title': 'Medicina + Dados + IA',
       'about.p1': 'Sou <strong>médico e cientista de dados</strong>, apaixonado por utilizar tecnologias avançadas para melhorar a qualidade de vida das pessoas e impulsionar inovações na saúde.',
       'about.p2': 'Atualmente atuo como <strong>Gerente Médico de Inovação e IA na Hapvida NotreDame Intermédica</strong>, liderando projetos de IA médica de alto impacto.',
       'about.p3': 'Sou pesquisador no <strong>LABDAPS (USP)</strong> e doutorando com foco em <strong>multicalibração e justiça em modelos preditivos de saúde pública</strong>, buscando tornar a IA mais equitativa para diferentes populações.',
@@ -1165,7 +1777,6 @@
       'stat.phd': 'Doutorando FSP-USP',
       'stat.role': 'Projetos open-source',
       'traj.label': '// trajetória',
-      'traj.title': 'Profissional & Acadêmica',
       't1.role': 'Gerente Médico de Inovação e Inteligência Artificial',
       't1.desc': 'Liderança de projetos de IA médica, inovação e análise científica em uma das maiores operadoras de saúde do Brasil.',
       't2.role': 'Doutorando (PhD) em Machine Learning na Saúde Pública',
@@ -1178,7 +1789,6 @@
       't5.role': 'Head of Medical AI Innovation',
       't5.desc': 'Liderança da Tribo Científica e desenvolvimento da IA Mariê para cardiologia, com análise de ECG via Deep Learning.',
       'exp.label': '// expertise',
-      'exp.title': 'Áreas de Atuação',
       'e1.title': 'Deep Learning e Modelagem Clínica',
       'e1.desc': 'Modelos preditivos para risco de reinternação, engajamento na APS e análise de ECG com Conv1D, UNet e ResNet1D. Detecção de isquemia e condições cardíacas via deep learning com GradCAM.',
       'e2.title': 'Fairness & Explicabilidade (XAI)',
@@ -1195,9 +1805,7 @@
       'e4.detail': 'Integração de sistemas hospitalares via FHIR R4, extração de informações de prontuários não estruturados com NLP e construção de pipelines de dados clínicos para alimentar modelos de machine learning.',
       'e5.detail': 'Publicações em PLOS Digital Health e BMC sobre modelos preditivos multicêntricos para COVID-19 e ganho de peso gestacional. Pesquisa ativa em dataset shift e aprendizado federado para modelos de saúde populacionais.',
       'pub.label': '// ciência',
-      'pub.title': 'Publicações de Destaque',
       'proj.label': '// open source',
-      'proj.title': 'Projetos em Destaque',
       'proj.public': 'público',
       'proj.private': 'privado',
       'proj.link.repo': 'Ver repositório',
@@ -1215,6 +1823,25 @@
       'nav.projetos': 'Projects',
       'hero.badge': 'Medical Doctor · Data Scientist · AI in Health',
       'hero.sub': 'Medical Innovation & AI Manager at Hapvida · PhD Candidate in Machine Learning at FSP-USP.',
+      'hero.cta2': 'Discover',
+      'hero.location': 'São Paulo, Brazil',
+      'about.numlabel': 'Chapter',
+      'about.title': 'Medicine, Data <em>&amp; AI</em>',
+      'about.aside1': 'São Paulo, BR',
+      'exp.numlabel': 'Chapter',
+      'exp.title': 'Areas of <em>Expertise</em>',
+      'exp.aside': 'Click each card to expand and see applied research details.',
+      'proj.numlabel': 'Chapter',
+      'proj.title': 'Featured <em>Projects</em>',
+      'proj.aside': '/fabianofilho<br/>Applied research and open-source tools for healthcare professionals.',
+      'pub.numlabel': 'Chapter',
+      'pub.title': 'Selected <em>Publications</em>',
+      'pub.aside': 'Peer-reviewed research in AI, fairness and clinical predictive modeling.',
+      'pub.cta': 'View all on Google Scholar',
+      'traj.numlabel': 'Chapter',
+      'traj.title': 'Professional <em>&amp; Academic</em>',
+      'traj.aside': 'From clinical medicine to leadership in AI applied to public health.',
+      'footer.elsewhere': 'Elsewhere',
       'course.label': '// new course',
       'course.title': 'ML for Physicians',
       'course.desc': 'A free course focused on introducing the core concepts of Medicine and Artificial Intelligence for healthcare professionals.',
@@ -1224,7 +1851,6 @@
       'mentoria.desc': 'Structured ML and AI program for health professionals. From zero to advanced: 3 formats, up to 10 modules and ~120 hours.',
       'mentoria.cta': 'Learn more',
       'about.label': '// about me',
-      'about.title': 'Medicine + Data + AI',
       'about.p1': 'I am a <strong>medical doctor and data scientist</strong>, passionate about using advanced technologies to improve people\'s quality of life and drive innovations in healthcare.',
       'about.p2': 'I currently serve as <strong>Medical Innovation & AI Manager at Hapvida NotreDame Intermédica</strong>, leading high-impact medical AI projects.',
       'about.p3': 'I am a researcher at <strong>LABDAPS (USP)</strong> and PhD candidate focused on <strong>multicalibration and fairness in predictive public health models</strong>, working to make AI more equitable across different populations.',
@@ -1234,7 +1860,6 @@
       'stat.phd': 'PhD Student FSP-USP',
       'stat.role': 'Open-source projects',
       'traj.label': '// journey',
-      'traj.title': 'Professional & Academic',
       't1.role': 'Medical Manager of Innovation and Artificial Intelligence',
       't1.desc': 'Leadership of medical AI projects, innovation and scientific analysis at one of the largest health insurance companies in Brazil.',
       't2.role': 'PhD Candidate in Machine Learning for Public Health',
@@ -1247,7 +1872,6 @@
       't5.role': 'Head of Medical AI Innovation',
       't5.desc': 'Leadership of the Scientific Tribe and development of AI Marie for cardiology, with ECG analysis via Deep Learning.',
       'exp.label': '// expertise',
-      'exp.title': 'Areas of Expertise',
       'e1.title': 'Deep Learning & Clinical Modeling',
       'e1.desc': 'Predictive models for readmission risk, primary care engagement and ECG analysis with Conv1D, UNet and ResNet1D. Ischemia detection and cardiac conditions via deep learning with GradCAM.',
       'e2.title': 'Fairness & Explainability (XAI)',
@@ -1264,9 +1888,7 @@
       'e4.detail': 'Hospital system integration via FHIR R4, information extraction from unstructured medical records with NLP and building clinical data pipelines to feed machine learning models.',
       'e5.detail': 'Publications in PLOS Digital Health and BMC on multicenter predictive models for COVID-19 and gestational weight gain. Active research in dataset shift and federated learning for population health models.',
       'pub.label': '// science',
-      'pub.title': 'Featured Publications',
       'proj.label': '// open source',
-      'proj.title': 'Featured Projects',
       'proj.public': 'public',
       'proj.private': 'private',
       'proj.link.repo': 'View repository',
@@ -1414,17 +2036,22 @@
     });
   })();
 
-  // 5. HERO CANVAS - NEURAL NETWORK
+  // 5. HERO CANVAS - ECG WAVEFORM
   (function() {
     if (reducedMotion) return;
     var canvas = document.getElementById('hero-canvas');
     if (!canvas) return;
     var ctx = canvas.getContext('2d');
     var hero = canvas.parentElement;
-    var nodeCount = window.innerWidth < 768 ? 20 : 40;
-    var nodes = [];
-    var maxDist = 120;
-    function resize() { canvas.width = hero.offsetWidth; canvas.height = hero.offsetHeight; }
+    var dpr = Math.max(1, window.devicePixelRatio || 1);
+    function resize() {
+      canvas.width = hero.offsetWidth * dpr;
+      canvas.height = hero.offsetHeight * dpr;
+      canvas.style.width = hero.offsetWidth + 'px';
+      canvas.style.height = hero.offsetHeight + 'px';
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+    }
     resize();
     window.addEventListener('resize', resize);
     function getAccentRGB() {
@@ -1434,35 +2061,71 @@
       var rgb = getComputedStyle(temp).color;
       document.body.removeChild(temp);
       var match = rgb.match(/(\d+)/g);
-      return match ? match.map(Number) : [59, 130, 246];
+      return match ? match.map(Number) : [177, 58, 30];
     }
-    var rgb = getAccentRGB();
-    for (var i = 0; i < nodeCount; i++) {
-      nodes.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4 });
+    function getMutedRGB() {
+      var temp = document.createElement('div');
+      temp.style.color = getComputedStyle(document.documentElement).getPropertyValue('--rule').trim();
+      document.body.appendChild(temp);
+      var rgb = getComputedStyle(temp).color;
+      document.body.removeChild(temp);
+      var match = rgb.match(/(\d+)/g);
+      return match ? match.map(Number) : [205, 196, 173];
     }
+    // PQRST waveform sample, x in [0..1] returns y offset
+    function ecg(t) {
+      // P wave at 0.1
+      var y = 0;
+      y += 0.18 * Math.exp(-Math.pow((t - 0.10) / 0.025, 2));
+      // Q dip at 0.20
+      y -= 0.12 * Math.exp(-Math.pow((t - 0.205) / 0.012, 2));
+      // R spike at 0.22
+      y += 1.0 * Math.exp(-Math.pow((t - 0.225) / 0.011, 2));
+      // S dip at 0.24
+      y -= 0.36 * Math.exp(-Math.pow((t - 0.250) / 0.013, 2));
+      // T wave at 0.40
+      y += 0.30 * Math.exp(-Math.pow((t - 0.40) / 0.05, 2));
+      return y;
+    }
+    var phase = 0;
     function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (var i = 0; i < nodes.length; i++) {
-        var n = nodes[i];
-        n.x += n.vx; n.y += n.vy;
-        if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
-        if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
-        for (var j = i + 1; j < nodes.length; j++) {
-          var m = nodes[j];
-          var dx = n.x - m.x, dy = n.y - m.y;
-          var dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < maxDist) {
-            ctx.beginPath();
-            ctx.strokeStyle = 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',' + ((1 - dist / maxDist) * 0.2) + ')';
-            ctx.lineWidth = 0.8;
-            ctx.moveTo(n.x, n.y); ctx.lineTo(m.x, m.y); ctx.stroke();
-          }
-        }
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',0.3)';
-        ctx.fill();
+      var w = hero.offsetWidth;
+      var h = hero.offsetHeight;
+      ctx.clearRect(0, 0, w, h);
+      var accent = getAccentRGB();
+      var rule = getMutedRGB();
+
+      // Faint horizontal grid (graph paper)
+      ctx.strokeStyle = 'rgba(' + rule[0] + ',' + rule[1] + ',' + rule[2] + ',0.35)';
+      ctx.lineWidth = 0.5;
+      var step = 28;
+      for (var gy = (h % step) / 2; gy < h; gy += step) {
+        ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(w, gy); ctx.stroke();
       }
+      for (var gx = (w % step) / 2; gx < w; gx += step) {
+        ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, h); ctx.stroke();
+      }
+
+      // ECG traces (3 staggered lines, lower part of hero)
+      var baseY = h * 0.78;
+      var amp = Math.min(80, h * 0.10);
+      for (var lane = 0; lane < 3; lane++) {
+        var laneY = baseY + (lane - 1) * 14;
+        var alpha = lane === 1 ? 0.55 : 0.18;
+        ctx.strokeStyle = 'rgba(' + accent[0] + ',' + accent[1] + ',' + accent[2] + ',' + alpha + ')';
+        ctx.lineWidth = lane === 1 ? 1.6 : 0.9;
+        ctx.beginPath();
+        var cycleW = 280;
+        for (var x = 0; x <= w; x += 1.5) {
+          var t = ((x + phase + lane * 60) % cycleW) / cycleW;
+          var y = laneY - ecg(t) * amp;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+      }
+
+      phase += 0.9;
       requestAnimationFrame(draw);
     }
     draw();
