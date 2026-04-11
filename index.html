@@ -505,30 +505,32 @@
     }
     .timeline::before {
       content: '';
-      position: absolute; left: 0; top: 0.4rem; bottom: 0;
+      position: absolute; left: 5px; top: 0.9rem; bottom: 0.9rem;
       width: 1px;
-      background: var(--rule);
+      background: var(--rule-strong);
     }
     .timeline-item {
       position: relative;
       margin-bottom: 3rem;
       padding-bottom: 0;
     }
+    .timeline-item:last-child { margin-bottom: 0; }
     .timeline-item::before {
       content: '';
       position: absolute; left: -2.55rem; top: 0.7rem;
       width: 11px; height: 11px;
       background: var(--bg);
-      border: 1.5px solid var(--accent);
+      border: 1.5px solid var(--text);
       transform: rotate(45deg);
+      z-index: 1;
     }
     .timeline-item.active::before {
-      background: var(--accent);
+      background: var(--text);
     }
     .timeline-period {
       font-family: var(--mono);
       font-size: 0.66rem;
-      color: var(--accent);
+      color: var(--muted);
       margin-bottom: 0.5rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -546,12 +548,12 @@
     }
     .timeline-org {
       font-family: var(--serif-display);
-      font-variation-settings: 'opsz' 14, 'SOFT' 100;
+      font-variation-settings: 'opsz' 14, 'SOFT' 50;
       font-style: italic;
-      color: var(--accent);
+      color: var(--muted);
       font-size: 0.95rem;
       margin-bottom: 0.6rem;
-      font-weight: 420;
+      font-weight: 440;
     }
     .timeline-desc {
       color: var(--text-2);
@@ -896,17 +898,19 @@
       font-variation-settings: 'opsz' 14, 'SOFT' 50;
       font-style: italic;
       font-size: 1.1rem;
-      transition: color 0.2s;
-      display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: color 0.25s, transform 0.25s;
+      display: inline-flex; align-items: center; gap: 0.85rem;
     }
-    .footer-links a::before {
-      content: '\2192';
-      color: var(--accent);
-      font-style: normal;
-      transition: transform 0.25s;
+    .footer-links a .footer-icon {
+      width: 1.15rem; height: 1.15rem;
+      stroke: var(--text); fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round; stroke-linejoin: round;
+      transition: stroke 0.25s, transform 0.25s;
+      flex-shrink: 0;
     }
-    .footer-links a:hover { color: var(--accent); }
-    .footer-links a:hover::before { transform: translateX(3px); }
+    .footer-links a:hover { color: var(--accent); transform: translateX(3px); }
+    .footer-links a:hover .footer-icon { stroke: var(--accent); }
     .footer-copy {
       max-width: 1280px; margin: 2rem auto 0;
       color: var(--muted);
@@ -987,18 +991,15 @@
       50% { opacity: 0; }
     }
 
-    /* TIMELINE PROGRESSIVE */
-    .timeline {
-      --line-height: 0px;
-    }
-    .timeline::before {
-      height: var(--line-height) !important;
-      transition: height 0.6s ease;
-      background: var(--accent) !important;
-    }
+    /* TIMELINE PULSE */
     @keyframes pulse-dot {
-      0% { box-shadow: 0 0 0 0 var(--accent-soft); }
-      70% { box-shadow: 0 0 0 12px transparent; }
+      0% { box-shadow: 0 0 0 0 rgba(20, 17, 10, 0.25); }
+      70% { box-shadow: 0 0 0 10px rgba(20, 17, 10, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(20, 17, 10, 0); }
+    }
+    body.dark @keyframes pulse-dot-dark {
+      0% { box-shadow: 0 0 0 0 rgba(236, 229, 210, 0.25); }
+      70% { box-shadow: 0 0 0 10px transparent; }
       100% { box-shadow: 0 0 0 0 transparent; }
     }
     .timeline-item.active::before {
@@ -1704,11 +1705,26 @@
     <div>
       <p class="footer-col-title" data-i18n="footer.elsewhere">Em outros lugares</p>
       <ul class="footer-links">
-        <li><a href="https://www.linkedin.com/in/fabianofilho/" target="_blank">LinkedIn</a></li>
-        <li><a href="https://scholar.google.com/citations?user=IqVY-BQAAAAJ&hl=pt-BR" target="_blank">Google Scholar</a></li>
-        <li><a href="https://fabianofilho.substack.com/" target="_blank">Substack</a></li>
-        <li><a href="https://fabianonbfilho.medium.com/" target="_blank">Medium</a></li>
-        <li><a href="https://github.com/fabianofilho" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/fabianofilho/" target="_blank">
+          <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a></li>
+        <li><a href="https://scholar.google.com/citations?user=IqVY-BQAAAAJ&hl=pt-BR" target="_blank">
+          <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          Google Scholar
+        </a></li>
+        <li><a href="https://fabianofilho.substack.com/" target="_blank">
+          <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v3H4zM4 10h16v3H4zM4 16l8 4 8-4v-3H4z"/></svg>
+          Substack
+        </a></li>
+        <li><a href="https://fabianonbfilho.medium.com/" target="_blank">
+          <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="7" cy="12" rx="5" ry="6"/><ellipse cx="16.5" cy="12" rx="2" ry="6"/><ellipse cx="21" cy="12" rx="0.8" ry="6"/></svg>
+          Medium
+        </a></li>
+        <li><a href="https://github.com/fabianofilho" target="_blank">
+          <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a></li>
       </ul>
     </div>
   </div>
@@ -2164,21 +2180,15 @@
     };
   })();
 
-  // 7. TIMELINE PROGRESSIVE REVEAL
+  // 7. TIMELINE DOT PULSE
   (function() {
     if (reducedMotion) return;
-    var timeline = document.querySelector('.timeline');
-    if (!timeline) return;
-    var items = timeline.querySelectorAll('.timeline-item');
+    var items = document.querySelectorAll('.timeline-item');
+    if (!items.length) return;
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
-          var itemRect = entry.target.getBoundingClientRect();
-          var timelineRect = timeline.getBoundingClientRect();
-          var height = itemRect.top - timelineRect.top + itemRect.height;
-          var currentHeight = parseFloat(getComputedStyle(timeline).getPropertyValue('--line-height')) || 0;
-          if (height > currentHeight) timeline.style.setProperty('--line-height', height + 'px');
           observer.unobserve(entry.target);
         }
       });
