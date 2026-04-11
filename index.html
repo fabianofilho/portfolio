@@ -903,14 +903,12 @@
     }
     .footer-links a .footer-icon {
       width: 1.15rem; height: 1.15rem;
-      stroke: var(--text); fill: none;
-      stroke-width: 1.5;
-      stroke-linecap: round; stroke-linejoin: round;
-      transition: stroke 0.25s, transform 0.25s;
+      fill: var(--text);
+      transition: fill 0.25s, transform 0.25s;
       flex-shrink: 0;
     }
     .footer-links a:hover { color: var(--accent); transform: translateX(3px); }
-    .footer-links a:hover .footer-icon { stroke: var(--accent); }
+    .footer-links a:hover .footer-icon { fill: var(--accent); }
     .footer-copy {
       max-width: 1280px; margin: 2rem auto 0;
       color: var(--muted);
@@ -1213,7 +1211,7 @@
 <nav>
   <div class="nav-left">
     <button id="lang-btn" onclick="toggleLang()">EN</button>
-    <a class="nav-logo" href="#">Fabiano <span class="amp">&amp;</span> Filho</a>
+    <a class="nav-logo" href="#">fabiano<span class="amp">.</span>filho</a>
   </div>
   <div class="nav-right">
     <ul class="nav-links">
@@ -1705,24 +1703,24 @@
     <div>
       <p class="footer-col-title" data-i18n="footer.elsewhere">Em outros lugares</p>
       <ul class="footer-links">
-        <li><a href="https://www.linkedin.com/in/fabianofilho/" target="_blank">
-          <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        <li><a href="https://www.linkedin.com/in/fabianofilho/" target="_blank" aria-label="LinkedIn">
+          <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.22 0z"/></svg>
           LinkedIn
         </a></li>
-        <li><a href="https://scholar.google.com/citations?user=IqVY-BQAAAAJ&hl=pt-BR" target="_blank">
-          <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        <li><a href="https://scholar.google.com/citations?user=IqVY-BQAAAAJ&hl=pt-BR" target="_blank" aria-label="Google Scholar">
+          <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.242 13.769 0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
           Google Scholar
         </a></li>
-        <li><a href="https://fabianofilho.substack.com/" target="_blank">
-          <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v3H4zM4 10h16v3H4zM4 16l8 4 8-4v-3H4z"/></svg>
+        <li><a href="https://fabianofilho.substack.com/" target="_blank" aria-label="Substack">
+          <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
           Substack
         </a></li>
-        <li><a href="https://fabianonbfilho.medium.com/" target="_blank">
-          <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="7" cy="12" rx="5" ry="6"/><ellipse cx="16.5" cy="12" rx="2" ry="6"/><ellipse cx="21" cy="12" rx="0.8" ry="6"/></svg>
+        <li><a href="https://fabianonbfilho.medium.com/" target="_blank" aria-label="Medium">
+          <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
           Medium
         </a></li>
-        <li><a href="https://github.com/fabianofilho" target="_blank">
-          <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        <li><a href="https://github.com/fabianofilho" target="_blank" aria-label="GitHub">
+          <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
           GitHub
         </a></li>
       </ul>
