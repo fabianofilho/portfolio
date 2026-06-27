@@ -382,7 +382,7 @@
     }
     .hero-rule .accent-dot { color: var(--accent); }
 
-    /* VITALS STRIP — monitor de UTI style */
+    /* NEURAL PANEL — ML inference strip */
     .vitals-strip {
       position: relative;
       z-index: 3;
@@ -392,7 +392,7 @@
       border: 1px solid var(--rule);
       background: rgba(11, 16, 22, 0.6);
       backdrop-filter: blur(6px);
-      max-width: 720px;
+      max-width: 660px;
       font-family: var(--mono);
     }
     body.light .vitals-strip { background: rgba(255,255,255,0.55); }
@@ -400,8 +400,9 @@
       padding: 0.7rem 1rem;
       border-right: 1px solid var(--rule);
       display: flex; flex-direction: column;
-      gap: 0.25rem;
-      min-width: 86px;
+      gap: 0.3rem;
+      min-width: 84px;
+      justify-content: center;
     }
     .vital:last-child { border-right: none; }
     .vital-label {
@@ -425,7 +426,7 @@
       letter-spacing: 0.06em;
     }
     .vital-value.ok { color: var(--accent); }
-    .vital-value.warn { color: var(--accent-cyan); }
+    .vital-value .arrow-down { color: var(--accent); font-size: 0.7rem; }
     .vital-dot {
       width: 6px; height: 6px; border-radius: 50%;
       background: var(--accent);
@@ -435,9 +436,40 @@
       margin-right: 0.4rem;
       vertical-align: middle;
     }
+
+    /* Neural net glyph cell */
+    .vital-nn {
+      min-width: 132px;
+      gap: 0.45rem;
+      background: var(--accent-soft);
+    }
+    .nn-glyph { width: 100%; height: 30px; display: block; overflow: visible; }
+    .nn-glyph .nn-edge {
+      stroke: var(--rule-strong);
+      stroke-width: 0.6;
+      opacity: 0.5;
+    }
+    .nn-glyph .nn-node {
+      fill: var(--muted);
+      animation: nnPulse 1.8s ease-in-out infinite;
+    }
+    .nn-glyph .nn-l0 { animation-delay: 0s; }
+    .nn-glyph .nn-l1 { animation-delay: 0.3s; }
+    .nn-glyph .nn-l2 { animation-delay: 0.6s; }
+    @keyframes nnPulse {
+      0%, 100% { fill: var(--muted); r: 2; }
+      25% { fill: var(--accent); r: 2.8; filter: drop-shadow(0 0 3px var(--accent-glow)); }
+    }
+    .nn-status {
+      display: flex; align-items: center;
+      font-size: 0.58rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent);
+    }
+
     @media (max-width: 720px) {
       .vitals-strip { max-width: 100%; overflow-x: auto; }
-      .vital { min-width: 74px; padding: 0.6rem 0.75rem; }
+      .vital { min-width: 76px; padding: 0.6rem 0.75rem; }
+      .vital-nn { min-width: 120px; }
     }
     @media (max-width: 900px) {
       .hero { padding: 7rem 1.5rem 5rem; }
@@ -1371,22 +1403,36 @@
         <a href="https://www.linkedin.com/in/fabianofilho/" target="_blank" class="btn btn-primary"><span>LinkedIn</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         <a href="#sobre" class="btn btn-outline"><span data-i18n="hero.cta2">Conheça</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
       </div>
-      <div class="vitals-strip">
-        <div class="vital">
-          <span class="vital-label">Status</span>
-          <span class="vital-value ok"><span class="vital-dot"></span>Ativo</span>
+      <div class="vitals-strip" role="img" aria-label="Rede neural inferindo. AUROC 0.89, calibração ECE 0.02, loss em queda.">
+        <div class="vital vital-nn">
+          <span class="vital-label">Rede Neural</span>
+          <svg class="nn-glyph" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g class="nn-edges">
+              <line class="nn-edge" x1="8" y1="5" x2="60" y2="3"/><line class="nn-edge" x1="8" y1="5" x2="60" y2="11"/><line class="nn-edge" x1="8" y1="5" x2="60" y2="19"/><line class="nn-edge" x1="8" y1="5" x2="60" y2="27"/>
+              <line class="nn-edge" x1="8" y1="15" x2="60" y2="3"/><line class="nn-edge" x1="8" y1="15" x2="60" y2="11"/><line class="nn-edge" x1="8" y1="15" x2="60" y2="19"/><line class="nn-edge" x1="8" y1="15" x2="60" y2="27"/>
+              <line class="nn-edge" x1="8" y1="25" x2="60" y2="3"/><line class="nn-edge" x1="8" y1="25" x2="60" y2="11"/><line class="nn-edge" x1="8" y1="25" x2="60" y2="19"/><line class="nn-edge" x1="8" y1="25" x2="60" y2="27"/>
+              <line class="nn-edge" x1="60" y1="3" x2="112" y2="9"/><line class="nn-edge" x1="60" y1="3" x2="112" y2="21"/>
+              <line class="nn-edge" x1="60" y1="11" x2="112" y2="9"/><line class="nn-edge" x1="60" y1="11" x2="112" y2="21"/>
+              <line class="nn-edge" x1="60" y1="19" x2="112" y2="9"/><line class="nn-edge" x1="60" y1="19" x2="112" y2="21"/>
+              <line class="nn-edge" x1="60" y1="27" x2="112" y2="9"/><line class="nn-edge" x1="60" y1="27" x2="112" y2="21"/>
+            </g>
+            <circle class="nn-node nn-l0" cx="8" cy="5" r="2"/><circle class="nn-node nn-l0" cx="8" cy="15" r="2"/><circle class="nn-node nn-l0" cx="8" cy="25" r="2"/>
+            <circle class="nn-node nn-l1" cx="60" cy="3" r="2"/><circle class="nn-node nn-l1" cx="60" cy="11" r="2"/><circle class="nn-node nn-l1" cx="60" cy="19" r="2"/><circle class="nn-node nn-l1" cx="60" cy="27" r="2"/>
+            <circle class="nn-node nn-l2" cx="112" cy="9" r="2"/><circle class="nn-node nn-l2" cx="112" cy="21" r="2"/>
+          </svg>
+          <span class="nn-status"><span class="vital-dot"></span>inferindo</span>
         </div>
         <div class="vital">
-          <span class="vital-label">HR</span>
-          <span class="vital-value" id="vital-hr">72<span class="unit">bpm</span></span>
+          <span class="vital-label">AUROC</span>
+          <span class="vital-value ok">0.89</span>
         </div>
         <div class="vital">
-          <span class="vital-label">Local</span>
-          <span class="vital-value">SP<span class="unit">-23.5°</span></span>
+          <span class="vital-label">Calibração</span>
+          <span class="vital-value">0.02<span class="unit">ECE</span></span>
         </div>
         <div class="vital">
-          <span class="vital-label">Hora</span>
-          <span class="vital-value" id="vital-time">--:--</span>
+          <span class="vital-label">Loss</span>
+          <span class="vital-value" id="vital-loss">0.043<span class="arrow-down">↓</span></span>
         </div>
       </div>
     </div>
@@ -1902,25 +1948,17 @@
     document.getElementById('theme-icon').innerHTML = currentTheme === 'dark' ? sunIcon : moonIcon;
   }
 
-  // Vitals strip: live HR + clock
+  // Neural panel: training loss curve (decays, then restarts an "epoch")
   (function() {
-    var hrEl = document.getElementById('vital-hr');
-    var timeEl = document.getElementById('vital-time');
-    function tickHR() {
-      if (!hrEl) return;
-      var bpm = 68 + Math.floor(Math.random() * 10);
-      hrEl.innerHTML = bpm + '<span class="unit">bpm</span>';
+    var lossEl = document.getElementById('vital-loss');
+    if (!lossEl) return;
+    var loss = 0.043;
+    function tick() {
+      loss = loss * (0.94 + Math.random() * 0.04);
+      if (loss < 0.011) loss = 0.05 + Math.random() * 0.02; // new epoch
+      lossEl.innerHTML = loss.toFixed(3) + '<span class="arrow-down">↓</span>';
     }
-    function tickClock() {
-      if (!timeEl) return;
-      var d = new Date();
-      var hh = String(d.getHours()).padStart(2, '0');
-      var mm = String(d.getMinutes()).padStart(2, '0');
-      timeEl.textContent = hh + ':' + mm;
-    }
-    tickHR(); tickClock();
-    setInterval(tickHR, 1800);
-    setInterval(tickClock, 30000);
+    setInterval(tick, 1600);
   })();
 
   var translations = {
