@@ -2266,7 +2266,7 @@
     });
   })();
 
-  // 5. HERO CANVAS - ECG WAVEFORM
+  // 5. HERO CANVAS - FLOWING NEURAL NETWORK
   (function() {
     if (reducedMotion) return;
     var canvas = document.getElementById('hero-canvas');
@@ -2274,6 +2274,54 @@
     var ctx = canvas.getContext('2d');
     var hero = canvas.parentElement;
     var dpr = Math.max(1, window.devicePixelRatio || 1);
+
+    function cssRGB(name, fallback) {
+      var temp = document.createElement('div');
+      temp.style.color = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+      document.body.appendChild(temp);
+      var rgb = getComputedStyle(temp).color;
+      document.body.removeChild(temp);
+      var m = rgb.match(/(\d+)/g);
+      return m ? m.map(Number) : fallback;
+    }
+
+    var LAYERS = [4, 6, 7, 6, 4, 2]; // feed-forward shape
+    var nodes = [];     // nodes[layer] = [{x,y,act}]
+    var edges = [];     // {l, i, j} from layer l node i -> layer l+1 node j
+    var pulses = [];
+
+    function build() {
+      var w = hero.offsetWidth, h = hero.offsetHeight;
+      var marginX = Math.max(48, w * 0.04);
+      var top = h * 0.46, bot = h * 0.96;
+      nodes = [];
+      for (var l = 0; l < LAYERS.length; l++) {
+        var n = LAYERS[l];
+        var x = marginX + (w - 2 * marginX) * (l / (LAYERS.length - 1));
+        var col = [];
+        for (var k = 0; k < n; k++) {
+          var jitter = (Math.sin(l * 12.9 + k * 78.2) * 0.5) * ((bot - top) / n) * 0.35;
+          var y = top + (bot - top) * ((k + 0.5) / n) + jitter;
+          col.push({ x: x, y: y, act: 0 });
+        }
+        nodes.push(col);
+      }
+      edges = [];
+      for (var l2 = 0; l2 < nodes.length - 1; l2++) {
+        for (var i = 0; i < nodes[l2].length; i++) {
+          for (var j = 0; j < nodes[l2 + 1].length; j++) {
+            edges.push({ l: l2, i: i, j: j });
+          }
+        }
+      }
+    }
+
+    function spawnPulse() {
+      var i = Math.floor(Math.random() * nodes[0].length);
+      var j = Math.floor(Math.random() * nodes[1].length);
+      pulses.push({ l: 0, i: i, j: j, t: 0, speed: 0.012 + Math.random() * 0.018 });
+    }
+
     function resize() {
       canvas.width = hero.offsetWidth * dpr;
       canvas.height = hero.offsetHeight * dpr;
@@ -2281,86 +2329,104 @@
       canvas.style.height = hero.offsetHeight + 'px';
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(dpr, dpr);
+      build();
     }
     resize();
     window.addEventListener('resize', resize);
-    function getAccentRGB() {
-      var temp = document.createElement('div');
-      temp.style.color = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
-      document.body.appendChild(temp);
-      var rgb = getComputedStyle(temp).color;
-      document.body.removeChild(temp);
-      var match = rgb.match(/(\d+)/g);
-      return match ? match.map(Number) : [177, 58, 30];
-    }
-    function getMutedRGB() {
-      var temp = document.createElement('div');
-      temp.style.color = getComputedStyle(document.documentElement).getPropertyValue('--rule').trim();
-      document.body.appendChild(temp);
-      var rgb = getComputedStyle(temp).color;
-      document.body.removeChild(temp);
-      var match = rgb.match(/(\d+)/g);
-      return match ? match.map(Number) : [205, 196, 173];
-    }
-    // PQRST waveform sample, x in [0..1] returns y offset
-    function ecg(t) {
-      // P wave at 0.1
-      var y = 0;
-      y += 0.18 * Math.exp(-Math.pow((t - 0.10) / 0.025, 2));
-      // Q dip at 0.20
-      y -= 0.12 * Math.exp(-Math.pow((t - 0.205) / 0.012, 2));
-      // R spike at 0.22
-      y += 1.0 * Math.exp(-Math.pow((t - 0.225) / 0.011, 2));
-      // S dip at 0.24
-      y -= 0.36 * Math.exp(-Math.pow((t - 0.250) / 0.013, 2));
-      // T wave at 0.40
-      y += 0.30 * Math.exp(-Math.pow((t - 0.40) / 0.05, 2));
-      return y;
-    }
-    var phase = 0;
+
+    var MAX_PULSES = window.innerWidth < 720 ? 16 : 30;
+    for (var p = 0; p < MAX_PULSES; p++) spawnPulse();
+
     function draw() {
-      var w = hero.offsetWidth;
-      var h = hero.offsetHeight;
+      var w = hero.offsetWidth, h = hero.offsetHeight;
       ctx.clearRect(0, 0, w, h);
-      var accent = getAccentRGB();
+      var accent = cssRGB('--accent', [45, 212, 164]);
+      var rule = cssRGB('--rule-strong', [42, 58, 72]);
+      var A = accent[0] + ',' + accent[1] + ',' + accent[2];
+      var R = rule[0] + ',' + rule[1] + ',' + rule[2];
 
-      // Single ECG trace, anchored near the bottom of the hero
-      var ecgY = h - 70;
-      var ecgAmp = Math.min(56, h * 0.075);
-      ctx.shadowColor = 'rgba(' + accent[0] + ',' + accent[1] + ',' + accent[2] + ',0.7)';
-      ctx.shadowBlur = 12;
-      ctx.strokeStyle = 'rgba(' + accent[0] + ',' + accent[1] + ',' + accent[2] + ',0.9)';
-      ctx.lineWidth = 1.5;
-      ctx.lineJoin = 'round';
-      ctx.beginPath();
-      var cycleW = 340;
-      var leadX = -1, leadY = 0;
-      for (var x = 0; x <= w; x += 1.2) {
-        var t = ((x + phase) % cycleW) / cycleW;
-        var y = ecgY - ecg(t) * ecgAmp;
-        if (x === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-        if (Math.abs(((x + phase) % cycleW) - 0) < 2) { leadX = x; leadY = y; }
+      // fade the whole network toward the top so it blends with the text area
+      function fade(y) {
+        var top = h * 0.42;
+        return Math.max(0, Math.min(1, (y - top) / (h * 0.3)));
       }
-      ctx.stroke();
 
-      ctx.shadowBlur = 0;
+      // edges
+      ctx.lineWidth = 0.7;
+      for (var e = 0; e < edges.length; e++) {
+        var a = nodes[edges[e].l][edges[e].i];
+        var b = nodes[edges[e].l + 1][edges[e].j];
+        var al = 0.18 * Math.min(fade(a.y), fade(b.y));
+        ctx.strokeStyle = 'rgba(' + R + ',' + al + ')';
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      }
 
-      if (leadX >= 0) {
-        var grad = ctx.createRadialGradient(leadX, leadY, 0, leadX, leadY, 14);
-        grad.addColorStop(0, 'rgba(' + accent[0] + ',' + accent[1] + ',' + accent[2] + ',1)');
-        grad.addColorStop(1, 'rgba(' + accent[0] + ',' + accent[1] + ',' + accent[2] + ',0)');
+      // decay node activations
+      for (var l = 0; l < nodes.length; l++)
+        for (var k = 0; k < nodes[l].length; k++)
+          nodes[l][k].act *= 0.92;
+
+      // pulses: advance + draw flowing segment
+      for (var pi = pulses.length - 1; pi >= 0; pi--) {
+        var pl = pulses[pi];
+        var na = nodes[pl.l][pl.i];
+        var nb = nodes[pl.l + 1][pl.j];
+        pl.t += pl.speed;
+
+        if (pl.t >= 1) {
+          nb.act = 1;
+          if (pl.l + 1 >= nodes.length - 1) {
+            pulses.splice(pi, 1);
+            spawnPulse();
+            continue;
+          }
+          pl.l += 1; pl.i = pl.j;
+          pl.j = Math.floor(Math.random() * nodes[pl.l + 1].length);
+          pl.t = 0;
+          continue;
+        }
+
+        var px = na.x + (nb.x - na.x) * pl.t;
+        var py = na.y + (nb.y - na.y) * pl.t;
+        var f = fade(py);
+
+        // bright trailing segment along the edge
+        var tt = Math.max(0, pl.t - 0.12);
+        var sx = na.x + (nb.x - na.x) * tt;
+        var sy = na.y + (nb.y - na.y) * tt;
+        ctx.strokeStyle = 'rgba(' + A + ',' + (0.55 * f) + ')';
+        ctx.lineWidth = 1.4;
+        ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(px, py); ctx.stroke();
+
+        // glowing head
+        var grad = ctx.createRadialGradient(px, py, 0, px, py, 7);
+        grad.addColorStop(0, 'rgba(' + A + ',' + (0.95 * f) + ')');
+        grad.addColorStop(1, 'rgba(' + A + ',0)');
         ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(leadX, leadY, 14, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-        ctx.beginPath();
-        ctx.arc(leadX, leadY, 2, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.beginPath(); ctx.arc(px, py, 7, 0, Math.PI * 2); ctx.fill();
       }
 
-      phase += 1.05;
+      // nodes
+      for (var l3 = 0; l3 < nodes.length; l3++) {
+        for (var k3 = 0; k3 < nodes[l3].length; k3++) {
+          var nd = nodes[l3][k3];
+          var f2 = fade(nd.y);
+          var baseA = 0.22 * f2;
+          var hot = nd.act;
+          var rad = 1.8 + hot * 1.6;
+          if (hot > 0.05) {
+            ctx.fillStyle = 'rgba(' + A + ',' + (hot * 0.9 * f2) + ')';
+            ctx.beginPath(); ctx.arc(nd.x, nd.y, rad + 3, 0, Math.PI * 2); ctx.fill();
+          }
+          ctx.fillStyle = 'rgba(' + A + ',' + Math.max(baseA, hot * f2) + ')';
+          ctx.beginPath(); ctx.arc(nd.x, nd.y, rad, 0, Math.PI * 2); ctx.fill();
+        }
+      }
+
       requestAnimationFrame(draw);
     }
     draw();
