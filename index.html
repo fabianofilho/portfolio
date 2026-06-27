@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,30..100;1,9..144,300..900,30..100&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <script src="https://unpkg.com/three@0.160.0/build/three.min.js" defer></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -56,23 +55,23 @@
       --nav-bg: rgba(6, 9, 13, 0.78);
     }
 
-    /* OPTIONAL LIGHT — clinical white */
+    /* OPTIONAL LIGHT — clinical white, muted accents */
     body.light {
-      --bg: #f4f7f5;
-      --bg2: #eaf0ec;
-      --bg3: #dee7e1;
-      --text: #0a1612;
-      --text-2: #243832;
-      --muted: #5b6b66;
-      --accent: #0f9d6e;
-      --accent-2: #1bb786;
-      --accent-soft: rgba(15, 157, 110, 0.10);
-      --accent-border: rgba(15, 157, 110, 0.30);
-      --accent-glow: rgba(15, 157, 110, 0.30);
-      --rule: #c9d4cf;
-      --rule-strong: #97a8a3;
+      --bg: #f6f7f5;
+      --bg2: #eef0ed;
+      --bg3: #e3e7e3;
+      --text: #111714;
+      --text-2: #303a35;
+      --muted: #6a756f;
+      --accent: #0e7a56;
+      --accent-2: #136c4d;
+      --accent-soft: rgba(14, 122, 86, 0.08);
+      --accent-border: rgba(14, 122, 86, 0.25);
+      --accent-glow: rgba(14, 122, 86, 0.20);
+      --rule: #d5dcd7;
+      --rule-strong: #9ba89f;
       --card: #ffffff;
-      --nav-bg: rgba(244, 247, 245, 0.82);
+      --nav-bg: rgba(246, 247, 245, 0.85);
     }
 
     html { scroll-behavior: smooth; }
@@ -210,9 +209,9 @@
 
     /* HERO */
     .hero {
-      min-height: 100vh;
+      min-height: min(820px, 92vh);
       display: flex; align-items: center;
-      padding: 8rem 2.5rem 5rem;
+      padding: 6.5rem 2.5rem 4rem;
       position: relative; overflow: hidden;
     }
     .hero::before {
@@ -1109,46 +1108,6 @@
     }
     body.light #hero-canvas { mix-blend-mode: multiply; opacity: 0.85; }
 
-    /* 3D ORB */
-    #orb-container {
-      position: absolute;
-      right: -8%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 60%;
-      max-width: 780px;
-      aspect-ratio: 1 / 1;
-      max-height: 88vh;
-      z-index: 1;
-      pointer-events: none;
-      filter: blur(0.4px);
-    }
-    #orb-container canvas {
-      width: 100% !important;
-      height: 100% !important;
-      display: block;
-    }
-    @media (max-width: 1100px) {
-      #orb-container {
-        right: -25%;
-        width: 90%;
-        opacity: 0.55;
-      }
-    }
-    @media (max-width: 720px) {
-      #orb-container {
-        position: absolute;
-        top: 12%;
-        right: -30%;
-        left: auto;
-        transform: none;
-        width: 130%;
-        max-width: none;
-        aspect-ratio: 1 / 1;
-        opacity: 0.45;
-        filter: blur(1px);
-      }
-    }
 
     /* TYPING CURSOR */
     .typing-cursor {
@@ -1395,7 +1354,6 @@
 <!-- HERO -->
 <section class="hero">
   <canvas id="hero-canvas"></canvas>
-  <div id="orb-container" aria-hidden="true"></div>
   <div class="hero-grid">
     <aside class="hero-marginalia">
       Portfólio · 2026
@@ -2370,121 +2328,6 @@
     draw();
   })();
 
-  // 5b. 3D NEURAL ORB
-  (function() {
-    if (reducedMotion) return;
-    function init() {
-      if (!window.THREE) { setTimeout(init, 80); return; }
-      var container = document.getElementById('orb-container');
-      if (!container) return;
-
-      var THREE = window.THREE;
-      var w = container.offsetWidth, h = container.offsetHeight;
-      if (w < 10 || h < 10) { setTimeout(init, 100); return; }
-
-      var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-      renderer.setSize(w, h);
-      container.appendChild(renderer.domElement);
-
-      var scene = new THREE.Scene();
-      var camera = new THREE.PerspectiveCamera(38, w / h, 0.1, 100);
-      camera.position.z = 4.6;
-
-      // Inner sphere — iridescent organic blob
-      var detail = window.innerWidth < 720 ? 5 : 8;
-      var geometry = new THREE.IcosahedronGeometry(1.55, detail);
-      var origPos = new Float32Array(geometry.attributes.position.array);
-
-      var material = new THREE.MeshPhysicalMaterial({
-        color: 0x06140f,
-        metalness: 0.55,
-        roughness: 0.18,
-        clearcoat: 1.0,
-        clearcoatRoughness: 0.12,
-        iridescence: 1.0,
-        iridescenceIOR: 1.7,
-        sheen: 0.4,
-        sheenColor: 0x2dd4a4
-      });
-      var sphere = new THREE.Mesh(geometry, material);
-      scene.add(sphere);
-
-      // Outer wireframe shell
-      var wireGeo = new THREE.IcosahedronGeometry(1.78, 3);
-      var wireMat = new THREE.MeshBasicMaterial({
-        color: 0x2dd4a4, wireframe: true, transparent: true, opacity: 0.12
-      });
-      var wireSphere = new THREE.Mesh(wireGeo, wireMat);
-      scene.add(wireSphere);
-
-      // Colored lights (cyan, green, violet)
-      var l1 = new THREE.PointLight(0x2dd4a4, 24, 12, 1.4);
-      l1.position.set(3, 2, 2.5); scene.add(l1);
-      var l2 = new THREE.PointLight(0x4fd1ff, 18, 12, 1.6);
-      l2.position.set(-2.5, -1.2, 2.2); scene.add(l2);
-      var l3 = new THREE.PointLight(0xa78bfa, 14, 12, 1.6);
-      l3.position.set(0.6, -2.6, 1.4); scene.add(l3);
-      scene.add(new THREE.AmbientLight(0x0a1418, 0.35));
-
-      function resize() {
-        var w2 = container.offsetWidth, h2 = container.offsetHeight;
-        if (w2 < 10 || h2 < 10) return;
-        renderer.setSize(w2, h2);
-        camera.aspect = w2 / h2;
-        camera.updateProjectionMatrix();
-      }
-      window.addEventListener('resize', resize);
-
-      // Simple noise for vertex displacement
-      function n3(x, y, z, t) {
-        return Math.sin(x * 1.8 + t) * 0.45
-             + Math.sin(y * 1.6 + t * 1.27) * 0.35
-             + Math.sin(z * 2.1 + t * 0.83) * 0.30
-             + Math.sin((x + y) * 0.9 + t * 1.5) * 0.20;
-      }
-
-      var t0 = performance.now();
-      var pos = geometry.attributes.position;
-      var running = true;
-
-      // Pause when hero not in view
-      var hero = container.closest('.hero');
-      if (hero && 'IntersectionObserver' in window) {
-        new IntersectionObserver(function(entries) {
-          running = entries[0].isIntersecting;
-          if (running) tick();
-        }, { threshold: 0.05 }).observe(hero);
-      }
-
-      function tick() {
-        if (!running) return;
-        var t = (performance.now() - t0) * 0.00045;
-        for (var i = 0; i < pos.count; i++) {
-          var ox = origPos[i * 3];
-          var oy = origPos[i * 3 + 1];
-          var oz = origPos[i * 3 + 2];
-          var d = n3(ox, oy, oz, t) * 0.10;
-          var s = 1 + d;
-          pos.array[i * 3]     = ox * s;
-          pos.array[i * 3 + 1] = oy * s;
-          pos.array[i * 3 + 2] = oz * s;
-        }
-        pos.needsUpdate = true;
-        geometry.computeVertexNormals();
-
-        sphere.rotation.y = t * 0.6;
-        sphere.rotation.x = Math.sin(t * 0.4) * 0.15;
-        wireSphere.rotation.y = -t * 0.25;
-        wireSphere.rotation.x = t * 0.18;
-
-        renderer.render(scene, camera);
-        requestAnimationFrame(tick);
-      }
-      tick();
-    }
-    init();
-  })();
 
   // (typing effect removed for cleaner hero)
 
