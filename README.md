@@ -2,7 +2,7 @@
 
 **Médico · Cientista de Dados · Especialista em IA na Saúde**
 
-[![Portfolio](https://img.shields.io/badge/portfolio-fabianofilho.com-3b82f6?style=flat-square)](https://portfolio.fabianofilho.com)
+[![Portfolio](https://img.shields.io/badge/portfolio-fabianofilho.com-3b82f6?style=flat-square)](https://fabianofilho.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-fabianofilho-0077b5?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/fabianofilho/)
 [![Google Scholar](https://img.shields.io/badge/Scholar-IqVY--BQAAAAJ-4285f4?style=flat-square&logo=google-scholar)](https://scholar.google.com/citations?user=IqVY-BQAAAAJ&hl=pt-BR)
 [![Substack](https://img.shields.io/badge/Substack-Newsletter-ff6719?style=flat-square&logo=substack)](https://fabianofilho.substack.com/)
