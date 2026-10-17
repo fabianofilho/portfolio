@@ -85,2527 +85,878 @@
     ]
   }
   </script>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3'/%3E%3Cpath d='M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4'/%3E%3Ccircle cx='20' cy='10' r='2'/%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f6b4f' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3'/%3E%3Cpath d='M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4'/%3E%3Ccircle cx='20' cy='10' r='2'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,30..100;1,9..144,300..900,30..100&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script>
+    // Tema antes da pintura: preferência salva, senão a do sistema, senão claro.
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      if (!t) t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      if (t === 'dark') document.documentElement.classList.add('dark');
+    })();
+  </script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    /* CLINICAL OS PALETTE — dark by default */
     :root {
-      --bg: #06090d;
-      --bg2: #0b1016;
-      --bg3: #10171f;
-      --text: #e7f5ee;
-      --text-2: #b7c8c2;
-      --muted: #6a7d7a;
-      --accent: #2dd4a4;
-      --accent-2: #6ef0c5;
-      --accent-cyan: #4fd1ff;
-      --accent-warn: #ffb547;
-      --accent-crit: #ff5c7a;
-      --accent-soft: rgba(45, 212, 164, 0.10);
-      --accent-border: rgba(45, 212, 164, 0.32);
-      --accent-glow: rgba(45, 212, 164, 0.55);
-      --rule: #1a2530;
-      --rule-strong: #2a3a48;
-      --card: #0c131b;
-      --nav-bg: rgba(6, 9, 13, 0.78);
-      --serif-display: 'Inter Tight', 'Helvetica Neue', system-ui, sans-serif;
-      --serif-body: 'Inter Tight', 'Helvetica Neue', system-ui, sans-serif;
-      --mono: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace;
-      --display-feature: "ss01" on, "ss02" on, "cv11" on;
+      --paper: #f6f4ee;
+      --paper-blur: rgba(246, 244, 238, 0.92);
+      --paper-2: #fbfaf6;
+      --hover: #efece4;
+      --ink: #1c1b18;
+      --ink-2: #2a2925;
+      --ink-3: #3b3934;
+      --muted: #6e6a60;
+      --rule: #dcd7cb;
+      --rule-soft: #ebe7dd;
+      --grid: #e6e1d6;
+      --diag: #9a958a;
+      --accent: #0f6b4f;
+      --orange: #b0652a;
+      --selection: #cfe3d9;
+      --serif: 'Source Serif 4', Georgia, serif;
+      --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+      --gutter: 32px;
+      color-scheme: light;
+    }
+    html.dark {
+      --paper: #161512;
+      --paper-blur: rgba(22, 21, 18, 0.92);
+      --paper-2: #1c1b17;
+      --hover: #201f1b;
+      --ink: #ebe7dc;
+      --ink-2: #d9d5ca;
+      --ink-3: #bdb8ab;
+      --muted: #969185;
+      --rule: #35322c;
+      --rule-soft: #282621;
+      --grid: #2c2a25;
+      --diag: #6e6a60;
+      --accent: #5fc39c;
+      --orange: #dc8f55;
+      --selection: #24493b;
+      color-scheme: dark;
     }
 
-    body.dark {
-      --bg: #06090d;
-      --bg2: #0b1016;
-      --bg3: #10171f;
-      --text: #e7f5ee;
-      --text-2: #b7c8c2;
-      --muted: #6a7d7a;
-      --accent: #2dd4a4;
-      --accent-2: #6ef0c5;
-      --accent-soft: rgba(45, 212, 164, 0.10);
-      --accent-border: rgba(45, 212, 164, 0.32);
-      --rule: #1a2530;
-      --rule-strong: #2a3a48;
-      --card: #0c131b;
-      --nav-bg: rgba(6, 9, 13, 0.78);
-    }
-
-    /* OPTIONAL LIGHT — clinical white, muted accents */
-    body.light {
-      --bg: #f6f7f5;
-      --bg2: #eef0ed;
-      --bg3: #e3e7e3;
-      --text: #111714;
-      --text-2: #303a35;
-      --muted: #6a756f;
-      --accent: #0e7a56;
-      --accent-2: #136c4d;
-      --accent-soft: rgba(14, 122, 86, 0.08);
-      --accent-border: rgba(14, 122, 86, 0.25);
-      --accent-glow: rgba(14, 122, 86, 0.20);
-      --rule: #d5dcd7;
-      --rule-strong: #9ba89f;
-      --card: #ffffff;
-      --nav-bg: rgba(246, 247, 245, 0.85);
-    }
-
-    html { scroll-behavior: smooth; }
-
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
     body {
-      font-family: var(--serif-body);
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
       font-optical-sizing: auto;
-      font-weight: 400;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      font-size: 16.5px;
       -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      position: relative;
-      overflow-x: clip;
+      overflow-x: hidden;
     }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+    ::selection { background: var(--selection); }
+    button { font: inherit; color: inherit; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .mono { font-family: var(--mono); }
+    em { font-style: italic; }
 
-    /* Subtle dot grid — minimal, only in hero region */
-    #grain {
-      position: fixed; inset: 0; pointer-events: none; z-index: 50;
-      opacity: 0.4;
-      background-image: radial-gradient(circle, var(--rule-strong) 1px, transparent 1px);
-      background-size: 36px 36px;
-      mask-image: radial-gradient(ellipse 70% 60% at 50% 5%, #000 0%, transparent 70%);
-      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 5%, #000 0%, transparent 70%);
-    }
-    body.light #grain { opacity: 0.5; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--gutter); }
 
-    ::selection { background: var(--accent); color: var(--bg); }
-
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--nav-bg);
-      backdrop-filter: blur(14px) saturate(140%);
-      -webkit-backdrop-filter: blur(14px) saturate(140%);
+    /* HEADER */
+    .site-header {
+      position: sticky; top: 0; z-index: 10;
+      background: var(--paper-blur);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--rule);
-      padding: 0 2.5rem;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 68px;
     }
-    .nav-left { display: flex; align-items: center; gap: 1.25rem; }
-    #lang-btn {
-      font-family: var(--mono);
-      font-size: 0.7rem; font-weight: 500;
-      background: transparent;
-      border: 1px solid var(--rule-strong);
-      color: var(--text);
-      border-radius: 0;
-      padding: 0.32rem 0.7rem;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+    .hdr {
+      max-width: 1120px; margin: 0 auto; padding: 14px var(--gutter);
+      display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px;
+      font-family: var(--mono); font-size: 12px; letter-spacing: 0.02em; color: var(--muted);
     }
-    #lang-btn:hover {
-      background: var(--text);
-      color: var(--bg);
-      border-color: var(--text);
+    .hdr-id { display: flex; gap: 16px; align-items: baseline; }
+    .hdr-name { color: var(--ink); font-weight: 500; white-space: nowrap; }
+    .hdr-current { white-space: nowrap; }
+    .hdr-nav { margin-left: auto; display: flex; flex-wrap: wrap; gap: 4px 18px; }
+    .hdr-nav a { color: var(--muted); white-space: nowrap; }
+    .hdr-nav a:hover, .hdr-nav a.active { color: var(--ink); }
+    .hdr-nav a.active { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--accent); }
+    .hdr-tools { display: flex; align-items: center; gap: 2px; border-left: 1px solid var(--rule); padding-left: 14px; }
+    .tool-btn {
+      all: unset; cursor: pointer; box-sizing: border-box;
+      font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--muted);
+      padding: 4px 6px; line-height: 1; display: inline-flex; align-items: center;
     }
-    .nav-right { display: flex; align-items: center; gap: 2rem; }
-    #theme-btn {
-      background: transparent;
-      border: 1px solid var(--rule-strong);
-      color: var(--text);
-      border-radius: 0;
-      padding: 0.32rem 0.55rem;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      display: flex; align-items: center; line-height: 1;
-    }
-    #theme-btn:hover {
-      background: var(--text); color: var(--bg); border-color: var(--text);
-    }
-    #theme-btn svg {
-      width: 0.95rem; height: 0.95rem;
-      stroke: currentColor; fill: none;
-      stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
-    }
-    .icon-inline {
-      width: 1em; height: 1em;
-      vertical-align: -0.125em;
-      stroke: currentColor; fill: none;
-      stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
-      flex-shrink: 0;
-    }
-    .content-arrow svg {
-      width: 1.2rem; height: 1.2rem;
-      stroke: currentColor; fill: none;
-      stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
-    }
-    .icon-timeline {
-      width: 0.85em; height: 0.85em;
-      margin: 0 0.15em;
-      opacity: 0.8;
-    }
-    .nav-logo {
-      font-family: var(--mono);
-      font-size: 0.95rem;
-      font-weight: 500;
-      font-style: normal;
-      color: var(--text);
-      text-decoration: none;
-      letter-spacing: -0.01em;
-      display: inline-flex; align-items: center; gap: 0.5rem;
-    }
-    .nav-logo::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--accent);
-      box-shadow: 0 0 10px var(--accent-glow);
-      border-radius: 50%;
-      animation: livePulse 1.6s ease-out infinite;
-    }
-    .nav-logo .amp { color: var(--accent); font-style: normal; }
+    .tool-btn:hover { color: var(--accent); }
+    .tool-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .tool-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 
-    @keyframes livePulse {
-      0% { box-shadow: 0 0 0 0 var(--accent-glow); }
-      70% { box-shadow: 0 0 0 8px transparent; }
-      100% { box-shadow: 0 0 0 0 transparent; }
-    }
-    .nav-links { display: flex; gap: 2.25rem; list-style: none; }
-    .nav-links a {
-      color: var(--text);
-      text-decoration: none;
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      transition: color 0.25s;
-    }
-    .nav-links a:hover { color: var(--accent); }
+    /* LAYOUT COM MARGINÁLIA */
+    .row { display: flex; flex-wrap: wrap; gap: 32px 56px; }
+    .row-main { flex: 1 1 560px; max-width: 760px; min-width: 0; }
+    .row-side { flex: 0 1 220px; min-width: 180px; }
 
-    /* HERO */
-    .hero {
-      min-height: min(820px, 92vh);
-      display: flex; align-items: center;
-      padding: 6.5rem 2.5rem 4rem;
-      position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 40% at 50% 100%, var(--accent-soft), transparent 65%);
-      pointer-events: none;
-    }
-    .hero-grid {
-      max-width: 1280px; width: 100%; margin: 0 auto;
-      display: grid;
-      grid-template-columns: 110px 1fr 110px;
-      gap: 2.5rem;
-      position: relative; z-index: 2;
-      align-items: start;
-    }
-    .hero-marginalia, .hero-side {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--muted);
-      line-height: 2;
-      padding-top: 1rem;
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      align-self: start;
-      opacity: 0.6;
-    }
-    .hero-side {
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      text-align: end;
-      justify-self: end;
-    }
-    @media (max-width: 1100px) {
-      .hero-marginalia, .hero-side { display: none; }
-      .hero-grid { grid-template-columns: 1fr !important; }
-    }
-    .hero-main {
-      max-width: 860px;
-    }
-    .hero-eyebrow {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text);
-      margin-bottom: 2.25rem;
-      display: inline-flex; align-items: center; gap: 0.7rem;
-    }
-    .hero-eyebrow::before {
-      content: ''; width: 28px; height: 1px; background: var(--accent);
-    }
-    h1, .hero-headline {
-      font-family: var(--serif-display);
-      font-size: clamp(3rem, 8vw, 7rem);
-      font-weight: 600;
-      line-height: 0.94;
-      letter-spacing: -0.045em;
-      margin-bottom: 1.75rem;
-      color: var(--text);
-      text-wrap: balance;
-    }
-    .hero-headline .first {
-      display: block;
-      font-weight: 300;
-      color: var(--text-2);
-    }
-    .hero-headline .last {
-      display: block;
-      font-style: normal;
-      font-weight: 700;
-      color: var(--text);
-      padding-left: 0;
-      background: linear-gradient(180deg, var(--text) 0%, var(--accent-2) 130%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .hero-headline .md {
-      font-family: var(--mono);
-      font-style: normal;
-      font-size: 0.22em;
-      font-weight: 500;
-      vertical-align: 0.85em;
-      letter-spacing: 0.18em;
-      color: var(--accent);
-      margin-left: 0.5em;
-      padding: 0.25em 0.55em;
-      border: 1px solid var(--accent-border);
-      -webkit-text-fill-color: var(--accent);
-      background: var(--accent-soft);
-    }
-    .hero-lede {
-      font-family: var(--serif-body);
-      font-size: 1.1rem;
-      line-height: 1.55;
-      color: var(--text-2);
-      max-width: 580px;
-      margin: 0 0 2.75rem;
-      font-weight: 400;
-    }
-    .hero-lede em {
-      color: var(--accent);
-      font-style: normal;
-      font-weight: 500;
-      border-bottom: 1px dashed var(--accent-border);
-    }
-    .hero-tags {
-      display: flex; flex-wrap: wrap; gap: 0.6rem;
-      margin-bottom: 2.5rem;
-    }
-    .tag {
-      background: var(--bg3); border: 1px solid var(--rule);
-      padding: 0.3rem 0.8rem;
-      font-size: 0.78rem; color: var(--muted);
-      font-family: var(--mono);
-    }
-    .hero-cta {
-      display: flex; gap: 0.9rem; flex-wrap: wrap; align-items: center;
-    }
-    .btn {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      padding: 0.9rem 1.5rem;
-      border-radius: 2px;
-      font-family: var(--mono);
-      font-size: 0.7rem; font-weight: 500;
-      text-decoration: none;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      transition: all 0.25s ease;
-      cursor: pointer; border: none;
-      position: relative;
-      overflow: hidden;
-    }
-    .btn-primary {
-      background: var(--accent); color: #04130c;
-      box-shadow: 0 0 0 1px var(--accent), 0 0 24px -4px var(--accent-glow);
-    }
-    .btn-primary:hover {
-      background: var(--accent-2);
-      box-shadow: 0 0 0 1px var(--accent-2), 0 0 36px -2px var(--accent-glow);
-      transform: translateY(-1px);
-    }
-    .btn-outline {
-      background: transparent; color: var(--text);
-      border: 1px solid var(--rule-strong);
-    }
-    .btn-outline:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: var(--accent-soft);
-    }
+    .eyebrow { margin: 0 0 28px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .kicker { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); }
+    .fn { font-family: var(--mono); font-size: 11px; color: var(--accent); }
 
-    /* HERO BOTTOM RULE */
-    .hero-rule {
-      position: absolute; left: 2.5rem; right: 2.5rem; bottom: 2rem;
-      display: flex; justify-content: space-between; align-items: center;
-      font-family: var(--mono);
-      font-size: 0.66rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding-top: 1rem;
-      border-top: 1px solid var(--rule);
-      z-index: 2;
+    /* TÍTULO */
+    .title-block { padding: 88px 0 56px; border-bottom: 1px solid var(--rule); }
+    .title-block h1 {
+      margin: 0; font-size: clamp(44px, 7vw, 84px); line-height: 1.02; font-weight: 400;
+      letter-spacing: -0.02em; text-wrap: balance;
     }
-    .hero-rule .accent-dot { color: var(--accent); }
+    .title-block h1 sup { font-size: 0.4em; vertical-align: 0.9em; line-height: 0; color: var(--accent); font-family: var(--mono); margin-left: 4px; }
+    .lede { margin: 20px 0 0; font-size: 22px; line-height: 1.4; font-style: italic; color: var(--ink-3); text-wrap: pretty; }
+    .affils { margin-top: 32px; display: flex; flex-direction: column; gap: 4px; font-size: 15px; color: var(--ink-3); }
+    .affils .fn { margin-right: 8px; }
+    .corr { display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; font-family: var(--mono); font-size: 12.5px; }
+    .corr .label { color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-size: 11px; margin-bottom: 6px; }
+    .abstract-row { margin-top: 64px; }
+    .abstract { margin: 0; font-size: 18px; line-height: 1.65; color: var(--ink-2); text-wrap: pretty; -webkit-hyphens: auto; hyphens: auto; }
+    .keywords { margin: 18px 0 0; font-size: 15px; line-height: 1.6; color: var(--ink-3); }
+    .keywords .kicker { margin-right: 10px; }
+    .stats { display: flex; flex-direction: column; gap: 20px; font-family: var(--mono); }
+    .stat { display: flex; flex-direction: column; gap: 2px; }
+    .stat-n { font-family: var(--serif); font-size: 40px; line-height: 1; color: var(--ink); }
+    .stat-l { font-size: 11.5px; color: var(--muted); line-height: 1.4; }
 
-    /* NEURAL PANEL — ML inference strip */
-    .vitals-strip {
-      position: relative;
-      z-index: 3;
-      display: flex; align-items: stretch;
-      gap: 0;
-      margin: 2rem 0 0;
-      border: 1px solid var(--rule);
-      background: rgba(11, 16, 22, 0.6);
-      backdrop-filter: blur(6px);
-      max-width: 660px;
-      font-family: var(--mono);
-    }
-    body.light .vitals-strip { background: rgba(255,255,255,0.55); }
-    .vital {
-      padding: 0.7rem 1rem;
-      border-right: 1px solid var(--rule);
-      display: flex; flex-direction: column;
-      gap: 0.3rem;
-      min-width: 84px;
-      justify-content: center;
-    }
-    .vital:last-child { border-right: none; }
-    .vital-label {
-      font-size: 0.55rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .vital-value {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text);
-      font-variant-numeric: tabular-nums;
-      line-height: 1;
-      display: flex; align-items: baseline; gap: 0.3rem;
-    }
-    .vital-value .unit {
-      font-size: 0.6rem;
-      color: var(--muted);
-      font-weight: 400;
-      letter-spacing: 0.06em;
-    }
-    .vital-value.ok { color: var(--accent); }
-    .vital-value .arrow-down { color: var(--accent); font-size: 0.7rem; }
-    .vital-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 8px var(--accent-glow);
-      animation: livePulse 1.4s ease-out infinite;
-      display: inline-block;
-      margin-right: 0.4rem;
-      vertical-align: middle;
-    }
+    /* MATERIAL SUPLEMENTAR */
+    .supp { padding: 32px 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 24px 56px; }
+    .supp a { display: flex; gap: 20px; align-items: baseline; color: var(--ink); }
+    .supp a:hover { text-decoration: none; color: var(--accent); }
+    .supp-id { font-family: var(--mono); font-size: 12px; color: var(--accent); flex-shrink: 0; }
+    .supp-body { display: flex; flex-direction: column; gap: 4px; }
+    .supp-title { font-size: 20px; }
+    .supp-desc { font-size: 15px; line-height: 1.5; color: var(--ink-3); }
 
-    /* Neural net glyph cell */
-    .vital-nn {
-      min-width: 132px;
-      gap: 0.45rem;
-      background: var(--accent-soft);
+    /* SEÇÕES */
+    .sec { padding: 64px 0; border-top: 1px solid var(--rule); }
+    .sec-intro { padding: 80px 0 64px; border-top: 0; }
+    .sec h2 {
+      margin: 0 0 32px; font-size: 32px; font-weight: 400; letter-spacing: -0.01em;
+      display: flex; gap: 20px; align-items: baseline;
     }
-    .nn-glyph { width: 100%; height: 30px; display: block; overflow: visible; }
-    .nn-glyph .nn-edge {
-      stroke: var(--rule-strong);
-      stroke-width: 0.6;
-      opacity: 0.5;
+    .sec h2 .n { font-family: var(--mono); font-size: 14px; color: var(--accent); }
+    .sec-intro h2 { margin-bottom: 28px; }
+    .prose { display: flex; flex-direction: column; gap: 18px; font-size: 18px; line-height: 1.7; color: var(--ink-2); text-wrap: pretty; }
+    .prose p { margin: 0; }
+    .prose sup { line-height: 0; }
+    .notes { padding-top: 64px; display: flex; flex-direction: column; gap: 20px; font-size: 13.5px; line-height: 1.5; color: var(--muted); }
+    .notes p { margin: 0; }
+    .notes .fn { margin-right: 6px; }
+
+    /* §2 ACORDEÃO */
+    .hint { margin: -20px 0 32px 34px; font-size: 15px; color: var(--muted); font-style: italic; }
+    .acc { display: flex; flex-direction: column; border-top: 1px solid var(--ink); }
+    .acc-item { border-bottom: 1px solid var(--rule); }
+    .acc-btn {
+      all: unset; cursor: pointer; width: 100%; box-sizing: border-box; padding: 22px 0;
+      display: grid; grid-template-columns: 56px minmax(0, 1fr) 24px; gap: 16px; align-items: baseline;
     }
-    .nn-glyph .nn-node {
-      fill: var(--muted);
-      animation: nnPulse 1.8s ease-in-out infinite;
+    .acc-btn:hover { color: var(--accent); }
+    .acc-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .acc-num { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+    .acc-head { display: flex; flex-direction: column; gap: 6px; }
+    .acc-title { font-size: 22px; }
+    .acc-sum { font-size: 16px; line-height: 1.55; color: var(--ink-3); max-width: 720px; }
+    .acc-sign { font-family: var(--mono); font-size: 16px; color: var(--accent); }
+    .acc-panel { padding: 0 0 26px 72px; display: flex; flex-direction: column; gap: 12px; }
+    .acc-panel[hidden] { display: none; }
+    .acc-panel > p { margin: 0; max-width: 760px; }
+    .acc-detail { font-size: 16px; line-height: 1.65; color: var(--ink-2); }
+    .acc-methods { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+    /* FIGURA 1 */
+    .fig { margin: 24px 0 6px; display: flex; flex-wrap: wrap; gap: 24px 40px; align-items: flex-start; }
+    .fig-plot { flex: 0 1 380px; min-width: 260px; background: var(--paper-2); border: 1px solid var(--rule); padding: 16px; }
+    .fig-plot svg { width: 100%; height: auto; display: block; font-family: var(--mono); }
+    .fig-plot .gridlines line { stroke: var(--grid); stroke-width: 1; }
+    .fig-plot .axis { stroke: var(--ink); stroke-width: 1; }
+    .fig-plot .diag { stroke: var(--diag); stroke-width: 1; stroke-dasharray: 3 4; }
+    .fig-plot .ticks { font-size: 9px; fill: var(--muted); }
+    .fig-plot .grp { transition: opacity .3s ease; }
+    .fig-plot .grp path { fill: none; stroke-width: 1.6; transition: d .7s cubic-bezier(.3,.7,.2,1); }
+    .fig-plot .grp circle { fill: var(--paper-2); stroke-width: 1.4; transition: transform .7s cubic-bezier(.3,.7,.2,1); }
+    .fig-cap { flex: 1 1 260px; max-width: 340px; display: flex; flex-direction: column; gap: 18px; }
+    .fig-cap > p { margin: 0; }
+    .fig-text { font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+    .fig-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; margin-right: 6px; }
+    .seg { display: flex; border: 1px solid var(--ink); width: fit-content; font-family: var(--mono); font-size: 12px; }
+    .seg button { all: unset; cursor: pointer; padding: 8px 14px; color: var(--ink); }
+    .seg button + button { border-left: 1px solid var(--ink); }
+    .seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+    .seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .legend { display: flex; flex-direction: column; font-family: var(--mono); font-size: 12px; }
+    .legend-row { display: grid; grid-template-columns: 18px minmax(0, 1fr) 56px; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--rule-soft); align-items: center; color: var(--ink); cursor: default; }
+    .legend-row.head { padding: 0 0 6px; color: var(--muted); border-bottom-color: var(--rule); }
+    .legend-row .sw { width: 14px; height: 2px; }
+    .legend-row .r { text-align: right; }
+    .fig-note { font-size: 12.5px; line-height: 1.5; color: var(--muted); font-style: italic; }
+
+    /* §3 SOFTWARE e §5 TRAJETÓRIA: duas colunas explícitas */
+    .list { display: flex; flex-direction: column; border-top: 1px solid var(--ink); }
+    .entry {
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 8px 32px;
+      padding: 22px 0; border-bottom: 1px solid var(--rule); color: var(--ink);
     }
-    .nn-glyph .nn-l0 { animation-delay: 0s; }
-    .nn-glyph .nn-l1 { animation-delay: 0.3s; }
-    .nn-glyph .nn-l2 { animation-delay: 0.6s; }
-    @keyframes nnPulse {
-      0%, 100% { fill: var(--muted); r: 2; }
-      25% { fill: var(--accent); r: 2.8; filter: drop-shadow(0 0 3px var(--accent-glow)); }
-    }
-    .nn-status {
-      display: flex; align-items: center;
-      font-size: 0.58rem; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--accent);
-    }
+    a.entry:hover { background: var(--hover); text-decoration: none; color: var(--ink); }
+    .entry-meta { display: flex; flex-direction: column; gap: 4px; font-family: var(--mono); }
+    .entry-name { font-size: 15px; font-weight: 500; }
+    .entry-sub { font-size: 11.5px; color: var(--muted); }
+    .entry-desc { font-size: 16px; line-height: 1.55; color: var(--ink-2); }
+    .timeline { max-width: 960px; }
+    .timeline .entry { gap: 6px 32px; }
+    .period { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 4px; }
+    .role { display: flex; flex-direction: column; gap: 4px; }
+    .role-title { font-size: 19px; }
+    .role-org { font-size: 16px; font-style: italic; color: var(--ink-3); }
+
+    /* §4 PUBLICAÇÕES */
+    .pubs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 22px; max-width: 860px; }
+    .pubs li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 16px; font-size: 17px; line-height: 1.55; }
+    .pubs .ref { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 3px; }
+    .pubs-more { margin: 32px 0 0 72px; font-family: var(--mono); font-size: 13px; }
+
+    /* COMO CITAR */
+    .cite { padding: 56px 0; border-top: 1px solid var(--rule); display: flex; flex-wrap: wrap; gap: 24px 56px; align-items: flex-start; }
+    .cite-side { flex: 0 1 220px; display: flex; flex-direction: column; gap: 8px; }
+    .cite-copy { all: unset; cursor: pointer; font-family: var(--mono); font-size: 12px; color: var(--accent); width: fit-content; }
+    .cite-copy:hover { color: var(--ink); }
+    .cite-copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .cite pre { flex: 1 1 480px; min-width: 0; margin: 0; font-family: var(--mono); font-size: 12.5px; line-height: 1.7; color: var(--ink-3); white-space: pre-wrap; overflow-wrap: anywhere; }
+
+    /* RODAPÉ */
+    .site-footer { border-top: 1px solid var(--ink); }
+    .ftr { max-width: 1120px; margin: 0 auto; padding: 24px var(--gutter) 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
 
     @media (max-width: 720px) {
-      .vitals-strip { max-width: 100%; overflow-x: auto; }
-      .vital { min-width: 76px; padding: 0.6rem 0.75rem; }
-      .vital-nn { min-width: 120px; }
+      :root { --gutter: 20px; }
+      html { scroll-padding-top: 104px; }
+      .hdr { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 12px; padding-top: 12px; padding-bottom: 10px; }
+      .hdr-id { grid-column: 1; grid-row: 1; min-width: 0; }
+      .hdr-current { overflow: hidden; text-overflow: ellipsis; }
+      .hdr-tools { grid-column: 2; grid-row: 1; }
+      .hdr-nav {
+        grid-column: 1 / -1; grid-row: 2; margin-left: 0;
+        flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; gap: 16px;
+        margin-right: calc(-1 * var(--gutter)); padding-right: var(--gutter);
+      }
+      .hdr-nav::-webkit-scrollbar { display: none; }
+      .title-block { padding: 56px 0 44px; }
+      .lede { font-size: 20px; }
+      .abstract-row { margin-top: 48px; }
+      .sec, .sec-intro { padding: 52px 0; }
+      .sec h2 { font-size: 28px; gap: 14px; }
+      .hint { margin-left: 0; }
+      .notes { padding-top: 0; }
+      .acc-btn { grid-template-columns: 36px minmax(0, 1fr) 18px; gap: 12px; }
+      .acc-title { font-size: 20px; }
+      .acc-panel { padding-left: 48px; }
+      .fig-plot { min-width: 0; flex-basis: 100%; }
+      .entry { grid-template-columns: minmax(0, 1fr); }
+      .pubs li { grid-template-columns: 36px minmax(0, 1fr); gap: 12px; font-size: 16px; }
+      .pubs-more { margin-left: 48px; }
+    }
+    @media (max-width: 420px) {
+      .acc-panel { padding-left: 0; }
+      .pubs-more { margin-left: 0; }
     }
-    @media (max-width: 900px) {
-      .hero { padding: 7rem 1.5rem 5rem; }
-      .hero-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-      .hero-marginalia, .hero-side { display: none; }
-      .hero-rule { left: 1.5rem; right: 1.5rem; }
-    }
-
-    /* SECTIONS */
-    section {
-      padding: 8rem 2.5rem;
-      position: relative;
-    }
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 110px 1fr;
-      gap: 2.5rem;
-    }
-    .section-head {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: 110px 1fr;
-      gap: 2.5rem;
-      align-items: end;
-      margin-bottom: 4rem;
-      padding-bottom: 1.75rem;
-      border-bottom: 1px solid var(--rule);
-    }
-    .section-numeral {
-      font-family: var(--mono);
-      font-style: normal;
-      font-size: 1.4rem;
-      font-weight: 500;
-      line-height: 1.1;
-      color: var(--accent);
-      letter-spacing: 0.04em;
-      position: relative;
-      padding-top: 1.4rem;
-      display: inline-flex;
-      align-items: baseline;
-      gap: 0.4em;
-    }
-    .section-numeral::after {
-      content: '▌';
-      color: var(--accent);
-      animation: blink 1.4s steps(2) infinite;
-      order: -1;
-    }
-    .section-numeral .nl {
-      font-family: var(--mono);
-      font-style: normal;
-      font-size: 0.6rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--muted);
-      position: absolute;
-      top: 0;
-      left: 0;
-      white-space: nowrap;
-    }
-    .section-label {
-      font-family: var(--mono);
-      font-size: 0.72rem; color: var(--muted);
-      letter-spacing: 0.16em; text-transform: uppercase;
-      margin-bottom: 0.6rem;
-      display: inline-block;
-    }
-    .section-title {
-      font-family: var(--serif-display);
-      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
-      font-weight: 600;
-      line-height: 1.02;
-      letter-spacing: -0.035em;
-      color: var(--text);
-      text-wrap: balance;
-    }
-    .section-title em {
-      font-style: normal;
-      font-weight: 600;
-      color: var(--accent);
-      background: linear-gradient(180deg, var(--accent) 0%, var(--accent-2) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .section-divider { display: none; }
-    .section-aside {
-      font-family: var(--mono);
-      font-size: 0.66rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding-top: 0.6rem;
-      border-top: 1px solid var(--rule);
-      line-height: 1.8;
-    }
-    .section-aside .accent { color: var(--accent); }
-    .section-body {
-      grid-column: 2 / -1;
-    }
-    @media (max-width: 900px) {
-      section { padding: 5.5rem 1.5rem; }
-      .container { grid-template-columns: 1fr; gap: 1rem; }
-      .section-head { grid-template-columns: 1fr; gap: 0.5rem; margin-bottom: 2.5rem; }
-      .section-aside { display: none; }
-      .section-body { grid-column: 1 / -1; }
-      .section-numeral { font-size: 2.4rem; }
-    }
-
-    /* ABOUT */
-    .about-grid {
-      display: grid; grid-template-columns: 1.4fr 1fr;
-      gap: 4rem; align-items: start;
-    }
-    .about-text p {
-      color: var(--text-2);
-      margin-bottom: 1.4rem;
-      font-size: 1.08rem;
-      line-height: 1.7;
-    }
-    .about-text p:first-of-type::first-letter {
-      font-family: var(--serif-display);
-      font-style: normal;
-      font-size: 2.6em;
-      float: left;
-      line-height: 1;
-      padding: 0.05em 0.18em 0 0;
-      color: var(--accent);
-      font-weight: 600;
-    }
-    .about-text p strong {
-      color: var(--text);
-      font-weight: 600;
-      font-style: normal;
-      background: var(--accent-soft);
-      padding: 0 0.25em;
-      border-bottom: 1px solid var(--accent-border);
-    }
-    .about-stats {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
-      border-top: 1px solid var(--rule);
-      border-left: 1px solid var(--rule);
-    }
-    .stat-card {
-      background: var(--card);
-      border-right: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      padding: 1.5rem 1.25rem 1.25rem;
-      text-align: left;
-      transition: background 0.3s, border-color 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-    .stat-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .stat-card:hover { background: var(--bg3); }
-    .stat-card:hover::before { opacity: 1; }
-    .stat-number {
-      font-family: var(--mono);
-      font-size: 2.6rem;
-      font-weight: 500;
-      line-height: 1;
-      color: var(--text);
-      letter-spacing: -0.03em;
-      font-variant-numeric: tabular-nums;
-    }
-    .stat-card:nth-child(even) .stat-number {
-      color: var(--accent);
-    }
-    .stat-label {
-      font-family: var(--mono);
-      font-size: 0.66rem;
-      color: var(--muted);
-      margin-top: 0.65rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      line-height: 1.5;
-    }
-    @media (max-width: 900px) {
-      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    }
-
-    /* TIMELINE */
-    .timeline {
-      position: relative;
-      padding-left: 2.5rem;
-    }
-    .timeline::before {
-      content: '';
-      position: absolute; left: 5px; top: 0.9rem; bottom: 0.9rem;
-      width: 1px;
-      background: var(--rule-strong);
-    }
-    .timeline-item {
-      position: relative;
-      margin-bottom: 3rem;
-      padding-bottom: 0;
-    }
-    .timeline-item:last-child { margin-bottom: 0; }
-    .timeline-item::before {
-      content: '';
-      position: absolute; left: -2.6rem; top: 0.6rem;
-      width: 12px; height: 12px;
-      background: var(--bg);
-      border: 1.5px solid var(--rule-strong);
-      border-radius: 50%;
-      z-index: 1;
-    }
-    .timeline-item.active::before {
-      background: var(--accent);
-      border-color: var(--accent);
-      box-shadow: 0 0 12px var(--accent-glow);
-    }
-    .timeline-period {
-      font-family: var(--mono);
-      font-size: 0.66rem;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      display: flex; align-items: center; gap: 0.4rem;
-    }
-    .timeline-role {
-      font-family: var(--serif-display);
-      font-weight: 600;
-      font-size: 1.2rem;
-      line-height: 1.2;
-      margin-bottom: 0.3rem;
-      letter-spacing: -0.02em;
-      color: var(--text);
-    }
-    .timeline-org {
-      font-family: var(--mono);
-      font-style: normal;
-      color: var(--accent);
-      font-size: 0.78rem;
-      margin-bottom: 0.6rem;
-      font-weight: 400;
-      letter-spacing: 0.04em;
-    }
-    .timeline-desc {
-      color: var(--text-2);
-      font-size: 0.98rem;
-      line-height: 1.6;
-      max-width: 620px;
-    }
-
-    /* EXPERTISE */
-    .expertise-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 0;
-      border-top: 1px solid var(--rule);
-      border-left: 1px solid var(--rule);
-    }
-    @media (max-width: 720px) {
-      .expertise-grid { grid-template-columns: 1fr; }
-    }
-    .expertise-card {
-      background: transparent;
-      border-right: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      padding: 2.25rem 2rem;
-      transition: background 0.35s ease;
-      position: relative;
-      cursor: pointer;
-    }
-    .expertise-card::before {
-      content: '';
-      position: absolute; left: 0; top: 0;
-      width: 0; height: 2px;
-      background: var(--accent);
-      transition: width 0.4s ease;
-    }
-    .expertise-card:hover::before { width: 100%; }
-    .expertise-card:hover {
-      background: var(--accent-soft);
-    }
-    .expertise-icon {
-      margin-bottom: 1.25rem;
-      color: var(--accent);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .expertise-icon svg {
-      width: 1.6rem; height: 1.6rem;
-      stroke: var(--accent);
-      stroke-width: 1.25;
-    }
-    .expertise-title {
-      font-family: var(--serif-display);
-      font-weight: 600;
-      font-size: 1.35rem;
-      line-height: 1.2;
-      margin-bottom: 0.6rem;
-      letter-spacing: -0.025em;
-      color: var(--text);
-    }
-    .expertise-desc {
-      color: var(--text-2);
-      font-size: 0.98rem;
-      line-height: 1.6;
-    }
-    .tech-pills {
-      display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.25rem;
-    }
-    .pill {
-      background: transparent;
-      border: 1px solid var(--rule-strong);
-      border-radius: 0;
-      padding: 0.22rem 0.6rem;
-      font-size: 0.66rem;
-      color: var(--text);
-      font-family: var(--mono);
-      letter-spacing: 0.06em;
-      transition: all 0.25s;
-    }
-    .expertise-card:hover .pill {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    /* PUBLICATIONS */
-    .pub-list {
-      display: flex; flex-direction: column;
-      border-top: 1px solid var(--rule);
-    }
-    .pub-card {
-      background: transparent;
-      border-bottom: 1px solid var(--rule);
-      padding: 2rem 0.5rem 2rem 0;
-      display: grid;
-      grid-template-columns: 70px 1fr auto;
-      gap: 1.5rem; align-items: baseline;
-      transition: all 0.3s;
-      border-radius: 0;
-    }
-    .pub-card:hover {
-      background: var(--accent-soft);
-      padding-left: 1rem;
-    }
-    .pub-number {
-      font-family: var(--mono);
-      font-style: normal;
-      font-size: 1.4rem;
-      font-weight: 500;
-      color: var(--accent);
-      background: transparent;
-      border: none;
-      padding: 0;
-      min-width: auto;
-      text-align: left;
-      line-height: 1;
-      letter-spacing: 0.02em;
-      font-variant-numeric: tabular-nums;
-    }
-    .pub-title {
-      font-family: var(--serif-display);
-      font-weight: 500;
-      font-size: 1.1rem;
-      line-height: 1.4;
-      margin-bottom: 0.55rem;
-      color: var(--text);
-      letter-spacing: -0.015em;
-    }
-    .pub-meta {
-      color: var(--muted);
-      font-size: 0.8rem;
-      font-family: var(--mono);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-    .pub-meta span { color: var(--accent); font-weight: 500; }
-    .pub-arrow {
-      width: 28px; height: 28px;
-      border: 1px solid var(--rule-strong);
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.3s;
-    }
-    .pub-card:hover .pub-arrow {
-      background: var(--accent); border-color: var(--accent); color: var(--bg);
-    }
-    .pub-arrow svg { width: 0.85rem; height: 0.85rem; }
-    @media (max-width: 720px) {
-      .pub-card { grid-template-columns: 50px 1fr; }
-      .pub-arrow { display: none; }
-      .pub-number { font-size: 1.8rem; }
-    }
-
-    /* CONTENT */
-    .content-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.25rem;
-    }
-    .content-card {
-      background: var(--card); border: 1px solid var(--rule);
-      border-radius: 0; padding: 1.5rem; text-decoration: none;
-      color: inherit; transition: all 0.2s; display: block;
-    }
-    .content-card:hover {
-      border-color: var(--accent); transform: translate(-2px, -2px);
-      box-shadow: 4px 4px 0 0 var(--accent);
-    }
-    .content-platform {
-      font-size: 0.7rem; color: var(--muted);
-      font-family: var(--mono); margin-bottom: 0.5rem;
-      letter-spacing: 0.12em; text-transform: uppercase;
-    }
-    .content-title {
-      font-family: var(--serif-display);
-      font-weight: 440; margin-bottom: 0.4rem;
-      font-size: 1.15rem;
-    }
-    .content-desc { color: var(--muted); font-size: 0.9rem; }
-    .content-arrow {
-      margin-top: 1rem; color: var(--accent); font-size: 1.1rem;
-    }
-
-    /* PROJECTS */
-    .projects-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 0;
-      border-top: 1px solid var(--rule);
-      border-left: 1px solid var(--rule);
-    }
-    @media (max-width: 900px) {
-      .projects-grid { grid-template-columns: 1fr; }
-    }
-    .project-card {
-      background: transparent;
-      border-right: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      border-radius: 0;
-      padding: 2.25rem 2rem;
-      display: flex; flex-direction: column;
-      transition: background 0.35s ease;
-      text-decoration: none; color: inherit;
-      position: relative;
-    }
-    .project-card::before {
-      content: '';
-      position: absolute; left: 0; bottom: 0;
-      width: 0; height: 2px;
-      background: var(--accent);
-      transition: width 0.4s ease;
-    }
-    .project-card:hover::before { width: 100%; }
-    .project-card:hover { background: var(--accent-soft); }
-    .project-header {
-      display: flex; align-items: baseline;
-      justify-content: space-between; gap: 1rem; margin-bottom: 0.85rem;
-    }
-    .project-name {
-      font-family: var(--serif-display);
-      font-style: normal;
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: var(--text);
-      letter-spacing: -0.025em;
-      line-height: 1.1;
-    }
-    .project-visibility {
-      font-size: 0.62rem;
-      padding: 0.22rem 0.55rem;
-      border-radius: 0;
-      font-family: var(--mono);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-    .badge-public {
-      background: transparent;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-    }
-    .badge-private {
-      background: transparent;
-      border: 1px solid var(--rule-strong);
-      color: var(--muted);
-    }
-    .project-desc {
-      color: var(--text-2);
-      font-size: 0.96rem;
-      flex: 1;
-      margin-bottom: 1.4rem;
-      line-height: 1.6;
-    }
-    .project-footer {
-      display: flex; align-items: center;
-      justify-content: space-between;
-      margin-top: auto;
-      padding-top: 1rem;
-      border-top: 1px solid var(--rule);
-    }
-    .project-lang {
-      display: flex; align-items: center; gap: 0.5rem;
-      font-size: 0.7rem;
-      color: var(--muted);
-      font-family: var(--mono);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .lang-dot {
-      width: 8px; height: 8px;
-      transform: rotate(45deg);
-    }
-    .lang-python { background: var(--accent); }
-    .lang-typescript { background: var(--accent); }
-    .lang-html { background: var(--accent); }
-    .project-link {
-      font-size: 0.7rem;
-      color: var(--text);
-      font-family: var(--mono);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      display: flex; align-items: center; gap: 0.4rem;
-    }
-    .project-card:hover .project-link { color: var(--accent); }
-
-    /* FOOTER */
-    footer {
-      background: var(--bg2);
-      border-top: 1px solid var(--rule);
-      padding: 5rem 2.5rem 3rem;
-      position: relative;
-    }
-    .footer-grid {
-      max-width: 1280px; margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 4rem;
-      padding-bottom: 3rem;
-      border-bottom: 1px solid var(--rule);
-    }
-    .footer-mark {
-      font-family: var(--serif-display);
-      font-size: clamp(2rem, 4.5vw, 3.4rem);
-      font-weight: 600;
-      line-height: 1.05;
-      color: var(--text);
-      letter-spacing: -0.04em;
-      margin-bottom: 1.25rem;
-      text-wrap: balance;
-    }
-    .footer-mark em {
-      font-style: normal;
-      color: var(--accent);
-      background: linear-gradient(180deg, var(--accent), var(--accent-2));
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .footer-tagline {
-      color: var(--muted);
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      max-width: 360px;
-      line-height: 1.7;
-    }
-    .footer-name { display: none; }
-    .footer-col-title {
-      font-family: var(--mono);
-      font-size: 0.66rem;
-      color: var(--accent);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 1.25rem;
-      padding-bottom: 0.55rem;
-      border-bottom: 1px solid var(--rule);
-    }
-    .footer-links {
-      display: flex; flex-direction: column; gap: 0.85rem;
-      list-style: none; margin-top: 0;
-      justify-content: flex-start;
-    }
-    .footer-links a {
-      color: var(--text);
-      text-decoration: none;
-      font-family: var(--serif-display);
-      font-style: normal;
-      font-size: 1rem;
-      font-weight: 500;
-      transition: color 0.25s, transform 0.25s;
-      display: inline-flex; align-items: center; gap: 0.85rem;
-    }
-    .footer-links a .footer-icon {
-      width: 1.15rem; height: 1.15rem;
-      fill: var(--text);
-      transition: fill 0.25s, transform 0.25s;
-      flex-shrink: 0;
-    }
-    .footer-links a:hover { color: var(--accent); transform: translateX(3px); }
-    .footer-links a:hover .footer-icon { fill: var(--accent); }
-    .footer-copy {
-      max-width: 1280px; margin: 2rem auto 0;
-      color: var(--muted);
-      font-size: 0.7rem;
-      font-family: var(--mono);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-copy .accent { color: var(--accent); }
-    @media (max-width: 720px) {
-      .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    }
-
-    /* ALT SECTION BG */
-    .bg-alt { background: var(--bg2); }
-
-    /* SCROLL REVEAL */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* NAV SCROLL STATE */
-    nav {
-      transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
-    }
-    nav.at-top {
-      background: transparent !important;
-      border-bottom-color: transparent !important;
-      box-shadow: none !important;
-    }
-    nav.scrolled {
-      box-shadow: 0 1px 0 0 var(--rule);
-    }
-
-    /* NAV ACTIVE LINK */
-    .nav-links a {
-      position: relative;
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -6px; left: 0;
-      width: 100%; height: 1px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .nav-links a.active { color: var(--accent); }
-    .nav-links a.active::after { transform: scaleX(1); }
-
-    /* HERO CANVAS */
-    #hero-canvas {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      opacity: 0.9;
-      mix-blend-mode: screen;
-    }
-    body.light #hero-canvas { mix-blend-mode: multiply; opacity: 0.85; }
-
-
-    /* TYPING CURSOR */
-    .typing-cursor {
-      display: inline-block;
-      width: 8px; height: 0.9em;
-      background: var(--accent);
-      margin-left: 4px;
-      vertical-align: text-bottom;
-      animation: blink 0.85s step-end infinite;
-    }
-    @keyframes blink {
-      50% { opacity: 0; }
-    }
-
-    /* TIMELINE PULSE */
-    @keyframes pulse-dot {
-      0% { box-shadow: 0 0 0 0 rgba(20, 17, 10, 0.25); }
-      70% { box-shadow: 0 0 0 10px rgba(20, 17, 10, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(20, 17, 10, 0); }
-    }
-    body.dark @keyframes pulse-dot-dark {
-      0% { box-shadow: 0 0 0 0 rgba(236, 229, 210, 0.25); }
-      70% { box-shadow: 0 0 0 10px transparent; }
-      100% { box-shadow: 0 0 0 0 transparent; }
-    }
-    .timeline-item.active::before {
-      animation: pulse-dot 0.7s ease-out;
-    }
-
-    /* MOUSE GLOW — disabled for minimalist mode */
-    #mouse-glow { display: none; }
-
-    /* EXPERTISE EXPANDABLE */
-    .expertise-card { cursor: pointer; }
-    .expertise-detail {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease, opacity 0.3s ease, margin-top 0.3s ease, padding-top 0.3s ease;
-      opacity: 0;
-      font-size: 0.92rem;
-      color: var(--text-2);
-      margin-top: 0;
-      padding-top: 0;
-      border-top: 1px solid transparent;
-      line-height: 1.6;
-    }
-    .expertise-card.expanded .expertise-detail {
-      max-height: 240px;
-      opacity: 1;
-      margin-top: 1.25rem;
-      padding-top: 1rem;
-      border-top-color: var(--accent-border);
-    }
-    .expertise-expand-icon {
-      display: flex; align-items: center; justify-content: center;
-      width: 1.6rem; height: 1.6rem;
-      margin-left: auto;
-      transition: transform 0.35s ease, background 0.25s, color 0.25s;
-      color: var(--accent);
-      font-family: var(--mono);
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 1;
-      border: 1px solid var(--accent-border);
-    }
-    .expertise-card.expanded .expertise-expand-icon {
-      transform: rotate(45deg);
-      background: var(--accent);
-      color: var(--bg);
-      border-color: var(--accent);
-    }
-
-    /* COURSE BANNER */
-    .course-banner {
-      padding: 4rem 2.5rem 1rem;
-      display: flex;
-      justify-content: center;
-    }
-    .course-banner-grid {
-      max-width: 1280px;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border-top: 1px solid var(--rule);
-      border-left: 1px solid var(--rule);
-    }
-    .course-banner-inner {
-      width: 100%;
-      position: relative;
-      background: transparent;
-      border-right: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      border-radius: 0;
-      padding: 2.5rem 2.25rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      overflow: hidden;
-      transition: background 0.4s;
-    }
-    .course-banner-inner:hover { background: var(--accent-soft); }
-    .course-banner-inner::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 28px; height: 28px;
-      border-top: 1px solid var(--accent);
-      border-left: 1px solid var(--accent);
-      pointer-events: none;
-      opacity: 0.5;
-      transition: opacity 0.3s, width 0.3s, height 0.3s;
-    }
-    .course-banner-inner:hover::after { opacity: 1; width: 44px; height: 44px; }
-    .course-banner-content {
-      flex: 1;
-      position: relative;
-      z-index: 1;
-    }
-    .course-banner-label {
-      font-family: var(--mono);
-      font-size: 0.66rem;
-      color: var(--accent);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 0.85rem;
-      display: inline-flex; align-items: center; gap: 0.55rem;
-    }
-    .course-banner-label::before {
-      content: ''; width: 24px; height: 1px; background: var(--accent);
-    }
-    .course-banner-title {
-      font-family: var(--serif-display);
-      font-size: clamp(1.7rem, 3vw, 2.2rem);
-      font-weight: 600;
-      margin-bottom: 0.65rem;
-      letter-spacing: -0.035em;
-      line-height: 1.05;
-      color: var(--text);
-    }
-    .course-banner-title em {
-      font-style: normal;
-      color: var(--accent);
-    }
-    .gradient-text {
-      background: linear-gradient(180deg, var(--text) 0%, var(--accent) 130%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .course-banner-desc {
-      color: var(--text-2);
-      font-size: 1rem;
-      max-width: 520px;
-      line-height: 1.6;
-      font-family: var(--serif-body);
-    }
-    .course-banner-cta {
-      position: relative;
-      z-index: 1;
-      margin-top: auto;
-    }
-    .btn-gradient {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.55rem;
-      padding: 0.85rem 1.5rem;
-      border-radius: 0;
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      font-weight: 500;
-      text-decoration: none;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text);
-      background: transparent;
-      border: 1px solid var(--text);
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    .btn-gradient:hover {
-      background: var(--accent);
-      color: var(--bg);
-      border-color: var(--accent);
-      transform: translate(-2px, -2px);
-      box-shadow: 4px 4px 0 0 var(--text);
-    }
-
-    @media (max-width: 900px) {
-      .nav-links { display: none; }
-      .course-banner { padding: 3rem 1.5rem 0.5rem; }
-      .course-banner-grid { grid-template-columns: 1fr; }
-      .course-banner-inner { padding: 2rem 1.5rem; }
-      .course-banner-desc { max-width: 100%; }
-    }
-
-    /* REDUCED MOTION */
     @media (prefers-reduced-motion: reduce) {
-      .reveal { opacity: 1; transform: none; transition: none; }
-      .typing-cursor { animation: none; }
-      #hero-canvas { display: none; }
-      #mouse-glow { display: none; }
-      .timeline::before { transition: none; }
-      .timeline-item.active::before { animation: none; }
-      .expertise-detail { transition: none; }
-    }
-
-    /* KONAMI CANVAS */
-    #konami-canvas {
-      position: fixed;
-      inset: 0;
-      z-index: 10000;
-      pointer-events: none;
+      html { scroll-behavior: auto; }
+      .fig-plot .grp, .fig-plot .grp path, .fig-plot .grp circle { transition: none; }
     }
   </style>
 </head>
-<body class="dark">
+<body>
 
-<div id="grain"></div>
-<div id="mouse-glow"></div>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-left">
-    <button id="lang-btn" onclick="toggleLang()">EN</button>
-    <a class="nav-logo" href="#">fabiano<span class="amp">.</span>filho</a>
-  </div>
-  <div class="nav-right">
-    <ul class="nav-links">
-      <li><a href="#sobre" data-i18n="nav.sobre">Sobre</a></li>
-      <li><a href="#expertise" data-i18n="nav.expertise">Expertise</a></li>
-      <li><a href="#projetos" data-i18n="nav.projetos">Projetos</a></li>
-      <li><a href="#publicacoes" data-i18n="nav.publicacoes">Publicações</a></li>
-      <li><a href="#trajetoria" data-i18n="nav.trajetoria">Trajetória</a></li>
-    </ul>
-    <button id="theme-btn" onclick="toggleTheme()" title="Toggle theme">
-      <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-      </svg>
-    </button>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <canvas id="hero-canvas"></canvas>
-  <div class="hero-grid">
-    <aside class="hero-marginalia">
-      Portfólio · 2026
-    </aside>
-    <div class="hero-main">
-      <p class="hero-eyebrow hero-badge" data-i18n="hero.badge">Médico · Cientista de Dados · IA na Saúde</p>
-      <h1 class="hero-headline">
-        <span class="first">Fabiano Barcellos</span>
-        <span class="last">Filho<span class="md">, MD</span></span>
-      </h1>
-      <p class="hero-lede" data-i18n="hero.sub">
-        Gerente Médico de Inovação e IA na Hapvida · Doutorando em Machine Learning na FSP-USP.
-      </p>
-      <div class="hero-cta">
-        <a href="https://www.linkedin.com/in/fabianofilho/" target="_blank" class="btn btn-primary"><span>LinkedIn</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <a href="#sobre" class="btn btn-outline"><span data-i18n="hero.cta2">Conheça</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
-      </div>
-      <div class="vitals-strip" role="img" aria-label="Rede neural inferindo. AUROC 0.89, calibração ECE 0.02, loss em queda.">
-        <div class="vital vital-nn">
-          <span class="vital-label">Rede Neural</span>
-          <svg class="nn-glyph" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <g class="nn-edges">
-              <line class="nn-edge" x1="8" y1="5" x2="60" y2="3"/><line class="nn-edge" x1="8" y1="5" x2="60" y2="11"/><line class="nn-edge" x1="8" y1="5" x2="60" y2="19"/><line class="nn-edge" x1="8" y1="5" x2="60" y2="27"/>
-              <line class="nn-edge" x1="8" y1="15" x2="60" y2="3"/><line class="nn-edge" x1="8" y1="15" x2="60" y2="11"/><line class="nn-edge" x1="8" y1="15" x2="60" y2="19"/><line class="nn-edge" x1="8" y1="15" x2="60" y2="27"/>
-              <line class="nn-edge" x1="8" y1="25" x2="60" y2="3"/><line class="nn-edge" x1="8" y1="25" x2="60" y2="11"/><line class="nn-edge" x1="8" y1="25" x2="60" y2="19"/><line class="nn-edge" x1="8" y1="25" x2="60" y2="27"/>
-              <line class="nn-edge" x1="60" y1="3" x2="112" y2="9"/><line class="nn-edge" x1="60" y1="3" x2="112" y2="21"/>
-              <line class="nn-edge" x1="60" y1="11" x2="112" y2="9"/><line class="nn-edge" x1="60" y1="11" x2="112" y2="21"/>
-              <line class="nn-edge" x1="60" y1="19" x2="112" y2="9"/><line class="nn-edge" x1="60" y1="19" x2="112" y2="21"/>
-              <line class="nn-edge" x1="60" y1="27" x2="112" y2="9"/><line class="nn-edge" x1="60" y1="27" x2="112" y2="21"/>
-            </g>
-            <circle class="nn-node nn-l0" cx="8" cy="5" r="2"/><circle class="nn-node nn-l0" cx="8" cy="15" r="2"/><circle class="nn-node nn-l0" cx="8" cy="25" r="2"/>
-            <circle class="nn-node nn-l1" cx="60" cy="3" r="2"/><circle class="nn-node nn-l1" cx="60" cy="11" r="2"/><circle class="nn-node nn-l1" cx="60" cy="19" r="2"/><circle class="nn-node nn-l1" cx="60" cy="27" r="2"/>
-            <circle class="nn-node nn-l2" cx="112" cy="9" r="2"/><circle class="nn-node nn-l2" cx="112" cy="21" r="2"/>
-          </svg>
-          <span class="nn-status"><span class="vital-dot"></span>inferindo</span>
-        </div>
-        <div class="vital">
-          <span class="vital-label">AUROC</span>
-          <span class="vital-value ok">0.89</span>
-        </div>
-        <div class="vital">
-          <span class="vital-label">Calibração</span>
-          <span class="vital-value">0.02<span class="unit">ECE</span></span>
-        </div>
-        <div class="vital">
-          <span class="vital-label">Loss</span>
-          <span class="vital-value" id="vital-loss">0.043<span class="arrow-down">↓</span></span>
-        </div>
-      </div>
+<header class="site-header">
+  <div class="hdr">
+    <div class="hdr-id">
+      <a href="#top" class="hdr-name">Barcellos Filho, F.</a>
+      <span class="hdr-current" id="hdr-current" aria-live="polite"></span>
     </div>
-    <aside class="hero-side">
-      Hapvida · LABDAPS · FSP-USP
-    </aside>
-  </div>
-  <div class="hero-rule">
-    <span><span class="accent-dot">●</span> &nbsp; v.2026.06 · build clinical-os</span>
-    <span data-i18n="hero.location">São Paulo, Brasil</span>
-  </div>
-</section>
-
-<!-- COURSE BANNER -->
-<div class="course-banner">
-  <div class="course-banner-grid">
-
-    <div class="course-banner-inner reveal">
-      <div class="course-banner-content">
-        <div class="course-banner-label" data-i18n="course.label">// novo curso</div>
-        <div class="course-banner-title">
-          <span class="gradient-text" data-i18n="course.title">ML para Médicos</span>
-        </div>
-        <p class="course-banner-desc" data-i18n="course.desc">
-          Curso gratuito focado em apresentar os conceitos fundamentais de Medicina e Inteligência Artificial para profissionais de saúde.
-        </p>
-      </div>
-      <div class="course-banner-cta">
-        <a href="https://ml4md.fabianofilho.com" target="_blank" class="btn-gradient">
-          <span data-i18n="course.cta">Acessar curso</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
-
-    <div class="course-banner-inner reveal">
-      <div class="course-banner-content">
-        <div class="course-banner-label" data-i18n="mentoria.label">// mentoria</div>
-        <div class="course-banner-title">
-          <span class="gradient-text" data-i18n="mentoria.title">Mentoria Med IA</span>
-        </div>
-        <p class="course-banner-desc" data-i18n="mentoria.desc">
-          Programa estruturado de ML e IA para profissionais da saúde. Do zero ao avançado: 3 formatos, até 10 módulos e ~120 horas.
-        </p>
-      </div>
-      <div class="course-banner-cta">
-        <a href="https://mentoria.fabianofilho.com" target="_blank" class="btn-gradient">
-          <span data-i18n="mentoria.cta">Saiba mais</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- SOBRE -->
-<section id="sobre" class="bg-alt">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-numeral reveal"><span class="nl" data-i18n="about.numlabel">Capítulo</span>I.</div>
-      <div>
-        <p class="section-label reveal" data-i18n="about.label">// sobre mim</p>
-        <h2 class="section-title reveal" data-i18n-html="about.title">Medicina, Dados <em>&amp; IA</em></h2>
-      </div>
-    </div>
-    <aside class="section-aside reveal">
-      <span class="accent">Localização</span><br/>
-      <span data-i18n="about.aside1">São Paulo, BR</span><br/><br/>
-      <span class="accent">Filiações</span><br/>
-      Hapvida<br/>FSP-USP<br/>LABDAPS
-    </aside>
-    <div class="section-body">
-      <div class="about-grid">
-        <div class="about-text reveal">
-          <p data-i18n-html="about.p1">Sou <strong>médico e cientista de dados</strong>, apaixonado por utilizar tecnologias avançadas para melhorar a qualidade de vida das pessoas e impulsionar inovações na saúde.</p>
-          <p data-i18n-html="about.p2">Atualmente atuo como <strong>Gerente Médico de Inovação e IA na Hapvida NotreDame Intermédica</strong>, liderando projetos de IA médica de alto impacto.</p>
-          <p data-i18n-html="about.p3">Sou pesquisador no <strong>LABDAPS (USP)</strong> e doutorando com foco em <strong>multicalibração e justiça em modelos preditivos de saúde pública</strong>, buscando tornar a IA mais equitativa para diferentes populações.</p>
-          <p data-i18n="about.p4">Moro em São Paulo, sou vegano e acredito que medicina baseada em evidências aliada à ciência de dados pode transformar o cuidado ao paciente.</p>
-        </div>
-        <div class="about-stats">
-          <div class="stat-card reveal">
-            <div class="stat-number" data-count="106" data-suffix="+">0</div>
-            <div class="stat-label" data-i18n="stat.citations">Citações no principal artigo</div>
-          </div>
-          <div class="stat-card reveal">
-            <div class="stat-number" data-count="7" data-suffix="+">0</div>
-            <div class="stat-label" data-i18n="stat.articles">Artigos publicados</div>
-          </div>
-          <div class="stat-card reveal">
-            <div class="stat-number" data-count-text="PhD">PhD</div>
-            <div class="stat-label" data-i18n="stat.phd">Doutorando FSP-USP</div>
-          </div>
-          <div class="stat-card reveal">
-            <div class="stat-number" data-count="5" data-suffix="+">0</div>
-            <div class="stat-label" data-i18n="stat.role">Projetos open-source</div>
-          </div>
-        </div>
-      </div>
+    <nav class="hdr-nav" aria-label="Seções">
+      <a href="#s1" data-i18n="nav.s1">§1 Introdução</a>
+      <a href="#s2" data-i18n="nav.s2">§2 Pesquisa</a>
+      <a href="#s3" data-i18n="nav.s3">§3 Software</a>
+      <a href="#s4" data-i18n="nav.s4">§4 Publicações</a>
+      <a href="#s5" data-i18n="nav.s5">§5 Trajetória</a>
+    </nav>
+    <div class="hdr-tools">
+      <button type="button" class="tool-btn" id="lang-btn" aria-label="Read in English">EN</button>
+      <button type="button" class="tool-btn" id="theme-btn" aria-label="Alternar tema claro e escuro">
+        <svg id="theme-icon" viewBox="0 0 24 24" aria-hidden="true"></svg>
+      </button>
     </div>
   </div>
-</section>
+</header>
 
-<!-- EXPERTISE -->
-<section id="expertise">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-numeral reveal"><span class="nl" data-i18n="exp.numlabel">Capítulo</span>II.</div>
-      <div>
-        <p class="section-label reveal" data-i18n="exp.label">// expertise</p>
-        <h2 class="section-title reveal" data-i18n-html="exp.title">Áreas de <em>Atuação</em></h2>
+<main id="top" class="wrap">
+
+  <section class="title-block" aria-labelledby="name">
+    <div class="row">
+      <div class="row-main">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Portfólio · Preprint v2026.10 · São Paulo</p>
+        <h1 id="name">Fabiano Barcellos Filho<sup>1,2</sup></h1>
+        <p class="lede" data-i18n="hero.lede">Médico e cientista de dados. Modelos preditivos justos, calibrados e úteis para a saúde pública.</p>
+        <div class="affils">
+          <span><span class="fn">1</span><span data-i18n="hero.aff1">Gerência Médica de Inovação e IA, Hapvida NotreDame Intermédica</span></span>
+          <span><span class="fn">2</span><span data-i18n="hero.aff2">LABDAPS, Faculdade de Saúde Pública, Universidade de São Paulo</span></span>
+        </div>
+      </div>
+      <aside class="row-side corr">
+        <span class="label" data-i18n="hero.corr">Correspondência</span>
+        <a href="https://www.linkedin.com/in/fabianofilho/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://scholar.google.com/citations?user=IqVY-BQAAAAJ&amp;hl=pt-BR" target="_blank" rel="noopener">Google Scholar ↗</a>
+        <a href="https://github.com/fabianofilho" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://fabianofilho.substack.com/" target="_blank" rel="noopener">Substack ↗</a>
+        <a href="https://fabianonbfilho.medium.com/" target="_blank" rel="noopener">Medium ↗</a>
+      </aside>
+    </div>
+
+    <div class="row abstract-row">
+      <div class="row-main">
+        <p class="kicker" style="margin: 0 0 12px;" data-i18n="abs.label">Resumo</p>
+        <p class="abstract" data-i18n="abs.text">Trabalho na interseção entre prática clínica, ciência de dados e inteligência artificial. Na Hapvida, lidero projetos de IA médica em escala; no doutorado (FSP-USP), investigo <em>multicalibração</em> e <em>justiça algorítmica</em> em modelos preditivos de saúde pública, isto é, como garantir que uma predição de risco seja igualmente confiável para diferentes subgrupos populacionais. Também desenvolvo software aberto e ensino IA a profissionais de saúde.</p>
+        <p class="keywords"><span class="kicker" data-i18n="abs.kw">Palavras-chave</span><span data-i18n="abs.kwlist"><em>fairness</em> · multicalibração · modelagem clínica · LLMs · dataset shift · epidemiologia</span></p>
+      </div>
+      <aside class="row-side stats">
+        <div class="stat">
+          <span class="stat-n">106+</span>
+          <span class="stat-l" data-i18n="stat.cit">citações no principal artigo</span>
+        </div>
+        <div class="stat">
+          <span class="stat-n">7+</span>
+          <span class="stat-l" data-i18n="stat.art">artigos revisados por pares</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="supp" aria-label="Cursos">
+    <a href="https://ml4md.fabianofilho.com" target="_blank" rel="noopener">
+      <span class="supp-id">S1</span>
+      <span class="supp-body">
+        <span class="supp-title" data-i18n="s1.title">ML para Médicos ↗</span>
+        <span class="supp-desc" data-i18n="s1.desc">Curso gratuito com os conceitos fundamentais de IA para profissionais de saúde.</span>
+      </span>
+    </a>
+    <a href="https://mentoria.fabianofilho.com" target="_blank" rel="noopener">
+      <span class="supp-id">S2</span>
+      <span class="supp-body">
+        <span class="supp-title">Mentoria Med IA ↗</span>
+        <span class="supp-desc" data-i18n="s2.desc">Programa estruturado de ML e IA, do zero ao avançado: 3 formatos, até 10 módulos, ~120 h.</span>
+      </span>
+    </a>
+  </section>
+
+  <section id="s1" class="sec sec-intro">
+    <div class="row">
+      <div class="row-main">
+        <h2><span class="n">1</span><span data-i18n="intro.title">Introdução</span></h2>
+        <div class="prose">
+          <p data-i18n="intro.p1">Sou médico e cientista de dados. Acredito que medicina baseada em evidências, aliada à ciência de dados, pode transformar o cuidado ao paciente, desde que os modelos sejam avaliados com o mesmo rigor que exigimos de qualquer intervenção clínica.</p>
+          <p data-i18n="intro.p2">Atualmente atuo como Gerente Médico de Inovação e IA na Hapvida NotreDame Intermédica, uma das maiores operadoras de saúde do Brasil<sup class="fn">a</sup>, e sou pesquisador no LABDAPS (USP), onde meu doutorado trata de multicalibração em modelos preditivos de saúde pública<sup class="fn">b</sup>.</p>
+          <p data-i18n="intro.p3">Moro em São Paulo. Sou vegano.</p>
+        </div>
+      </div>
+      <aside class="row-side notes">
+        <p><span class="fn">a</span><span data-i18n="intro.na">Liderança de projetos de IA médica, inovação e análise científica desde jan. 2026.</span></p>
+        <p><span class="fn">b</span><span data-i18n="intro.nb">Ver §2.2 e a Figura 1 para uma ilustração do problema.</span></p>
+      </aside>
+    </div>
+  </section>
+
+  <section id="s2" class="sec">
+    <h2><span class="n">2</span><span data-i18n="res.title">Linhas de pesquisa</span></h2>
+    <p class="hint" data-i18n="res.hint">Selecione uma linha para ver detalhes e métodos.</p>
+
+    <div class="acc">
+      <div class="acc-item">
+        <button type="button" class="acc-btn" aria-expanded="false" aria-controls="acc-p1">
+          <span class="acc-num">2.1</span>
+          <span class="acc-head">
+            <span class="acc-title" data-i18n="r1.title">Deep learning e modelagem clínica</span>
+            <span class="acc-sum" data-i18n="r1.sum">Risco de reinternação, engajamento na APS e análise de ECG com Conv1D, UNet e ResNet1D.</span>
+          </span>
+          <span class="acc-sign" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel" id="acc-p1" hidden>
+          <p class="acc-detail" data-i18n="r1.detail">Modelos treinados em dados reais para prever reinternação em 30 dias, engajamento na Atenção Primária e isquemia em ECG de 12 derivações, com interpretabilidade via GradCAM.</p>
+          <p class="acc-methods" data-i18n="r1.methods">Métodos: CatBoost, XGBoost, PyTorch, Conv1D, GradCAM</p>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button type="button" class="acc-btn" aria-expanded="true" aria-controls="acc-p2">
+          <span class="acc-num">2.2</span>
+          <span class="acc-head">
+            <span class="acc-title" data-i18n="r2.title">Fairness e explicabilidade</span>
+            <span class="acc-sum" data-i18n="r2.sum">Equidade entre subgrupos populacionais: multicalibração com MCBoost e explicabilidade com SHAP.</span>
+          </span>
+          <span class="acc-sign" aria-hidden="true">−</span>
+        </button>
+        <div class="acc-panel" id="acc-p2" style="padding-bottom: 32px;">
+          <p class="acc-detail" data-i18n="r2.detail">Tema do doutorado na FSP-USP: um modelo pode ser bem calibrado na população geral e, ainda assim, sistematicamente sub ou superestimar o risco de subgrupos específicos. Técnicas de pós-processamento, como MCBoost e calibração isotônica, corrigem isso sem retreinar o modelo.</p>
+          <p class="acc-methods" data-i18n="r2.methods">Métodos: MCBoost, SHAP, calibração isotônica</p>
+
+          <figure class="fig" id="fig1">
+            <div class="fig-plot">
+              <svg viewBox="0 0 360 350" role="img" aria-labelledby="fig1-cap">
+                <g class="gridlines">
+                  <line x1="40" y1="20" x2="340" y2="20"></line>
+                  <line x1="40" y1="95" x2="340" y2="95"></line>
+                  <line x1="40" y1="170" x2="340" y2="170"></line>
+                  <line x1="40" y1="245" x2="340" y2="245"></line>
+                  <line x1="115" y1="20" x2="115" y2="320"></line>
+                  <line x1="190" y1="20" x2="190" y2="320"></line>
+                  <line x1="265" y1="20" x2="265" y2="320"></line>
+                  <line x1="340" y1="20" x2="340" y2="320"></line>
+                </g>
+                <line class="axis" x1="40" y1="320" x2="340" y2="320"></line>
+                <line class="axis" x1="40" y1="20" x2="40" y2="320"></line>
+                <line class="diag" x1="40" y1="320" x2="340" y2="20"></line>
+                <g class="ticks">
+                  <text x="40" y="334" text-anchor="middle">0</text>
+                  <text x="190" y="334" text-anchor="middle">0.5</text>
+                  <text x="340" y="334" text-anchor="middle">1</text>
+                  <text x="32" y="323" text-anchor="end">0</text>
+                  <text x="32" y="173" text-anchor="end">0.5</text>
+                  <text x="32" y="23" text-anchor="end">1</text>
+                  <text x="190" y="348" text-anchor="middle" data-i18n="fig.x">probabilidade predita</text>
+                  <text x="14" y="170" text-anchor="middle" transform="rotate(-90 14 170)" data-i18n="fig.y">frequência observada</text>
+                </g>
+                <g id="fig1-groups"></g>
+              </svg>
+            </div>
+            <figcaption class="fig-cap">
+              <p class="fig-text" id="fig1-cap"><span class="fig-label" data-i18n="fig.label">Figura 1.</span><span data-i18n="fig.cap">Diagrama de confiabilidade por subgrupo. A diagonal é a calibração perfeita. Alterne para ver o efeito da multicalibração.</span></p>
+              <div class="seg" role="group" aria-label="Modo">
+                <button type="button" data-mode="before" aria-pressed="true" data-i18n="fig.before">antes</button>
+                <button type="button" data-mode="after" aria-pressed="false" data-i18n="fig.after">após MCBoost</button>
+              </div>
+              <div class="legend">
+                <div class="legend-row head"><span></span><span data-i18n="fig.sub">subgrupo</span><span class="r">ECE</span></div>
+                <div id="fig1-legend"></div>
+              </div>
+              <p class="fig-note" data-i18n="fig.note">Dados sintéticos, apenas para ilustrar o método.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button type="button" class="acc-btn" aria-expanded="false" aria-controls="acc-p3">
+          <span class="acc-num">2.3</span>
+          <span class="acc-head">
+            <span class="acc-title" data-i18n="r3.title">LLMs e IA generativa na medicina</span>
+            <span class="acc-sum" data-i18n="r3.sum">Validação clínica de modelos de linguagem, grounding e RAG em autorizações médicas.</span>
+          </span>
+          <span class="acc-sign" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel" id="acc-p3" hidden>
+          <p class="acc-detail" data-i18n="r3.detail">Validação de GPT-4, Claude e modelos abertos para triagem, autorização de procedimentos e suporte à decisão. Sistemas RAG com base de conhecimento médico para respostas fundamentadas em evidências.</p>
+          <p class="acc-methods" data-i18n="r3.methods">Métodos: LLMs, RAG, grounding, engenharia de prompt</p>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button type="button" class="acc-btn" aria-expanded="false" aria-controls="acc-p4">
+          <span class="acc-num">2.4</span>
+          <span class="acc-head">
+            <span class="acc-title" data-i18n="r4.title">Interoperabilidade e dados clínicos</span>
+            <span class="acc-sum" data-i18n="r4.sum">Integração via FHIR, dados estruturados e não estruturados, NLP em prontuários.</span>
+          </span>
+          <span class="acc-sign" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel" id="acc-p4" hidden>
+          <p class="acc-detail" data-i18n="r4.detail">Integração hospitalar via FHIR R4, extração de informação de prontuários com NLP e pipelines de dados clínicos para alimentar modelos de machine learning.</p>
+          <p class="acc-methods" data-i18n="r4.methods">Métodos: FHIR, HL7, NLP, EHR</p>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button type="button" class="acc-btn" aria-expanded="false" aria-controls="acc-p5">
+          <span class="acc-num">2.5</span>
+          <span class="acc-head">
+            <span class="acc-title" data-i18n="r5.title">Epidemiologia e saúde pública</span>
+            <span class="acc-sum" data-i18n="r5.sum">Estudos multicêntricos, predição de desfechos e dataset shift em modelos populacionais.</span>
+          </span>
+          <span class="acc-sign" aria-hidden="true">+</span>
+        </button>
+        <div class="acc-panel" id="acc-p5" hidden>
+          <p class="acc-detail" data-i18n="r5.detail">Modelos preditivos multicêntricos para COVID-19 e ganho de peso gestacional; pesquisa ativa em dataset shift e aprendizado federado (ver [1], [4], [5], [6]).</p>
+          <p class="acc-methods" data-i18n="r5.methods">Métodos: epidemiologia, dataset shift, federated learning</p>
+        </div>
       </div>
     </div>
-    <aside class="section-aside reveal">
-      <span class="accent">05 Áreas</span><br/>
-      <span data-i18n="exp.aside">Clique para expandir cada uma e ver os detalhes da pesquisa aplicada.</span>
-    </aside>
-    <div class="section-body">
-    <div class="expertise-grid">
+  </section>
 
-      <div class="expertise-card reveal">
-        <div class="expertise-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="7" y="7" width="10" height="10" rx="1"/>
-            <path d="M9 7V4M12 7V4M15 7V4M9 20v-3M12 20v-3M15 20v-3M7 9H4M7 12H4M7 15H4M20 9h-3M20 12h-3M20 15h-3"/>
-          </svg>
-          <span class="expertise-expand-icon">+</span>
-        </div>
-        <div class="expertise-title" data-i18n="e1.title">Deep Learning e Modelagem Clínica</div>
-        <div class="expertise-desc" data-i18n="e1.desc">Modelos preditivos para risco de reinternação, engajamento na APS e análise de ECG com Conv1D, UNet e ResNet1D. Detecção de isquemia e condições cardíacas via deep learning com GradCAM.</div>
-        <div class="tech-pills">
-          <span class="pill">CatBoost</span>
-          <span class="pill">XGBoost</span>
-          <span class="pill">PyTorch</span>
-          <span class="pill">Conv1D</span>
-          <span class="pill">GradCAM</span>
-        </div>
-        <div class="expertise-detail" data-i18n="e1.detail">Modelos treinados em dados reais da Hapvida para prever risco de reinternação em 30 dias, engajamento de pacientes na Atenção Primária e detecção de isquemia em ECG de 12 derivações com interpretabilidade via GradCAM.</div>
-      </div>
-
-      <div class="expertise-card reveal">
-        <div class="expertise-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            <polyline points="9 12 11 14 15 10"/>
-          </svg>
-          <span class="expertise-expand-icon">+</span>
-        </div>
-        <div class="expertise-title" data-i18n="e2.title">Fairness & Explicabilidade (XAI)</div>
-        <div class="expertise-desc" data-i18n="e2.desc">Garantia de equidade em modelos de IA para diferentes subgrupos populacionais. Multicalibração com MCBoost e explicabilidade com SHAP para predições médicas.</div>
-        <div class="tech-pills">
-          <span class="pill">MCBoost</span>
-          <span class="pill">SHAP</span>
-          <span class="pill">Isotonic Calibration</span>
-        </div>
-        <div class="expertise-detail" data-i18n="e2.detail">Pesquisa de doutorado na FSP-USP focada em garantir que modelos preditivos em saúde pública performem de forma justa entre diferentes subgrupos demográficos, utilizando técnicas de pós-processamento como MCBoost e calibração isotônica.</div>
-      </div>
-
-      <div class="expertise-card reveal">
-        <div class="expertise-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
-            <path d="M5 3v4M19 17v4M3 5h4M17 19h4"/>
-          </svg>
-          <span class="expertise-expand-icon">+</span>
-        </div>
-        <div class="expertise-title" data-i18n="e3.title">LLMs & IA Generativa na Medicina</div>
-        <div class="expertise-desc" data-i18n="e3.desc">Validação clínica de Large Language Models, IA generativa com grounding para confiabilidade e RAG (Retrieval-Augmented Generation) em autorizações médicas.</div>
-        <div class="tech-pills">
-          <span class="pill">LLMs</span>
-          <span class="pill">RAG</span>
-          <span class="pill">Grounding</span>
-          <span class="pill">Prompt Engineering</span>
-        </div>
-        <div class="expertise-detail" data-i18n="e3.detail">Projetos de validação clínica de GPT-4, Claude e modelos open-source para triagem, autorização de procedimentos e suporte à decisão médica. Sistemas RAG com base de conhecimento médico para respostas fundamentadas em evidências.</div>
-      </div>
-
-      <div class="expertise-card reveal">
-        <div class="expertise-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
-            <line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/>
-          </svg>
-          <span class="expertise-expand-icon">+</span>
-        </div>
-        <div class="expertise-title" data-i18n="e4.title">Interoperabilidade & Dados Clínicos</div>
-        <div class="expertise-desc" data-i18n="e4.desc">Integração de sistemas de saúde via padrão FHIR, processamento de dados clínicos estruturados e não-estruturados, NLP em prontuários eletrônicos.</div>
-        <div class="tech-pills">
-          <span class="pill">FHIR</span>
-          <span class="pill">HL7</span>
-          <span class="pill">NLP</span>
-          <span class="pill">EHR</span>
-        </div>
-        <div class="expertise-detail" data-i18n="e4.detail">Integração de sistemas hospitalares via FHIR R4, extração de informações de prontuários não estruturados com NLP e construção de pipelines de dados clínicos para alimentar modelos de machine learning.</div>
-      </div>
-
-      <div class="expertise-card reveal">
-        <div class="expertise-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/>
-          </svg>
-          <span class="expertise-expand-icon">+</span>
-        </div>
-        <div class="expertise-title" data-i18n="e5.title">Epidemiologia & Saúde Pública</div>
-        <div class="expertise-desc" data-i18n="e5.desc">Análise epidemiológica com machine learning, estudos multicêntricos, predição de desfechos clínicos e dataset shift em modelos de saúde populacionais.</div>
-        <div class="tech-pills">
-          <span class="pill">Epidemiologia</span>
-          <span class="pill">Dataset Shift</span>
-          <span class="pill">Federated Learning</span>
-        </div>
-        <div class="expertise-detail" data-i18n="e5.detail">Publicações em PLOS Digital Health e BMC sobre modelos preditivos multicêntricos para COVID-19 e ganho de peso gestacional. Pesquisa ativa em dataset shift e aprendizado federado para modelos de saúde populacionais.</div>
-      </div>
-
-    </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJETOS -->
-<section id="projetos" class="bg-alt">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-numeral reveal"><span class="nl" data-i18n="proj.numlabel">Capítulo</span>III.</div>
-      <div>
-        <p class="section-label reveal" data-i18n="proj.label">// open source</p>
-        <h2 class="section-title reveal" data-i18n-html="proj.title">Projetos em <em>Destaque</em></h2>
-      </div>
-    </div>
-    <aside class="section-aside reveal">
-      <span class="accent">github.com</span><br/>
-      <span data-i18n="proj.aside">/fabianofilho<br/>Pesquisa aplicada e ferramentas open-source para profissionais de saúde.</span>
-    </aside>
-    <div class="section-body">
-    <div class="projects-grid">
-
-      <a href="https://github.com/fabianofilho/aiscribr" target="_blank" class="project-card reveal">
-        <div class="project-header">
-          <div class="project-name">aiscribr</div>
-          <span class="project-visibility badge-private" data-i18n="proj.private">privado</span>
-        </div>
-        <div class="project-desc" data-i18n="proj1.desc">
-          Transcritor clínico com IA que gera resumos SOAP automaticamente a partir de consultas médicas. Utiliza modelos de linguagem para capturar, estruturar e sintetizar o diálogo médico-paciente em documentação clínica padronizada, otimizando o tempo do profissional de saúde.
-        </div>
-        <div class="tech-pills" style="margin-bottom: 1.25rem;">
-          <span class="pill">AI Scribe</span>
-          <span class="pill">SOAP Notes</span>
-          <span class="pill">Clinical NLP</span>
-          <span class="pill">LLMs</span>
-        </div>
-        <div class="project-footer">
-          <div class="project-lang">
-            <div class="lang-dot lang-python"></div>
-            Python
-          </div>
-          <div class="project-link"><span>GitHub</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
-        </div>
+  <section id="s3" class="sec">
+    <h2><span class="n">3</span>Software</h2>
+    <div class="list">
+      <a class="entry" href="https://github.com/fabianofilho/aiscribr" target="_blank" rel="noopener">
+        <span class="entry-meta"><span class="entry-name">aiscribr ↗</span><span class="entry-sub" data-i18n="sw.private">privado · Python</span></span>
+        <span class="entry-desc" data-i18n="sw1.desc">Transcritor clínico que gera notas SOAP a partir de consultas, estruturando o diálogo médico-paciente em documentação padronizada.</span>
       </a>
-
-      <a href="https://github.com/fabianofilho/amie-agents" target="_blank" class="project-card reveal">
-        <div class="project-header">
-          <div class="project-name">amie-agents</div>
-          <span class="project-visibility badge-public" data-i18n="proj.public">público</span>
-        </div>
-        <div class="project-desc" data-i18n="proj2.desc">
-          Implementação open-source de assistentes médicos conversacionais inspirados no AMIE do Google DeepMind. Arquitetura multi-agente com especialistas em diálogo clínico, raciocínio diagnóstico e segurança farmacológica. Usa MedGemma, FastAPI, LangChain e Ollama para inferência local, posicionando a IA como suporte ao médico, nunca como substituto.
-        </div>
-        <div class="tech-pills" style="margin-bottom: 1.25rem;">
-          <span class="pill">MedGemma</span>
-          <span class="pill">FastAPI</span>
-          <span class="pill">LangChain</span>
-          <span class="pill">CrewAI</span>
-          <span class="pill">Ollama</span>
-        </div>
-        <div class="project-footer">
-          <div class="project-lang">
-            <div class="lang-dot lang-python"></div>
-            Python
-          </div>
-          <div class="project-link"><span data-i18n="proj.link.repo">Ver repositório</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
-        </div>
+      <a class="entry" href="https://github.com/fabianofilho/amie-agents" target="_blank" rel="noopener">
+        <span class="entry-meta"><span class="entry-name">amie-agents ↗</span><span class="entry-sub" data-i18n="sw.public">público · Python</span></span>
+        <span class="entry-desc" data-i18n="sw2.desc">Assistentes clínicos multiagente inspirados no AMIE (DeepMind), com inferência local via MedGemma e Ollama. A IA como suporte ao médico, nunca substituto.</span>
       </a>
-
-      <a href="https://github.com/fabianofilho/datasus-ai-search" target="_blank" class="project-card reveal">
-        <div class="project-header">
-          <div class="project-name">datasus-ai-search</div>
-          <span class="project-visibility badge-public" data-i18n="proj.public">público</span>
-        </div>
-        <div class="project-desc" data-i18n="proj3.desc">
-          Consultas em linguagem natural sobre dados epidemiológicos brasileiros do DATASUS. Permite que pesquisadores e profissionais de saúde façam perguntas em português, sem SQL, e obtenham respostas com visualizações. Integra LLMs (OpenAI, Anthropic, Ollama) com DuckDB para análise local de mortalidade (SIM), internações (SIH), procedimentos ambulatoriais (SIA) e dados populacionais (IBGE).
-        </div>
-        <div class="tech-pills" style="margin-bottom: 1.25rem;">
-          <span class="pill">Python</span>
-          <span class="pill">LLMs</span>
-          <span class="pill">DuckDB</span>
-          <span class="pill">Streamlit</span>
-          <span class="pill">DATASUS</span>
-        </div>
-        <div class="project-footer">
-          <div class="project-lang">
-            <div class="lang-dot lang-python"></div>
-            Python
-          </div>
-          <div class="project-link"><span data-i18n="proj.link.repo">Ver repositório</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
-        </div>
+      <a class="entry" href="https://github.com/fabianofilho/datasus-ai-search" target="_blank" rel="noopener">
+        <span class="entry-meta"><span class="entry-name">datasus-ai-search ↗</span><span class="entry-sub" data-i18n="sw.public">público · Python</span></span>
+        <span class="entry-desc" data-i18n="sw3.desc">Perguntas em português, sem SQL, sobre SIM, SIH, SIA e IBGE. LLMs com DuckDB para análise local de dados do DATASUS.</span>
       </a>
-
-      <a href="https://github.com/fabianofilho/datasus-ai-prediction" target="_blank" class="project-card reveal">
-        <div class="project-header">
-          <div class="project-name">datasus-ai-prediction</div>
-          <span class="project-visibility badge-public" data-i18n="proj.public">público</span>
-        </div>
-        <div class="project-desc" data-i18n="proj4.desc">
-          Modelos preditivos aplicados a dados do DATASUS para antecipação de tendências epidemiológicas e desfechos em saúde pública. Utiliza séries temporais e machine learning sobre bases de mortalidade, internações e procedimentos ambulatoriais para apoiar a tomada de decisão em gestão de saúde.
-        </div>
-        <div class="tech-pills" style="margin-bottom: 1.25rem;">
-          <span class="pill">Python</span>
-          <span class="pill">Machine Learning</span>
-          <span class="pill">Time Series</span>
-          <span class="pill">DATASUS</span>
-        </div>
-        <div class="project-footer">
-          <div class="project-lang">
-            <div class="lang-dot lang-python"></div>
-            Python
-          </div>
-          <div class="project-link"><span data-i18n="proj.link.repo">Ver repositório</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
-        </div>
+      <a class="entry" href="https://github.com/fabianofilho/datasus-ai-prediction" target="_blank" rel="noopener">
+        <span class="entry-meta"><span class="entry-name">datasus-ai-prediction ↗</span><span class="entry-sub" data-i18n="sw.public">público · Python</span></span>
+        <span class="entry-desc" data-i18n="sw4.desc">Séries temporais e machine learning sobre bases do DATASUS para antecipar tendências epidemiológicas e apoiar a gestão em saúde.</span>
       </a>
-
     </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- PUBLICAÇÕES -->
-<section id="publicacoes">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-numeral reveal"><span class="nl" data-i18n="pub.numlabel">Capítulo</span>IV.</div>
-      <div>
-        <p class="section-label reveal" data-i18n="pub.label">// ciência</p>
-        <h2 class="section-title reveal" data-i18n-html="pub.title">Publicações <em>Selecionadas</em></h2>
+  <section id="s4" class="sec">
+    <h2><span class="n">4</span><span data-i18n="pub.title">Publicações selecionadas</span></h2>
+    <ol class="pubs">
+      <li><span class="ref">[1]</span><span>Transfer learning for COVID-19 predictive modeling: a multicenter study of 12 hospitals. <em>Annals of Epidemiology</em>, 2025.</span></li>
+      <li><span class="ref">[2]</span><span>Improving meningitis surveillance and diagnosis with machine learning: insights from São Paulo. <em>PLOS Digital Health</em>, 2025.</span></li>
+      <li><span class="ref">[3]</span><span>Artificial intelligence for the diagnosis of erythematous-squamous dermatological diseases: technological contributions to primary care. <em>Anais Brasileiros de Dermatologia</em>, 2025.</span></li>
+      <li><span class="ref">[4]</span><span>Strategies for detecting and mitigating dataset shift in machine learning for health predictions: a systematic review. <em>Journal of Biomedical Informatics</em>, 2025.</span></li>
+      <li><span class="ref">[5]</span><span>Predictive modeling of gestational weight gain: a machine learning multiclass classification study. <em>BMC Pregnancy and Childbirth</em>, 2024.</span></li>
+      <li><span class="ref">[6]</span><span>Multicenter comparative analysis of local and aggregated data training strategies in COVID-19 outcome prediction with machine learning. <em>PLOS Digital Health</em>, 2024.</span></li>
+    </ol>
+    <p class="pubs-more"><a href="https://scholar.google.com/citations?user=IqVY-BQAAAAJ&amp;hl=pt-BR" target="_blank" rel="noopener" data-i18n="pub.more">Lista completa no Google Scholar ↗</a></p>
+  </section>
+
+  <section id="s5" class="sec">
+    <h2><span class="n">5</span><span data-i18n="car.title">Trajetória</span></h2>
+    <div class="list timeline">
+      <div class="entry">
+        <span class="period" data-i18n="car.p1">2026 → presente</span>
+        <span class="role"><span class="role-title" data-i18n="car.r1">Gerente Médico de Inovação e Inteligência Artificial</span><span class="role-org">Hapvida NotreDame Intermédica</span></span>
       </div>
-    </div>
-    <aside class="section-aside reveal">
-      <span class="accent">Scholar h-index</span><br/>
-      <span data-i18n="pub.aside">Pesquisa peer-reviewed em IA, fairness e modelagem clínica preditiva.</span>
-    </aside>
-    <div class="section-body">
-    <div class="pub-list">
-
-      <div class="pub-card reveal">
-        <div class="pub-number">01</div>
-        <div>
-          <div class="pub-title">Transfer learning for COVID-19 predictive modeling: A multicenter study of 12 hospitals</div>
-          <div class="pub-meta">Annals of Epidemiology · 2025</div>
-        </div>
+      <div class="entry">
+        <span class="period" data-i18n="car.p2">2025 → presente</span>
+        <span class="role"><span class="role-title" data-i18n="car.r2">Doutorado em Machine Learning na Saúde Pública</span><span class="role-org">FSP-USP · LABDAPS</span></span>
       </div>
-
-      <div class="pub-card reveal">
-        <div class="pub-number">02</div>
-        <div>
-          <div class="pub-title">Improving meningitis surveillance and diagnosis with machine learning: Insights from Sao Paulo</div>
-          <div class="pub-meta">PLOS Digital Health · 2025</div>
-        </div>
+      <div class="entry">
+        <span class="period" data-i18n="car.p3">2023 → presente</span>
+        <span class="role"><span class="role-title" data-i18n="car.r3">Fundador e investidor</span><span class="role-org" data-i18n="car.o3">Medicina e Inteligência Artificial</span></span>
       </div>
-
-      <div class="pub-card reveal">
-        <div class="pub-number">03</div>
-        <div>
-          <div class="pub-title">Artificial intelligence for the diagnosis of erythematous-squamous dermatological diseases: technological contributions to primary care</div>
-          <div class="pub-meta">Anais Brasileiros de Dermatologia · 2025</div>
-        </div>
+      <div class="entry">
+        <span class="period">2024 → 2025</span>
+        <span class="role"><span class="role-title" data-i18n="car.r4">Professor de IA na Medicina</span><span class="role-org">amo medicina · Unyleya Educacional</span></span>
       </div>
-
-      <div class="pub-card reveal">
-        <div class="pub-number">04</div>
-        <div>
-          <div class="pub-title">Strategies for detecting and mitigating dataset shift in machine learning for health predictions: A systematic review</div>
-          <div class="pub-meta">Journal of Biomedical Informatics · 2025</div>
-        </div>
-      </div>
-
-      <div class="pub-card reveal">
-        <div class="pub-number">05</div>
-        <div>
-          <div class="pub-title">Predictive modeling of gestational weight gain: a machine learning multiclass classification study</div>
-          <div class="pub-meta">BMC Pregnancy and Childbirth · 2024</div>
-        </div>
-      </div>
-
-      <div class="pub-card reveal">
-        <div class="pub-number">06</div>
-        <div>
-          <div class="pub-title">Multicenter comparative analysis of local and aggregated data training strategies in COVID-19 outcome prediction with Machine Learning</div>
-          <div class="pub-meta">PLOS Digital Health · 2024</div>
-        </div>
-      </div>
-
-    </div>
-    <div style="margin-top: 2.5rem;">
-      <a href="https://scholar.google.com/citations?user=IqVY-BQAAAAJ&hl=pt-BR" target="_blank" class="btn btn-outline"><span data-i18n="pub.cta">Ver todas no Google Scholar</span> <svg class="icon-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    </div>
-    </div>
-  </div>
-</section>
-
-<!-- TRAJETÓRIA -->
-<section id="trajetoria" class="bg-alt">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-numeral reveal"><span class="nl" data-i18n="traj.numlabel">Capítulo</span>V.</div>
-      <div>
-        <p class="section-label reveal" data-i18n="traj.label">// trajetória</p>
-        <h2 class="section-title reveal" data-i18n-html="traj.title">Profissional <em>&amp; Acadêmica</em></h2>
+      <div class="entry">
+        <span class="period">2023 → 2025</span>
+        <span class="role"><span class="role-title">Head of Medical AI Innovation</span><span class="role-org" data-i18n="car.o5">Neomed · IA Mariê para cardiologia, ECG com deep learning</span></span>
       </div>
     </div>
-    <aside class="section-aside reveal">
-      <span class="accent">Cronologia</span><br/>
-      <span data-i18n="traj.aside">Da medicina clínica à liderança em IA aplicada à saúde populacional.</span>
-    </aside>
-    <div class="section-body">
-    <div class="timeline">
+  </section>
 
-      <div class="timeline-item reveal">
-        <div class="timeline-period"><span>Jan 2026</span> <svg class="icon-inline icon-timeline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg> <span>Presente</span></div>
-        <div class="timeline-role" data-i18n="t1.role">Gerente Médico de Inovação e Inteligência Artificial</div>
-        <div class="timeline-org">Hapvida NotreDame Intermédica</div>
-        <div class="timeline-desc" data-i18n="t1.desc">Liderança de projetos de IA médica, inovação e análise científica em uma das maiores operadoras de saúde do Brasil.</div>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-period"><span>Jun 2025</span> <svg class="icon-inline icon-timeline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg> <span>Presente</span></div>
-        <div class="timeline-role" data-i18n="t2.role">Doutorando (PhD) em Machine Learning na Saúde Pública</div>
-        <div class="timeline-org">FSP-USP · LABDAPS</div>
-        <div class="timeline-desc" data-i18n="t2.desc">Pesquisa em multicalibração e justiça (fairness) em modelos preditivos, garantindo equidade para diferentes subgrupos populacionais.</div>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-period"><span>Jul 2023</span> <svg class="icon-inline icon-timeline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg> <span>Presente</span></div>
-        <div class="timeline-role" data-i18n="t3.role">Fundador e Investidor</div>
-        <div class="timeline-org" data-i18n="t3.org">Medicina e Inteligência Artificial</div>
-        <div class="timeline-desc" data-i18n="t3.desc">Gestão de projetos e disseminação de conhecimento em IA na saúde para a comunidade médica brasileira.</div>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-period"><span>2024</span> <svg class="icon-inline icon-timeline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg> <span>2025</span></div>
-        <div class="timeline-role" data-i18n="t4.role">Professor de IA na Medicina</div>
-        <div class="timeline-org">amo medicina · Unyleya Educacional</div>
-        <div class="timeline-desc" data-i18n="t4.desc">Docência e criação de conteúdo em Inteligência Artificial aplicada à medicina.</div>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-period"><span>2023</span> <svg class="icon-inline icon-timeline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg> <span>2025</span></div>
-        <div class="timeline-role" data-i18n="t5.role">Head of Medical AI Innovation</div>
-        <div class="timeline-org">Neomed</div>
-        <div class="timeline-desc" data-i18n="t5.desc">Liderança da Tribo Científica e desenvolvimento da IA Mariê para cardiologia, com análise de ECG via Deep Learning.</div>
-      </div>
-
+  <section class="cite" aria-labelledby="cite-title">
+    <div class="cite-side">
+      <span class="kicker" id="cite-title" data-i18n="cite.title">Como citar esta página</span>
+      <button type="button" class="cite-copy" id="cite-copy" data-i18n="cite.copy">copiar BibTeX</button>
     </div>
-    </div>
-  </div>
-</section>
+    <pre id="bibtex">@misc{barcellosfilho2026,
+  author = {Barcellos Filho, Fabiano},
+  title  = {Medicina, Dados e IA: portfólio},
+  year   = {2026},
+  url    = {https://fabianofilho.com}
+}</pre>
+  </section>
+</main>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div>
-      <div class="footer-mark">Fabiano <em>Barcellos</em><br/>Filho<span style="color: var(--accent); font-style: normal; font-size: 0.36em; vertical-align: 0.45em; letter-spacing: 0.05em; margin-left: 0.2em;">, MD</span></div>
-      <p class="footer-tagline" data-i18n="footer.sub">Médico · Cientista de Dados · IA na Saúde · São Paulo, Brasil</p>
-    </div>
-    <div>
-      <p class="footer-col-title" data-i18n="footer.elsewhere">Em outros lugares</p>
-      <ul class="footer-links">
-        <li><a href="https://www.linkedin.com/in/fabianofilho/" target="_blank" aria-label="LinkedIn">
-          <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.22 0z"/></svg>
-          LinkedIn
-        </a></li>
-        <li><a href="https://scholar.google.com/citations?user=IqVY-BQAAAAJ&hl=pt-BR" target="_blank" aria-label="Google Scholar">
-          <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.242 13.769 0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
-          Google Scholar
-        </a></li>
-        <li><a href="https://fabianofilho.substack.com/" target="_blank" aria-label="Substack">
-          <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
-          Substack
-        </a></li>
-        <li><a href="https://fabianonbfilho.medium.com/" target="_blank" aria-label="Medium">
-          <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
-          Medium
-        </a></li>
-        <li><a href="https://github.com/fabianofilho" target="_blank" aria-label="GitHub">
-          <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-          GitHub
-        </a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-copy">
-    <span>© MMXXVI · Fabiano Barcellos Filho</span>
-    <span><span class="accent">●</span> fabianofilho.com</span>
+<footer class="site-footer">
+  <div class="ftr">
+    <span>© 2026 Fabiano Barcellos Filho · São Paulo</span>
+    <span data-i18n="ftr.type">Composto em Source Serif e IBM Plex Mono</span>
   </div>
 </footer>
 
 <script>
-  var currentLang = 'pt';
-  var currentTheme = 'dark';
+(function () {
+  var root = document.documentElement;
+  function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
 
-  var moonIcon = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
-  var sunIcon = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
-
-  function toggleTheme() {
-    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    document.body.classList.toggle('light', currentTheme === 'light');
-    document.body.classList.toggle('dark', currentTheme === 'dark');
-    document.getElementById('theme-icon').innerHTML = currentTheme === 'dark' ? sunIcon : moonIcon;
-  }
-
-  // Neural panel: training loss curve (decays, then restarts an "epoch")
-  (function() {
-    var lossEl = document.getElementById('vital-loss');
-    if (!lossEl) return;
-    var loss = 0.043;
-    function tick() {
-      loss = loss * (0.94 + Math.random() * 0.04);
-      if (loss < 0.011) loss = 0.05 + Math.random() * 0.02; // new epoch
-      lossEl.innerHTML = loss.toFixed(3) + '<span class="arrow-down">↓</span>';
-    }
-    setInterval(tick, 1600);
-  })();
-
-  var translations = {
+  // ---------- Idioma ----------
+  var EN = {
+    'nav.s1': '§1 Introduction',
+    'nav.s2': '§2 Research',
+    'nav.s3': '§3 Software',
+    'nav.s4': '§4 Publications',
+    'nav.s5': '§5 Career',
+    'hero.eyebrow': 'Portfolio · Preprint v2026.10 · São Paulo',
+    'hero.lede': 'Physician and data scientist. Fair, calibrated and useful predictive models for public health.',
+    'hero.aff1': 'Medical Innovation and AI Management, Hapvida NotreDame Intermédica',
+    'hero.aff2': 'LABDAPS, School of Public Health, University of São Paulo',
+    'hero.corr': 'Correspondence',
+    'abs.label': 'Abstract',
+    'abs.text': 'I work at the intersection of clinical practice, data science and artificial intelligence. At Hapvida, I lead medical AI projects at scale; in my PhD (FSP-USP), I study <em>multicalibration</em> and <em>algorithmic fairness</em> in public health predictive models, that is, how to make a risk prediction equally reliable across population subgroups. I also build open-source software and teach AI to health professionals.',
+    'abs.kw': 'Keywords',
+    'abs.kwlist': '<em>fairness</em> · multicalibration · clinical modeling · LLMs · dataset shift · epidemiology',
+    'stat.cit': 'citations of the main paper',
+    'stat.art': 'peer-reviewed papers',
+    's1.title': 'ML for Physicians ↗',
+    's1.desc': 'Free course on the core concepts of AI for health professionals.',
+    's2.desc': 'Structured ML and AI program, from zero to advanced: 3 formats, up to 10 modules, ~120 h.',
+    'intro.title': 'Introduction',
+    'intro.p1': 'I am a physician and data scientist. I believe evidence-based medicine, combined with data science, can transform patient care, as long as models are evaluated with the same rigor we demand of any clinical intervention.',
+    'intro.p2': 'I currently serve as Medical Manager of Innovation and AI at Hapvida NotreDame Intermédica, one of the largest health care companies in Brazil<sup class="fn">a</sup>, and I am a researcher at LABDAPS (USP), where my PhD addresses multicalibration in public health predictive models<sup class="fn">b</sup>.',
+    'intro.p3': 'I live in São Paulo. I am vegan.',
+    'intro.na': 'Leading medical AI, innovation and scientific analysis projects since Jan. 2026.',
+    'intro.nb': 'See §2.2 and Figure 1 for an illustration of the problem.',
+    'res.title': 'Research lines',
+    'res.hint': 'Select a line to see details and methods.',
+    'r1.title': 'Deep learning and clinical modeling',
+    'r1.sum': 'Readmission risk, primary care engagement and ECG analysis with Conv1D, UNet and ResNet1D.',
+    'r1.detail': 'Models trained on real-world data to predict 30-day readmission, primary care engagement and ischemia on 12-lead ECG, with GradCAM interpretability.',
+    'r1.methods': 'Methods: CatBoost, XGBoost, PyTorch, Conv1D, GradCAM',
+    'r2.title': 'Fairness and explainability',
+    'r2.sum': 'Equity across population subgroups: multicalibration with MCBoost and explainability with SHAP.',
+    'r2.detail': 'My PhD topic at FSP-USP: a model can be well calibrated in the overall population and still systematically under or overestimate the risk of specific subgroups. Post-processing techniques such as MCBoost and isotonic calibration fix this without retraining the model.',
+    'r2.methods': 'Methods: MCBoost, SHAP, isotonic calibration',
+    'fig.x': 'predicted probability',
+    'fig.y': 'observed frequency',
+    'fig.label': 'Figure 1.',
+    'fig.cap': 'Reliability diagram by subgroup. The diagonal is perfect calibration. Toggle to see the effect of multicalibration.',
+    'fig.before': 'before',
+    'fig.after': 'after MCBoost',
+    'fig.sub': 'subgroup',
+    'fig.note': 'Synthetic data, for illustration only.',
+    'r3.title': 'LLMs and generative AI in medicine',
+    'r3.sum': 'Clinical validation of language models, grounding and RAG in medical authorizations.',
+    'r3.detail': 'Validation of GPT-4, Claude and open models for triage, procedure authorization and decision support. RAG systems with a medical knowledge base for evidence-grounded answers.',
+    'r3.methods': 'Methods: LLMs, RAG, grounding, prompt engineering',
+    'r4.title': 'Interoperability and clinical data',
+    'r4.sum': 'Integration via FHIR, structured and unstructured data, NLP on medical records.',
+    'r4.detail': 'Hospital integration via FHIR R4, information extraction from medical records with NLP, and clinical data pipelines that feed machine learning models.',
+    'r4.methods': 'Methods: FHIR, HL7, NLP, EHR',
+    'r5.title': 'Epidemiology and public health',
+    'r5.sum': 'Multicenter studies, outcome prediction and dataset shift in population models.',
+    'r5.detail': 'Multicenter predictive models for COVID-19 and gestational weight gain; active research on dataset shift and federated learning (see [1], [4], [5], [6]).',
+    'r5.methods': 'Methods: epidemiology, dataset shift, federated learning',
+    'sw.private': 'private · Python',
+    'sw.public': 'public · Python',
+    'sw1.desc': 'Clinical scribe that generates SOAP notes from consultations, structuring the doctor-patient dialogue into standardized documentation.',
+    'sw2.desc': 'Multi-agent clinical assistants inspired by AMIE (DeepMind), with local inference via MedGemma and Ollama. AI as support for the physician, never a substitute.',
+    'sw3.desc': 'Questions in Portuguese, no SQL, about SIM, SIH, SIA and IBGE. LLMs with DuckDB for local analysis of DATASUS data.',
+    'sw4.desc': 'Time series and machine learning on DATASUS data to anticipate epidemiological trends and support health management.',
+    'pub.title': 'Selected publications',
+    'pub.more': 'Full list on Google Scholar ↗',
+    'car.title': 'Career',
+    'car.p1': '2026 → present',
+    'car.p2': '2025 → present',
+    'car.p3': '2023 → present',
+    'car.r1': 'Medical Manager of Innovation and Artificial Intelligence',
+    'car.r2': 'PhD in Machine Learning for Public Health',
+    'car.r3': 'Founder and investor',
+    'car.o3': 'Medicine and Artificial Intelligence',
+    'car.r4': 'Professor of AI in Medicine',
+    'car.o5': 'Neomed · Mariê AI for cardiology, deep learning ECG',
+    'cite.title': 'How to cite this page',
+    'cite.copy': 'copy BibTeX',
+    'ftr.type': 'Set in Source Serif and IBM Plex Mono'
+  };
+  var UI = {
     pt: {
-      'nav.sobre': 'Sobre',
-      'nav.trajetoria': 'Trajetória',
-      'nav.expertise': 'Expertise',
-      'nav.publicacoes': 'Publicações',
-      'nav.projetos': 'Projetos',
-      'hero.badge': 'Médico · Cientista de Dados · IA na Saúde',
-      'hero.sub': 'Gerente Médico de Inovação e IA na Hapvida · Doutorando em Machine Learning na FSP-USP.',
-      'hero.cta2': 'Conheça',
-      'hero.location': 'São Paulo, Brasil',
-      'about.numlabel': 'Capítulo',
-      'about.title': 'Medicina, Dados <em>&amp; IA</em>',
-      'about.aside1': 'São Paulo, BR',
-      'exp.numlabel': 'Capítulo',
-      'exp.title': 'Áreas de <em>Atuação</em>',
-      'exp.aside': 'Clique para expandir cada uma e ver os detalhes da pesquisa aplicada.',
-      'proj.numlabel': 'Capítulo',
-      'proj.title': 'Projetos em <em>Destaque</em>',
-      'proj.aside': '/fabianofilho<br/>Pesquisa aplicada e ferramentas open-source para profissionais de saúde.',
-      'pub.numlabel': 'Capítulo',
-      'pub.title': 'Publicações <em>Selecionadas</em>',
-      'pub.aside': 'Pesquisa peer-reviewed em IA, fairness e modelagem clínica preditiva.',
-      'pub.cta': 'Ver todas no Google Scholar',
-      'traj.numlabel': 'Capítulo',
-      'traj.title': 'Profissional <em>&amp; Acadêmica</em>',
-      'traj.aside': 'Da medicina clínica à liderança em IA aplicada à saúde populacional.',
-      'footer.elsewhere': 'Em outros lugares',
-      'course.label': '// novo curso',
-      'course.title': 'ML para Médicos',
-      'course.desc': 'Curso gratuito focado em apresentar os conceitos fundamentais de Medicina e Inteligência Artificial para profissionais de saúde.',
-      'course.cta': 'Acessar curso',
-      'mentoria.label': '// mentoria',
-      'mentoria.title': 'Mentoria Med IA',
-      'mentoria.desc': 'Programa estruturado de ML e IA para profissionais da saúde. Do zero ao avançado: 3 formatos, até 10 módulos e ~120 horas.',
-      'mentoria.cta': 'Saiba mais',
-      'about.label': '// sobre mim',
-      'about.p1': 'Sou <strong>médico e cientista de dados</strong>, apaixonado por utilizar tecnologias avançadas para melhorar a qualidade de vida das pessoas e impulsionar inovações na saúde.',
-      'about.p2': 'Atualmente atuo como <strong>Gerente Médico de Inovação e IA na Hapvida NotreDame Intermédica</strong>, liderando projetos de IA médica de alto impacto.',
-      'about.p3': 'Sou pesquisador no <strong>LABDAPS (USP)</strong> e doutorando com foco em <strong>multicalibração e justiça em modelos preditivos de saúde pública</strong>, buscando tornar a IA mais equitativa para diferentes populações.',
-      'about.p4': 'Moro em São Paulo, sou vegano e acredito que medicina baseada em evidências aliada à ciência de dados pode transformar o cuidado ao paciente.',
-      'stat.citations': 'Citações no principal artigo',
-      'stat.articles': 'Artigos publicados',
-      'stat.phd': 'Doutorando FSP-USP',
-      'stat.role': 'Projetos open-source',
-      'traj.label': '// trajetória',
-      't1.role': 'Gerente Médico de Inovação e Inteligência Artificial',
-      't1.desc': 'Liderança de projetos de IA médica, inovação e análise científica em uma das maiores operadoras de saúde do Brasil.',
-      't2.role': 'Doutorando (PhD) em Machine Learning na Saúde Pública',
-      't2.desc': 'Pesquisa em multicalibração e justiça (fairness) em modelos preditivos, garantindo equidade para diferentes subgrupos populacionais.',
-      't3.role': 'Fundador e Investidor',
-      't3.org': 'Medicina e Inteligência Artificial',
-      't3.desc': 'Gestão de projetos e disseminação de conhecimento em IA na saúde para a comunidade médica brasileira.',
-      't4.role': 'Professor de IA na Medicina',
-      't4.desc': 'Docência e criação de conteúdo em Inteligência Artificial aplicada à medicina.',
-      't5.role': 'Head of Medical AI Innovation',
-      't5.desc': 'Liderança da Tribo Científica e desenvolvimento da IA Mariê para cardiologia, com análise de ECG via Deep Learning.',
-      'exp.label': '// expertise',
-      'e1.title': 'Deep Learning e Modelagem Clínica',
-      'e1.desc': 'Modelos preditivos para risco de reinternação, engajamento na APS e análise de ECG com Conv1D, UNet e ResNet1D. Detecção de isquemia e condições cardíacas via deep learning com GradCAM.',
-      'e2.title': 'Fairness & Explicabilidade (XAI)',
-      'e2.desc': 'Garantia de equidade em modelos de IA para diferentes subgrupos populacionais. Multicalibração com MCBoost e explicabilidade com SHAP para predições médicas.',
-      'e3.title': 'LLMs & IA Generativa na Medicina',
-      'e3.desc': 'Validação clínica de Large Language Models, IA generativa com grounding para confiabilidade e RAG (Retrieval-Augmented Generation) em autorizações médicas.',
-      'e4.title': 'Interoperabilidade & Dados Clínicos',
-      'e4.desc': 'Integração de sistemas de saúde via padrão FHIR, processamento de dados clínicos estruturados e não-estruturados, NLP em prontuários eletrônicos.',
-      'e5.title': 'Epidemiologia & Saúde Pública',
-      'e5.desc': 'Análise epidemiológica com machine learning, estudos multicêntricos, predição de desfechos clínicos e dataset shift em modelos de saúde populacionais.',
-      'e1.detail': 'Modelos treinados em dados reais da Hapvida para prever risco de reinternação em 30 dias, engajamento de pacientes na Atenção Primária e detecção de isquemia em ECG de 12 derivações com interpretabilidade via GradCAM.',
-      'e2.detail': 'Pesquisa de doutorado na FSP-USP focada em garantir que modelos preditivos em saúde pública performem de forma justa entre diferentes subgrupos demográficos, utilizando técnicas de pós-processamento como MCBoost e calibração isotônica.',
-      'e3.detail': 'Projetos de validação clínica de GPT-4, Claude e modelos open-source para triagem, autorização de procedimentos e suporte à decisão médica. Sistemas RAG com base de conhecimento médico para respostas fundamentadas em evidências.',
-      'e4.detail': 'Integração de sistemas hospitalares via FHIR R4, extração de informações de prontuários não estruturados com NLP e construção de pipelines de dados clínicos para alimentar modelos de machine learning.',
-      'e5.detail': 'Publicações em PLOS Digital Health e BMC sobre modelos preditivos multicêntricos para COVID-19 e ganho de peso gestacional. Pesquisa ativa em dataset shift e aprendizado federado para modelos de saúde populacionais.',
-      'pub.label': '// ciência',
-      'proj.label': '// open source',
-      'proj.public': 'público',
-      'proj.private': 'privado',
-      'proj.link.repo': 'Ver repositório',
-      'proj1.desc': 'Consultas em linguagem natural sobre dados epidemiológicos brasileiros do DATASUS. Permite que pesquisadores e profissionais de saúde façam perguntas em português, sem SQL, e obtenham respostas com visualizações. Integra LLMs (OpenAI, Anthropic, Ollama) com DuckDB para análise local de mortalidade (SIM), internações (SIH), procedimentos ambulatoriais (SIA) e dados populacionais (IBGE).',
-      'proj2.desc': 'Implementação open-source de assistentes médicos conversacionais inspirados no AMIE do Google DeepMind. Arquitetura multi-agente com especialistas em diálogo clínico, raciocínio diagnóstico e segurança farmacológica. Usa MedGemma, FastAPI, LangChain e Ollama para inferência local, posicionando a IA como suporte ao médico, nunca como substituto.',
-      'proj3.desc': 'Plataforma de gêmeos digitais para saúde com IA, permitindo simular e prever desfechos clínicos de pacientes individuais. Combina modelos preditivos com representações digitais dinâmicas do estado de saúde para suporte à decisão clínica personalizada.',
-      'proj4.desc': 'Sistema aberto de prontuário eletrônico (EHR) com foco em interoperabilidade e saúde pública. Desenvolvido com padrão FHIR para integração com diferentes sistemas de saúde, facilitando o acesso e análise de dados clínicos estruturados.',
-      'footer.sub': 'Médico · Cientista de Dados · IA na Saúde · São Paulo, Brasil'
+      sections: ['§1 Introdução', '§2 Linhas de pesquisa', '§3 Software', '§4 Publicações', '§5 Trajetória'],
+      groups: ['população geral', 'subgrupo A', 'subgrupo B'],
+      copied: 'copiado ✓',
+      langBtn: 'EN', langAria: 'Read in English',
+      themeAria: 'Alternar tema claro e escuro', navAria: 'Seções'
     },
     en: {
-      'nav.sobre': 'About',
-      'nav.trajetoria': 'Journey',
-      'nav.expertise': 'Expertise',
-      'nav.publicacoes': 'Publications',
-      'nav.projetos': 'Projects',
-      'hero.badge': 'Medical Doctor · Data Scientist · AI in Health',
-      'hero.sub': 'Medical Innovation & AI Manager at Hapvida · PhD Candidate in Machine Learning at FSP-USP.',
-      'hero.cta2': 'Discover',
-      'hero.location': 'São Paulo, Brazil',
-      'about.numlabel': 'Chapter',
-      'about.title': 'Medicine, Data <em>&amp; AI</em>',
-      'about.aside1': 'São Paulo, BR',
-      'exp.numlabel': 'Chapter',
-      'exp.title': 'Areas of <em>Expertise</em>',
-      'exp.aside': 'Click each card to expand and see applied research details.',
-      'proj.numlabel': 'Chapter',
-      'proj.title': 'Featured <em>Projects</em>',
-      'proj.aside': '/fabianofilho<br/>Applied research and open-source tools for healthcare professionals.',
-      'pub.numlabel': 'Chapter',
-      'pub.title': 'Selected <em>Publications</em>',
-      'pub.aside': 'Peer-reviewed research in AI, fairness and clinical predictive modeling.',
-      'pub.cta': 'View all on Google Scholar',
-      'traj.numlabel': 'Chapter',
-      'traj.title': 'Professional <em>&amp; Academic</em>',
-      'traj.aside': 'From clinical medicine to leadership in AI applied to public health.',
-      'footer.elsewhere': 'Elsewhere',
-      'course.label': '// new course',
-      'course.title': 'ML for Physicians',
-      'course.desc': 'A free course focused on introducing the core concepts of Medicine and Artificial Intelligence for healthcare professionals.',
-      'course.cta': 'Access course',
-      'mentoria.label': '// mentorship',
-      'mentoria.title': 'Mentoria Med IA',
-      'mentoria.desc': 'Structured ML and AI program for health professionals. From zero to advanced: 3 formats, up to 10 modules and ~120 hours.',
-      'mentoria.cta': 'Learn more',
-      'about.label': '// about me',
-      'about.p1': 'I am a <strong>medical doctor and data scientist</strong>, passionate about using advanced technologies to improve people\'s quality of life and drive innovations in healthcare.',
-      'about.p2': 'I currently serve as <strong>Medical Innovation & AI Manager at Hapvida NotreDame Intermédica</strong>, leading high-impact medical AI projects.',
-      'about.p3': 'I am a researcher at <strong>LABDAPS (USP)</strong> and PhD candidate focused on <strong>multicalibration and fairness in predictive public health models</strong>, working to make AI more equitable across different populations.',
-      'about.p4': 'I live in São Paulo, I am vegan, and I believe that evidence-based medicine combined with data science can transform patient care.',
-      'stat.citations': 'Citations in main article',
-      'stat.articles': 'Published articles',
-      'stat.phd': 'PhD Student FSP-USP',
-      'stat.role': 'Open-source projects',
-      'traj.label': '// journey',
-      't1.role': 'Medical Manager of Innovation and Artificial Intelligence',
-      't1.desc': 'Leadership of medical AI projects, innovation and scientific analysis at one of the largest health insurance companies in Brazil.',
-      't2.role': 'PhD Candidate in Machine Learning for Public Health',
-      't2.desc': 'Research in multicalibration and fairness in predictive models, ensuring equity for different population subgroups.',
-      't3.role': 'Founder and Investor',
-      't3.org': 'Medicine and Artificial Intelligence',
-      't3.desc': 'Project management and knowledge dissemination in health AI for the Brazilian medical community.',
-      't4.role': 'AI in Medicine Professor',
-      't4.desc': 'Teaching and content creation in Artificial Intelligence applied to medicine.',
-      't5.role': 'Head of Medical AI Innovation',
-      't5.desc': 'Leadership of the Scientific Tribe and development of AI Marie for cardiology, with ECG analysis via Deep Learning.',
-      'exp.label': '// expertise',
-      'e1.title': 'Deep Learning & Clinical Modeling',
-      'e1.desc': 'Predictive models for readmission risk, primary care engagement and ECG analysis with Conv1D, UNet and ResNet1D. Ischemia detection and cardiac conditions via deep learning with GradCAM.',
-      'e2.title': 'Fairness & Explainability (XAI)',
-      'e2.desc': 'Ensuring equity in AI models for different population subgroups. Multicalibration with MCBoost and explainability with SHAP for medical predictions.',
-      'e3.title': 'LLMs & Generative AI in Medicine',
-      'e3.desc': 'Clinical validation of Large Language Models, generative AI with grounding for reliability and RAG (Retrieval-Augmented Generation) in medical authorizations.',
-      'e4.title': 'Interoperability & Clinical Data',
-      'e4.desc': 'Healthcare system integration via FHIR standard, processing of structured and unstructured clinical data, NLP in electronic health records.',
-      'e5.title': 'Epidemiology & Public Health',
-      'e5.desc': 'Epidemiological analysis with machine learning, multicenter studies, clinical outcome prediction and dataset shift in population health models.',
-      'e1.detail': 'Models trained on real Hapvida data to predict 30-day readmission risk, primary care patient engagement and ischemia detection in 12-lead ECG with interpretability via GradCAM.',
-      'e2.detail': 'PhD research at FSP-USP focused on ensuring predictive models in public health perform fairly across different demographic subgroups, using post-processing techniques such as MCBoost and isotonic calibration.',
-      'e3.detail': 'Clinical validation projects for GPT-4, Claude and open-source models for triage, procedure authorization and clinical decision support. RAG systems with medical knowledge base for evidence-grounded responses.',
-      'e4.detail': 'Hospital system integration via FHIR R4, information extraction from unstructured medical records with NLP and building clinical data pipelines to feed machine learning models.',
-      'e5.detail': 'Publications in PLOS Digital Health and BMC on multicenter predictive models for COVID-19 and gestational weight gain. Active research in dataset shift and federated learning for population health models.',
-      'pub.label': '// science',
-      'proj.label': '// open source',
-      'proj.public': 'public',
-      'proj.private': 'private',
-      'proj.link.repo': 'View repository',
-      'proj1.desc': 'Natural language queries on Brazilian epidemiological data from DATASUS. Allows researchers and health professionals to ask questions in Portuguese, without SQL, and get answers with visualizations. Integrates LLMs (OpenAI, Anthropic, Ollama) with DuckDB for local analysis of mortality (SIM), hospitalizations (SIH), outpatient procedures (SIA) and population data (IBGE).',
-      'proj2.desc': 'Open-source implementation of conversational medical assistants inspired by Google DeepMind\'s AMIE. Multi-agent architecture with specialists in clinical dialogue, diagnostic reasoning and pharmacological safety. Uses MedGemma, FastAPI, LangChain and Ollama for local inference, positioning AI as support for medical doctors, never as a substitute.',
-      'proj3.desc': 'AI-powered digital twins platform for healthcare, enabling simulation and prediction of clinical outcomes for individual patients. Combines predictive models with dynamic digital representations of health status for personalized clinical decision support.',
-      'proj4.desc': 'Open electronic health record (EHR) system focused on interoperability and public health. Developed with the FHIR standard for integration with different healthcare systems, facilitating access and analysis of structured clinical data.',
-      'footer.sub': 'Medical Doctor · Data Scientist · AI in Health · São Paulo, Brazil'
+      sections: ['§1 Introduction', '§2 Research lines', '§3 Software', '§4 Publications', '§5 Career'],
+      groups: ['overall population', 'subgroup A', 'subgroup B'],
+      copied: 'copied ✓',
+      langBtn: 'PT', langAria: 'Ler em português',
+      themeAria: 'Toggle light and dark theme', navAria: 'Sections'
     }
   };
 
-  function applyTranslations(lang) {
-    var t = translations[lang];
+  var i18nEls = document.querySelectorAll('[data-i18n]');
+  var PT = {};
+  i18nEls.forEach(function (el) {
+    var k = el.getAttribute('data-i18n');
+    if (!(k in PT)) PT[k] = el.innerHTML;
+  });
 
-    document.querySelectorAll('[data-i18n]').forEach(function(el) {
-      var key = el.getAttribute('data-i18n');
-      if (t[key] !== undefined) el.textContent = t[key];
+  var lang = load('lang') === 'en' ? 'en' : 'pt';
+
+  function applyLang() {
+    var dict = lang === 'en' ? EN : PT;
+    i18nEls.forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (dict[k] !== undefined) el.innerHTML = dict[k];
     });
-
-    document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
-      var key = el.getAttribute('data-i18n-html');
-      if (t[key] !== undefined) el.innerHTML = t[key];
-    });
-
-    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+    var ui = UI[lang];
+    root.lang = lang === 'en' ? 'en' : 'pt-BR';
+    var lb = document.getElementById('lang-btn');
+    lb.textContent = ui.langBtn;
+    lb.setAttribute('aria-label', ui.langAria);
+    document.getElementById('theme-btn').setAttribute('aria-label', ui.themeAria);
+    document.querySelector('.hdr-nav').setAttribute('aria-label', ui.navAria);
+    renderFigure();
+    onScroll();
   }
 
-  function toggleLang() {
-    currentLang = currentLang === 'pt' ? 'en' : 'pt';
-    document.getElementById('lang-btn').textContent = currentLang === 'pt' ? 'EN' : 'PT';
-    applyTranslations(currentLang);
+  document.getElementById('lang-btn').addEventListener('click', function () {
+    lang = lang === 'pt' ? 'en' : 'pt';
+    store('lang', lang);
+    applyLang();
+  });
+
+  // ---------- Tema ----------
+  var SUN = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
+  var MOON = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+  function paintThemeIcon() {
+    document.getElementById('theme-icon').innerHTML = root.classList.contains('dark') ? SUN : MOON;
+  }
+  document.getElementById('theme-btn').addEventListener('click', function () {
+    var dark = !root.classList.contains('dark');
+    root.classList.toggle('dark', dark);
+    store('theme', dark ? 'dark' : 'light');
+    paintThemeIcon();
+  });
+  paintThemeIcon();
+
+  // ---------- Acordeão (uma linha aberta por vez) ----------
+  var accBtns = document.querySelectorAll('.acc-btn');
+  accBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var willOpen = btn.getAttribute('aria-expanded') !== 'true';
+      accBtns.forEach(function (b) {
+        var open = b === btn && willOpen;
+        b.setAttribute('aria-expanded', open ? 'true' : 'false');
+        b.querySelector('.acc-sign').textContent = open ? '−' : '+';
+        document.getElementById(b.getAttribute('aria-controls')).hidden = !open;
+      });
+    });
+  });
+
+  // ---------- Figura 1: diagrama de confiabilidade ----------
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  var XS = [0.05, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85, 0.95];
+  var NOISE = [0.012, -0.018, 0.01, -0.008, 0.015, -0.012, 0.009, -0.014, 0.011, -0.006];
+  var GROUPS = [
+    { color: 'var(--ink)', before: function (x) { return x; } },
+    { color: 'var(--accent)', before: function (x) { return Math.pow(x, 0.62); } },
+    { color: 'var(--orange)', before: function (x) { return Math.pow(x, 1.65); } }
+  ];
+  var mode = 'before';
+  var hover = null;
+  var gWrap = document.getElementById('fig1-groups');
+  var legend = document.getElementById('fig1-legend');
+  var figEls = [];
+
+  GROUPS.forEach(function (g, gi) {
+    var grp = document.createElementNS(SVGNS, 'g');
+    grp.setAttribute('class', 'grp');
+    var path = document.createElementNS(SVGNS, 'path');
+    path.style.stroke = g.color;
+    grp.appendChild(path);
+    var circles = XS.map(function () {
+      var c = document.createElementNS(SVGNS, 'circle');
+      c.setAttribute('cx', '0'); c.setAttribute('cy', '0'); c.setAttribute('r', '3.2');
+      c.style.stroke = g.color;
+      grp.appendChild(c);
+      return c;
+    });
+    gWrap.appendChild(grp);
+
+    var row = document.createElement('div');
+    row.className = 'legend-row';
+    row.innerHTML = '<span class="sw"></span><span class="name"></span><span class="r ece"></span>';
+    row.querySelector('.sw').style.background = g.color;
+    row.addEventListener('mouseenter', function () { hover = gi; paintHover(); });
+    row.addEventListener('mouseleave', function () { hover = null; paintHover(); });
+    legend.appendChild(row);
+
+    figEls.push({ grp: grp, path: path, circles: circles, name: row.querySelector('.name'), ece: row.querySelector('.ece') });
+  });
+
+  function paintHover() {
+    figEls.forEach(function (el, gi) {
+      el.grp.style.opacity = hover === null || hover === gi ? 1 : 0.15;
+    });
   }
 
-  // ========== INTERACTIVE ENHANCEMENTS ==========
-
-  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // 1. SCROLL REVEAL
-  (function() {
-    var reveals = document.querySelectorAll('.reveal');
-    if (reducedMotion) {
-      reveals.forEach(function(el) { el.classList.add('active'); });
-      return;
-    }
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          var el = entry.target;
-          var parent = el.parentElement;
-          var siblings = parent ? Array.prototype.filter.call(parent.children, function(c) {
-            return c.classList.contains('reveal');
-          }) : [];
-          var idx = siblings.indexOf(el);
-          if (idx > 0) el.style.transitionDelay = (idx * 0.1) + 's';
-          el.classList.add('active');
-          observer.unobserve(el);
-        }
+  function renderFigure() {
+    var names = UI[lang].groups;
+    GROUPS.forEach(function (g, gi) {
+      var f = mode === 'before' ? g.before : function (x) { return x; };
+      var k = gi === 0 ? 1 : (mode === 'before' ? 0.6 : 0.7);
+      var err = 0;
+      var pts = XS.map(function (x, i) {
+        var y = Math.min(1, Math.max(0, f(x) + NOISE[(i + gi * 3) % 10] * k));
+        err += Math.abs(y - x);
+        return { x: +(40 + 300 * x).toFixed(1), y: +(320 - 300 * y).toFixed(1) };
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
-    reveals.forEach(function(el) { observer.observe(el); });
-  })();
-
-  // 2. ANIMATED STAT COUNTERS
-  (function() {
-    var countersStarted = false;
-    var statNumbers = document.querySelectorAll('.stat-number[data-count], .stat-number[data-count-text]');
-    if (!statNumbers.length) return;
-    function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
-    function animateCounter(el) {
-      var target = parseInt(el.getAttribute('data-count'));
-      var start = parseInt(el.getAttribute('data-start')) || 0;
-      var suffix = el.getAttribute('data-suffix') || '';
-      var duration = 1500;
-      var startTime = null;
-      function step(timestamp) {
-        if (!startTime) startTime = timestamp;
-        var progress = Math.min((timestamp - startTime) / duration, 1);
-        var current = Math.round(start + (target - start) * easeOutCubic(progress));
-        el.textContent = current + suffix;
-        if (progress < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
-    function animateScramble(el) {
-      var target = el.getAttribute('data-count-text');
-      var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      var iterations = 8;
-      var i = 0;
-      var interval = setInterval(function() {
-        if (i >= iterations) { el.textContent = target; clearInterval(interval); return; }
-        var scrambled = '';
-        for (var j = 0; j < target.length; j++) scrambled += chars[Math.floor(Math.random() * chars.length)];
-        el.textContent = scrambled;
-        i++;
-      }, 80);
-    }
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting && !countersStarted) {
-          countersStarted = true;
-          statNumbers.forEach(function(el) {
-            if (el.hasAttribute('data-count')) animateCounter(el);
-            else if (el.hasAttribute('data-count-text')) animateScramble(el);
-          });
-          observer.disconnect();
-        }
+      var d = 'M ' + pts.map(function (p) { return p.x + ' ' + p.y; }).join(' L ');
+      var el = figEls[gi];
+      el.path.setAttribute('d', d);
+      el.path.style.d = "path('" + d + "')";
+      pts.forEach(function (p, i) {
+        el.circles[i].style.transform = 'translate(' + p.x + 'px, ' + p.y + 'px)';
       });
-    }, { threshold: 0.3 });
-    observer.observe(document.querySelector('.about-stats'));
-  })();
-
-  // 3. NAV SCROLL SPY
-  (function() {
-    var sections = document.querySelectorAll('section[id]');
-    var navLinks = document.querySelectorAll('.nav-links a');
-    if (!sections.length || !navLinks.length) return;
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          var id = entry.target.getAttribute('id');
-          navLinks.forEach(function(link) {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === '#' + id) link.classList.add('active');
-          });
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px' });
-    sections.forEach(function(s) { observer.observe(s); });
-  })();
-
-  // 4. NAV TRANSPARENT AT TOP
-  (function() {
-    var nav = document.querySelector('nav');
-    nav.classList.add('at-top');
-    var ticking = false;
-    window.addEventListener('scroll', function() {
-      if (!ticking) {
-        requestAnimationFrame(function() {
-          if (window.scrollY > 80) { nav.classList.remove('at-top'); nav.classList.add('scrolled'); }
-          else { nav.classList.add('at-top'); nav.classList.remove('scrolled'); }
-          ticking = false;
-        });
-        ticking = true;
-      }
+      el.name.textContent = names[gi];
+      el.ece.textContent = (err / pts.length).toFixed(3);
     });
-  })();
-
-  // 5. HERO CANVAS - FLOWING NEURAL NETWORK
-  (function() {
-    if (reducedMotion) return;
-    var canvas = document.getElementById('hero-canvas');
-    if (!canvas) return;
-    var ctx = canvas.getContext('2d');
-    var hero = canvas.parentElement;
-    var dpr = Math.max(1, window.devicePixelRatio || 1);
-
-    function cssRGB(name, fallback) {
-      var temp = document.createElement('div');
-      temp.style.color = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-      document.body.appendChild(temp);
-      var rgb = getComputedStyle(temp).color;
-      document.body.removeChild(temp);
-      var m = rgb.match(/(\d+)/g);
-      return m ? m.map(Number) : fallback;
-    }
-
-    var LAYERS = [4, 6, 7, 6, 4, 2]; // feed-forward shape
-    var nodes = [];     // nodes[layer] = [{x,y,act}]
-    var edges = [];     // {l, i, j} from layer l node i -> layer l+1 node j
-    var pulses = [];
-
-    function build() {
-      var w = hero.offsetWidth, h = hero.offsetHeight;
-      var marginX = Math.max(48, w * 0.04);
-      var top = h * 0.46, bot = h * 0.96;
-      nodes = [];
-      for (var l = 0; l < LAYERS.length; l++) {
-        var n = LAYERS[l];
-        var x = marginX + (w - 2 * marginX) * (l / (LAYERS.length - 1));
-        var col = [];
-        for (var k = 0; k < n; k++) {
-          var jitter = (Math.sin(l * 12.9 + k * 78.2) * 0.5) * ((bot - top) / n) * 0.35;
-          var y = top + (bot - top) * ((k + 0.5) / n) + jitter;
-          col.push({ x: x, y: y, act: 0 });
-        }
-        nodes.push(col);
-      }
-      edges = [];
-      for (var l2 = 0; l2 < nodes.length - 1; l2++) {
-        for (var i = 0; i < nodes[l2].length; i++) {
-          for (var j = 0; j < nodes[l2 + 1].length; j++) {
-            edges.push({ l: l2, i: i, j: j });
-          }
-        }
-      }
-    }
-
-    function spawnPulse() {
-      var i = Math.floor(Math.random() * nodes[0].length);
-      var j = Math.floor(Math.random() * nodes[1].length);
-      pulses.push({ l: 0, i: i, j: j, t: 0, speed: 0.012 + Math.random() * 0.018 });
-    }
-
-    function resize() {
-      canvas.width = hero.offsetWidth * dpr;
-      canvas.height = hero.offsetHeight * dpr;
-      canvas.style.width = hero.offsetWidth + 'px';
-      canvas.style.height = hero.offsetHeight + 'px';
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.scale(dpr, dpr);
-      build();
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    var MAX_PULSES = window.innerWidth < 720 ? 16 : 30;
-    for (var p = 0; p < MAX_PULSES; p++) spawnPulse();
-
-    function draw() {
-      var w = hero.offsetWidth, h = hero.offsetHeight;
-      ctx.clearRect(0, 0, w, h);
-      var accent = cssRGB('--accent', [45, 212, 164]);
-      var rule = cssRGB('--rule-strong', [42, 58, 72]);
-      var A = accent[0] + ',' + accent[1] + ',' + accent[2];
-      var R = rule[0] + ',' + rule[1] + ',' + rule[2];
-
-      // fade the whole network toward the top so it blends with the text area
-      function fade(y) {
-        var top = h * 0.42;
-        return Math.max(0, Math.min(1, (y - top) / (h * 0.3)));
-      }
-
-      // edges
-      ctx.lineWidth = 0.7;
-      for (var e = 0; e < edges.length; e++) {
-        var a = nodes[edges[e].l][edges[e].i];
-        var b = nodes[edges[e].l + 1][edges[e].j];
-        var al = 0.18 * Math.min(fade(a.y), fade(b.y));
-        ctx.strokeStyle = 'rgba(' + R + ',' + al + ')';
-        ctx.beginPath();
-        ctx.moveTo(a.x, a.y);
-        ctx.lineTo(b.x, b.y);
-        ctx.stroke();
-      }
-
-      // decay node activations
-      for (var l = 0; l < nodes.length; l++)
-        for (var k = 0; k < nodes[l].length; k++)
-          nodes[l][k].act *= 0.92;
-
-      // pulses: advance + draw flowing segment
-      for (var pi = pulses.length - 1; pi >= 0; pi--) {
-        var pl = pulses[pi];
-        var na = nodes[pl.l][pl.i];
-        var nb = nodes[pl.l + 1][pl.j];
-        pl.t += pl.speed;
-
-        if (pl.t >= 1) {
-          nb.act = 1;
-          if (pl.l + 1 >= nodes.length - 1) {
-            pulses.splice(pi, 1);
-            spawnPulse();
-            continue;
-          }
-          pl.l += 1; pl.i = pl.j;
-          pl.j = Math.floor(Math.random() * nodes[pl.l + 1].length);
-          pl.t = 0;
-          continue;
-        }
-
-        var px = na.x + (nb.x - na.x) * pl.t;
-        var py = na.y + (nb.y - na.y) * pl.t;
-        var f = fade(py);
-
-        // bright trailing segment along the edge
-        var tt = Math.max(0, pl.t - 0.12);
-        var sx = na.x + (nb.x - na.x) * tt;
-        var sy = na.y + (nb.y - na.y) * tt;
-        ctx.strokeStyle = 'rgba(' + A + ',' + (0.55 * f) + ')';
-        ctx.lineWidth = 1.4;
-        ctx.lineCap = 'round';
-        ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(px, py); ctx.stroke();
-
-        // glowing head
-        var grad = ctx.createRadialGradient(px, py, 0, px, py, 7);
-        grad.addColorStop(0, 'rgba(' + A + ',' + (0.95 * f) + ')');
-        grad.addColorStop(1, 'rgba(' + A + ',0)');
-        ctx.fillStyle = grad;
-        ctx.beginPath(); ctx.arc(px, py, 7, 0, Math.PI * 2); ctx.fill();
-      }
-
-      // nodes
-      for (var l3 = 0; l3 < nodes.length; l3++) {
-        for (var k3 = 0; k3 < nodes[l3].length; k3++) {
-          var nd = nodes[l3][k3];
-          var f2 = fade(nd.y);
-          var baseA = 0.22 * f2;
-          var hot = nd.act;
-          var rad = 1.8 + hot * 1.6;
-          if (hot > 0.05) {
-            ctx.fillStyle = 'rgba(' + A + ',' + (hot * 0.9 * f2) + ')';
-            ctx.beginPath(); ctx.arc(nd.x, nd.y, rad + 3, 0, Math.PI * 2); ctx.fill();
-          }
-          ctx.fillStyle = 'rgba(' + A + ',' + Math.max(baseA, hot * f2) + ')';
-          ctx.beginPath(); ctx.arc(nd.x, nd.y, rad, 0, Math.PI * 2); ctx.fill();
-        }
-      }
-
-      requestAnimationFrame(draw);
-    }
-    draw();
-  })();
-
-
-  // (typing effect removed for cleaner hero)
-
-  // 7. TIMELINE DOT PULSE
-  (function() {
-    if (reducedMotion) return;
-    var items = document.querySelectorAll('.timeline-item');
-    if (!items.length) return;
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    items.forEach(function(item) { observer.observe(item); });
-  })();
-
-  // 8. MOUSE-FOLLOWING GLOW
-  (function() {
-    if (reducedMotion) return;
-    if (!window.matchMedia('(hover: hover)').matches) return;
-    var glow = document.getElementById('mouse-glow');
-    if (!glow) return;
-    document.addEventListener('mousemove', function(e) {
-      glow.style.opacity = '1';
-      glow.style.transform = 'translate(' + e.clientX + 'px, ' + e.clientY + 'px) translate(-50%, -50%)';
+    document.querySelectorAll('.seg button').forEach(function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-mode') === mode ? 'true' : 'false');
     });
-    document.addEventListener('mouseleave', function() { glow.style.opacity = '0'; });
-  })();
+  }
 
-  // 9. EXPERTISE CARDS EXPAND
-  (function() {
-    document.querySelectorAll('.expertise-card').forEach(function(card) {
-      card.addEventListener('click', function() { card.classList.toggle('expanded'); });
+  document.querySelectorAll('.seg button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      mode = b.getAttribute('data-mode');
+      renderFigure();
     });
-  })();
+  });
 
-  // 10. KONAMI CODE EASTER EGG
-  (function() {
-    var sequence = [38,38,40,40,37,39,37,39,66,65];
-    var pos = 0;
-    var timeout = null;
-    document.addEventListener('keydown', function(e) {
-      if (e.keyCode === sequence[pos]) {
-        pos++;
-        clearTimeout(timeout);
-        timeout = setTimeout(function() { pos = 0; }, 2000);
-        if (pos === sequence.length) { pos = 0; clearTimeout(timeout); startMatrixRain(); }
-      } else { pos = 0; }
+  // ---------- Seção atual no cabeçalho ----------
+  var SECTION_IDS = ['s1', 's2', 's3', 's4', 's5'];
+  var current = document.getElementById('hdr-current');
+  var nav = document.querySelector('.hdr-nav');
+  var navLinks = nav.querySelectorAll('a');
+  var lastIdx = null;
+  function onScroll() {
+    var idx = -1;
+    SECTION_IDS.forEach(function (id, i) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 140) idx = i;
     });
-    function startMatrixRain() {
-      var canvas = document.createElement('canvas');
-      canvas.id = 'konami-canvas';
-      document.body.appendChild(canvas);
-      var ctx = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      var chars = 'ACGT01ML DNA FHIR SHAP ECG RAG NLP'.split('');
-      var fontSize = 14;
-      var columns = Math.floor(canvas.width / fontSize);
-      var drops = [];
-      for (var i = 0; i < columns; i++) drops[i] = Math.random() * -100;
-      var rgb = [255, 255, 255];
-      var frameCount = 0;
-      var maxFrames = 180;
-      function drawRain() {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',0.8)';
-        ctx.font = fontSize + 'px "Fira Code", monospace';
-        for (var i = 0; i < drops.length; i++) {
-          ctx.fillText(chars[Math.floor(Math.random() * chars.length)], i * fontSize, drops[i] * fontSize);
-          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-          drops[i]++;
-        }
-        frameCount++;
-        if (frameCount < maxFrames) { requestAnimationFrame(drawRain); }
-        else {
-          var fadeCount = 0;
-          (function fadeOut() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            fadeCount++;
-            if (fadeCount < 30) requestAnimationFrame(fadeOut);
-            else if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
-          })();
-        }
+    current.textContent = idx >= 0 ? UI[lang].sections[idx] : '';
+    navLinks.forEach(function (a, i) { a.classList.toggle('active', i === idx); });
+    // No celular o menu rola de lado: mantém a seção ativa à vista.
+    if (idx !== lastIdx) {
+      lastIdx = idx;
+      if (idx >= 0 && nav.scrollWidth > nav.clientWidth) {
+        nav.scrollTo({ left: navLinks[idx].offsetLeft - nav.offsetLeft - 8, behavior: 'smooth' });
       }
-      drawRain();
     }
-  })();
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // ---------- Copiar BibTeX ----------
+  var copyBtn = document.getElementById('cite-copy');
+  var copyTimer = null;
+  copyBtn.addEventListener('click', function () {
+    var text = document.getElementById('bibtex').textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).catch(function () {});
+    }
+    copyBtn.textContent = UI[lang].copied;
+    clearTimeout(copyTimer);
+    copyTimer = setTimeout(function () {
+      copyBtn.innerHTML = lang === 'en' ? EN['cite.copy'] : PT['cite.copy'];
+    }, 1800);
+  });
+
+  applyLang();
+})();
 </script>
-
 </body>
 </html>
