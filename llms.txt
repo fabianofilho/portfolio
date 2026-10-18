@@ -1,0 +1,26 @@
+# Fabiano Filho, MD (Fabiano Barcellos Filho)
+
+> Médico e cientista de dados em São Paulo. Ensina inteligência artificial na medicina para médicos e profissionais de saúde: curso gratuito ML para Médicos, Mentoria Med IA e o IA.med, com artigos, podcast e aulas em português. Gerente Médico de Inovação e IA na Hapvida NotreDame Intermédica e doutorando em Machine Learning na Faculdade de Saúde Pública da USP (LABDAPS).
+
+Physician and data scientist based in São Paulo, Brazil. Teaches artificial intelligence in medicine to physicians and health professionals (free course, mentorship program and the IA.med platform, in Portuguese). Medical Innovation and AI Manager at Hapvida NotreDame Intermédica; PhD candidate in machine learning for public health at the University of São Paulo (LABDAPS).
+
+Nomes usados: Fabiano Filho; Fabiano Barcellos Filho; Fabiano Novaes Barcellos Filho (autoria); Fabiano Barcelos Filho (Google Scholar).
+
+## O que ensina
+
+- [ML para Médicos](https://curso.iamed.cc): curso gratuito com os conceitos fundamentais de machine learning e IA para profissionais de saúde.
+- [Mentoria Med IA](https://mentoria.fabianofilho.com): programa estruturado de ML e IA para médicos, do zero ao avançado (3 formatos, até 10 módulos, cerca de 120 horas).
+- [IA.med](https://iamed.cc): artigos selecionados, podcast, aulas e ferramentas abertas sobre IA na medicina, em português. App em https://app.iamed.cc.
+- [Substack](https://fabianofilho.substack.com): textos sobre IA na medicina.
+
+## Pesquisa
+
+- Multicalibração e justiça algorítmica em modelos preditivos de saúde pública (doutorado, FSP-USP).
+- Validação clínica de LLMs, RAG e avaliação além da acurácia (variância entre execuções, calibração, fragilidade).
+- Deep learning em dados clínicos (reinternação, Atenção Primária, ECG).
+- Publicações: [Google Scholar](https://scholar.google.com/citations?user=IqVY-BQAAAAJ), [ORCID 0000-0002-1491-2700](https://orcid.org/0000-0002-1491-2700), [Lattes](http://lattes.cnpq.br/9934636391194724).
+
+## Contato
+
+- E-mail: drfabianofilho@gmail.com (aulas, palestras, mentoria e parcerias).
+- [Site](https://fabianofilho.com), [GitHub](https://github.com/fabianofilho), [LinkedIn](https://www.linkedin.com/in/fabianofilho/).
