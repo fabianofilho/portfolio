@@ -295,6 +295,10 @@
 
     /* §3 SOFTWARE e §5 TRAJETÓRIA: duas colunas explícitas */
     .list { display: flex; flex-direction: column; border-top: 1px solid var(--ink); }
+    .sw-group { margin: 40px 0 14px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+    .sw-group:first-of-type { margin-top: 0; }
+    .sw-group .acc-num { flex-shrink: 0; }
+    .sw-group a { font-family: var(--mono); font-size: 12px; }
     .entry {
       display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 8px 32px;
       padding: 22px 0; border-bottom: 1px solid var(--rule); color: var(--ink);
@@ -411,6 +415,8 @@
         <a href="https://github.com/fabianofilho" target="_blank" rel="noopener">GitHub ↗</a>
         <a href="https://fabianofilho.substack.com/" target="_blank" rel="noopener">Substack ↗</a>
         <a href="https://fabianonbfilho.medium.com/" target="_blank" rel="noopener">Medium ↗</a>
+        <a href="https://app.iamed.cc" target="_blank" rel="noopener">IA.med ↗</a>
+        <a href="mailto:drfabianofilho@gmail.com">drfabianofilho@gmail.com</a>
       </aside>
     </div>
 
@@ -422,7 +428,7 @@
       </div>
       <aside class="row-side stats">
         <div class="stat">
-          <span class="stat-n">106+</span>
+          <span class="stat-n">110+</span>
           <span class="stat-l" data-i18n="stat.cit">citações no principal artigo</span>
         </div>
         <div class="stat">
@@ -448,6 +454,13 @@
         <span class="supp-desc" data-i18n="s2.desc">Programa estruturado de ML e IA, do zero ao avançado: 3 formatos, até 10 módulos, ~120 h.</span>
       </span>
     </a>
+    <a href="https://app.iamed.cc" target="_blank" rel="noopener">
+      <span class="supp-id">S3</span>
+      <span class="supp-body">
+        <span class="supp-title">IA.med ↗</span>
+        <span class="supp-desc" data-i18n="s3.desc">Artigos selecionados, podcasts, aulas e ferramentas abertas sobre IA na medicina, em português.</span>
+      </span>
+    </a>
   </section>
 
   <section id="s1" class="sec sec-intro">
@@ -457,6 +470,7 @@
         <div class="prose">
           <p data-i18n="intro.p1">Sou médico e cientista de dados. Acredito que medicina baseada em evidências, aliada à ciência de dados, pode transformar o cuidado ao paciente, desde que os modelos sejam avaliados com o mesmo rigor que exigimos de qualquer intervenção clínica.</p>
           <p data-i18n="intro.p2">Atualmente atuo como Gerente Médico de Inovação e IA na Hapvida NotreDame Intermédica, uma das maiores operadoras de saúde do Brasil<sup class="fn">a</sup>, e sou pesquisador no LABDAPS (USP), onde meu doutorado trata de multicalibração em modelos preditivos de saúde pública<sup class="fn">b</sup>.</p>
+          <p data-i18n="intro.p4">O software que publico hoje segue algumas convicções vindas da clínica, do laboratório e do sistema de saúde: texto clínico não deve sair da máquina, por isso priorizo modelos locais; dados públicos brasileiros (DATASUS, InfoDengue, Anvisa, CFM, Conitec) merecem ferramentas à altura; avaliar vai além da acurácia, medindo variância entre execuções, excesso de confiança e fragilidade a perturbações; toda ferramenta declara o que não é e traz o link da fonte oficial; e agentes devem entrar no fluxo de trabalho do médico, via servidores MCP e skills, em vez de virar mais uma janela de chat (ver §3).</p>
           <p data-i18n="intro.p3">Moro em São Paulo. Sou vegano.</p>
         </div>
       </div>
@@ -555,7 +569,7 @@
           <span class="acc-sign" aria-hidden="true">+</span>
         </button>
         <div class="acc-panel" id="acc-p3" hidden>
-          <p class="acc-detail" data-i18n="r3.detail">Validação de GPT-4, Claude e modelos abertos para triagem, autorização de procedimentos e suporte à decisão. Sistemas RAG com base de conhecimento médico para respostas fundamentadas em evidências.</p>
+          <p class="acc-detail" data-i18n="r3.detail">Validação de GPT-4, Claude e modelos abertos para triagem, autorização de procedimentos e suporte à decisão. Sistemas RAG com base de conhecimento médico para respostas fundamentadas em evidências. Avaliação além da acurácia: variância entre execuções idênticas, calibração e fragilidade a perturbações semânticas (iamed-harness, §3.3).</p>
           <p class="acc-methods" data-i18n="r3.methods">Métodos: LLMs, RAG, grounding, engenharia de prompt</p>
         </div>
       </div>
@@ -585,8 +599,8 @@
           <span class="acc-sign" aria-hidden="true">+</span>
         </button>
         <div class="acc-panel" id="acc-p5" hidden>
-          <p class="acc-detail" data-i18n="r5.detail">Modelos preditivos multicêntricos para COVID-19 e ganho de peso gestacional; pesquisa ativa em dataset shift e aprendizado federado (ver [1], [4], [5], [6]).</p>
-          <p class="acc-methods" data-i18n="r5.methods">Métodos: epidemiologia, dataset shift, federated learning</p>
+          <p class="acc-detail" data-i18n="r5.detail">Modelos preditivos multicêntricos para COVID-19 e ganho de peso gestacional; pesquisa ativa em dataset shift e aprendizado federado (ver [1], [4], [5], [6]). Previsão de dengue em 8 capitais e de mortalidade cardiovascular em São Paulo com dados públicos, comparando modelos estatísticos, boosting e modelos de fundação (§3.3).</p>
+          <p class="acc-methods" data-i18n="r5.methods">Métodos: epidemiologia, dataset shift, federated learning, séries temporais</p>
         </div>
       </div>
     </div>
@@ -594,22 +608,91 @@
 
   <section id="s3" class="sec">
     <h2><span class="n">3</span>Software</h2>
+    <div class="sw-group"><span class="acc-num">3.1</span><span class="kicker" data-i18n="swg1">Servidores MCP do IA.med</span> <a href="https://iamed.cc/mcps" target="_blank" rel="noopener">iamed.cc/mcps ↗</a></div>
     <div class="list">
-      <a class="entry" href="https://github.com/fabianofilho/aiscribr" target="_blank" rel="noopener">
-        <span class="entry-meta"><span class="entry-name">aiscribr ↗</span><span class="entry-sub" data-i18n="sw.private">privado · Python</span></span>
-        <span class="entry-desc" data-i18n="sw1.desc">Transcritor clínico que gera notas SOAP a partir de consultas, estruturando o diálogo médico-paciente em documentação padronizada.</span>
+      <a class="entry" href="https://github.com/fabianofilho/anvisa-mcp" target="_blank" rel="noopener">
+        <span class="entry-meta"><span class="entry-name">anvisa-mcp ↗</span><span class="entry-sub" data-i18n="sw.public">público · Python</span></span>
+        <span class="entry-desc" data-i18n="sw5.desc">Situação de registro de medicamentos e dispositivos médicos recentes a partir dos dados abertos da Anvisa, com sinalização heurística de dispositivos baseados em IA. Conector público disponível.</span>
       </a>
-      <a class="entry" href="https://github.com/fabianofilho/amie-agents" target="_blank" rel="noopener">
-        <span class="entry-meta"><span class="entry-name">amie-agents ↗</span><span class="entry-sub" data-i18n="sw.public">público · Python</span></span>
-        <span class="entry-desc" data-i18n="sw2.desc">Assistentes clínicos multiagente inspirados no AMIE (DeepMind), com inferência local via MedGemma e Ollama. A IA como suporte ao médico, nunca substituto.</span>
+      <a class="entry" href="https://github.com/fabianofilho/radar-cfm-mcp" target="_blank" rel="noopener">
+        <span class="entry-meta"><span class="entry-name">radar-cfm-mcp ↗</span><span class="entry-sub" data-i18n="sw.public">público · Python</span></span>
+        <span class="entry-desc" data-i18n="sw6.desc">Busca e monitora resoluções do CFM sobre IA, telemedicina e prontuário eletrônico. Conector público disponível.</span>
+      </a>
+      <a class="entry" href="https://github.com/fabianofilho/protocolos-pcdt-mcp" target="_blank" rel="noopener">
+        <span class="entry-meta"><span class="entry-name">protocolos-pcdt-mcp ↗</span><span class="entry-sub" data-i18n="sw.public">público · Python</span></span>
+        <span class="entry-desc" data-i18n="sw7.desc">Consulta os protocolos clínicos do Ministério da Saúde (PCDT/Conitec) e resume a conduta recomendada com citação literal verificada.</span>
+      </a>
+      <a class="entry" href="https://github.com/fabianofilho/radar-papers-mcp" target="_blank" rel="noopener">
+        <span class="entry-meta"><span class="entry-name">radar-papers-mcp ↗</span><span class="entry-sub" data-i18n="sw.public">público · Python</span></span>
+        <span class="entry-desc" data-i18n="sw8.desc">Acompanha PubMed e medRxiv em temas configuráveis e resume os artigos novos com um LLM local, sem duplicatas por DOI.</span>
+      </a>
+      <a class="entry" href="https://github.com/fabianofilho/revisor-notas-mcp" target="_blank" rel="noopener">
+        <span class="entry-meta"><span class="entry-name">revisor-notas-mcp ↗</span><span class="entry-sub" data-i18n="sw.public">público · Python</span></span>
+        <span class="entry-desc" data-i18n="sw9.desc">Revisa notas clínicas SOAP atrás de campos faltantes e incoerências entre queixa, exame e conduta. 100% offline.</span>
+      </a>
+    </div>
+
+    <div class="sw-group"><span class="acc-num">3.2</span><span class="kicker" data-i18n="swg2">Laboratórios abertos com dados públicos de saúde</span></div>
+    <div class="list">
+      <a class="entry" href="https://github.com/fabianofilho/lab-ai-prediction" target="_blank" rel="noopener">
+        <span class="entry-meta"><span class="entry-name">lab-ai-prediction ↗</span><span class="entry-sub" data-i18n="sw.public">público · Python</span></span>
+        <span class="entry-desc" data-i18n="sw10.desc">Laboratório aberto de modelagem preditiva: o mesmo pipeline sobre microdados do DATASUS, sobre a sua própria base ou sobre benchmarks internacionais. Com app ao vivo.</span>
+      </a>
+      <a class="entry" href="https://github.com/fabianofilho/datasus-outbreak-prediction" target="_blank" rel="noopener">
+        <span class="entry-meta"><span class="entry-name">datasus-outbreak-prediction ↗</span><span class="entry-sub" data-i18n="sw.public">público · Python</span></span>
+        <span class="entry-desc" data-i18n="sw11.desc">Vigilância epidemiológica integrada: alertas de surto (z-score, CUSUM, LightGBM), grafo de coocorrência de CID-10, planejamento de insumos e mapa saneamento × doença. Com app ao vivo.</span>
+      </a>
+      <a class="entry" href="https://github.com/fabianofilho/datasus-ai-prediction" target="_blank" rel="noopener">
+        <span class="entry-meta"><span class="entry-name">datasus-ai-prediction ↗</span><span class="entry-sub" data-i18n="sw.public">público · Python</span></span>
+        <span class="entry-desc" data-i18n="sw4.desc">Séries temporais e machine learning sobre bases do DATASUS para antecipar tendências epidemiológicas e apoiar a gestão em saúde.</span>
       </a>
       <a class="entry" href="https://github.com/fabianofilho/datasus-ai-search" target="_blank" rel="noopener">
         <span class="entry-meta"><span class="entry-name">datasus-ai-search ↗</span><span class="entry-sub" data-i18n="sw.public">público · Python</span></span>
         <span class="entry-desc" data-i18n="sw3.desc">Perguntas em português, sem SQL, sobre SIM, SIH, SIA e IBGE. LLMs com DuckDB para análise local de dados do DATASUS.</span>
       </a>
-      <a class="entry" href="https://github.com/fabianofilho/datasus-ai-prediction" target="_blank" rel="noopener">
-        <span class="entry-meta"><span class="entry-name">datasus-ai-prediction ↗</span><span class="entry-sub" data-i18n="sw.public">público · Python</span></span>
-        <span class="entry-desc" data-i18n="sw4.desc">Séries temporais e machine learning sobre bases do DATASUS para antecipar tendências epidemiológicas e apoiar a gestão em saúde.</span>
+    </div>
+
+    <div class="sw-group"><span class="acc-num">3.3</span><span class="kicker" data-i18n="swg3">Avaliação, previsão e assistentes clínicos</span></div>
+    <div class="list">
+      <a class="entry" href="https://github.com/fabianofilho/iamed-harness" target="_blank" rel="noopener">
+        <span class="entry-meta"><span class="entry-name">iamed-harness ↗</span><span class="entry-sub" data-i18n="sw.public">público · Python</span></span>
+        <span class="entry-desc" data-i18n="sw12.desc">Harness mínimo e auditável para avaliar LLMs em questões clínicas de múltipla escolha: variância entre execuções, calibração e perturbações semânticas. O primeiro comando roda offline, sem chave de API.</span>
+      </a>
+      <a class="entry" href="https://github.com/fabianofilho/cardiovascular-timeseries-prediction" target="_blank" rel="noopener">
+        <span class="entry-meta"><span class="entry-name">cardiovascular-timeseries-prediction ↗</span><span class="entry-sub" data-i18n="sw.public">público · Python</span></span>
+        <span class="entry-desc" data-i18n="sw13.desc">Mortalidade cardiovascular mensal no estado de São Paulo (SIM, 2010 a 2023): SARIMA, Prophet, TimesFM e boosting, com backtesting de origem móvel e incerteza medida.</span>
+      </a>
+      <a class="entry" href="https://github.com/fabianofilho/dengue-timeseries-skforecast" target="_blank" rel="noopener">
+        <span class="entry-meta"><span class="entry-name">dengue-timeseries-skforecast ↗</span><span class="entry-sub" data-i18n="sw.public">público · Python</span></span>
+        <span class="entry-desc" data-i18n="sw14.desc">Previsão de dengue em 8 capitais brasileiras (InfoDengue, 2010 a 2024): naive sazonal, SARIMA, Prophet, LightGBM, XGBoost, CatBoost, RF e TimesFM 2.5 zero-shot.</span>
+      </a>
+      <a class="entry" href="https://github.com/fabianofilho/amie-agents" target="_blank" rel="noopener">
+        <span class="entry-meta"><span class="entry-name">amie-agents ↗</span><span class="entry-sub" data-i18n="sw.public">público · Python</span></span>
+        <span class="entry-desc" data-i18n="sw2.desc">Assistentes clínicos multiagente inspirados no AMIE (DeepMind), com inferência local via MedGemma e Ollama. A IA como suporte ao médico, nunca substituto.</span>
+      </a>
+      <a class="entry" href="https://github.com/fabianofilho/aiscribr" target="_blank" rel="noopener">
+        <span class="entry-meta"><span class="entry-name">aiscribr ↗</span><span class="entry-sub" data-i18n="sw.private">privado · Python</span></span>
+        <span class="entry-desc" data-i18n="sw1.desc">Transcritor clínico que gera notas SOAP a partir de consultas, estruturando o diálogo médico-paciente em documentação padronizada.</span>
+      </a>
+    </div>
+
+    <div class="sw-group"><span class="acc-num">3.4</span><span class="kicker" data-i18n="swg4">Listas curadas e comunidade</span></div>
+    <div class="list">
+      <a class="entry" href="https://github.com/fabianofilho/awesome-medical-ai" target="_blank" rel="noopener">
+        <span class="entry-meta"><span class="entry-name">awesome-medical-ai ↗</span><span class="entry-sub" data-i18n="sw.list">público · lista</span></span>
+        <span class="entry-desc" data-i18n="sw15.desc">Lista curada de recursos de IA médica: artigos, bases de dados, ferramentas, modelos pré-treinados, código e competições, com atualização semanal automática.</span>
+      </a>
+      <a class="entry" href="https://github.com/fabianofilho/awesome-health-datasets" target="_blank" rel="noopener">
+        <span class="entry-meta"><span class="entry-name">awesome-health-datasets ↗</span><span class="entry-sub" data-i18n="sw.list">público · lista</span></span>
+        <span class="entry-desc" data-i18n="sw16.desc">Bases de dados abertas de saúde, imagem médica, dados clínicos e bioinformática.</span>
+      </a>
+      <a class="entry" href="https://github.com/labdaps/labskills" target="_blank" rel="noopener">
+        <span class="entry-meta"><span class="entry-name">labdaps/labskills ↗</span><span class="entry-sub" data-i18n="sw.skills">público · skills do Claude</span></span>
+        <span class="entry-desc" data-i18n="sw17.desc">Skills colaborativas do Claude Code para o LABDAPS (FSP-USP): ML em saúde e escrita científica, distribuídas como plugins.</span>
+      </a>
+      <a class="entry" href="https://github.com/fabianofilho/med" target="_blank" rel="noopener">
+        <span class="entry-meta"><span class="entry-name">med ↗</span><span class="entry-sub" data-i18n="sw.skills">público · skills do Claude</span></span>
+        <span class="entry-desc" data-i18n="sw18.desc">Suíte clínica /med para o Claude: respostas diretas e 8 modelos estruturados de raciocínio clínico.</span>
       </a>
     </div>
   </section>
@@ -623,6 +706,7 @@
       <li><span class="ref">[4]</span><span>Strategies for detecting and mitigating dataset shift in machine learning for health predictions: a systematic review. <em>Journal of Biomedical Informatics</em>, 2025.</span></li>
       <li><span class="ref">[5]</span><span>Predictive modeling of gestational weight gain: a machine learning multiclass classification study. <em>BMC Pregnancy and Childbirth</em>, 2024.</span></li>
       <li><span class="ref">[6]</span><span>Multicenter comparative analysis of local and aggregated data training strategies in COVID-19 outcome prediction with machine learning. <em>PLOS Digital Health</em>, 2024.</span></li>
+      <li><span class="ref">[7]</span><span>A bibliometric network analysis of coronavirus during the first eight months of COVID-19 in 2020. <em>International Journal of Environmental Research and Public Health</em>, 2021.</span></li>
     </ol>
     <p class="pubs-more"><a href="https://scholar.google.com/citations?user=IqVY-BQAAAAJ&amp;hl=pt-BR" target="_blank" rel="noopener" data-i18n="pub.more">Lista completa no Google Scholar ↗</a></p>
   </section>
@@ -640,7 +724,7 @@
       </div>
       <div class="entry">
         <span class="period" data-i18n="car.p3">2023 → presente</span>
-        <span class="role"><span class="role-title" data-i18n="car.r3">Fundador e investidor</span><span class="role-org" data-i18n="car.o3">Medicina e Inteligência Artificial</span></span>
+        <span class="role"><span class="role-title" data-i18n="car.r3">Fundador e investidor</span><span class="role-org" data-i18n="car.o3">IA.med · Medicina e Inteligência Artificial</span></span>
       </div>
       <div class="entry">
         <span class="period">2024 → 2025</span>
@@ -701,9 +785,11 @@
     's1.title': 'ML for Physicians ↗',
     's1.desc': 'Free course on the core concepts of AI for health professionals.',
     's2.desc': 'Structured ML and AI program, from zero to advanced: 3 formats, up to 10 modules, ~120 h.',
+    's3.desc': 'Curated papers, podcasts, lessons and open tools on AI in medicine, in Portuguese.',
     'intro.title': 'Introduction',
     'intro.p1': 'I am a physician and data scientist. I believe evidence-based medicine, combined with data science, can transform patient care, as long as models are evaluated with the same rigor we demand of any clinical intervention.',
     'intro.p2': 'I currently serve as Medical Manager of Innovation and AI at Hapvida NotreDame Intermédica, one of the largest health care companies in Brazil<sup class="fn">a</sup>, and I am a researcher at LABDAPS (USP), where my PhD addresses multicalibration in public health predictive models<sup class="fn">b</sup>.',
+    'intro.p4': 'The software I publish today follows a few convictions that came out of the clinic, the lab and the health system: clinical text should not leave the machine, so I favor local models; Brazilian public data (DATASUS, InfoDengue, Anvisa, CFM, Conitec) deserve proper tooling; evaluation goes beyond accuracy, measuring run-to-run variance, overconfidence and fragility to perturbations; every tool states what it is not and links the official source; and agents should plug into the clinician\'s workflow, through MCP servers and skills, instead of becoming yet another chat window (see §3).',
     'intro.p3': 'I live in São Paulo. I am vegan.',
     'intro.na': 'Leading medical AI, innovation and scientific analysis projects since Jan. 2026.',
     'intro.nb': 'See §2.2 and Figure 1 for an illustration of the problem.',
@@ -727,7 +813,7 @@
     'fig.note': 'Synthetic data, for illustration only.',
     'r3.title': 'LLMs and generative AI in medicine',
     'r3.sum': 'Clinical validation of language models, grounding and RAG in medical authorizations.',
-    'r3.detail': 'Validation of GPT-4, Claude and open models for triage, procedure authorization and decision support. RAG systems with a medical knowledge base for evidence-grounded answers.',
+    'r3.detail': 'Validation of GPT-4, Claude and open models for triage, procedure authorization and decision support. RAG systems with a medical knowledge base for evidence-grounded answers. Evaluation beyond accuracy: variance between identical runs, calibration and fragility to semantic perturbations (iamed-harness, §3.3).',
     'r3.methods': 'Methods: LLMs, RAG, grounding, prompt engineering',
     'r4.title': 'Interoperability and clinical data',
     'r4.sum': 'Integration via FHIR, structured and unstructured data, NLP on medical records.',
@@ -735,13 +821,33 @@
     'r4.methods': 'Methods: FHIR, HL7, NLP, EHR',
     'r5.title': 'Epidemiology and public health',
     'r5.sum': 'Multicenter studies, outcome prediction and dataset shift in population models.',
-    'r5.detail': 'Multicenter predictive models for COVID-19 and gestational weight gain; active research on dataset shift and federated learning (see [1], [4], [5], [6]).',
-    'r5.methods': 'Methods: epidemiology, dataset shift, federated learning',
+    'r5.detail': 'Multicenter predictive models for COVID-19 and gestational weight gain; active research on dataset shift and federated learning (see [1], [4], [5], [6]). Forecasting dengue in 8 state capitals and cardiovascular mortality in São Paulo with public data, comparing statistical models, boosting and foundation models (§3.3).',
+    'r5.methods': 'Methods: epidemiology, dataset shift, federated learning, time series',
     'sw.private': 'private · Python',
     'sw.public': 'public · Python',
     'sw1.desc': 'Clinical scribe that generates SOAP notes from consultations, structuring the doctor-patient dialogue into standardized documentation.',
     'sw2.desc': 'Multi-agent clinical assistants inspired by AMIE (DeepMind), with local inference via MedGemma and Ollama. AI as support for the physician, never a substitute.',
     'sw3.desc': 'Questions in Portuguese, no SQL, about SIM, SIH, SIA and IBGE. LLMs with DuckDB for local analysis of DATASUS data.',
+    'sw.list': 'public · list',
+    'sw.skills': 'public · Claude skills',
+    'swg1': 'IA.med MCP servers',
+    'swg2': 'Open labs on Brazilian public health data',
+    'swg3': 'Evaluation, forecasting and clinical assistants',
+    'swg4': 'Curated lists and community',
+    'sw5.desc': 'Drug registration status and recent medical devices from Anvisa open data, with a heuristic flag for AI-based devices. Public connector available.',
+    'sw6.desc': 'Searches and monitors CFM (Federal Council of Medicine) resolutions on AI, telemedicine and electronic health records. Public connector available.',
+    'sw7.desc': 'Queries the Ministry of Health clinical protocols (PCDT/Conitec) and summarizes the recommended conduct with a verified literal citation.',
+    'sw8.desc': 'Watches PubMed and medRxiv for configurable topics and summarizes new papers with a local LLM, deduplicated by DOI.',
+    'sw9.desc': 'Checks SOAP clinical notes for missing fields and incoherence between complaint, exam and plan. 100% offline.',
+    'sw10.desc': 'Open predictive-modeling lab: run the same pipeline on DATASUS microdata, your own dataset or international benchmarks. With a live app.',
+    'sw11.desc': 'Integrated epidemiological surveillance: outbreak alerts (z-score, CUSUM, LightGBM), ICD-10 co-occurrence graph, supply planning and sanitation × disease map. With a live app.',
+    'sw12.desc': 'Minimal, auditable harness to evaluate LLMs on clinical multiple-choice tasks: run-to-run variance, calibration and semantic perturbations. The first command runs offline, no API key.',
+    'sw13.desc': 'Monthly cardiovascular mortality in São Paulo state (SIM, 2010 to 2023): SARIMA, Prophet, TimesFM and boosting, with rolling-origin backtesting and measured uncertainty.',
+    'sw14.desc': 'Dengue forecasting for 8 Brazilian state capitals (InfoDengue, 2010 to 2024): seasonal naive, SARIMA, Prophet, LightGBM, XGBoost, CatBoost, RF and TimesFM 2.5 zero-shot.',
+    'sw15.desc': 'Curated list of medical AI resources: papers, datasets, tools, pre-trained models, code and competitions, with weekly automated updates.',
+    'sw16.desc': 'Open datasets in healthcare, medical imaging, clinical data and bioinformatics.',
+    'sw17.desc': 'Collaborative Claude Code skills for the LABDAPS lab (FSP-USP): ML in health and scientific writing, distributed as plugins.',
+    'sw18.desc': '/med clinical suite for Claude: direct answers plus 8 structured clinical-reasoning templates.',
     'sw4.desc': 'Time series and machine learning on DATASUS data to anticipate epidemiological trends and support health management.',
     'pub.title': 'Selected publications',
     'pub.more': 'Full list on Google Scholar ↗',
@@ -752,7 +858,7 @@
     'car.r1': 'Medical Manager of Innovation and Artificial Intelligence',
     'car.r2': 'PhD in Machine Learning for Public Health',
     'car.r3': 'Founder and investor',
-    'car.o3': 'Medicine and Artificial Intelligence',
+    'car.o3': 'IA.med · Medicine and Artificial Intelligence',
     'car.r4': 'Professor of AI in Medicine',
     'car.o5': 'Neomed · Mariê AI for cardiology, deep learning ECG',
     'cite.title': 'How to cite this page',
