@@ -15,11 +15,18 @@
   <meta property="og:url" content="https://fabianofilho.com/" />
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:image" content="https://fabianofilho.com/img/og-fabiano-filho.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Fabiano Filho, MD, médico e cientista de dados" />
   <meta property="profile:first_name" content="Fabiano" />
   <meta property="profile:last_name" content="Barcellos Filho" />
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Fabiano Filho, MD · Médico e IA na Saúde" />
   <meta name="twitter:description" content="Médico e cientista de dados. IA na saúde, Hapvida e FSP-USP (LABDAPS)." />
+  <meta name="twitter:image" content="https://fabianofilho.com/img/og-fabiano-filho.jpg" />
+  <meta name="twitter:image:alt" content="Fabiano Filho, MD, médico e cientista de dados" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -56,6 +63,7 @@
         "familyName": "Barcellos Filho",
         "honorificSuffix": "MD",
         "url": "https://fabianofilho.com/",
+        "image": "https://fabianofilho.com/img/fabiano-filho.jpg",
         "description": "Médico e cientista de dados, especialista em inteligência artificial na saúde.",
         "jobTitle": "Gerente Médico de Inovação e IA",
         "worksFor": { "@type": "Organization", "name": "Hapvida" },
@@ -118,6 +126,7 @@
       --serif: 'Source Serif 4', Georgia, serif;
       --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
       --gutter: 32px;
+      --portrait-bg: #ebe7dd;
       color-scheme: light;
     }
     html.dark {
@@ -136,6 +145,7 @@
       --accent: #5fc39c;
       --orange: #dc8f55;
       --selection: #24493b;
+      --portrait-bg: #3a3730;
       color-scheme: dark;
     }
 
@@ -210,6 +220,8 @@
     .affils { margin-top: 32px; display: flex; flex-direction: column; gap: 4px; font-size: 15px; color: var(--ink-3); }
     .affils .fn { margin-right: 8px; }
     .corr { display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; font-family: var(--mono); font-size: 12.5px; }
+    .portrait { margin: 0 0 18px; width: 168px; height: 168px; border-radius: 50%; overflow: hidden; background: var(--portrait-bg); border: 1px solid var(--rule); }
+    .portrait img { display: block; width: 100%; height: 100%; }
     .corr .label { color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-size: 11px; margin-bottom: 6px; }
     .abstract-row { margin-top: 64px; }
     .abstract { margin: 0; font-size: 18px; line-height: 1.65; color: var(--ink-2); text-wrap: pretty; -webkit-hyphens: auto; hyphens: auto; }
@@ -347,6 +359,9 @@
       }
       .hdr-nav::-webkit-scrollbar { display: none; }
       .title-block { padding: 56px 0 44px; }
+      .corr { flex: 1 1 100%; display: grid; grid-template-columns: 96px minmax(0, 1fr); column-gap: 20px; row-gap: 6px; align-content: start; }
+      .corr > * { grid-column: 2; }
+      .corr .portrait { grid-column: 1; grid-row: 1 / span 8; width: 96px; height: 96px; margin: 0; }
       .lede { font-size: 20px; }
       .abstract-row { margin-top: 48px; }
       .sec, .sec-intro { padding: 52px 0; }
@@ -409,6 +424,12 @@
         </div>
       </div>
       <aside class="row-side corr">
+        <figure class="portrait">
+          <picture>
+            <source srcset="img/fabiano-filho.webp" type="image/webp" />
+            <img src="img/fabiano-filho.png" width="168" height="168" alt="Fabiano Filho" decoding="async" fetchpriority="high" />
+          </picture>
+        </figure>
         <span class="label" data-i18n="hero.corr">Correspondência</span>
         <a href="https://www.linkedin.com/in/fabianofilho/" target="_blank" rel="noopener">LinkedIn ↗</a>
         <a href="https://scholar.google.com/citations?user=IqVY-BQAAAAJ&amp;hl=pt-BR" target="_blank" rel="noopener">Google Scholar ↗</a>
