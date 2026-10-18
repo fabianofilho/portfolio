@@ -78,12 +78,26 @@
           { "@type": "CollegeOrUniversity", "name": "Universidade de São Paulo" }
         ],
         "homeLocation": { "@type": "Place", "name": "São Paulo, Brasil" },
+        "email": "mailto:drfabianofilho@gmail.com",
+        "hasOccupation": [
+          { "@type": "Occupation", "name": "Médico", "occupationLocation": { "@type": "City", "name": "São Paulo" } },
+          { "@type": "Occupation", "name": "Cientista de dados em saúde" },
+          { "@type": "Occupation", "name": "Professor de inteligência artificial na medicina" }
+        ],
         "knowsAbout": [
-          "Inteligência artificial na saúde",
-          "Machine learning",
+          "Inteligência artificial na medicina",
+          "Ensino de IA para médicos",
+          "Machine learning em saúde",
+          "LLMs e IA generativa na medicina",
           "Ciência de dados",
           "Medicina",
           "Fairness e multicalibração em modelos clínicos"
+        ],
+        "knowsLanguage": ["pt-BR", "en"],
+        "makesOffer": [
+          { "@type": "Offer", "price": "0", "priceCurrency": "BRL", "itemOffered": { "@id": "https://curso.iamed.cc/#course" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mentoria Med IA", "serviceType": "Mentoria em machine learning e IA para médicos e profissionais de saúde", "url": "https://mentoria.fabianofilho.com", "provider": { "@id": "https://fabianofilho.com/#person" } } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aulas e palestras sobre IA na medicina", "provider": { "@id": "https://fabianofilho.com/#person" } } }
         ],
         "sameAs": [
           "https://github.com/fabianofilho",
@@ -94,6 +108,26 @@
           "https://fabianofilho.substack.com/",
           "https://fabianonbfilho.medium.com/"
         ]
+      },
+      {
+        "@type": "Course",
+        "@id": "https://curso.iamed.cc/#course",
+        "name": "ML para Médicos",
+        "description": "Curso gratuito com os conceitos fundamentais de machine learning e inteligência artificial para médicos e profissionais de saúde.",
+        "url": "https://curso.iamed.cc",
+        "inLanguage": "pt-BR",
+        "isAccessibleForFree": true,
+        "educationalLevel": "Iniciante",
+        "provider": { "@id": "https://fabianofilho.com/#person" },
+        "author": { "@id": "https://fabianofilho.com/#person" }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://iamed.cc/#organization",
+        "name": "IA.med",
+        "url": "https://iamed.cc",
+        "description": "Inteligência artificial na medicina, em português: artigos selecionados, podcast, aulas e ferramentas abertas.",
+        "founder": { "@id": "https://fabianofilho.com/#person" }
       }
     ]
   }
@@ -494,6 +528,7 @@
       <div class="row-main">
         <h2><span class="n">1</span><span data-i18n="intro.title">Introdução</span></h2>
         <div class="prose">
+          <p data-i18n="intro.p0">Ensino inteligência artificial na medicina para médicos e profissionais de saúde: pelo curso gratuito <a href="https://curso.iamed.cc">ML para Médicos</a>, pela <a href="https://mentoria.fabianofilho.com">Mentoria Med IA</a> e pelo <a href="https://iamed.cc">IA.med</a>, com artigos, podcast e aulas em português. Convites para aulas, palestras, mentoria e parcerias: <a href="mailto:drfabianofilho@gmail.com">drfabianofilho@gmail.com</a>.</p>
           <p data-i18n="intro.p1">Sou médico e cientista de dados. Acredito que medicina baseada em evidências, aliada à ciência de dados, pode transformar o cuidado ao paciente, desde que os modelos sejam avaliados com o mesmo rigor que exigimos de qualquer intervenção clínica.</p>
           <p data-i18n="intro.p2">Atualmente atuo como Gerente Médico de Inovação e IA na Hapvida NotreDame Intermédica, uma das maiores operadoras de saúde do Brasil<sup class="fn">a</sup>, e sou pesquisador no LABDAPS (USP), onde meu doutorado trata de multicalibração em modelos preditivos de saúde pública<sup class="fn">b</sup>.</p>
           <p data-i18n="intro.p4">O software que publico hoje segue algumas convicções vindas da clínica, do laboratório e do sistema de saúde: texto clínico não deve sair da máquina, por isso priorizo modelos locais; dados públicos brasileiros (DATASUS, InfoDengue, Anvisa, CFM, Conitec) merecem ferramentas à altura; avaliar vai além da acurácia, medindo variância entre execuções, excesso de confiança e fragilidade a perturbações; toda ferramenta declara o que não é e traz o link da fonte oficial; e agentes devem entrar no fluxo de trabalho do médico, via servidores MCP e skills, em vez de virar mais uma janela de chat (ver §3).</p>
@@ -878,6 +913,7 @@
     'hero.aff2': 'LABDAPS, School of Public Health, University of São Paulo',
     'hero.corr': 'Correspondence',
     'abs.label': 'Abstract',
+    'intro.p0': 'I teach artificial intelligence in medicine to physicians and health professionals: through the free course <a href="https://curso.iamed.cc">ML for Physicians</a>, the <a href="https://mentoria.fabianofilho.com">Mentoria Med IA</a> mentorship program and <a href="https://iamed.cc">IA.med</a>, with articles, a podcast and lessons in Portuguese. Invitations for lectures, talks, mentoring and partnerships: <a href="mailto:drfabianofilho@gmail.com">drfabianofilho@gmail.com</a>.',
     'abs.text': 'I work at the intersection of clinical practice, data science and artificial intelligence. At Hapvida, I lead medical AI projects at scale; in my PhD (FSP-USP), I study <em>multicalibration</em> and <em>algorithmic fairness</em> in public health predictive models, that is, how to make a risk prediction equally reliable across population subgroups. I also build open-source software and teach AI to health professionals.',
     'abs.kw': 'Keywords',
     'abs.kwlist': '<em>fairness</em> · multicalibration · clinical modeling · LLMs · dataset shift · epidemiology',
