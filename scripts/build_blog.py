@@ -361,7 +361,7 @@ def com_link_no_menu(index_html, tem_posts):
     if tem_posts:
         # A home abre em português; o link segue o idioma escolhido no botão EN/PT dela.
         miolo = (f'\n      <a href="{T["pt"]["caminho"]}" id="blog-link" data-pt="{T["pt"]["caminho"]}" '
-                 f'data-en="{T["en"]["caminho"]}">{NOME_BLOG}</a>\n'
+                 f'data-en="{T["en"]["caminho"]}" class="nav-blog">{NOME_BLOG}<span class="nav-pill">blog</span></a>\n'
                  "      <script>(function(){var a=document.getElementById('blog-link');"
                  "function u(){var l=null;try{l=localStorage.getItem('lang')}catch(e){}a.href=l==='en'?a.dataset.en:a.dataset.pt}"
                  "u();document.addEventListener('DOMContentLoaded',function(){var b=document.getElementById('lang-btn');"
@@ -369,9 +369,62 @@ def com_link_no_menu(index_html, tem_posts):
     return index_html[:ini + len(MARCA_INI)] + miolo + index_html[fim:]
 
 
+DESTAQUE_INI, DESTAQUE_FIM = "<!-- blog-destaque:inicio -->", "<!-- blog-destaque:fim -->"
+DESTAQUE_CSS = """<style>
+    .hdr-nav a.nav-blog { color: var(--accent); }
+    .hdr-nav a.nav-blog:hover { color: var(--ink); }
+    @media (min-width: 721px) and (max-width: 1180px) { .hdr { column-gap: 16px; } .hdr-nav { column-gap: 14px; } }
+    .nav-pill { margin-left: 6px; padding: 1px 6px; border: 1px solid currentColor; border-radius: 10px; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; vertical-align: 1px; }
+    .blog-band { padding: 40px 0 44px; border-bottom: 1px solid var(--rule); }
+    .bb-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; margin-bottom: 24px; }
+    .bb-head .kicker { color: var(--accent); }
+    .bb-sub { font-family: var(--serif); font-size: 18px; text-transform: none; letter-spacing: 0; color: var(--ink-3); margin-left: 12px; }
+    .bb-all { font-family: var(--mono); font-size: 12.5px; }
+    .bb-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; }
+    .bb-item { display: block; color: var(--ink); border-left: 2px solid var(--accent); padding: 2px 0 2px 18px; }
+    .bb-item:hover { text-decoration: none; }
+    .bb-item:hover .bb-title { color: var(--accent); }
+    .bb-meta { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+    .bb-title { display: block; font-size: 26px; line-height: 1.2; margin: 6px 0 8px; }
+    .bb-sum { display: block; font-size: 16.5px; line-height: 1.55; color: var(--ink-3); }
+    html[lang="en"] .bt-pt, html:not([lang="en"]) .bt-en { display: none; }
+    @media (max-width: 720px) { .bb-sub { display: block; margin: 6px 0 0; font-size: 16px; } .bb-title { font-size: 22px; } }
+  </style>"""
+SUB = {"pt": "Ensaios sobre IA na medicina", "en": "Essays on AI in medicine"}
+TODOS = {"pt": "Todos os ensaios &rarr;", "en": "All essays &rarr;"}
+
+
+def faixa_destaque(grupos, ordem, n=2):
+    """Faixa da home com os ensaios mais recentes, nas duas línguas (o CSS mostra a do html lang)."""
+    e = html.escape
+    blocos = []
+    for lang in IDIOMAS:
+        itens = []
+        for slug in ordem[:n]:
+            versoes = grupos[slug]
+            p = versoes.get(lang) or versoes[OUTRO[lang]]
+            aviso = "" if lang in versoes else f" · {T[lang]['outro_idioma']}"
+            itens.append(f'      <a class="bb-item" href="{T[p["lang"]]["caminho"]}{slug}/" hreflang="{T[p["lang"]]["hreflang"]}">'
+                         f'<span class="bb-meta"><time datetime="{p["data"]}">{data_longa(p["data"], lang)}</time>{aviso}</span>'
+                         f'<span class="bb-title">{e(p["titulo"])}</span><span class="bb-sum">{e(p["resumo"])}</span></a>')
+        blocos.append(f'    <div class="bb-grid bt-{lang}">\n' + "\n".join(itens) + "\n    </div>")
+    cab = ("    <div class=\"bb-head\"><p class=\"kicker\" style=\"margin:0\">" + NOME_BLOG + " · blog"
+           + "".join(f'<span class="bb-sub bt-{l}">{SUB[l]}</span>' for l in IDIOMAS) + "</p>"
+           + "".join(f'<a class="bb-all bt-{l}" href="{T[l]["caminho"]}">{TODOS[l]}</a>' for l in IDIOMAS) + "</div>")
+    return f"\n  {DESTAQUE_CSS}\n  <section class=\"blog-band\" aria-label=\"{NOME_BLOG}\">\n{cab}\n" + "\n".join(blocos) + "\n  </section>\n  "
+
+
+def com_destaque(index_html, grupos, ordem):
+    ini, fim = index_html.find(DESTAQUE_INI), index_html.find(DESTAQUE_FIM)
+    if ini < 0 or fim < 0:
+        raise SystemExit("index.html sem as marcas blog-destaque")
+    miolo = faixa_destaque(grupos, ordem) if ordem else ""
+    return index_html[:ini + len(DESTAQUE_INI)] + miolo + index_html[fim:]
+
+
 def arquivos(grupos, ordem):
     saida = {RAIZ / "sitemap.xml": gera_sitemap(grupos, ordem),
-             RAIZ / "index.html": com_link_no_menu((RAIZ / "index.html").read_text(encoding="utf-8"), bool(ordem))}
+             RAIZ / "index.html": com_destaque(com_link_no_menu((RAIZ / "index.html").read_text(encoding="utf-8"), bool(ordem)), grupos, ordem)}
     for lang in IDIOMAS:
         pasta = SAIDA / ("pt" if lang == "pt" else "")
         saida[pasta / "index.html"] = gera_indice(lang, grupos, ordem)
