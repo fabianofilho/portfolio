@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The feature ceiling · Fabiano Filho</title>
+  <meta name="description" content="Seven diabetes models, from a logistic regression to a tuned ensemble, all landed on the same AUC. What that tie says about the data, and why the next month of work belongs to the variables." />
+  <meta name="author" content="Fabiano Filho" />
+  <link rel="canonical" href="https://fabianofilho.com/perspectives/the-feature-ceiling/" />
+  <link rel="alternate" type="application/rss+xml" title="Perspectives · Fabiano Filho" href="https://fabianofilho.com/perspectives/feed.xml" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Fabiano Filho" />
+  <meta property="og:title" content="The feature ceiling · Fabiano Filho" />
+  <meta property="og:description" content="Seven diabetes models, from a logistic regression to a tuned ensemble, all landed on the same AUC. What that tie says about the data, and why the next month of work belongs to the variables." />
+  <meta property="og:url" content="https://fabianofilho.com/perspectives/the-feature-ceiling/" />
+  <meta property="og:image" content="https://fabianofilho.com/img/og-fabiano-filho.jpg" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The feature ceiling · Fabiano Filho" />
+  <meta name="twitter:description" content="Seven diabetes models, from a logistic regression to a tuned ensemble, all landed on the same AUC. What that tie says about the data, and why the next month of work belongs to the variables." />
+  <meta name="twitter:image" content="https://fabianofilho.com/img/og-fabiano-filho.jpg" />
+  <meta property="article:published_time" content="2026-10-24" />
+  <meta property="article:author" content="https://fabianofilho.com/" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://fabianofilho.com/perspectives/the-feature-ceiling/#post", "headline": "The feature ceiling", "description": "Seven diabetes models, from a logistic regression to a tuned ensemble, all landed on the same AUC. What that tie says about the data, and why the next month of work belongs to the variables.", "url": "https://fabianofilho.com/perspectives/the-feature-ceiling/", "mainEntityOfPage": "https://fabianofilho.com/perspectives/the-feature-ceiling/", "datePublished": "2026-10-24", "dateModified": "2026-10-24", "inLanguage": "en", "wordCount": 876, "image": "https://fabianofilho.com/img/og-fabiano-filho.jpg", "author": {"@id": "https://fabianofilho.com/#person", "@type": "Person", "name": "Fabiano Filho", "url": "https://fabianofilho.com/"}, "publisher": {"@id": "https://fabianofilho.com/#person"}, "isPartOf": {"@id": "https://fabianofilho.com/perspectives/#blog"}}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(!t)t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';if(t==='dark')document.documentElement.classList.add('dark')})();</script>
+  <style>
+:root{--paper:#f6f4ee;--paper-blur:rgba(246,244,238,.92);--ink:#1c1b18;--ink-3:#3b3934;--muted:#6e6a60;--rule:#dcd7cb;--rule-soft:#ebe7dd;--accent:#0f6b4f;--selection:#cfe3d9;--serif:'Source Serif 4',Georgia,serif;--mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;--gutter:32px;color-scheme:light}
+html.dark{--paper:#161512;--paper-blur:rgba(22,21,18,.92);--ink:#ebe7dc;--ink-3:#bdb8ab;--muted:#969185;--rule:#35322c;--rule-soft:#282621;--accent:#5fc39c;--selection:#24493b;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-optical-sizing:auto;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--accent);text-decoration:none}a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+::selection{background:var(--selection)}:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.site-header{position:sticky;top:0;z-index:10;background:var(--paper-blur);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.hdr{max-width:1120px;margin:0 auto;padding:14px var(--gutter);display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--muted)}
+.hdr-name{color:var(--ink);font-weight:500;white-space:nowrap}
+.hdr-nav{margin-left:auto;display:flex;gap:4px 18px}.hdr-nav a{color:var(--muted);white-space:nowrap}.hdr-nav a:hover,.hdr-nav a.active{color:var(--ink)}
+.hdr-nav a.active{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--accent)}
+.hdr-tools{display:flex;align-items:center;gap:2px;border-left:1px solid var(--rule);padding-left:14px}
+.tool-btn{all:unset;cursor:pointer;box-sizing:border-box;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--muted);padding:4px 6px;line-height:1;display:inline-flex;align-items:center}.tool-btn:hover{color:var(--accent);text-decoration:none}
+.tool-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+main{max-width:720px;margin:0 auto;padding:72px var(--gutter) 96px}
+.eyebrow{margin:0 0 20px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-weight:400;font-size:44px;line-height:1.1;letter-spacing:-.01em;margin:0 0 18px}
+.lede{font-size:20px;line-height:1.55;color:var(--ink-3);margin:0 0 40px}
+.list{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.list li{padding:24px 0;border-bottom:1px solid var(--rule-soft)}
+.list time,.list .tag{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.list h2{font-weight:500;font-size:24px;line-height:1.25;margin:6px 0 8px}.list h2 a{color:var(--ink)}.list h2 a:hover{color:var(--accent)}
+.list p{margin:0;font-size:17px;line-height:1.55;color:var(--ink-3)}
+.empty{font-family:var(--mono);font-size:13px;color:var(--muted);padding:24px 0;border-top:1px solid var(--rule)}
+.meta{font-family:var(--mono);font-size:12px;color:var(--muted);margin:0 0 40px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.prose{font-size:19px;line-height:1.7}
+.prose p{margin:0 0 1.15em}.prose h2{font-weight:500;font-size:26px;line-height:1.25;margin:1.8em 0 .6em}.prose h3{font-weight:600;font-size:20px;margin:1.6em 0 .5em}
+.prose blockquote{margin:1.4em 0;padding:4px 0 4px 20px;border-left:2px solid var(--accent);color:var(--ink-3);font-style:italic}
+.prose ul,.prose ol{padding-left:1.3em;margin:0 0 1.15em}.prose li{margin:.3em 0}
+.prose code{font-family:var(--mono);font-size:.82em;background:var(--rule-soft);padding:1px 5px}
+.prose pre{font-family:var(--mono);font-size:14px;line-height:1.6;background:var(--rule-soft);padding:16px;overflow-x:auto}.prose pre code{background:none;padding:0}
+.prose img{max-width:100%;height:auto}.prose hr{border:none;border-top:1px solid var(--rule);margin:2em 0}
+.prose table{border-collapse:collapse;width:100%;font-size:16px}.prose th,.prose td{border-bottom:1px solid var(--rule);padding:8px 6px;text-align:left}
+.byline{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:12.5px;line-height:1.8;color:var(--muted)}
+.ftr{max-width:1120px;margin:0 auto;padding:24px var(--gutter) 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;font-family:var(--mono);font-size:12px;color:var(--muted);border-top:1px solid var(--rule)}
+@media (max-width:720px){:root{--gutter:20px}.hdr{flex-wrap:nowrap;gap:12px}.hdr-nav{gap:12px}.hdr-tools{padding-left:8px}main{padding-top:48px}h1{font-size:34px}.lede{font-size:18px}.prose{font-size:18px}}
+@media (max-width:420px){.hdr-nav a:first-child{display:none}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="hdr">
+    <a href="/" class="hdr-name">Barcellos Filho, F.</a>
+    <nav class="hdr-nav" aria-label="Site">
+      <a href="/">Home</a>
+      <a href="/perspectives/" class="active">Perspectives</a>
+    </nav>
+    <div class="hdr-tools">
+      <a class="tool-btn" id="lang-btn" href="/perspectives/pt/" hreflang="pt-BR" data-lang="pt" aria-label="Ler em português">PT</a>
+      <button type="button" class="tool-btn" id="theme-btn" aria-label="Toggle light and dark theme"><svg id="theme-icon" viewBox="0 0 24 24" aria-hidden="true"></svg></button>
+    </div>
+  </div>
+</header>
+<main>
+  <p class="eyebrow"><a href="/perspectives/">Perspectives</a></p>
+  <article>
+  <h1>The feature ceiling</h1>
+  <p class="meta">By <a href="/">Fabiano Filho, MD</a> · <time datetime="2026-10-24">October 24, 2026</time> · 4 min read</p>
+  <div class="prose">
+<p>We built a model to predict type 2 diabetes in a large health plan that owns its
+hospitals, emergency rooms and labs, with one patient identifier linking primary care,
+emergency, hospital and lab records. Each patient window carried twelve months of history
+before the index date, and 38 features: thirteen lab tests, six comorbidity flags, how often the person
+used the network, and the vital signs. Blood pressure, heart rate, weight and height came
+from the free text of the doctors' notes, which we parsed with regular expressions.</p>
+<p>Then we trained everything. A logistic regression, a random forest, histogram gradient
+boosting, XGBoost and LightGBM each tuned with fifty rounds of Bayesian search, a voting
+ensemble, and an isotonic-calibrated version of the best one. On the held-out test set,
+all seven reached an area under the curve of 0.760, with the same 95% interval, 0.757 to
+0.763. The logistic regression was as good as the ensemble. Fasting glucose, a history of
+hypertension and urea carried most of the signal, which is what any endocrinologist
+would have guessed.</p>
+<p>That tie made me write a short viewpoint to give the pattern a name: the feature ceiling.
+It is the point at which the information carried by the available variables sets the
+limit on performance, whatever the algorithm. The viewpoint was accepted by JMIR AI in
+September. The idea is simple, and in my experience teams almost never act on it. When
+the models converge, the usual reaction is to book another round of hyperparameter
+search.</p>
+<p>Most of us learned to build prediction models as an engineering problem. Pick the
+algorithm, tune it, make the pipeline robust, report the best number. All of that is
+worth doing, and all of it assumes something nobody checks: that the features hold enough
+information about the outcome. In our case they held enough for 0.76. Fifty more Optuna
+trials could not change that, and the seven-way tie was the clearest evidence we were
+ever going to get.</p>
+<p>The useful questions come before the first model is trained. Which clinically relevant
+variables are in the dataset, and which are missing because the system never captured
+them? Is there missingness that follows the flow of care? Most members never made it into
+our cohort, and the main reason was the lack of a single lab test in the previous year.
+The people who do get tested are not a random sample. Do the features describe the patient over a window that
+matches the outcome? Twelve months of history is a short look at a disease that takes
+years to develop. These questions take an afternoon. Asked at the end, they explain the
+disappointing result; asked at the start, they change the design.</p>
+<p>They also show where the next gain is. The way up from 0.76 was never going to be a
+bigger model. It was going to be something the model could not see: the glucose
+trajectory over several years, prescriptions, diet and physical activity, family history,
+where the person lives and what they earn. Some of that is probably in the same free-text notes
+we mined for blood pressure. Some of it was never recorded anywhere. That work is slower
+and less glamorous than tuning, and it is the work that moves the curve.</p>
+<p>The ceiling is set long before anyone opens a notebook. The variables a model can use
+were decided years earlier by whoever designed the intake form, chose which measurements
+get their own field and decided which systems would talk to each other. That plan had an
+advantage many health systems lack: one identifier across primary care, emergency,
+hospital and lab. Where mortality, hospital and notification records were built as
+separate systems, joining them still takes probabilistic linkage. A model trained on either
+inherits those decisions.</p>
+<p>I saw the same thing again in August, in a different kind of problem. Three forecasting
+models of monthly cardiovascular deaths from a public mortality registry finished within 0.13 percentage
+points of each other, and nine more years of history cut the error by 1.2 to 1.7 points.
+More data beat every choice of model.</p>
+<p>This matters more now that agents do most of the modelling. An agent can try forty model
+families overnight and report the winner in a clean table. It will hit the ceiling faster
+than we did, and it cannot raise it. It cannot add a field the system never recorded, or
+ask the doctor why the weight goes into the note and not into a form field. The tie
+between models used to take a team months to discover. Now it takes a night, and what the
+team does the next morning is still ours to decide.</p>
+<p>So I treat the feature ceiling as a diagnosis, made on purpose, with a short list of
+checks at the design stage and a plan for what to do when the models converge. The
+convergence is information about the data. Read it early, and spend the next month on
+the variables.</p>
+<p><em>The viewpoint: <a href="https://doi.org/10.2196/preprints.96900">The Feature Ceiling: Recognizing Data-Driven Performance Limits as a Diagnostic Category in Clinical Machine Learning</a>, JMIR AI, 2026 (in press).</em></p>
+  </div>
+  <p class="byline">Fabiano Filho (Fabiano Barcellos Filho) is a physician and data scientist who teaches AI in medicine. PhD candidate at LABDAPS, School of Public Health, University of São Paulo. More at <a href="/">fabianofilho.com</a>.</p>
+  </article>
+</main>
+<footer class="site-footer">
+  <div class="ftr">
+    <span>© 2026 Fabiano Barcellos Filho · São Paulo</span>
+    <span><a href="https://fabianofilho.com/perspectives/feed.xml">RSS</a> · <a href="/">fabianofilho.com</a></span>
+  </div>
+</footer>
+<script>(function(){var r=document.documentElement,i=document.getElementById('theme-icon');
+var SUN='<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
+var MOON='<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+function p(){i.innerHTML=r.classList.contains('dark')?SUN:MOON}
+document.getElementById('theme-btn').addEventListener('click',function(){var d=!r.classList.contains('dark');r.classList.toggle('dark',d);try{localStorage.setItem('theme',d?'dark':'light')}catch(e){}p()});p();
+var l=document.getElementById('lang-btn');l.addEventListener('click',function(){try{localStorage.setItem('lang',l.getAttribute('data-lang'))}catch(e){}});})();</script>
+</body>
+</html>
