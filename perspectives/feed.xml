@@ -8,6 +8,13 @@
   <language>en</language>
   <lastBuildDate>Sat, 24 Oct 2026 09:00:00 -0300</lastBuildDate>
   <item>
+    <title>The feature ceiling</title>
+    <link>https://fabianofilho.com/perspectives/the-feature-ceiling/</link>
+    <guid isPermaLink="true">https://fabianofilho.com/perspectives/the-feature-ceiling/</guid>
+    <pubDate>Sat, 24 Oct 2026 09:00:00 -0300</pubDate>
+    <description>Seven diabetes models, from a logistic regression to a tuned ensemble, all landed on the same AUC. What that tie says about the data, and why the next month of work belongs to the variables.</description>
+  </item>
+  <item>
     <title>The paper got cheap</title>
     <link>https://fabianofilho.com/perspectives/the-paper-got-cheap/</link>
     <guid isPermaLink="true">https://fabianofilho.com/perspectives/the-paper-got-cheap/</guid>
