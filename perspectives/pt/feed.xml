@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Perspectives · Fabiano Filho</title>
+  <link>https://fabianofilho.com/perspectives/pt/</link>
+  <atom:link href="https://fabianofilho.com/perspectives/pt/feed.xml" rel="self" type="application/rss+xml" />
+  <description>Ensaios de Fabiano Filho, médico, sobre inteligência artificial na medicina: predição clínica, justiça algorítmica, avaliação e o que é preciso para usar IA bem na saúde.</description>
+  <language>pt-BR</language>
+  <lastBuildDate>Sat, 24 Oct 2026 09:00:00 -0300</lastBuildDate>
+  <item>
+    <title>O artigo ficou barato</title>
+    <link>https://fabianofilho.com/perspectives/pt/the-paper-got-cheap/</link>
+    <guid isPermaLink="true">https://fabianofilho.com/perspectives/pt/the-paper-got-cheap/</guid>
+    <pubDate>Sat, 24 Oct 2026 09:00:00 -0300</pubDate>
+    <description>Uma rejeição no mesmo dia, um editor de franqueza incomum e o que aprendi com isso: com agentes de IA, o benchmark, as figuras e o texto ficaram baratos. A pergunta, não.</description>
+  </item>
+</channel>
+</rss>
