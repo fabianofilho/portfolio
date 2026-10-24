@@ -67,7 +67,7 @@ def le_post(arq):
         "atualizado": dt.date.fromisoformat(meta["updated"]) if meta.get("updated") else data,
         "rascunho": meta.get("draft", "false").lower() == "true",
         "slug": m.group(2),
-        "html": markdown.markdown(corpo, extensions=["extra", "smarty", "sane_lists"], output_format="html"),
+        "html": markdown.markdown(corpo, extensions=["extra", "sane_lists"], output_format="html"),
         "palavras": len(re.findall(r"\w+", corpo)),
     }
 
