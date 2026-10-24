@@ -441,7 +441,7 @@
       <a href="#s4" data-i18n="nav.s4">§4 Publicações</a>
       <a href="#s5" data-i18n="nav.s5">§5 Trajetória</a>
       <!-- blog-nav:inicio -->
-      <a href="/perspectives/pt/" id="blog-link" data-pt="/perspectives/pt/" data-en="/perspectives/">Perspectives</a>
+      <a href="/perspectives/pt/" id="blog-link" data-pt="/perspectives/pt/" data-en="/perspectives/" class="nav-blog">Perspectives<span class="nav-pill">blog</span></a>
       <script>(function(){var a=document.getElementById('blog-link');function u(){var l=null;try{l=localStorage.getItem('lang')}catch(e){}a.href=l==='en'?a.dataset.en:a.dataset.pt}u();document.addEventListener('DOMContentLoaded',function(){var b=document.getElementById('lang-btn');if(b)b.addEventListener('click',function(){setTimeout(u,0)})})})();</script>
       <!-- blog-nav:fim -->
     </nav>
@@ -505,6 +505,40 @@
       </aside>
     </div>
   </section>
+
+  <!-- blog-destaque:inicio -->
+  <style>
+    .hdr-nav a.nav-blog { color: var(--accent); }
+    .hdr-nav a.nav-blog:hover { color: var(--ink); }
+    @media (min-width: 721px) and (max-width: 1180px) { .hdr { column-gap: 16px; } .hdr-nav { column-gap: 14px; } }
+    .nav-pill { margin-left: 6px; padding: 1px 6px; border: 1px solid currentColor; border-radius: 10px; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; vertical-align: 1px; }
+    .blog-band { padding: 40px 0 44px; border-bottom: 1px solid var(--rule); }
+    .bb-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; margin-bottom: 24px; }
+    .bb-head .kicker { color: var(--accent); }
+    .bb-sub { font-family: var(--serif); font-size: 18px; text-transform: none; letter-spacing: 0; color: var(--ink-3); margin-left: 12px; }
+    .bb-all { font-family: var(--mono); font-size: 12.5px; }
+    .bb-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; }
+    .bb-item { display: block; color: var(--ink); border-left: 2px solid var(--accent); padding: 2px 0 2px 18px; }
+    .bb-item:hover { text-decoration: none; }
+    .bb-item:hover .bb-title { color: var(--accent); }
+    .bb-meta { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+    .bb-title { display: block; font-size: 26px; line-height: 1.2; margin: 6px 0 8px; }
+    .bb-sum { display: block; font-size: 16.5px; line-height: 1.55; color: var(--ink-3); }
+    html[lang="en"] .bt-pt, html:not([lang="en"]) .bt-en { display: none; }
+    @media (max-width: 720px) { .bb-sub { display: block; margin: 6px 0 0; font-size: 16px; } .bb-title { font-size: 22px; } }
+  </style>
+  <section class="blog-band" aria-label="Perspectives">
+    <div class="bb-head"><p class="kicker" style="margin:0">Perspectives · blog<span class="bb-sub bt-en">Essays on AI in medicine</span><span class="bb-sub bt-pt">Ensaios sobre IA na medicina</span></p><a class="bb-all bt-en" href="/perspectives/">All essays &rarr;</a><a class="bb-all bt-pt" href="/perspectives/pt/">Todos os ensaios &rarr;</a></div>
+    <div class="bb-grid bt-en">
+      <a class="bb-item" href="/perspectives/the-feature-ceiling/" hreflang="en"><span class="bb-meta"><time datetime="2026-10-24">October 24, 2026</time></span><span class="bb-title">The feature ceiling</span><span class="bb-sum">Seven diabetes models, from a logistic regression to a tuned ensemble, all landed on the same AUC. What that tie says about the data, and why the next month of work belongs to the variables.</span></a>
+      <a class="bb-item" href="/perspectives/the-paper-got-cheap/" hreflang="en"><span class="bb-meta"><time datetime="2026-10-24">October 24, 2026</time></span><span class="bb-title">The paper got cheap</span><span class="bb-sum">A same-day desk rejection, an unusually frank editor and what it taught me: with AI agents the benchmark, the figures and the prose got cheap. The question did not.</span></a>
+    </div>
+    <div class="bb-grid bt-pt">
+      <a class="bb-item" href="/perspectives/the-feature-ceiling/" hreflang="en"><span class="bb-meta"><time datetime="2026-10-24">24 de outubro de 2026</time> · em inglês</span><span class="bb-title">The feature ceiling</span><span class="bb-sum">Seven diabetes models, from a logistic regression to a tuned ensemble, all landed on the same AUC. What that tie says about the data, and why the next month of work belongs to the variables.</span></a>
+      <a class="bb-item" href="/perspectives/pt/the-paper-got-cheap/" hreflang="pt-BR"><span class="bb-meta"><time datetime="2026-10-24">24 de outubro de 2026</time></span><span class="bb-title">O artigo ficou barato</span><span class="bb-sum">Uma rejeição no mesmo dia, um editor de franqueza incomum e o que aprendi com isso: com agentes de IA, o benchmark, as figuras e o texto ficaram baratos. A pergunta, não.</span></a>
+    </div>
+  </section>
+  <!-- blog-destaque:fim -->
 
   <section class="supp" aria-label="Cursos">
     <a href="https://curso.iamed.cc" target="_blank" rel="noopener">
