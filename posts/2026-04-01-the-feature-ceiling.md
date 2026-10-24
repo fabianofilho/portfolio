@@ -2,7 +2,6 @@
 title: The feature ceiling
 summary: Seven diabetes models, from a logistic regression to a tuned ensemble, all landed on the same AUC. What that tie says about the data, and why the next month of work belongs to the variables.
 date: 2026-04-01
-updated: 2026-10-24
 draft: false
 ---
 We built a model to predict type 2 diabetes in a large health plan that owns its
