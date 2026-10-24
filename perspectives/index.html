@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perspectives · Fabiano Filho, MD</title>
+  <meta name="description" content="Essays by Fabiano Filho, MD, on artificial intelligence in medicine: clinical prediction, fairness, evaluation and what it takes to use AI well in health care." />
+  <meta name="author" content="Fabiano Filho" />
+  <link rel="canonical" href="https://fabianofilho.com/perspectives/" />
+  <link rel="alternate" type="application/rss+xml" title="Perspectives by Fabiano Filho" href="https://fabianofilho.com/perspectives/feed.xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Fabiano Filho" />
+  <meta property="og:title" content="Perspectives · Fabiano Filho, MD" />
+  <meta property="og:description" content="Essays by Fabiano Filho, MD, on artificial intelligence in medicine: clinical prediction, fairness, evaluation and what it takes to use AI well in health care." />
+  <meta property="og:url" content="https://fabianofilho.com/perspectives/" />
+  <meta property="og:image" content="https://fabianofilho.com/img/og-fabiano-filho.jpg" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Perspectives · Fabiano Filho, MD" />
+  <meta name="twitter:description" content="Essays by Fabiano Filho, MD, on artificial intelligence in medicine: clinical prediction, fairness, evaluation and what it takes to use AI well in health care." />
+  <meta name="twitter:image" content="https://fabianofilho.com/img/og-fabiano-filho.jpg" />
+  <meta name="robots" content="noindex" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Blog", "@id": "https://fabianofilho.com/perspectives/#blog", "url": "https://fabianofilho.com/perspectives/", "name": "Perspectives by Fabiano Filho", "description": "Essays by Fabiano Filho, MD, on artificial intelligence in medicine: clinical prediction, fairness, evaluation and what it takes to use AI well in health care.", "inLanguage": "en", "author": {"@id": "https://fabianofilho.com/#person"}, "publisher": {"@id": "https://fabianofilho.com/#person"}, "isPartOf": {"@id": "https://fabianofilho.com/#website"}, "blogPost": []}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(!t)t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';if(t==='dark')document.documentElement.classList.add('dark')})();</script>
+  <style>
+:root{--paper:#f6f4ee;--paper-blur:rgba(246,244,238,.92);--ink:#1c1b18;--ink-3:#3b3934;--muted:#6e6a60;--rule:#dcd7cb;--rule-soft:#ebe7dd;--accent:#0f6b4f;--selection:#cfe3d9;--serif:'Source Serif 4',Georgia,serif;--mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;--gutter:32px;color-scheme:light}
+html.dark{--paper:#161512;--paper-blur:rgba(22,21,18,.92);--ink:#ebe7dc;--ink-3:#bdb8ab;--muted:#969185;--rule:#35322c;--rule-soft:#282621;--accent:#5fc39c;--selection:#24493b;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-optical-sizing:auto;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--accent);text-decoration:none}a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+::selection{background:var(--selection)}:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.site-header{position:sticky;top:0;z-index:10;background:var(--paper-blur);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.hdr{max-width:1120px;margin:0 auto;padding:14px var(--gutter);display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--muted)}
+.hdr-name{color:var(--ink);font-weight:500;white-space:nowrap}
+.hdr-nav{margin-left:auto;display:flex;gap:4px 18px}.hdr-nav a{color:var(--muted);white-space:nowrap}.hdr-nav a:hover,.hdr-nav a.active{color:var(--ink)}
+.hdr-nav a.active{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--accent)}
+.hdr-tools{display:flex;align-items:center;border-left:1px solid var(--rule);padding-left:14px}
+.tool-btn{all:unset;cursor:pointer;color:var(--muted);padding:4px 6px;line-height:1;display:inline-flex}.tool-btn:hover{color:var(--accent)}
+.tool-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+main{max-width:720px;margin:0 auto;padding:72px var(--gutter) 96px}
+.eyebrow{margin:0 0 20px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-weight:400;font-size:44px;line-height:1.1;letter-spacing:-.01em;margin:0 0 18px}
+.lede{font-size:20px;line-height:1.55;color:var(--ink-3);margin:0 0 40px}
+.list{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.list li{padding:24px 0;border-bottom:1px solid var(--rule-soft)}
+.list time{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.list h2{font-weight:500;font-size:24px;line-height:1.25;margin:6px 0 8px}.list h2 a{color:var(--ink)}.list h2 a:hover{color:var(--accent)}
+.list p{margin:0;font-size:17px;line-height:1.55;color:var(--ink-3)}
+.empty{font-family:var(--mono);font-size:13px;color:var(--muted);padding:24px 0;border-top:1px solid var(--rule)}
+.meta{font-family:var(--mono);font-size:12px;color:var(--muted);margin:0 0 40px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.prose{font-size:19px;line-height:1.7}
+.prose p{margin:0 0 1.15em}.prose h2{font-weight:500;font-size:26px;line-height:1.25;margin:1.8em 0 .6em}.prose h3{font-weight:600;font-size:20px;margin:1.6em 0 .5em}
+.prose blockquote{margin:1.4em 0;padding:4px 0 4px 20px;border-left:2px solid var(--accent);color:var(--ink-3);font-style:italic}
+.prose ul,.prose ol{padding-left:1.3em;margin:0 0 1.15em}.prose li{margin:.3em 0}
+.prose code{font-family:var(--mono);font-size:.82em;background:var(--rule-soft);padding:1px 5px}
+.prose pre{font-family:var(--mono);font-size:14px;line-height:1.6;background:var(--rule-soft);padding:16px;overflow-x:auto}.prose pre code{background:none;padding:0}
+.prose img{max-width:100%;height:auto}.prose hr{border:none;border-top:1px solid var(--rule);margin:2em 0}
+.prose table{border-collapse:collapse;width:100%;font-size:16px}.prose th,.prose td{border-bottom:1px solid var(--rule);padding:8px 6px;text-align:left}
+.byline{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:12.5px;line-height:1.8;color:var(--muted)}
+.ftr{max-width:1120px;margin:0 auto;padding:24px var(--gutter) 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;font-family:var(--mono);font-size:12px;color:var(--muted);border-top:1px solid var(--rule)}
+@media (max-width:720px){:root{--gutter:20px}.hdr{flex-wrap:nowrap;gap:12px}.hdr-nav{gap:12px}.hdr-tools{padding-left:8px}main{padding-top:48px}h1{font-size:34px}.lede{font-size:18px}.prose{font-size:18px}}
+@media (max-width:420px){.hdr-nav a:first-child{display:none}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="hdr">
+    <a href="/" class="hdr-name">Barcellos Filho, F.</a>
+    <nav class="hdr-nav" aria-label="Site">
+      <a href="/">Home</a>
+      <a href="/perspectives/" class="active">Perspectives</a>
+    </nav>
+    <div class="hdr-tools">
+      <button type="button" class="tool-btn" id="theme-btn" aria-label="Toggle light and dark theme"><svg id="theme-icon" viewBox="0 0 24 24" aria-hidden="true"></svg></button>
+    </div>
+  </div>
+</header>
+<main>
+  <p class="eyebrow">Essays · in English</p>
+  <h1>Perspectives</h1>
+  <p class="lede">Essays by Fabiano Filho, MD, on artificial intelligence in medicine: clinical prediction, fairness, evaluation and what it takes to use AI well in health care.</p>
+  <p class="empty">The first essay is on its way.</p>
+</main>
+<footer class="site-footer">
+  <div class="ftr">
+    <span>© 2026 Fabiano Barcellos Filho · São Paulo</span>
+    <span><a href="https://fabianofilho.com/perspectives/feed.xml">RSS</a> · <a href="/">fabianofilho.com</a></span>
+  </div>
+</footer>
+<script>(function(){var r=document.documentElement,i=document.getElementById('theme-icon');
+var SUN='<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
+var MOON='<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+function p(){i.innerHTML=r.classList.contains('dark')?SUN:MOON}
+document.getElementById('theme-btn').addEventListener('click',function(){var d=!r.classList.contains('dark');r.classList.toggle('dark',d);try{localStorage.setItem('theme',d?'dark':'light')}catch(e){}p()});p()})();</script>
+</body>
+</html>

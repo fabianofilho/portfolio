@@ -123,3 +123,13 @@ Sistema aberto de prontuário eletrônico (EHR) com foco em interoperabilidade e
 ---
 
 > *Medicina baseada em evidências aliada à ciência de dados pode transformar o cuidado ao paciente.*
+
+## Blog Perspectives (em inglês)
+
+Os textos ficam em `posts/AAAA-MM-DD-slug.md`, com cabeçalho `title`, `summary`, `date` (e, opcionais, `updated` e `draft: true`). Para publicar:
+
+```bash
+uv run scripts/build_blog.py
+```
+
+O script gera `perspectives/` (índice, uma página por post e `feed.xml`), refaz o `sitemap.xml` e põe o link "Perspectives" no menu da home, que só aparece com pelo menos um post publicado. `uv run scripts/build_blog.py --check` confere se o que está commitado bate com os posts. Commitar tudo o que ele gerar.
