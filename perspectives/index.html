@@ -7,7 +7,10 @@
   <meta name="description" content="Essays by Fabiano Filho, MD, on artificial intelligence in medicine: clinical prediction, fairness, evaluation and what it takes to use AI well in health care." />
   <meta name="author" content="Fabiano Filho" />
   <link rel="canonical" href="https://fabianofilho.com/perspectives/" />
-  <link rel="alternate" type="application/rss+xml" title="Perspectives by Fabiano Filho" href="https://fabianofilho.com/perspectives/feed.xml" />
+  <link rel="alternate" hreflang="en" href="https://fabianofilho.com/perspectives/" />
+  <link rel="alternate" hreflang="pt-BR" href="https://fabianofilho.com/perspectives/pt/" />
+  <link rel="alternate" hreflang="x-default" href="https://fabianofilho.com/perspectives/" />
+  <link rel="alternate" type="application/rss+xml" title="Perspectives · Fabiano Filho" href="https://fabianofilho.com/perspectives/feed.xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Fabiano Filho" />
   <meta property="og:title" content="Perspectives · Fabiano Filho, MD" />
@@ -19,7 +22,7 @@
   <meta name="twitter:title" content="Perspectives · Fabiano Filho, MD" />
   <meta name="twitter:description" content="Essays by Fabiano Filho, MD, on artificial intelligence in medicine: clinical prediction, fairness, evaluation and what it takes to use AI well in health care." />
   <meta name="twitter:image" content="https://fabianofilho.com/img/og-fabiano-filho.jpg" />
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Blog", "@id": "https://fabianofilho.com/perspectives/#blog", "url": "https://fabianofilho.com/perspectives/", "name": "Perspectives by Fabiano Filho", "description": "Essays by Fabiano Filho, MD, on artificial intelligence in medicine: clinical prediction, fairness, evaluation and what it takes to use AI well in health care.", "inLanguage": "en", "author": {"@id": "https://fabianofilho.com/#person"}, "publisher": {"@id": "https://fabianofilho.com/#person"}, "isPartOf": {"@id": "https://fabianofilho.com/#website"}, "blogPost": [{"@type": "BlogPosting", "headline": "The paper got cheap", "url": "https://fabianofilho.com/perspectives/the-paper-got-cheap/", "datePublished": "2026-10-24"}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Blog", "@id": "https://fabianofilho.com/perspectives/#blog", "url": "https://fabianofilho.com/perspectives/", "name": "Perspectives · Fabiano Filho", "description": "Essays by Fabiano Filho, MD, on artificial intelligence in medicine: clinical prediction, fairness, evaluation and what it takes to use AI well in health care.", "inLanguage": "en", "author": {"@id": "https://fabianofilho.com/#person"}, "publisher": {"@id": "https://fabianofilho.com/#person"}, "isPartOf": {"@id": "https://fabianofilho.com/#website"}, "blogPost": [{"@type": "BlogPosting", "headline": "The paper got cheap", "url": "https://fabianofilho.com/perspectives/the-paper-got-cheap/", "datePublished": "2026-10-24"}]}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -36,8 +39,8 @@ a{color:var(--accent);text-decoration:none}a:hover{color:var(--ink);text-decorat
 .hdr-name{color:var(--ink);font-weight:500;white-space:nowrap}
 .hdr-nav{margin-left:auto;display:flex;gap:4px 18px}.hdr-nav a{color:var(--muted);white-space:nowrap}.hdr-nav a:hover,.hdr-nav a.active{color:var(--ink)}
 .hdr-nav a.active{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--accent)}
-.hdr-tools{display:flex;align-items:center;border-left:1px solid var(--rule);padding-left:14px}
-.tool-btn{all:unset;cursor:pointer;color:var(--muted);padding:4px 6px;line-height:1;display:inline-flex}.tool-btn:hover{color:var(--accent)}
+.hdr-tools{display:flex;align-items:center;gap:2px;border-left:1px solid var(--rule);padding-left:14px}
+.tool-btn{all:unset;cursor:pointer;box-sizing:border-box;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--muted);padding:4px 6px;line-height:1;display:inline-flex;align-items:center}.tool-btn:hover{color:var(--accent);text-decoration:none}
 .tool-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 main{max-width:720px;margin:0 auto;padding:72px var(--gutter) 96px}
 .eyebrow{margin:0 0 20px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
@@ -45,7 +48,7 @@ h1{font-weight:400;font-size:44px;line-height:1.1;letter-spacing:-.01em;margin:0
 .lede{font-size:20px;line-height:1.55;color:var(--ink-3);margin:0 0 40px}
 .list{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
 .list li{padding:24px 0;border-bottom:1px solid var(--rule-soft)}
-.list time{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.list time,.list .tag{font-family:var(--mono);font-size:12px;color:var(--muted)}
 .list h2{font-weight:500;font-size:24px;line-height:1.25;margin:6px 0 8px}.list h2 a{color:var(--ink)}.list h2 a:hover{color:var(--accent)}
 .list p{margin:0;font-size:17px;line-height:1.55;color:var(--ink-3)}
 .empty{font-family:var(--mono);font-size:13px;color:var(--muted);padding:24px 0;border-top:1px solid var(--rule)}
@@ -73,16 +76,17 @@ h1{font-weight:400;font-size:44px;line-height:1.1;letter-spacing:-.01em;margin:0
       <a href="/perspectives/" class="active">Perspectives</a>
     </nav>
     <div class="hdr-tools">
+      <a class="tool-btn" id="lang-btn" href="/perspectives/pt/" hreflang="pt-BR" data-lang="pt" aria-label="Ler em português">PT</a>
       <button type="button" class="tool-btn" id="theme-btn" aria-label="Toggle light and dark theme"><svg id="theme-icon" viewBox="0 0 24 24" aria-hidden="true"></svg></button>
     </div>
   </div>
 </header>
 <main>
-  <p class="eyebrow">Essays · in English</p>
+  <p class="eyebrow">Essays</p>
   <h1>Perspectives</h1>
   <p class="lede">Essays by Fabiano Filho, MD, on artificial intelligence in medicine: clinical prediction, fairness, evaluation and what it takes to use AI well in health care.</p>
   <ol class="list">
-    <li><time datetime="2026-10-24">October 24, 2026</time><h2><a href="the-paper-got-cheap/">The paper got cheap</a></h2><p>A same-day desk rejection, an unusually frank editor and what it taught me: with AI agents the benchmark, the figures and the prose got cheap. The question did not.</p></li>
+    <li><time datetime="2026-10-24">October 24, 2026</time><h2><a href="https://fabianofilho.com/perspectives/the-paper-got-cheap/" hreflang="en">The paper got cheap</a></h2><p>A same-day desk rejection, an unusually frank editor and what it taught me: with AI agents the benchmark, the figures and the prose got cheap. The question did not.</p></li>
   </ol>
 </main>
 <footer class="site-footer">
@@ -95,6 +99,7 @@ h1{font-weight:400;font-size:44px;line-height:1.1;letter-spacing:-.01em;margin:0
 var SUN='<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
 var MOON='<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
 function p(){i.innerHTML=r.classList.contains('dark')?SUN:MOON}
-document.getElementById('theme-btn').addEventListener('click',function(){var d=!r.classList.contains('dark');r.classList.toggle('dark',d);try{localStorage.setItem('theme',d?'dark':'light')}catch(e){}p()});p()})();</script>
+document.getElementById('theme-btn').addEventListener('click',function(){var d=!r.classList.contains('dark');r.classList.toggle('dark',d);try{localStorage.setItem('theme',d?'dark':'light')}catch(e){}p()});p();
+var l=document.getElementById('lang-btn');l.addEventListener('click',function(){try{localStorage.setItem('lang',l.getAttribute('data-lang'))}catch(e){}});})();</script>
 </body>
 </html>

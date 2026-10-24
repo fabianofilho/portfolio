@@ -441,7 +441,8 @@
       <a href="#s4" data-i18n="nav.s4">§4 Publicações</a>
       <a href="#s5" data-i18n="nav.s5">§5 Trajetória</a>
       <!-- blog-nav:inicio -->
-      <a href="/perspectives/">Perspectives</a>
+      <a href="/perspectives/pt/" id="blog-link" data-pt="/perspectives/pt/" data-en="/perspectives/">Perspectives</a>
+      <script>(function(){var a=document.getElementById('blog-link');function u(){var l=null;try{l=localStorage.getItem('lang')}catch(e){}a.href=l==='en'?a.dataset.en:a.dataset.pt}u();document.addEventListener('DOMContentLoaded',function(){var b=document.getElementById('lang-btn');if(b)b.addEventListener('click',function(){setTimeout(u,0)})})})();</script>
       <!-- blog-nav:fim -->
     </nav>
     <div class="hdr-tools">

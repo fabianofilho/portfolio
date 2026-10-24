@@ -126,10 +126,10 @@ Sistema aberto de prontuário eletrônico (EHR) com foco em interoperabilidade e
 
 ## Blog Perspectives (em inglês)
 
-Os textos ficam em `posts/AAAA-MM-DD-slug.md`, com cabeçalho `title`, `summary`, `date` (e, opcionais, `updated` e `draft: true`). Para publicar:
+Os textos ficam em `posts/AAAA-MM-DD-slug.md` (inglês, `/perspectives/slug/`) e, se houver tradução, `posts/AAAA-MM-DD-slug.pt.md` (português, `/perspectives/pt/slug/`), com cabeçalho `title`, `summary`, `date` (e, opcionais, `updated`, `draft: true` e `translation: true` na versão traduzida). O botão PT/EN do blog leva à outra versão. Para publicar:
 
 ```bash
 uv run scripts/build_blog.py
 ```
 
-O script gera `perspectives/` (índice, uma página por post e `feed.xml`), refaz o `sitemap.xml` e põe o link "Perspectives" no menu da home, que só aparece com pelo menos um post publicado. `uv run scripts/build_blog.py --check` confere se o que está commitado bate com os posts. Commitar tudo o que ele gerar.
+O script gera `perspectives/` e `perspectives/pt/` (índice, uma página por post e `feed.xml` em cada idioma, com hreflang entre as versões), refaz o `sitemap.xml` e põe o link "Perspectives" no menu da home, que só aparece com pelo menos um post publicado. `uv run scripts/build_blog.py --check` confere se o que está commitado bate com os posts. Commitar tudo o que ele gerar.
