@@ -1,8 +1,8 @@
 # Fabiano Filho, MD (Fabiano Barcellos Filho)
 
-> Médico e cientista de dados em São Paulo. Ensina inteligência artificial na medicina para médicos e profissionais de saúde: curso gratuito ML para Médicos, Mentoria Med IA e o IA.med, com artigos, podcast e aulas em português. Gerente Médico de Inovação e IA na Hapvida NotreDame Intermédica e doutorando em Machine Learning na Faculdade de Saúde Pública da USP (LABDAPS).
+> Médico e cientista de dados em São Paulo. Ensina inteligência artificial na medicina para médicos e profissionais de saúde: curso gratuito ML para Médicos, Mentoria Med IA e o IA.med, com artigos, podcast e aulas em português. Gerente Médico de Inovação e IA Assistencial na Hapvida NotreDame Intermédica e doutorando em Machine Learning na Faculdade de Saúde Pública da USP (LABDAPS).
 
-Physician and data scientist based in São Paulo, Brazil. Teaches artificial intelligence in medicine to physicians and health professionals (free course, mentorship program and the IA.med platform, in Portuguese). Medical Innovation and AI Manager at Hapvida NotreDame Intermédica; PhD candidate in machine learning for public health at the University of São Paulo (LABDAPS).
+Physician and data scientist based in São Paulo, Brazil. Teaches artificial intelligence in medicine to physicians and health professionals (free course, mentorship program and the IA.med platform, in Portuguese). Medical Innovation and Clinical AI Manager at Hapvida NotreDame Intermédica; PhD candidate in machine learning for public health at the University of São Paulo (LABDAPS).
 
 Nomes usados: Fabiano Filho; Fabiano Barcellos Filho; Fabiano Novaes Barcellos Filho (autoria); Fabiano Barcelos Filho (Google Scholar).
 
