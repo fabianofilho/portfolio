@@ -14,7 +14,7 @@
 
 Médico e cientista de dados apaixonado por utilizar tecnologias avançadas para melhorar a qualidade de vida das pessoas e impulsionar inovações na saúde.
 
-Atualmente atuo como **Gerente Médico de Inovação e IA na Hapvida NotreDame Intermédica**, liderando projetos de IA médica de alto impacto. Sou pesquisador no **LABDAPS (USP)** e **doutorando** com foco em multicalibração e justiça em modelos preditivos de saúde pública — buscando tornar a IA mais equitativa para diferentes populações.
+Atualmente atuo como **Gerente Médico de Inovação e IA Assistencial na Hapvida NotreDame Intermédica**, liderando projetos de IA médica de alto impacto. Sou pesquisador no **LABDAPS (USP)** e **doutorando** com foco em multicalibração e justiça em modelos preditivos de saúde pública — buscando tornar a IA mais equitativa para diferentes populações.
 
 | | |
 |---|---|
@@ -55,7 +55,7 @@ Detecção de isquemia circunferencial e condições cardíacas via deep learnin
 
 | Período | Cargo | Organização |
 |---|---|---|
-| Jan 2026 >Presente | Gerente Médico de Inovação e Inteligência Artificial | Hapvida NotreDame Intermédica |
+| Jan 2026 >Presente | Gerente Médico de Inovação e IA Assistencial | Hapvida NotreDame Intermédica |
 | Jun 2025 >Presente | Doutorando (PhD) em ML na Saúde Pública | FSP-USP · LABDAPS |
 | Jul 2023 >Presente | Fundador e Investidor | Medicina e Inteligência Artificial |
 | Fev 2025 >Jul 2025 | Professor | amo medicina |
