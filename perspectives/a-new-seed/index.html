@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The ranking that did not survive a new seed · Fabiano Filho</title>
+  <meta name="description" content="In April a multicalibration method came first in our comparison. One changed argument in the data split put it last. What forty partitions showed, and what changed in how I report a comparison." />
+  <meta name="author" content="Fabiano Filho" />
+  <link rel="canonical" href="https://fabianofilho.com/perspectives/a-new-seed/" />
+  <link rel="alternate" type="application/rss+xml" title="Perspectives · Fabiano Filho" href="https://fabianofilho.com/perspectives/feed.xml" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Fabiano Filho" />
+  <meta property="og:title" content="The ranking that did not survive a new seed · Fabiano Filho" />
+  <meta property="og:description" content="In April a multicalibration method came first in our comparison. One changed argument in the data split put it last. What forty partitions showed, and what changed in how I report a comparison." />
+  <meta property="og:url" content="https://fabianofilho.com/perspectives/a-new-seed/" />
+  <meta property="og:image" content="https://fabianofilho.com/img/og-fabiano-filho.jpg" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The ranking that did not survive a new seed · Fabiano Filho" />
+  <meta name="twitter:description" content="In April a multicalibration method came first in our comparison. One changed argument in the data split put it last. What forty partitions showed, and what changed in how I report a comparison." />
+  <meta name="twitter:image" content="https://fabianofilho.com/img/og-fabiano-filho.jpg" />
+  <meta property="article:published_time" content="2026-10-31" />
+  <meta property="article:author" content="https://fabianofilho.com/" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://fabianofilho.com/perspectives/a-new-seed/#post", "headline": "The ranking that did not survive a new seed", "description": "In April a multicalibration method came first in our comparison. One changed argument in the data split put it last. What forty partitions showed, and what changed in how I report a comparison.", "url": "https://fabianofilho.com/perspectives/a-new-seed/", "mainEntityOfPage": "https://fabianofilho.com/perspectives/a-new-seed/", "datePublished": "2026-10-31", "dateModified": "2026-10-31", "inLanguage": "en", "wordCount": 761, "image": "https://fabianofilho.com/img/og-fabiano-filho.jpg", "author": {"@id": "https://fabianofilho.com/#person", "@type": "Person", "name": "Fabiano Filho", "url": "https://fabianofilho.com/"}, "publisher": {"@id": "https://fabianofilho.com/#person"}, "isPartOf": {"@id": "https://fabianofilho.com/perspectives/#blog"}}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(!t)t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';if(t==='dark')document.documentElement.classList.add('dark')})();</script>
+  <style>
+:root{--paper:#f6f4ee;--paper-blur:rgba(246,244,238,.92);--ink:#1c1b18;--ink-3:#3b3934;--muted:#6e6a60;--rule:#dcd7cb;--rule-soft:#ebe7dd;--accent:#0f6b4f;--selection:#cfe3d9;--serif:'Source Serif 4',Georgia,serif;--mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;--gutter:32px;color-scheme:light}
+html.dark{--paper:#161512;--paper-blur:rgba(22,21,18,.92);--ink:#ebe7dc;--ink-3:#bdb8ab;--muted:#969185;--rule:#35322c;--rule-soft:#282621;--accent:#5fc39c;--selection:#24493b;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-optical-sizing:auto;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--accent);text-decoration:none}a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+::selection{background:var(--selection)}:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.site-header{position:sticky;top:0;z-index:10;background:var(--paper-blur);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.hdr{max-width:1120px;margin:0 auto;padding:14px var(--gutter);display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--muted)}
+.hdr-name{color:var(--ink);font-weight:500;white-space:nowrap}
+.hdr-nav{margin-left:auto;display:flex;gap:4px 18px}.hdr-nav a{color:var(--muted);white-space:nowrap}.hdr-nav a:hover,.hdr-nav a.active{color:var(--ink)}
+.hdr-nav a.active{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--accent)}
+.hdr-tools{display:flex;align-items:center;gap:2px;border-left:1px solid var(--rule);padding-left:14px}
+.tool-btn{all:unset;cursor:pointer;box-sizing:border-box;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--muted);padding:4px 6px;line-height:1;display:inline-flex;align-items:center}.tool-btn:hover{color:var(--accent);text-decoration:none}
+.tool-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+main{max-width:720px;margin:0 auto;padding:72px var(--gutter) 96px}
+.eyebrow{margin:0 0 20px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-weight:400;font-size:44px;line-height:1.1;letter-spacing:-.01em;margin:0 0 18px}
+.lede{font-size:20px;line-height:1.55;color:var(--ink-3);margin:0 0 40px}
+.list{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.list li{padding:24px 0;border-bottom:1px solid var(--rule-soft)}
+.list time,.list .tag{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.list h2{font-weight:500;font-size:24px;line-height:1.25;margin:6px 0 8px}.list h2 a{color:var(--ink)}.list h2 a:hover{color:var(--accent)}
+.list p{margin:0;font-size:17px;line-height:1.55;color:var(--ink-3)}
+.empty{font-family:var(--mono);font-size:13px;color:var(--muted);padding:24px 0;border-top:1px solid var(--rule)}
+.meta{font-family:var(--mono);font-size:12px;color:var(--muted);margin:0 0 40px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.prose{font-size:19px;line-height:1.7}
+.prose p{margin:0 0 1.15em}.prose h2{font-weight:500;font-size:26px;line-height:1.25;margin:1.8em 0 .6em}.prose h3{font-weight:600;font-size:20px;margin:1.6em 0 .5em}
+.prose blockquote{margin:1.4em 0;padding:4px 0 4px 20px;border-left:2px solid var(--accent);color:var(--ink-3);font-style:italic}
+.prose ul,.prose ol{padding-left:1.3em;margin:0 0 1.15em}.prose li{margin:.3em 0}
+.prose code{font-family:var(--mono);font-size:.82em;background:var(--rule-soft);padding:1px 5px}
+.prose pre{font-family:var(--mono);font-size:14px;line-height:1.6;background:var(--rule-soft);padding:16px;overflow-x:auto}.prose pre code{background:none;padding:0}
+.prose img{max-width:100%;height:auto}.prose hr{border:none;border-top:1px solid var(--rule);margin:2em 0}
+.prose table{border-collapse:collapse;width:100%;font-size:16px}.prose th,.prose td{border-bottom:1px solid var(--rule);padding:8px 6px;text-align:left}
+.byline{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:12.5px;line-height:1.8;color:var(--muted)}
+.ftr{max-width:1120px;margin:0 auto;padding:24px var(--gutter) 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;font-family:var(--mono);font-size:12px;color:var(--muted);border-top:1px solid var(--rule)}
+@media (max-width:720px){:root{--gutter:20px}.hdr{flex-wrap:nowrap;gap:12px}.hdr-nav{gap:12px}.hdr-tools{padding-left:8px}main{padding-top:48px}h1{font-size:34px}.lede{font-size:18px}.prose{font-size:18px}}
+@media (max-width:420px){.hdr-nav a:first-child{display:none}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="hdr">
+    <a href="/" class="hdr-name">Barcellos Filho, F.</a>
+    <nav class="hdr-nav" aria-label="Site">
+      <a href="/">Home</a>
+      <a href="/perspectives/" class="active">Perspectives</a>
+    </nav>
+    <div class="hdr-tools">
+      <a class="tool-btn" id="lang-btn" href="/perspectives/pt/" hreflang="pt-BR" data-lang="pt" aria-label="Ler em português">PT</a>
+      <button type="button" class="tool-btn" id="theme-btn" aria-label="Toggle light and dark theme"><svg id="theme-icon" viewBox="0 0 24 24" aria-hidden="true"></svg></button>
+    </div>
+  </div>
+</header>
+<main>
+  <p class="eyebrow"><a href="/perspectives/">Perspectives</a></p>
+  <article>
+  <h1>The ranking that did not survive a new seed</h1>
+  <p class="meta">By <a href="/">Fabiano Filho, MD</a> · <time datetime="2026-10-31">October 31, 2026</time> · 3 min read</p>
+  <div class="prose">
+<p>On a Sunday in late May an audit of my own code came back with a list of small fixes. One
+of them added a single argument to the function that splits the data.</p>
+<p>In April the table had a clear winner. We were comparing ways to recalibrate a mortality
+model for patients hospitalized with COVID-19 in Brazil: 6,011 patients from fourteen
+hospitals, nearly one in four of whom died before discharge. The question was whether the
+predicted risk meant the same thing for an old patient and a young one, for a man and a
+woman, in the North and in the South. To rank the methods we built a composite score that
+weighs calibration, the gap in calibration between subgroups and any loss of
+discrimination. A multicalibration method built on gradient boosting came first. That
+family of methods is what my PhD is about.</p>
+<p>The argument from the audit spread deaths evenly between training and test. With it in
+place and nothing else changed, the same method went from first to last. Running it with a different set of library
+versions moved it to second. When I tried to reproduce the April table, I could not,
+because nobody had written down which library versions produced it.</p>
+<p>That was my mistake. I had read a ranking off a single random partition of a cohort of
+moderate size and treated it as a finding. I had also skipped the most boring part of
+the job, recording the environment, so even the wrong number could not be checked.</p>
+<p>The size of the regions explains part of it. The North contributed 294 patients and 54 deaths
+from two hospitals. With a fifth of the data held out for testing, the North's calibration
+error was computed on about sixty people and eleven deaths, sorted into ten bins of
+predicted risk. Two or three deaths landing in one bin or another are enough to move that number, and the
+composite score inherits every bit of that noise. Across partitions, the North's error
+for the uncalibrated model averaged 0.107 with a standard deviation of 0.036. A single
+split tells you where one draw landed.</p>
+<p>Most clinical prediction papers still report one split, and I understand why. It is the
+default in every tutorial. Reviewers ask for the best number. Repeating the whole
+pipeline dozens of times used to cost days of computing and a lot of patience, and a
+distribution makes a less exciting table.</p>
+<p>The computing is no longer the obstacle. An agent rewrote our comparison to run over forty
+partitions, loading the original methods without rewriting them. With
+the residual of the boosting correction on the logit scale, temperature scaling had the
+best mean score, 0.636, and finished last in 5% of partitions. The boosting method had the
+worst mean, 0.449, finished last in 40% of them, and beat temperature scaling in 30% of
+paired comparisons (95% interval, 18% to 45%). It widened the calibration gap between
+subgroups, compared with the uncalibrated model, in 65% of partitions.</p>
+<p>There are limits to what this proves. Forty partitions of the same cohort are still one
+cohort, collected during one pandemic, with the same hospitals and the same gaps in the
+records; it is no substitute for external validation. And the verdict on the boosting method depends on an
+implementation detail. With the residual on the probability scale, it ties with
+temperature scaling and wins 48% of the paired comparisons. A method that looks bad or
+acceptable depending on one line of code is not a method I can recommend, but I also
+cannot say the idea behind it is wrong.</p>
+<p>The method that lost belongs to the family my thesis is about. The decisions from that
+week are on record. The logit scale became
+the primary analysis and the probability scale a sensitivity check. The multicalibration method I built myself still has to
+be run across all forty partitions before I say anything about it.</p>
+<p>What changed in practice is easy to list. No number in the manuscript comes from a single
+run anymore. Every table is regenerated from the forty partitions by a script, and the
+library versions are saved next to the results. The methods are compared by mean,
+standard deviation and paired win rate with an interval, and the dashboard shows how
+often each one finished first or last. The paper now leads with the least glamorous
+method in the comparison, because it was the most consistent.</p>
+<p>Forty partitions are cheap now. Report all forty.</p>
+  </div>
+  <p class="byline">Fabiano Filho (Fabiano Barcellos Filho) is a physician and data scientist who teaches AI in medicine. PhD candidate at LABDAPS, School of Public Health, University of São Paulo. More at <a href="/">fabianofilho.com</a>.</p>
+  </article>
+</main>
+<footer class="site-footer">
+  <div class="ftr">
+    <span>© 2026 Fabiano Barcellos Filho · São Paulo</span>
+    <span><a href="https://fabianofilho.com/perspectives/feed.xml">RSS</a> · <a href="/">fabianofilho.com</a></span>
+  </div>
+</footer>
+<script>(function(){var r=document.documentElement,i=document.getElementById('theme-icon');
+var SUN='<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
+var MOON='<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+function p(){i.innerHTML=r.classList.contains('dark')?SUN:MOON}
+document.getElementById('theme-btn').addEventListener('click',function(){var d=!r.classList.contains('dark');r.classList.toggle('dark',d);try{localStorage.setItem('theme',d?'dark':'light')}catch(e){}p()});p();
+var l=document.getElementById('lang-btn');l.addEventListener('click',function(){try{localStorage.setItem('lang',l.getAttribute('data-lang'))}catch(e){}});})();</script>
+</body>
+</html>
