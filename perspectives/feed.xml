@@ -6,7 +6,14 @@
   <atom:link href="https://fabianofilho.com/perspectives/feed.xml" rel="self" type="application/rss+xml" />
   <description>Essays by Fabiano Filho, MD, on artificial intelligence in medicine: clinical prediction, fairness, evaluation and what it takes to use AI well in health care.</description>
   <language>en</language>
-  <lastBuildDate>Sat, 24 Oct 2026 09:00:00 -0300</lastBuildDate>
+  <lastBuildDate>Sat, 31 Oct 2026 09:00:00 -0300</lastBuildDate>
+  <item>
+    <title>The ranking that did not survive a new seed</title>
+    <link>https://fabianofilho.com/perspectives/a-new-seed/</link>
+    <guid isPermaLink="true">https://fabianofilho.com/perspectives/a-new-seed/</guid>
+    <pubDate>Sat, 31 Oct 2026 09:00:00 -0300</pubDate>
+    <description>In April a multicalibration method came first in our comparison. One changed argument in the data split put it last. What forty partitions showed, and what changed in how I report a comparison.</description>
+  </item>
   <item>
     <title>The paper got cheap</title>
     <link>https://fabianofilho.com/perspectives/the-paper-got-cheap/</link>
