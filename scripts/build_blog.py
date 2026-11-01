@@ -201,6 +201,10 @@ def pagina(lang, titulo, descricao, url, jsonld, corpo, troca, alternativos, og_
   <meta name="description" content="{e(descricao)}" />
   <meta name="author" content="Fabiano Filho" />
   <link rel="canonical" href="{url}" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
 {alt}  <link rel="alternate" type="application/rss+xml" title="{NOME_BLOG} · Fabiano Filho" href="{t["base"]}feed.xml" />
   <meta property="og:type" content="{og_tipo}" />
   <meta property="og:site_name" content="Fabiano Filho" />
