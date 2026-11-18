@@ -375,6 +375,9 @@
     .pubs li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 16px; font-size: 17px; line-height: 1.55; }
     .pubs .ref { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 3px; }
     .pubs-more { margin: 32px 0 0 72px; font-family: var(--mono); font-size: 13px; }
+    .pubs.books li { grid-template-columns: 56px minmax(0, 1fr) 84px; align-items: start; }
+    .pubs.books .cover { display: block; width: 84px; line-height: 0; }
+    .pubs.books .cover img { width: 100%; height: auto; border: 1px solid var(--rule); background: var(--paper-2); box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
 
     /* COMO CITAR */
     .cite { padding: 56px 0; border-top: 1px solid var(--rule); display: flex; flex-wrap: wrap; gap: 24px 56px; align-items: flex-start; }
@@ -417,6 +420,8 @@
       .fig-plot { min-width: 0; flex-basis: 100%; }
       .entry { grid-template-columns: minmax(0, 1fr); }
       .pubs li { grid-template-columns: 36px minmax(0, 1fr); gap: 12px; font-size: 16px; }
+      .pubs.books li { grid-template-columns: 36px minmax(0, 1fr) 64px; }
+      .pubs.books .cover { width: 64px; }
       .pubs-more { margin-left: 48px; }
     }
     @media (max-width: 420px) {
@@ -805,9 +810,9 @@
   <section id="s4" class="sec">
     <h2><span class="n">4</span><span data-i18n="pub.title">Publicações selecionadas</span></h2>
     <div class="sw-group"><span class="acc-num">4.1</span><span class="kicker" data-i18n="pubg1">Capítulos de livro</span></div>
-    <ol class="pubs">
-      <li><span class="ref">[L1]</span><span data-i18n="book1">Multicalibração e calibração em modelos preditivos. Capítulo 19 de <em>Inteligência artificial, saúde e decisão: aplicações práticas de IA para predições em saúde</em> (A. Chiavegatto Filho e K. A. Moura, orgs.). Hucitec, 2026. <a href="https://www.amazon.com.br/dp/8584046539" target="_blank" rel="noopener">Amazon ↗</a></span></li>
-      <li><span class="ref">[L2]</span><span data-i18n="book2">Inteligência artificial na validação clínica: transformar descobertas em desfechos. Capítulo 20 de <em>Inteligência Artificial e Saúde: O que Saber? E como se Preparar!</em> (J. B. R. Valladão Júnior e L. A. B. da Silva, eds.). Atheneu, 2025. <a href="https://www.amazon.com.br/dp/6555869375" target="_blank" rel="noopener">Amazon ↗</a></span></li>
+    <ol class="pubs books">
+      <li><span class="ref">[L1]</span><span data-i18n="book1">Multicalibração e calibração em modelos preditivos. Capítulo 19 de <em>Inteligência artificial, saúde e decisão: aplicações práticas de IA para predições em saúde</em> (A. Chiavegatto Filho e K. A. Moura, orgs.). Hucitec, 2026. <a href="https://www.amazon.com.br/dp/8584046534" target="_blank" rel="noopener">Amazon ↗</a></span><a class="cover" href="https://www.amazon.com.br/dp/8584046534" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="img/livro-hucitec-2026.jpg" alt="Capa do livro Inteligência artificial, saúde e decisão (Hucitec, 2026)" width="252" height="376" loading="lazy" decoding="async"></a></li>
+      <li><span class="ref">[L2]</span><span data-i18n="book2">Inteligência artificial na validação clínica: transformar descobertas em desfechos. Capítulo 20 de <em>Inteligência Artificial e Saúde: O que Saber? E como se Preparar!</em> (J. B. R. Valladão Júnior e L. A. B. da Silva, eds.). Atheneu, 2025. <a href="https://www.amazon.com.br/dp/6555869372" target="_blank" rel="noopener">Amazon ↗</a></span><a class="cover" href="https://www.amazon.com.br/dp/6555869372" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="img/livro-atheneu-2025.jpg" alt="Capa do livro Inteligência Artificial e Saúde: O que Saber? E como se Preparar! (Atheneu, 2025)" width="252" height="341" loading="lazy" decoding="async"></a></li>
     </ol>
     <div class="sw-group"><span class="acc-num">4.2</span><span class="kicker" data-i18n="pubg2">Artigos</span></div>
     <ol class="pubs">
@@ -1039,8 +1044,8 @@
     'pub.title': 'Selected publications',
     'pubg1': 'Book chapters',
     'pubg2': 'Articles',
-    'book1': 'Multicalibration and calibration in predictive models. Chapter 19 of <em>Inteligência artificial, saúde e decisão: aplicações práticas de IA para predições em saúde</em> (A. Chiavegatto Filho and K. A. Moura, eds.). Hucitec, 2026. In Portuguese. <a href="https://www.amazon.com.br/dp/8584046539" target="_blank" rel="noopener">Amazon ↗</a>',
-    'book2': 'Artificial intelligence in clinical validation: turning discoveries into outcomes. Chapter 20 of <em>Inteligência Artificial e Saúde: O que Saber? E como se Preparar!</em> (J. B. R. Valladão Júnior and L. A. B. da Silva, eds.). Atheneu, 2025. In Portuguese. <a href="https://www.amazon.com.br/dp/6555869375" target="_blank" rel="noopener">Amazon ↗</a>',
+    'book1': 'Multicalibration and calibration in predictive models. Chapter 19 of <em>Inteligência artificial, saúde e decisão: aplicações práticas de IA para predições em saúde</em> (A. Chiavegatto Filho and K. A. Moura, eds.). Hucitec, 2026. In Portuguese. <a href="https://www.amazon.com.br/dp/8584046534" target="_blank" rel="noopener">Amazon ↗</a>',
+    'book2': 'Artificial intelligence in clinical validation: turning discoveries into outcomes. Chapter 20 of <em>Inteligência Artificial e Saúde: O que Saber? E como se Preparar!</em> (J. B. R. Valladão Júnior and L. A. B. da Silva, eds.). Atheneu, 2025. In Portuguese. <a href="https://www.amazon.com.br/dp/6555869372" target="_blank" rel="noopener">Amazon ↗</a>',
     'pub.more': 'Full list on Google Scholar ↗',
     'pub.inpress': 'in press',
     'car.title': 'Career',
